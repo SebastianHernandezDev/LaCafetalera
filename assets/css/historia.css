@@ -1,0 +1,112 @@
+body {
+  background-color: #A5998F;
+  margin: 0;
+  padding: 0;
+}
+
+.h2_sebas {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  width: 600px;
+}
+.h2_sebas_1{
+
+  margin-left: 50px;
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  width: 600px;
+}
+.h2_sebas_2{
+  margin-left: -50px;
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  width: 600px;
+}
+
+
+
+.texto_sebas {
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+}
+
+.carousel {
+  overflow: visible;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  z-index: 2;
+}
+
+.carousel-control-prev {
+  left: 10px;
+}
+
+.carousel-control-next {
+  right: 10px;
+}
+
+.imagen_historia_sebas {
+  border-radius: 10%;
+  border: 5px solid black;
+  width: 600px;
+  height: 450px;
+  object-fit: cover;
+}
+
+.circulo_sebas_fondo {
+  margin-left: 150px;
+  background-color: wheat;
+  border-radius: 50%;
+  height: 500px;
+  width: 500px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.texto_sebas_carusel {
+  margin-top: 50px;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  padding: 0 10px;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+  .imagen_historia_sebas {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
+
+  .h2_sebas {
+    font-size: 24px;
+    width: 100%;
+    margin: 10px auto;
+    text-align: center;
+  }
+
+  .texto_sebas_carusel {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+
+  .circulo_sebas_fondo {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .carousel-inner > .carousel-item > .d-flex {
+    flex-direction: column !important;
+  }
+}
