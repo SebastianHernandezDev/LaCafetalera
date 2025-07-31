@@ -36,19 +36,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Animación de transformacióno rebote
-const style = document.createElement('style'); // Crea una etiqueta <style>
-style.textContent = `
-    @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% {
-            transform: translateY(0); // Posición original
-        }
-        40% {
-            transform: translateY(-10px); // Rebote hacia arriba
-        }
-        60% {
-            transform: translateY(-5px);  // Segundo rebote más leve
-        }
-    }
-`;
 document.head.appendChild(style); 
