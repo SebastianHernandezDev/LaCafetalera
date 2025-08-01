@@ -1,20 +1,17 @@
-/* Fuente principal */
 body {
-  font-family: 'Playfair Display', serif;
+
   margin: 0;
   padding: 0;
-  background-color: #fefcf9;
+  background-color: #F7E4C6;
   color: #3f2b1c;
 }
 
-/* Contenedor principal */
 main {
   max-width: 900px;
   margin: auto;
   padding: 20px;
 }
 
-/* Bloques de contenido */
 section.bloque {
   background-color: #fff8ef;
   border-left: 5px solid #8C5C41;
@@ -26,15 +23,15 @@ section.bloque {
   animation: fadeIn 1s ease forwards;
 }
 
-/* Títulos */
 h2 {
+  font-family: 'Playfair Display', serif;
   font-size: 1.8em;
   color: #8C5C41;
   margin-bottom: 10px;
 }
 
-/* Párrafos y lista */
 p, ul {
+  font-family: 'lato', serif;
   font-size: 1.1em;
   line-height: 1.6;
 }
@@ -43,14 +40,14 @@ ul {
   padding-left: 20px;
 }
 
-/* Animación de entrada */
+
 @keyframes fadeIn {
   to {
     opacity: 1;
   }
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   section.bloque {
     padding: 15px;
