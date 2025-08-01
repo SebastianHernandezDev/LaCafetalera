@@ -1,0 +1,33 @@
+.cormorant-garamond-estilado{
+  font-family: "Cormorant Garamond", serif !important;
+}
+h2{
+  color: #8c5637;
+  font-weight: 900;
+}
+p{
+  color: #582919;
+  font-weight: 800;
+}
+.seccion-video {
+    background-image: url('../img/cafetaleros-storytelling.jpeg');
+    background-color: #BBF1BB;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: multiply; /* Mezcla directamente */
+    /* NO necesita ::before ni z-index */
+  
+}
+
+.video-section {
+  background-image: url('fondo.jpg');
+  background-size: cover;          /* Cubre toda la sección */
+  background-position: center;     /* Centra la imagen */
+  background-repeat: no-repeat;    /* No repite la imagen */
+  background-attachment: fixed;    /* Opcional: efecto parallax */
+  min-height: 100vh;              /* Altura mínima de toda la pantalla */
+  display: flex;
+  align-items: center;            /* Centra verticalmente el contenido */
+  position: relative;
+ 
+}
