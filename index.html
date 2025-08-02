@@ -1,1 +1,324 @@
 <!--HTML de la página "sobre nosotros"-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre nosotros</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/historia.css">
+    <link rel="stylesheet" href="../assets/css/mision.css">
+    <link rel="stylesheet" href="../assets/css/perfilEquipo.css">
+    <link rel="stylesheet" href="../assets/css/storytelling.css">
+
+</head>
+<body>
+    <!--Barra de nav y Carrousel con historia-->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<!--carrusel-->
+<div id="carouselExampleIndicators" class="carousel slide py-6" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+      class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+      aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+      aria-label="Slide 3"></button>
+  </div>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="d-flex flex-column flex-md-row align-items-center justify-content-center p-5">
+        <div class="col-md-6 text-start">
+            <div class="circulo_sebas_fondo">
+                <h2 class="h2_sebas">Comenzó con un Anhelo</h2>
+                <p class="texto_sebas_carusel"><strong>Colombia es tierra de café, pero muchas familias colombianas rara vez saborean cafés de alta calidad. Algo no concordaba: un país que exporta cafés suaves y emblemáticos, cuyos habitantes no siempre disfrutan plenamente de ese legado. Esta disparidad se convirtió en una pregunta persistente: ¿por qué el café excepcional no resuena en los hogares colombianos?</strong></p>
+            </div>
+        </div>
+        <div class="col-md-6 text-center">
+          <img class="imagen_historia_sebas" src="../assets/img/historiasebas.png" class="img-fluid rounded" alt="Historia 1">
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="d-flex flex-column flex-md-row-reverse align-items-center justify-content-center p-5">
+        <div class="col-md-6 text-start">
+            <div class="circulo_sebas_fondo" id="centrado_sebas1">
+            <h2 class="h2_sebas_2">Un Encuentro con la Realidad</h2>
+            <p class="texto_sebas_carusel"><strong>Decidimos salir al campo: recorrer fincas en Boyacá, Huila, Tolima y Antioquia, escuchar a caficultores y observar el proceso desde la semilla hasta la cosecha. Conocimos historias de lucha, esperanza y orgullo rural. Jóvenes productores que optaban por la calidad sobre volumen, familias que soñaban con vivir dignamente de su tierra y su café. Fue allí donde nació la inspiración: uniendo corazón, identidad y impacto.</strong></p>
+        </div>
+        </div>
+        <div class="col-md-6 text-center ">
+          <img class="imagen_historia_sebas" id="centrado_sebas" src="../assets/img/imagen_historia sebas dos-Photoroom.png" class="img-fluid rounded" alt="Historia 2">
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="d-flex flex-column flex-md-row align-items-center justify-content-center p-5">
+        <div class="col-md-6 text-start">
+            <div class="circulo_sebas_fondo">
+          <h2 class="h2_sebas_1 ">La Chispa de la Idea</h2>
+          <p class="texto_sebas_carusel"><strong>Un equipo de entusiastas de la tecnología y la caficultura se unió con una visión clara: desarrollar una plataforma digital que entregue un café con historia, propósito y diseño. Desde el origen hasta la taza del consumidor, cada producto debía contar una narrativa humana: del agricultor al hogar colombiano.</strong></p>
+        </div>
+        </div>
+        <div class="col-md-6 text-center ">
+          <img class="imagen_historia_sebas" src="../assets//img/historia_sebas1-Photoroom.png" class="img-fluid rounded" alt="Historia 3">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPORTANTE: Las flechas deben estar DENTRO del div del carrusel -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <img src="../assets/img/icono_sebas_dos.png" alt="Anterior" class="custom-carousel-icon">
+    <span class="visually-hidden">Anterior</span>
+  </button>
+
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <img src="../assets/img/iconos_Seabs.png" alt="Siguiente" class="custom-carousel-icon">
+    <span class="visually-hidden">Siguiente</span>
+  </button>
+
+</div> <!-- CIERRE DEL CARRUSEL - Las flechas deben estar ANTES de este cierre -->
+
+<!------------------------------------------------------------------------------------------------------------>
+<!----------------------------------------MISIÓN Y VISIÓN-------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------>
+
+<section class="mision-vision-section"> <!-- Agregué una sección contenedora -->
+  <h1 class="titulo1 py-5"><i class="bi bi-cup-hot"></i>🌿Misión, visión y valores🌿<i class="bi bi-cup-hot"></i></h1>
+  
+  <!-- Imagen representativa de café con animación -->
+  <div class="text-center mb-4">
+    <img src="../assets/img/cafe-paula.jpg" alt="Café" class="img-fluid coffee-img" style="max-width: 100%; height: auto;">
+  </div>
+</section>
+  <!-- Sección Misión, Visión y Valores -->
+  <section id="mvv" class="paula-mvv-container">
+    <div class="container">
+      <div class="mvv-box">
+        <h2 class="paula-title"><i class="bi bi-flag"></i> Nuestra Misión</h2>
+        <p class="paula-text">Conectar a los colombianos con café de origen local, directamente desde los productores, mediante una plataforma digital confiable que garantice calidad, trazabilidad y comercio justo.</p>
+      </div>
+
+      <div class="mvv-box">
+        <h2 class="paula-title"><i class="bi bi-eye"></i> Nuestra Visión</h2>
+        <p class="paula-text">Ser la plataforma digital de referencia en Colombia que transforma el consumo de café en una experiencia consciente y celebratoria, fortaleciendo el vínculo con el campo mediante la tecnología.</p>
+      </div>
+
+      <div class="mvv-box">
+        <h2 class="paula-title"><i class="bi bi-star"></i> Valores</h2>
+        
+        <div class="values-container">
+          <div class="value-box">
+            <h3 class="value-title"><i class="bi bi-check-circle"></i> Local</h3>
+            <p class="value-text">Fomentamos el orgullo por consumir lo que nace de nuestra tierra.</p>
+          </div>
+          
+          <div class="value-box">
+            <h3 class="value-title"><i class="bi bi-check-circle"></i> Calidad</h3>
+            <p class="value-text">Más que una bebida, brindamos una vivencia auténtica.</p>
+          </div>
+          
+          <div class="value-box">
+            <h3 class="value-title"><i class="bi bi-check-circle"></i> Sostenibilidad</h3>
+            <p class="value-text">Minimizamos nuestro impacto ambiental mediante prácticas responsables.</p>
+          </div>
+          
+          <div class="value-box">
+            <h3 class="value-title"><i class="bi bi-check-circle"></i> Identidad cultural</h3>
+            <p class="value-text">Elevamos el café colombiano como símbolo de nuestras raíces.</p>
+          </div>
+          
+          <div class="value-box">
+            <h3 class="value-title"><i class="bi bi-check-circle"></i> Equidad y acceso</h3>
+            <p class="value-text">Democratizamos el mejor café colombiano para todos los hogares.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+<!------------------------------------------------------------------------------------------------------------>
+<!----------------------------------------PERFIL DE EQUIPOS-------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------>
+
+  <!-- Team Section -->
+    <section class="team-section" id="team">
+
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestro Equipo</h2>
+                <p>Conoce a los profesionales apasionados que hacen posible este maravilloso proyecto</p>
+            </div>
+
+            <div class="row justify-content-center mb-4">
+                <!-- Member 1 -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="team-card card-delay-1">
+                        <div class="member-photo">
+                            <img src="../assets/img/mem1.jpeg" alt="Juan G">
+                        </div>
+                        <h3 class="member-name">Juan G</h3>
+                        <div class="member-role">Desarrollador Backend</div>
+                        <p class="member-bio">Disfruto aprender cosas nuevas, trabajar en equipo y resolver problemas de forma ordenada y con sentido. No me conformo con que algo funcione: quiero entender cómo y por qué funciona.</p>
+                        <div class="social-links">
+                            <a href="https://github.com/Juan011599" class="social-link"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/juan-daniel-gonzalez-moreno-24b501350/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="team-card card-delay-2">
+                        <div class="member-photo">
+                            <img src="../assets/img/mem2.jpeg" alt="Paula R">
+                        </div>
+                        <h3 class="member-name">Paula R</h3>
+                        <div class="member-role">Desarrollador Frontend</div>
+                        <p class="member-bio">Aprendo tanto de la experiencia como de la reflexión. Deseo de evolucionar profesionalmente, construir una narrativa auténtica que celebre cada etapa del proceso. </p>
+                        <div class="social-links">
+                            <a href="https://github.com/PaulaRamosof" class="social-link"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/paularamosof" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="team-card card-delay-3">
+                        <div class="member-photo">
+                        <img src="/assets/img/foto_miguel.jpg" alt="Miguel S">
+                        </div>
+                        <h3 class="member-name">Miguel S</h3>
+                        <div class="member-role">Desarrollador Backend</div>
+                        <p class="member-bio">Desarrollador apasionado por la tecnología y el conocimiento siempre buscando superarme para cumplir el objetivo. Crecer profesionalmente es mi meta.</p>
+                        <div class="social-links">
+                            <a href="https://github.com/Ukpercival" class="social-link"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/miguel-angel-simbaqueba-developer/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <!-- Member 4 -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="team-card card-delay-4">
+                        <div class="member-photo">
+                            <img src="../assets/img/mem4.png" alt="Natalia G">
+                        </div>
+                        <h3 class="member-name">Natalia G</h3>
+                        <div class="member-role">Database administrator</div>
+                        <p class="member-bio">Disfruto optimizar bases de datos, trabajar en equipo y diseñar estructuras claras y eficientes. Quiero entender su lógica, su impacto y cómo mejorarla.</p>
+                        <div class="social-links">
+                            <a href="https://github.com/NatGuzB" class="social-link"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/natalia-guzman-dev/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 5 -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="team-card card-delay-5">
+                        <div class="member-photo">
+                            <img src="../assets/img/mem5.jpg" alt="Sebastian H">
+                        </div>
+                        <h3 class="member-name">Sebastian H</h3>
+                        <div class="member-role">Desarrollador Frontend</div>
+                        <p class="member-bio">Me gusta crear interfaces claras, trabajar en equipo y escribir código ordenado y funcional. No me conformo con que algo se vea bien, quiero entender cómo se construye y cómo mejorar.</p>
+                        <div class="social-links">
+                            <a href="https://github.com/SebastianHernandezDev" class="social-link"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/sebastian-david-hernandez-perez-fullstack/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-------------------------------------------------------------->
+     <!---------------------------seccion video storytelling----------------------------------->
+      <!-------------------------------------------------------------->
+<section class="seccion-video text-light">
+    <div class="overlay">
+        <div class="container py-5">
+            <div class="content-box text-center py-4 px-3">
+                <h2 class="cormorant-garamond-estilado fs-1 mb-3">Nuestro Café, Nuestra Identidad</h2>
+                <p class="cormorant-garamond-estilado fs-2 mb-4">
+                    "El café es identidad, es parte de nuestra cultura y de nuestra gente"
+                </p>
+                <div class="ratio ratio-16x9">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/io5xmIaPIJ0?si=ZXyZdjot6WzDG24b"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+ 
+
+
+
+
+
+
+
+
+
+
+<!--Script carrusel-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!--scripts perfil-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="../script/scriptPerfil.js"></script>
+</body>
+</html>

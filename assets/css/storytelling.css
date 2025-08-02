@@ -1,33 +1,38 @@
-.cormorant-garamond-estilado{
+.cormorant-garamond-estilado {
   font-family: "Cormorant Garamond", serif !important;
 }
-h2{
-  color: #8c5637;
+
+/* Mejora la legibilidad del texto */
+h2 {
+  color: #BBF1BB;
   font-weight: 900;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
-p{
-  color: #582919;
-  font-weight: 800;
-}
-.seccion-video {
-    background-image: url('../img/cafetaleros-storytelling.jpeg');
-    background-color: #BBF1BB;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-blend-mode: multiply; /* Mezcla directamente */
-    /* NO necesita ::before ni z-index */
-  
+p {
+  color: #F7E4C6;
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
 
-.video-section {
-  background-image: url('fondo.jpg');
-  background-size: cover;          /* Cubre toda la sección */
-  background-position: center;     /* Centra la imagen */
-  background-repeat: no-repeat;    /* No repite la imagen */
-  background-attachment: fixed;    /* Opcional: efecto parallax */
-  min-height: 100vh;              /* Altura mínima de toda la pantalla */
-  display: flex;
-  align-items: center;            /* Centra verticalmente el contenido */
+/* Fondo con overlay oscuro para contraste */
+.seccion-video {
   position: relative;
- 
+  background-image: url('../img/cafetaleros-storytelling.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.seccion-video .overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* Capa semitransparente */
+  padding: 4rem 0;
+}
+
+/* Contenedor estético para el contenido */
+.content-box {
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 15px;
+  padding: 2rem;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
