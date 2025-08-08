@@ -5,7 +5,7 @@
 }
 
 .global-form {
-    background: linear-gradient(135deg, #4B6950, #93BB88);
+    background: #F7E4C6;
     font-family: 'Lato', sans-serif;
     min-height: 100vh;
     padding: 20px;
@@ -35,8 +35,8 @@
 }
 
 .info-section {
-    background: linear-gradient(135deg, #8CC637, #4B6950);
-    color: #F7E4C6;
+    background: linear-gradient(135deg, #93be88, #4B6950);
+    color: #ffffff;
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -74,7 +74,7 @@ h1 {
 .subtitle {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.1rem;
-    color: #8CC637;
+    color: #4B6950;
     text-align: center;
     margin-bottom: 30px;
     font-weight: 500;
