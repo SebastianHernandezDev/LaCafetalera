@@ -1,4 +1,5 @@
 .navbar{
+    background-color: #4C6A50 !important;
     position: fixed;
     top: 0;
     left: 0;
@@ -6,20 +7,15 @@
     z-index: 1000; /* o mayor, para que esté encima del contenido */    
 }
 
-.montserrat{
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight:500;
-  font-style: normal;
-}
 
 /* Estilo base del nav-link */
     .nav-link {
       position: relative;
-      display: inline-block;
+      font-family: 'Playfair Display', serif;
+      display: inline-flex;
       color: #000;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 100;
       transition: color 0.3s ease;
     }
 
@@ -31,7 +27,7 @@
       bottom: 0;
       width: 0%;
       height: 2px;
-      background-color: #F39523;
+      background-color: #8C5637;
       transition: width 0.6s ease;
     }
 
@@ -41,7 +37,7 @@
     }
 
     .nav-link:hover{
-        color: #881421  !important;;
+        color: #592A19  !important;;
     }
 
 .btn-outline-custom {
