@@ -118,7 +118,7 @@ body {
 }
 
 /* RESPONSIVE STYLES */
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .imagen_historia_sebas {
     width: 100%;
     height: auto;
