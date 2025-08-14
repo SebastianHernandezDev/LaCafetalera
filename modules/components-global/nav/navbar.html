@@ -4,16 +4,22 @@
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
- <link rel="stylesheet" href="../contacto/navbar.css">  
+ <link rel="stylesheet" href="/modules/assets-global/nav-css/navbar.css">  
  <header class="d-flex flex-column">
-        <nav class="navbar navbar-expand-lg py-2 shadow-lg  mb-2 bg-body-tertiary rounded">
-            <div class="container-fluid">
-                <!-- Logo -->
-                <a class="La Cafetalera" href="#">
-                    <img src="/modules/contacto/assets/css/img/logo.png" 
-                         alt="logo" width="220" height="130" class="d-inline-block" aria-label="logo">
-                </a>
-                
+        <nav class="navbar navbar-expand-lg py-3 shadow-lg  mb-3 bg-body-tertiary rounded">
+             <div class="container-fluid d-flex justify-content-between align-items-center">
+                <!--Contenedor de texto + Logo -->
+                <div class="d-flex align-items-center">
+                  
+                   <a href="#" class="ms-auto">
+                     <img src="/modules/contacto/assets/img/Logo2.png"
+                         alt="logo" width="200" height="ms-auto"
+                         class="flex-column" aria-label="logo">
+                   </a>
+                   <span class="navbar-brand mb-1 h1 fs-1 montserrat">La Cafetalera</span>
+              </div>
+
+                              
                 <!-- Botón hamburguesa -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
@@ -26,19 +32,19 @@
                     <!-- Menú de navegación centrado en pantallas grandes -->
                     <ul class="navbar-nav mx-auto d-none d-lg-flex ">
                         <li class="nav-item">
-                            <a class="nav-link active mx-5 fs-5 montserrat " href="#hero2" aria-label="Inicio"><i class="bi bi-house mx-3"></i
+                            <a class="nav-link  ms-4 fs-5 montserrat " href="#hero2" aria-label="Inicio"><i class="bi bi-house mx-3"></i
                                 >Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-5 fs-5 montserrat" href="#products" aria-label="Productos"><i class="bi bi-bag mx-3"></i>
+                            <a class="nav-link ms-4 fs-5 montserrat" href="#products" aria-label="Productos"><i class="bi bi-bag mx-3"></i>
                                 Catalogo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-5 fs-5 montserrat" href="#services" aria-label="Servicios"><i class="bi bi-clipboard-check mx-3"></i>
+                            <a class="nav-link ms-4 fs-5 montserrat" href="#services" aria-label="Servicios"><i class="bi bi-clipboard-check mx-3"></i>
                                 Sobre Nosotros</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-5 fs-5 montserrat" href="#contact" aria-label="Contacto"><i class="bi bi-telephone mx-3"></i>
+                            <a class="nav-link ms-4 fs-5 montserrat" href="#contact" aria-label="Contacto"><i class="bi bi-telephone mx-3"></i>
                                 Contacto</a>
                         </li>
                     </ul>
@@ -69,7 +75,7 @@
                     </ul>
                     
                     <!-- Botón carrito en pantallas grandes -->
-                    <div class="d-none d-lg-block ms-auto px-3">
+                    <div class="d-none d-lg-block ms-3 px-3">
                         <a href="#cuadro" id="botonCarritosm" class="btn btn-outline-custom py-3 montserrat text-white">
                             <i class="bi bi-cart fs-4 text-white"></i> Ir al carrito
                         </a>
