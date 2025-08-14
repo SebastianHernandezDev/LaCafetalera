@@ -1,22 +1,65 @@
 .navbar{
-    background-color: #4C6A50 !important;
-    position: fixed;
+    background-color: #f7e4c6 !important;
+    position:relative;
     top: 0;
     left: 0;
+    padding: 1px 1px;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.4); 
     width: 100%;
     z-index: 1000; /* o mayor, para que esté encima del contenido */    
 }
 
 
-/* Estilo base del nav-link */
-    .nav-link {
-      position: relative;
-      font-family: 'Playfair Display', serif;
-      display: inline-flex;
-      color: #000;
-      text-decoration: none;
-      font-weight: 100;
+.navbar-nav .nav-item {
+  display:inline;
+  flex-direction:column;
+  align-items: center;
+}
+
+.navbar-nav .nav-link {
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  font-size: 0.80rem;
+  padding: 10px;
+}
+
+.navbar-nav .nav-link i {
+  font-size: 1.1rem;
+  animation-duration: inherit;
+  margin-bottom: 0px;
+  color: #582919;
+}
+ 
+    
+    .navbar-brand {
+      font-family:'Playfair Display',serif; /* Elegante y con carácter */
+      font-size: 2rem;
+      color: #582919; /* Tono café profundo */
+      font-weight: 1000;
+      font-style: italic;
+      text-transform:none;
+      letter-spacing: 0.5px;
       transition: color 0.3s ease;
+      
+}
+
+.navbar-brand:hover {
+  color: #8c5637; /* Café claro al pasar el cursor */
+}
+
+
+    .nav-link {
+      position:relative;
+      font-family:'Playfair Display',serif;
+      font-size: smaller ;
+      font-weight: 500;
+      display:flex;
+      color:#4B6950;
+      text-decoration:none;      
+      transition:color 0.3s ease;
+      padding: 5px ; /* Reduce espacio interno para hacerlo más compacto */
+      margin: 2px 8px;    /* Reduce espacio entre ítems */
     }
 
     /* Línea inferior invisible por defecto */
@@ -27,7 +70,7 @@
       bottom: 0;
       width: 0%;
       height: 2px;
-      background-color: #8C5637;
+      background-color: #4B6950;
       transition: width 0.6s ease;
     }
 
@@ -37,17 +80,24 @@
     }
 
     .nav-link:hover{
-        color: #592A19  !important;;
+        color: #8c5637  !important;;
     }
 
 .btn-outline-custom {
-  color: #881421; /* Tu color personalizado (naranja en este caso) */
-  border: 2px solid #F39523;
-  background-color: #F39523;
+  color: #4B6950; 
+  border: 2px solid #8c5637;
+  background-color: #8c5637;
+  font-family: 'Playfair Display', serif;
+  color: #a5998f;
   transition: all 0.3s ease;
+  border-radius: 30%;
+  margin-right: 25px;
 }
 
 .btn-outline-custom:hover {
-  background-color: #881421;
-  color: #fff;
+  background-color: #4B6950;
+  font-family: 'Playfair Display', serif;
+  color: #000;
 }
+
+  
