@@ -6,15 +6,18 @@
 
 }
 footer {
-    background-color: #4b6550;
+    background-color: #a5998f;
     font-family: 'Playfair Display', serif;
     font-size: 15px;
     padding: 2px;
 }
 .lista_footer {
-    color: #bbf1bb;
+    color:rgb(11, 32, 17);
     
 }
 footer a{
-    color: white;
+    color: rgb(11, 32, 17);
+}
+footer p{
+    color: rgb(11, 32, 17);
 }
