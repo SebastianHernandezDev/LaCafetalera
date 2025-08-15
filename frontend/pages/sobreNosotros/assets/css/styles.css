@@ -5,112 +5,101 @@ body {
     font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
-
 }
-.navbar{
+
+.navbar {
     background-color: #a4a977 !important;
-    position:relative;
+    position: relative;
     top: 0;
     left: 0;
     padding: 1px 1px;
-    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.4); 
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
     width: 100%;
-    z-index: 1000; /* o mayor, para que esté encima del contenido */    
+    z-index: 1000;
 }
 
-
 .navbar-nav .nav-item {
-  display:inline;
-  flex-direction:column;
-  align-items: center;
+    display: inline;
+    flex-direction: column;
+    align-items: center;
 }
 
 .navbar-nav .nav-link {
-  display: flex;
-  flex-direction:column;
-  align-items: center;
-  font-size: 0.80rem;
-  padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.80rem;
+    padding: 10px;
 }
 
 .navbar-nav .nav-link i {
-  font-size: 1.1rem;
-  animation-duration: inherit;
-  margin-bottom: 0px;
-  color: #582919;
+    font-size: 1.1rem;
+    margin-bottom: 0px;
+    color: #582919;
 }
- 
-    
-    .navbar-brand {
-      font-family:'Playfair Display',serif; /* Elegante y con carácter */
-      font-size: 2rem;
-      color: #582919; /* Tono café profundo */
-      font-weight: 1000;
-      font-style: italic;
-      text-transform:none;
-      letter-spacing: 0.5px;
-      transition: color 0.3s ease;
-      
+
+.navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #582919;
+    font-weight: 1000;
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
 }
 
 .navbar-brand:hover {
-  color: #8c5637; /* Café claro al pasar el cursor */
+    color: #8c5637;
 }
 
+.nav-link {
+    position: relative;
+    font-family: 'Playfair Display', serif;
+    font-size: smaller;
+    font-weight: 500;
+    display: flex;
+    color: #4B6950;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 5px;
+    margin: 2px 8px;
+}
 
-    .nav-link {
-      position:relative;
-      font-family:'Playfair Display',serif;
-      font-size: smaller ;
-      font-weight: 500;
-      display:flex;
-      color:#4B6950;
-      text-decoration:none;      
-      transition:color 0.3s ease;
-      padding: 5px ; /* Reduce espacio interno para hacerlo más compacto */
-      margin: 2px 8px;    /* Reduce espacio entre ítems */
-    }
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #4B6950;
+    transition: width 0.6s ease;
+}
 
-    /* Línea inferior invisible por defecto */
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0%;
-      height: 2px;
-      background-color: #4B6950;
-      transition: width 0.6s ease;
-    }
+.nav-link:hover::after {
+    width: 100%;
+}
 
-    /* Al pasar el mouse, aparece la línea */
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    .nav-link:hover{
-        color: #8c5637  !important;;
-    }
+.nav-link:hover {
+    color: #8c5637 !important;
+}
 
 .btn-outline-custom {
-  color: #4B6950; 
-  border: 2px solid #8c5637;
-  background-color: #8c5637;
-  font-family: 'Playfair Display', serif;
-  color: #a5998f;
-  transition: all 0.3s ease;
-  border-radius: 30%;
-  margin-right: 25px;
+    color: #4B6950;
+    border: 2px solid #8c5637;
+    background-color: #8c5637;
+    font-family: 'Playfair Display', serif;
+    color: #a5998f;
+    transition: all 0.3s ease;
+    border-radius: 30%;
+    margin-right: 25px;
 }
 
 .btn-outline-custom:hover {
-  background-color: #4B6950;
-  font-family: 'Playfair Display', serif;
-  color: #000;
+    background-color: #4B6950;
+    color: #000;
 }
-
-  
-
 
 h1,
 h2,
@@ -135,242 +124,226 @@ p,
 .h2_sebas,
 .h2_sebas_1,
 .h2_sebas_2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 40px;
-  width: 600px;
-  color: #582919;
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    width: 600px;
+    color: #582919;
 }
 
 .h2_sebas_1 {
-  margin-left: 50px;
+    margin-left: 50px;
 }
 
 .h2_sebas_2 {
-  margin-left: -50px;
-  color: #582919;
+    margin-left: -50px;
+    color: #582919;
 }
 
 .texto_sebas {
-  font-family: 'Lato', sans-serif;
-  font-size: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
 }
 
 .carousel {
-  overflow: visible;
-  position: relative;
+    overflow: visible;
+    position: relative;
 }
 
 .carousel-control-prev,
 .carousel-control-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  background: none;
-  border: none;
-  padding: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: none;
+    border: none;
+    padding: 0;
 }
-
+.imagenSebas2{
+    margin-left: 140px;
+}
 .carousel-control-prev {
-  left: 2%;
+    left: 2%;
 }
 
 .carousel-control-next {
-  right: 2%;
+    right: 2%;
 }
 
 .custom-carousel-icon {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.4));
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.4));
 }
 
 .imagen_historia_sebas {
-  border-radius: 10%;
-  width: 500px;
-  height: 350px;
-  object-fit: cover;
-  opacity: 0;
-  transform: translateY(100px);
-  animation: fadeInUp 2s ease forwards;
-  margin-left: 30px;
-
-
+    border-radius: 10%;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: cover;
+    opacity: 0;
+    transform: translateY(100px);
+    animation: fadeInUp 2s ease forwards;
+    margin: 0 auto;
 }
-.imagenSebas2{
-    margin-left: 90px;
+
+.imagenSebas2 {
+    margin-left: 0;
 }
 
 .carousel-item.active .animacion-slide2 {
-  animation: fadeInLeft2 1.2s ease-out forwards;
-  animation-delay: 0.5s;
+    animation: fadeInLeft2 1.2s ease-out forwards;
+    animation-delay: 0.5s;
 }
 
 @keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-#centrado_sebas1 {
-  margin-left: -10px; 
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .circulo_sebas_fondo {
-  margin-left: 150px;
-  background-color: #a4a977;
-  width: 500px;
-  height: 500px;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%;
-  animation: deformacion 10s ease-in-out infinite;
-  transition: all 0.5s ease;
+    background-color: #a4a977;
+    width: 80vw;
+    max-width: 400px;
+    height: 80vw;
+    max-height: 400px;
+    padding: 20px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%;
+    animation: deformacion 10s ease-in-out infinite;
+    transition: all 0.5s ease;
+    text-align: center;
 }
 
 @keyframes deformacion {
-  0% {
-    border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%;
-  }
-  50% {
-    border-radius: 40% 80% 55% 85% / 75% 30% 90% 60%;
-  }
-  100% {
-    border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%;
-  }
+    0% {
+        border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%;
+    }
+
+    50% {
+        border-radius: 40% 80% 55% 85% / 75% 30% 90% 60%;
+    }
+
+    100% {
+        border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%;
+    }
 }
 
 .texto_sebas_carusel {
-  margin-top: 50px;
-  font-family: 'Lato', sans-serif;
-  text-align: center;
-  padding: 0 10px;
-  font-size: 18px;
-}
-
-
-
-
-/* Imagen */
-.coffee-img {
-    border-radius: 20px;
-    animation: floatAnimation 4s ease-in-out infinite;
-    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
-    max-width: 100%;
-    height: 300px;
-}
-
-/* Título */
-.titulo_equipo{
-    color: #582919;
-    font-size: 4rem;
-    padding-top: 20px;
+    margin-top: 50px;
+    font-family: 'Lato', sans-serif;
     text-align: center;
-    margin-top: 30px;
-
-
-
+    padding: 0 10px;
+    font-size: 18px;
 }
 
-/* Contenedor texto misión/visión */
-.paula-mvv-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    animation: fadeInUp 1.5s ease-out forwards;
-    animation-delay: 0.3s;
+/* ====== MISIÓN Y VISIÓN ====== */
+.mision-vision-wrapper {
+    background-color: #f1ddba;
+    border-radius: 20px;
+    padding: 50px 15px;
 }
 
-/* Caja misión/visión */
-.mvv-box {
+.mvv-box,
+.Contenido_Vision {
+    margin: 20px auto;
+    height: auto;
+    max-width: 550px;
+    width: 100%;
+    padding: 20px;
     border-bottom-right-radius: 50px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-left: 80px; /* antes: 100px */
-    height: 250px;
-    width: 100%; /* mejor que 550px para que sea responsive */
-    max-width: 550px; /* opcional, limita el tamaño en pantallas grandes */
+    text-align: center;
 }
-.Contenido_Vision{
-    margin-top: 60px;
-    margin-left: -100px;
-    height: 250px;
-    width: 500px;
-}
-.mision-vision-wrapper {
-  background-color: #f1ddba; /* color de fondo suave */
-  border-radius: 20px;       /* opcional, bordes redondeados */
-  padding: 50px 0;           /* espacio arriba y abajo */
-}
-.image-mision{
-    margin-top: 60px;
-}
+
 .paula-title {
-    font-weight: blod 8;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
     color: #582919;
     font-size: 4rem;
     margin-bottom: 1rem;
-    text-align: center;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-.parrafotitle{
-    text-align: center;
-    font-size: 25px;
-    font-family: "Edu NSW ACT Cursive", cursive;
-    margin-top: -25px;
-}
-.paula-text {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: black;
-    text-align: center;
-    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-}
-.valores_cont{
-    margin-top: 60px;
-}
-.valores_1{
-    text-align: center;
-}
-/* Valores */
-.values-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
+    text-shadow: 0 3px 5px rgba(255, 255, 255, 0.3);
 }
 
-.imagenes_valores{
-    height: 110px;
-    width: 70px;
+.paula-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #000;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
-.imagenes_valores1{
-    margin-top: 10px;
-    height: 90px;
+
+.coffee-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+    margin: 0 auto;
+    display: block;
+}
+
+.titulo_equipo {
+    color: #582919;
+    font-size: 3rem;
+    padding-top: 20px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* ====== VALORES ====== */
+
+.imagenes_valores {
+    height: 100px;
     width: 80px;
 }
-.imagenes_valores2{
-    margin-top: 10px;
-    height: 90px;
+
+.imagenes_valores1 {
+    height: 100px;
     width: 100px;
 }
-.imagenes_valores3{
-    margin-top: 10px;
-    height: 70px;
-    width: 70px;
+.parrafotitle{
+      font-family: "Edu NSW ACT Cursive", cursive;
+      text-align: center;  
+      font-size: 1.4rem;
 }
+.imagenes_valores2 {
+    height: 100px;
+    width: 100px;
+}
+
+.imagenes_valores3 {
+    height: 100px;
+    width: 100px;
+}
+
+.imagenes_valores4 {
+    height: 100px;
+    width: 100px;
+}
+
+.values-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
 .value-box {
     background-color: #ffffff;
-    border-radius: 8px ;
+    border-radius: 8px;
     padding: 20px;
-    border:1px #a4a977 solid;
+    border: 1px #a4a977 solid;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
 }
 
 .value-box:hover {
@@ -379,7 +352,7 @@ p,
 }
 
 .value-title {
-    color:#8C5637;
+    color: #8C5637;
     font-size: 1.4rem;
     margin-bottom: 10px;
     border-bottom: 2px solid black;
@@ -396,12 +369,8 @@ p,
     text-align: center;
 }
 
-
-
-
 /* ====== EQUIPO ====== */
 .team-section {
-
     position: relative;
     overflow: hidden;
 }
@@ -425,11 +394,10 @@ p,
 .color-texto {
     font-size: 1.3rem;
     color: rgba(0, 0, 0, 0.9);
-    max-width: 600px;
+    max-width: 90%;
     text-align: center;
-    margin-left: 250px;
+    margin: 0 auto;
     font-family: "Edu NSW ACT Cursive", cursive;
-    font-size: 1.4rem;
 }
 
 .team-card {
@@ -456,8 +424,6 @@ p,
     transform: translateY(-15px) scale(1.02);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
 }
-
-
 
 .member-photo {
     width: 150px;
@@ -491,8 +457,8 @@ p,
     font-size: 1.8rem;
     font-weight: 700;
     color: white;
-    margin-bottom: 10px;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .member-role {
@@ -529,8 +495,8 @@ p,
     justify-content: center;
     color: white;
     text-decoration: none;
-    transition: all 0.3s ease;
     font-size: 1.2rem;
+    transition: all 0.3s ease;
 }
 
 .social-link:hover {
@@ -538,26 +504,24 @@ p,
     box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
     color: white;
 }
+
 .containerFooter {
-    background-color: brown; 
-} 
+    background-color: brown;
+}
 
 .logoFooter {
     margin-top: -60px;
 }
 
 footer {
-    background-color: #000000; 
-    font-family: 'Lato', sans-serif; 
+    background-color: #000;
+    font-family: 'Lato', sans-serif;
     font-size: 15px;
     padding: 30px 2px;
-    color: #f5f5f5; 
-}
-
-.lista_footer {
     color: #f5f5f5;
 }
 
+.lista_footer,
 footer a {
     color: #f5f5f5;
     text-decoration: none;
@@ -565,7 +529,7 @@ footer a {
 }
 
 footer a:hover {
-    color: #54a63e; 
+    color: #54a63e;
 }
 
 footer p {
@@ -573,97 +537,21 @@ footer p {
 }
 
 footer .bg-secondary {
-    background-color: #000000 !important;
-    color: #f5f5f5; 
+    background-color: #000 !important;
+    color: #f5f5f5;
 }
 
-.footerA{
+.footerA {
     align-items: center;
     padding: 20px 0;
 }
-
-
-
-
-/* ====== RESPONSIVE ====== */
-@media (max-width: 1200px) {
-
-    .circulo_sebas_fondo,
-    .imagen_historia_sebas {
-        width: 350px !important;
-        height: 350px !important;
-    }
-
-    .h2_sebas,
-    .h2_sebas_1,
-    .h2_sebas_2 {
-        width: 100%;
-        font-size: 28px;
-    }
+.cormorant-garamond-estilado {
+  font-family: "Cormorant Garamond", serif !important;
 }
 
-@media (max-width: 820px) {
 
-    .carrusel-fullscreen,
-    .carousel-inner,
-    .carousel-item {
-        min-height: 60vh;
-    }
 
-    .imagen_historia_sebas {
-        width: 100% !important;
-        height: auto !important;
-        margin-top: 20px;
-    }
-
-    .h2_sebas,
-    .h2_sebas_1,
-    .h2_sebas_2 {
-        font-size: 24px;
-        width: 100%;
-        margin: 10px auto;
-        text-align: center;
-    }
-
-    .texto_sebas_carusel {
-        font-size: 14px;
-        margin-top: 20px;
-    }
-
-    .carousel-inner>.carousel-item>.d-flex {
-        flex-direction: column !important;
-    }
-
-    .circulo_sebas_fondo {
-        width: 80vw !important;
-        height: 80vw !important;
-        max-width: 400px;
-        max-height: 400px;
-        margin: 20px auto;
-        padding: 20px;
-        border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%;
-        animation: deformacion 10s ease-in-out infinite;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .circulo_sebas_fondo p,
-    .circulo_sebas_fondo .texto_sebas_carusel {
-        font-size: 14px;
-        line-height: 1.4;
-        margin: 0;
-        padding: 0 10px;
-        max-width: 90%;
-        text-align: center;
-    }
-}
-.titulo_vid{
-    color: #582919;
-    font-weight: bolder;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3)
-}
+/* Fondo con overlay oscuro para contraste */
 .seccion-video {
   position: relative;
   background-image: url('../img/cafetaleros-storytelling.jpeg');
@@ -684,6 +572,44 @@ footer .bg-secondary {
   padding: 2rem;
   backdrop-filter: blur(3px);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+/* ====== RESPONSIVE GENERAL ====== */
+@media (max-width: 1200px) {
+
+    .circulo_sebas_fondo,
+    .imagen_historia_sebas {
+        max-width: 350px;
+        max-height: 350px;
+    }
+
+    .h2_sebas,
+    .h2_sebas_1,
+    .h2_sebas_2 {
+        width: 100%;
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 820px) {
+    .imagen_historia_sebas {
+        width: 100% !important;
+        height: auto !important;
+        margin-top: 20px;
+    }
+
+    .h2_sebas,
+    .h2_sebas_1,
+    .h2_sebas_2 {
+        font-size: 24px;
+        width: 100%;
+        margin: 10px auto;
+        text-align: center;
+    }
+
+    .texto_sebas_carusel {
+        font-size: 14px;
+        margin-top: 20px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -721,5 +647,17 @@ footer .bg-secondary {
 @media (max-width: 480px) {
     .values-container {
         grid-template-columns: 1fr;
+    }
+
+    .paula-title {
+        font-size: 1.5rem;
+    }
+
+    .paula-text {
+        font-size: 0.85rem;
+    }
+
+    .titulo_equipo {
+        font-size: 2rem
     }
 }
