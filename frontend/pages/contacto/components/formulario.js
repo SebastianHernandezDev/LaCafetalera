@@ -1,59 +1,58 @@
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const mensaje = document.getElementById('mensaje');
-    
-    // Validar el límite de 300 caracteres del mensaje con JavaScript
-    if (mensaje.value.length > 300) {
-        alert('El mensaje no puede exceder los 300 caracteres.');
-        return; 
-    }
+ document.getElementById('contactForm').addEventListener('submit', function(e) {
+            const submitBtn = document.getElementById('submitBtn');
+            const successMsg = document.getElementById('successMessage');
+            const errorMsg = document.getElementById('errorMessage');
+            
+            // Cambiar texto del botón mientras se envía
+            submitBtn.textContent = 'Enviando...';
+            submitBtn.disabled = true;
+            
+            // Ocultar mensajes previos
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+            
+            // Usar fetch para envío AJAX
+            fetch(this.action, {
+                method: 'POST',
+                body: new FormData(this),
+                headers: {
+                    'Accept': 'application/json'
+                }
 
-    // Simulación de envío
-    const submitBtn = document.querySelector('.submit-btn');
-    const originalText = submitBtn.textContent;
-    
-    submitBtn.textContent = 'Enviando...';
-    submitBtn.disabled = true;
-    
-    setTimeout(() => {
-        submitBtn.textContent = '¡Mensaje enviado!';
-        submitBtn.style.background = 'linear-gradient(135deg, #93BB88, #8CC637)';
-        
-        setTimeout(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-            submitBtn.style.background = 'linear-gradient(135deg, #8CC637, #4B6950)';
-            this.reset();
-        }, 2000);
-    }, 1500);
-});
+            }).then(response => {
+                if (response.ok) {
+                    successMsg.style.display = 'block';
+                    this.reset(); // Limpiar formulario
+                } else {
+                    throw new Error('Error en el envío');
+                }
+            }).catch(error => {
+                errorMsg.style.display = 'block';
+            }).finally(() => {
+                submitBtn.textContent = 'Enviar mensaje';
+                submitBtn.disabled = false;
+            });
+            
+            e.preventDefault(); // Prevenir envío tradicional
+        });
 
-// FAQ Toggle
-document.querySelectorAll('.faq-question').forEach(question => {
-    question.addEventListener('click', () => {
-        const faqItem = question.parentElement;
-        const isActive = faqItem.classList.contains('active');
+        // Contador de caracteres para el mensaje
+        const mensajeTextarea = document.getElementById('mensaje');
+        const maxLength = 300;
         
-        // Cerrar siempre FAQ
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.classList.remove('active');
+        // Contador visual
+        const contador = document.createElement('div');
+        contador.style.textAlign = 'right';
+        contador.style.fontSize = '0.8rem';
+        contador.style.color = '#666';
+        contador.style.marginTop = '5px';
+        mensajeTextarea.parentNode.appendChild(contador);
+        
+        mensajeTextarea.addEventListener('input', function() {
+            const remaining = maxLength - this.value.length;
+            contador.textContent = `${remaining} caracteres restantes`;
+            contador.style.color = remaining < 50 ? '#f44336' : '#666';
         });
         
-        if (!isActive) {
-            faqItem.classList.add('active');
-        }
-    });
-});
-
-// Efecto de escritura en los placeholders
-const inputs = document.querySelectorAll('input, textarea');
-inputs.forEach(input => {
-    input.addEventListener('focus', function() {
-        this.parentElement.querySelector('label').style.color = '#8CC637';
-    });
-    
-    input.addEventListener('blur', function() {
-        this.parentElement.querySelector('label').style.color = '#562919';
-    });
-});
+        // Inicializar contador
+        mensajeTextarea.dispatchEvent(new Event('input'));
