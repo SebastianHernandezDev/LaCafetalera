@@ -1,6 +1,6 @@
 /* ====== FUENTES Y BASE ====== */
 body {
-    background: white;
+    background: #f7e4c6;
     min-height: 100vh;
     font-family: 'Lato', sans-serif;
     margin: 0;
@@ -27,13 +27,30 @@ p,
     font-family: 'Lato', sans-serif;
 }
 
-/* ====== CARRUSEL ======
-.carrusel-fullscreen {
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ====== CARRUSEL ====== */
+.h2_sebas,
+.h2_sebas_1,
+.h2_sebas_2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  width: 600px;
+  color: #582919;
 }
+
+.h2_sebas_1 {
+  margin-left: 50px;
+}
+
+.h2_sebas_2 {
+  margin-left: -50px;
+  color: #582919;
+}
+
+.texto_sebas {
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+}
+
 .carousel {
   overflow: visible;
   position: relative;
@@ -48,17 +65,23 @@ p,
   background: none;
   border: none;
   padding: 0;
-  width: 50px;
-  height: 50px;
 }
-.carousel-control-prev { left: 60px; }
-.carousel-control-next { right: 60px; }
+
+.carousel-control-prev {
+  left: 2%;
+}
+
+.carousel-control-next {
+  right: 2%;
+}
+
 .custom-carousel-icon {
   width: 40px;
   height: 40px;
   object-fit: contain;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.4));
 }
+
 .imagen_historia_sebas {
   border-radius: 10%;
   width: 500px;
@@ -67,13 +90,30 @@ p,
   opacity: 0;
   transform: translateY(100px);
   animation: fadeInUp 2s ease forwards;
+  margin-left: 30px;
+
+
 }
+.imagenSebas2{
+    margin-left: 90px;
+}
+
+.carousel-item.active .animacion-slide2 {
+  animation: fadeInLeft2 1.2s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
 @keyframes fadeInUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
+#centrado_sebas1 {
+  margin-left: -10px; 
+}
+
 .circulo_sebas_fondo {
   margin-left: 150px;
   background-color: #a4a977;
@@ -88,77 +128,29 @@ p,
   animation: deformacion 10s ease-in-out infinite;
   transition: all 0.5s ease;
 }
+
 @keyframes deformacion {
-  0% { border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%; }
-  50% { border-radius: 40% 80% 55% 85% / 75% 30% 90% 60%; }
-  100% { border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%; }
+  0% {
+    border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%;
+  }
+  50% {
+    border-radius: 40% 80% 55% 85% / 75% 30% 90% 60%;
+  }
+  100% {
+    border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%;
+  }
 }
-.h2_sebas, .h2_sebas_1, .h2_sebas_2 {
-  font-size: 40px;
-  width: 600px;
-}
-.h2_sebas_1 { margin-left: 50px; }
-.h2_sebas_2 { margin-left: -50px; }
+
 .texto_sebas_carusel {
   margin-top: 50px;
+  font-family: 'Lato', sans-serif;
   text-align: center;
   padding: 0 10px;
   font-size: 18px;
-} */
-
-/* ====== STORYTELLING FULLSCREEN ====== */
-.seccion-video {
-    position: relative;
-    background-image: url('../img/cafetaleros-storytelling.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
 }
 
-.seccion-video .overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 4rem 0;
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
-}
 
-.content-box {
-    background-color: rgba(255, 255, 255, 0.07);
-    border-radius: 15px;
-    padding: 2rem;
-    backdrop-filter: blur(3px);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-}
 
-.cormorant-garamond-estilado {
-    font-family: "Cormorant Garamond", serif !important;
-}
-
-.seccion-video h2 {
-    color: #BBF1BB;
-    font-weight: 900;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-}
-
-.seccion-video p {
-    color: #F7E4C6;
-    font-weight: 600;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-/* ====== MISIÓN, VISIÓN Y VALORES ====== */
-.mision-vision-title {
-    background: #8C5637;
-    margin-left: 0;
-    width: 900px;
-    height: 100px;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-}
 
 /* Imagen */
 .coffee-img {
@@ -166,23 +158,19 @@ p,
     animation: floatAnimation 4s ease-in-out infinite;
     filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
     max-width: 100%;
-    height: 400px;
+    height: 300px;
 }
 
 /* Título */
-.titulo1 {
-    color: #BBF1BB;
-    font-size: 3.5rem;
-    font-weight: 700;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    animation: fadeIn 0.3s ease-in forwards;
-}
+.titulo_equipo{
+    color: #582919;
+    font-size: 4rem;
+    padding-top: 20px;
+    text-align: center;
+    margin-top: 30px;
 
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
+
+
 }
 
 /* Contenedor texto misión/visión */
@@ -190,38 +178,62 @@ p,
     display: flex;
     flex-direction: column;
     gap: 20px;
-    color: #8C5637;
+
     animation: fadeInUp 1.5s ease-out forwards;
     animation-delay: 0.3s;
 }
 
 /* Caja misión/visión */
 .mvv-box {
-    background-color: #8C5637;
-    border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    flex: 1; /* que se reparta el espacio dentro de .col */
+    margin-left: 80px; /* antes: 100px */
+    height: 250px;
+    width: 100%; /* mejor que 550px para que sea responsive */
+    max-width: 550px; /* opcional, limita el tamaño en pantallas grandes */
 }
-
+.Contenido_Vision{
+    margin-top: 60px;
+    margin-left: -100px;
+    height: 250px;
+    width: 500px;
+}
+.mision-vision-wrapper {
+  background-color: #f1ddba; /* color de fondo suave */
+  border-radius: 20px;       /* opcional, bordes redondeados */
+  padding: 50px 0;           /* espacio arriba y abajo */
+}
+.image-mision{
+    margin-top: 60px;
+}
 .paula-title {
-    font-weight: blod;
-    color: white;
-    font-size: 2rem;
+    font-weight: blod 8;
+    color: #582919;
+    font-size: 4rem;
     margin-bottom: 1rem;
     text-align: center;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
-
+.parrafotitle{
+    text-align: center;
+    font-size: 25px;
+    font-family: "Edu NSW ACT Cursive", cursive;
+    margin-top: -25px;
+}
 .paula-text {
     font-size: 1.1rem;
     line-height: 1.6;
-    color: #BBF1BB;
+    color: black;
     text-align: center;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 }
-
+.valores_cont{
+    margin-top: 60px;
+}
+.valores_1{
+    text-align: center;
+}
 /* Valores */
 .values-container {
     display: grid;
@@ -229,10 +241,30 @@ p,
     gap: 20px;
 }
 
+.imagenes_valores{
+    height: 110px;
+    width: 70px;
+}
+.imagenes_valores1{
+    margin-top: 10px;
+    height: 90px;
+    width: 80px;
+}
+.imagenes_valores2{
+    margin-top: 10px;
+    height: 90px;
+    width: 100px;
+}
+.imagenes_valores3{
+    margin-top: 10px;
+    height: 70px;
+    width: 70px;
+}
 .value-box {
-    background-color: #BBF1BB;
-    border-radius: 8px;
+    background-color: #ffffff;
+    border-radius: 8px ;
     padding: 20px;
+    border:1px #a4a977 solid;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -243,10 +275,10 @@ p,
 }
 
 .value-title {
-    color: #4B6950;
-    font-size: 1.2rem;
+    color:#8C5637;
+    font-size: 1.4rem;
     margin-bottom: 10px;
-    border-bottom: 2px solid #93BE88;
+    border-bottom: 2px solid black;
     padding-bottom: 8px;
     text-align: center;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -260,20 +292,12 @@ p,
     text-align: center;
 }
 
-/* Animación imagen */
-/* @keyframes floatAnimation {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
-} */
+
 
 
 /* ====== EQUIPO ====== */
 .team-section {
-    padding: 100px 0;
+
     position: relative;
     overflow: hidden;
 }
@@ -294,15 +318,18 @@ p,
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-.section-title p {
+.color-texto {
     font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(0, 0, 0, 0.9);
     max-width: 600px;
-    margin: 0 auto;
+    text-align: center;
+    margin-left: 250px;
+    font-family: "Edu NSW ACT Cursive", cursive;
+    font-size: 1.4rem;
 }
 
 .team-card {
-    background: #BBF1BB;
+    background: #8C5637;
     color: #582919;
     backdrop-filter: blur(20px);
     border-radius: 25px;
@@ -326,6 +353,8 @@ p,
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
 }
 
+
+
 .member-photo {
     width: 150px;
     height: 150px;
@@ -335,7 +364,7 @@ p,
     overflow: hidden;
     border: 5px solid transparent;
     background: linear-gradient(45deg, #93BE88, #4B6950) padding-box,
-        linear-gradient(45deg, #93BE88, #4B6950) border-box;
+        linear-gradient(45deg, #ffffff, #919191) border-box;
     transition: all 0.3s ease;
 }
 
@@ -357,7 +386,7 @@ p,
 .member-name {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #2c3e50;
+    color: white;
     margin-bottom: 10px;
     text-align: center;
 }
@@ -365,7 +394,7 @@ p,
 .member-role {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #8C5637;
+    color: white;
     text-align: center;
     margin-bottom: 20px;
     text-transform: uppercase;
@@ -374,7 +403,7 @@ p,
 
 .member-bio {
     font-size: 1rem;
-    color: #4B6950;
+    color: white;
     text-align: center;
     line-height: 1.6;
     margin-bottom: 25px;
@@ -479,6 +508,32 @@ p,
         max-width: 90%;
         text-align: center;
     }
+}
+.titulo_vid{
+    color: #582919;
+    font-weight: bolder;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3)
+}
+.seccion-video {
+  position: relative;
+  background-image: url('../img/cafetaleros-storytelling.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.seccion-video .overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* Capa semitransparente */
+  padding: 4rem 0;
+}
+
+/* Contenedor estético para el contenido */
+.content-box {
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 15px;
+  padding: 2rem;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 768px) {
