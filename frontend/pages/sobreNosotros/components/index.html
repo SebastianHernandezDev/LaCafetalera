@@ -1,4 +1,3 @@
-<!--HTML de la página "sobre nosotros"-->
 <!DOCTYPE html>
 <html lang="es">
 
@@ -6,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sobre nosotros</title>
-  <!-- Solo una versión de Bootstrap CSS -->
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,215 +17,292 @@
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <!-- Tus estilos personalizados después de Bootstrap -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="../assets/css/styles.css">
 
 </head>
 
 <body>
-  <!--Barra de nav y Carrousel con historia-->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+
+         <nav class="navbar navbar-expand-lg py-3 shadow-lg  mb-3 bg-body-tertiary rounded">
+             <div class="container-fluid d-flex justify-content-between align-items-center">
+                <!--Contenedor de texto + Logo -->
+                <div class="d-flex align-items-center">
+                  
+                   <a href="#" class="ms-auto">
+                     <img src="/frontend/pages/contacto/assets/img/Logo2.png"
+                         alt="logo" width="200" height="ms-auto"
+                         class="flex-column" aria-label="logo">
+                   </a>
+                   <span class="navbar-brand mb-1 h1 fs-1 montserrat">La Cafetalera</span>
+              </div>
+
+                              
+                <!-- Botón hamburguesa -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                        aria-expanded="false" aria-label="botón menú">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!-- Contenido del navbar -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Menú de navegación centrado en pantallas grandes -->
+                    <ul class="navbar-nav mx-auto d-none d-lg-flex ">
+                        <li class="nav-item">
+                            <a class="nav-link  ms-4 fs-5 montserrat " href="#hero2" aria-label="Inicio"><i class="bi bi-house mx-3"></i
+                                >Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ms-4 fs-5 montserrat" href="#products" aria-label="Productos"><i class="bi bi-bag mx-3"></i>
+                                Catalogo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ms-4 fs-5 montserrat" href="#services" aria-label="Servicios"><i class="bi bi-clipboard-check mx-3"></i>
+                                Sobre Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ms-4 fs-5 montserrat" href="#contact" aria-label="Contacto"><i class="bi bi-telephone mx-3"></i>
+                                Contacto</a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Menú para pantallas pequeñas -->
+                    <ul class="navbar-nav d-lg-none w-100 text-center">
+                        <li class="nav-item py-2">
+                            <a class="nav-link fs-4 montserrat text-dak" href="#hero2"><i class="bi bi-house mx-3"></i>
+                                Inicio</a>
+                        </li>
+                        <li class="nav-item py-2">
+                            <a class="nav-link fs-4 montserrat  text-white" href="#products"><i class="bi bi-bag mx-3"></i>
+                                Catalogo</a>
+                        </li>
+                        <li class="nav-item py-2">
+                            <a class="nav-link fs-4 montserrat text-white " href="#services"><i class="bi bi-clipboard-check mx-3"></i>
+                                Sobre Nosotros</a>
+                        </li>
+                        <li class="nav-item py-2">
+                            <a class="nav-link fs-4 montserrat text-white " href="#contact"><i class="bi bi-telephone mx-3"></i>
+                                Contacto</a>
+                        </li>
+                        <li class="nav-item mt-3">
+                            <button  id="botonCarritolg" type="button" class=" btn btn-outline-custom py-3 montserrat text-white">
+                                <i class="bi bi-cart fs-4 text-white"></i> Ir al carrito
+                            </button>
+                        </li>
+                    </ul>
+                    
+                    <!-- Botón carrito en pantallas grandes -->
+                    <div class="d-none d-lg-block ms-3 px-3">
+                        <a href="#cuadro" id="botonCarritosm" class="btn btn-outline-custom py-3 montserrat text-white">
+                            <i class="bi bi-cart fs-4 text-white"></i> Ir al carrito
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+
+    <div class="carousel-inner">
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-center p-5">
+          <div class="col-md-6 text-start">
+            <div class="circulo_sebas_fondo">
+              <h2 class="h2_sebas">Comenzó con un Anhelo</h2>
+              <p class="texto_sebas_carusel">
+                <strong>Colombia es tierra de café, pero muchas familias colombianas rara vez saborean cafés de alta
+                  calidad.
+                  Algo no concordaba: un país que exporta cafés suaves y emblemáticos, cuyos habitantes no siempre
+                  disfrutan
+                  plenamente de ese legado. Esta disparidad se convirtió en una pregunta persistente: ¿por qué el café
+                  excepcional
+                  no resuena en los hogares colombianos?</strong>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 text-center">
+            <img src="../assets/img/historiasebas.png"
+              class="imagen_historia_sebas img-fluid ps-5 rounded d-none d-lg-block" alt="Historia 3">
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="d-flex flex-column flex-md-row-reverse align-items-center justify-content-center p-5">
+          <div class="col-md-6 text-start">
+            <div class="circulo_sebas_fondo" id="centrado_sebas1">
+              <h2 class="h2_sebas_2">Un Encuentro con la Realidad</h2>
+              <p class="texto_sebas_carusel">
+                <strong>Decidimos salir al campo: recorrer fincas en Boyacá, Huila, Tolima y Antioquia, escuchar a
+                  caficultores
+                  y observar el proceso desde la semilla hasta la cosecha. Conocimos historias de lucha, esperanza y
+                  orgullo rural.
+                  Jóvenes productores que optaban por la calidad sobre volumen, familias que soñaban con vivir
+                  dignamente de su tierra
+                  y su café. Fue allí donde nació la inspiración: uniendo corazón, identidad y impacto.</strong>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 text-center imagenSebas2">
+            <img class="imagen_historia_sebas img-fluid rounded d-none d-lg-block" id="centrado_sebas"
+              src="../assets/img/imagen_historia sebas dos-Photoroom.png" alt="Historia 2">
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-center p-5">
+          <div class="col-md-6 text-start">
+            <div class="circulo_sebas_fondo">
+              <h2 class="h2_sebas_1">La Chispa de la Idea</h2>
+              <p class="texto_sebas_carusel">
+                <strong>Un equipo de entusiastas de la tecnología y la caficultura se unió con una visión clara:
+                  desarrollar
+                  una plataforma digital que entregue un café con historia, propósito y diseño. Desde el origen hasta la
+                  taza del consumidor,
+                  cada producto debía contar una narrativa humana: del agricultor al hogar colombiano.</strong>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 text-center">
+            <img src="../assets/img/historia_sebas1-Photoroom.png"
+              class="imagen_historia_sebas img-fluid rounded d-none d-lg-block" alt="Historia 3">
+          </div>
+        </div>
       </div>
     </div>
-  </nav>
 
-  <!-- Carrusel dentro de un container -->
-  <!-- <div class="container my-4">
-    <div id="carouselExampleIndicators" class="carousel slide py-3" data-bs-ride="carousel">
-      <div class="carousel-indicators">
+    <!-- Controles -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev">
+      <img src="../assets/img/icono_sebas_dos.png" alt="Anterior" class="custom-carousel-icon me-2">
+      <span class="visually-hidden">Anterior</span>
+    </button>
 
-        <div class="container carrusel-fullscreen my-4">
-          <div id="carouselExampleIndicators" class="carousel slide py-3" data-bs-ride="carousel">
-          </div>
-        </div>
-
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-          aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-          aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-          aria-label="Slide 3"></button>
-      </div>
-
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="d-flex flex-column flex-md-row align-items-center justify-content-center p-5">
-            <div class="col-md-6 text-start">
-              <div class="circulo_sebas_fondo">
-                <h2 class="h2_sebas">Comenzó con un Anhelo</h2>
-                <p class="texto_sebas_carusel"><strong>Colombia es tierra de café, pero muchas familias colombianas rara
-                    vez saborean cafés de alta calidad. Algo no concordaba: un país que exporta cafés suaves y
-                    emblemáticos, cuyos habitantes no siempre disfrutan plenamente de ese legado. Esta disparidad se
-                    convirtió en una pregunta persistente: ¿por qué el café excepcional no resuena en los hogares
-                    colombianos?</strong></p>
-              </div>
-            </div>
-            <div class="col-md-6 text-center">
-              <img class="imagen_historia_sebas img-fluid rounded" src="../assets/img/historiasebas.png"
-                alt="Historia 1">
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item active">
-          <div class="d-flex flex-column flex-md-row align-items-center justify-content-center p-5">
-            <div class="col-md-6 text-start">
-              <div class="circulo_sebas_fondo">
-                <h2 class="h2_sebas">Un Encuentro con la Realidad</h2>
-                <p class="texto_sebas_carusel"><strong>Decidimos salir al campo: recorrer fincas en Boyacá, Huila,
-                    Tolima y Antioquia, escuchar a caficultores y observar el proceso desde la semilla hasta la cosecha.
-                    Conocimos historias de lucha, esperanza y orgullo rural. Jóvenes productores que optaban por la
-                    calidad sobre volumen, familias que soñaban con vivir dignamente de su tierra y su café. Fue allí
-                    donde nació la inspiración: uniendo corazón, identidad y impacto?</strong></p>
-              </div>
-            </div>
-            <div class="col-md-6 text-center">
-              <img class="imagen_historia_sebas img-fluid rounded" src="../assets/img//imagen_historia sebas dos-Photoroom.png"
-                alt="Historia 1">
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="d-flex flex-column flex-md-row align-items-center justify-content-center p-5">
-            <div class="col-md-6 text-start">
-              <div class="circulo_sebas_fondo">
-                <h2 class="h2_sebas_1 ">La Chispa de la Idea</h2>
-                <p class="texto_sebas_carusel"><strong>Un equipo de entusiastas de la tecnología y la caficultura se
-                    unió con una visión clara: desarrollar una plataforma digital que entregue un café con historia,
-                    propósito y diseño. Desde el origen hasta la taza del consumidor, cada producto debía contar una
-                    narrativa humana: del agricultor al hogar colombiano.</strong></p>
-              </div>
-            </div>
-            <div class="col-md-6 text-center ">
-              <img class="imagen_historia_sebas img-fluid rounded" src="../assets//img/historia_sebas1-Photoroom.png"
-                alt="Historia 3">
-            </div>
-          </div>
-        </div>
-      </div> -->
-
-  <!-- Flechas dentro del carrusel -->
-  <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="prev">
-          <img src="../assets/img/icono_sebas_dos.png" alt="Anterior" class="custom-carousel-icon">
-          <span class="visually-hidden">Anterior</span>
-        </button>
-
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="next">
-          <img src="../assets/img/iconos_Seabs.png" alt="Siguiente" class="custom-carousel-icon">
-          <span class="visually-hidden">Siguiente</span>
-        </button>
-      </div>
-    </div> -->
+    <button class="carousel-control-next ms-2" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next">
+      <img src="../assets/img/iconos_Seabs.png" alt="Siguiente" class="custom-carousel-icon ms-5">
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
   <!-- Fin Carrusel -->
-
   <!------------------------------------------------------------------------------------------------------------>
   <!----------------------------------------MISIÓN Y VISIÓN-------------------------------------------------------------------->
   <!------------------------------------------------------------------------------------------------------------>
 
 
-  <!-- Título -->
-  <h1 class="titulo1 py-2  mision-vision-title mt-5 ps-5">
-    🌿Nuestra Misión y visión 🌿
-  </h1>
-<section class="mision-vision-section container-fluid mt-3">>
-  <!-- Fila imagen + misión/visión -->
-  <div class="row align-items-center">
-    <div class="col-md-5">
-      <img src="../assets/img/cafe-paula.jpg" alt="Café" class="img-fluid coffee-img  ms-5">
+<section class="mision-vision-wrapper py-5">
+  <div class="container">
+    <h2 class="text-center mb-5 titulo_equipo">Misión y Visión</h2>
+
+    <!-- Fila Misión -->
+    <div class="row align-items-center mb-5">
+      <div class="col-12 col-md-5 order-2 order-md-1">
+        <div class="mvv-box text-center text-md-start">
+          <h3 class="paula-title">Misión</h3>
+          <p class="paula-text">
+            Conectar a los colombianos con café de origen local, directamente desde los productores,
+            mediante una plataforma digital confiable que garantice calidad, trazabilidad y comercio justo.
+          </p>
+        </div>
+      </div>
+      <div class="col-12 col-md-7 order-1 order-md-2 text-center mb-3 mb-md-0">
+        <img src="../assets/img/MisionFoto.png" alt="Café" class="img-fluid coffee-img">
+      </div>
     </div>
 
-    <div id="mvv" class="col-md-7">
-      <div class="mvv-box">
-        <h2 class="paula-title"><i class="bi bi-flag"></i> Misión</h2>
-        <p class="paula-text">
-          Conectar a los colombianos con café de origen local, directamente desde los productores,
-          mediante una plataforma digital confiable que garantice calidad, trazabilidad y comercio justo.
-        </p>
+    <!-- Fila Visión -->
+    <div class="row align-items-center">
+      <div class="col-12 col-md-7 order-1 text-center mb-3 mb-md-0">
+        <img src="../assets/img/ChatGPT Image 14 ago 2025, 10_19_07 p.m..png" alt="Café"
+          class="img-fluid coffee-img">
       </div>
-
-      <div class="mvv-box mt-3">
-        <h2 class="paula-title"><i class="bi bi-eye"></i>  Visión</h2>
-        <p class="paula-text">
-          Ser la plataforma digital de referencia en Colombia que transforma el consumo de café en
-          una experiencia consciente y celebratoria, fortaleciendo el vínculo con el campo mediante la tecnología.
-        </p>
+      <div class="col-12 col-md-5 order-2 text-center text-md-start">
+        <div class="mvv-box Contenido_Vision">
+          <h3 class="paula-title">Visión</h3>
+          <p class="paula-text">
+            Ser la plataforma digital de referencia en Colombia que transforma el consumo de café en una experiencia
+            consciente y celebratoria, fortaleciendo el vínculo con el campo mediante la tecnología.
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </section>
-<br>
-<!-- Sección de Valores -->
-<div class="mvv-box">
-  <h2 class="paula-title"><i class="bi bi-star"></i> Valores</h2>
-  <div class="values-container">
-    <div class="value-box">
-      <h3 class="value-title"><i class="bi bi-check-circle"></i> Local</h3>
-      <p class="value-text">Fomentamos el orgullo por consumir lo que nace de nuestra tierra.</p>
+
+  <!-- Sección de Valores -->
+  <section class="valores py-5">
+    <div class="container">
+      <h2 class="paula-title text-center mb-4">Valores</h2>
+      <p class="parrafotitle">✨porque esto es lo que nos identifica✨</p>
+
+      <div class="values-container valores_cont">
+        <div class="value-box text-center">
+          <div class="icon mb-2">
+            <img src="../assets/img/localValores.png" class="imagenes_valores">
+          </div>
+          <h3 class="value-title">Local</h3>
+          <p class="value-text">Fomentamos el orgullo por consumir lo que nace de nuestra tierra.</p>
+        </div>
+
+        <div class="value-box text-center">
+          <div class="icon mb-2 containe_Valores">
+            <img src="../assets/img/ImagenCalidad.jpg" class="imagenes_valores1">
+          </div>
+          <h3 class="value-title">Calidad</h3>
+          <p class="value-text">Más que una bebida, brindamos una vivencia auténtica.</p>
+        </div>
+
+        <div class="value-box text-center">
+          <div class="icon mb-2">
+            <img src="../assets/img/SostenibilidadImage.png" class="imagenes_valores2">
+          </div>
+          <h3 class="value-title">Sostenibilidad</h3>
+          <p class="value-text">Minimizamos nuestro impacto ambiental mediante prácticas responsables.</p>
+        </div>
+
+        <div class="value-box text-center">
+          <div class="icon mb-2">
+            <img src="../assets/img/IdentidadCulturar.png" class="imagenes_valores3">
+          </div>
+          <h3 class="value-title">Identidad Cultural</h3>
+          <p class="value-text">Elevamos el café colombiano como símbolo de nuestras raíces.</p>
+        </div>
+
+        <div class="value-box text-center">
+          <div class="icon mb-2">
+            <img src="../assets/img/Equidad.png" class="imagenes_valores4">
+          </div>
+          <h3 class="value-title">Equidad y Acceso</h3>
+          <p class="value-text">Democratizamos el mejor café colombiano para todos los hogares.</p>
+        </div>
+      </div>
     </div>
-    <div class="value-box">
-      <h3 class="value-title"><i class="bi bi-check-circle"></i> Calidad</h3>
-      <p class="value-text">Más que una bebida, brindamos una vivencia auténtica.</p>
-    </div>
-    <div class="value-box">
-      <h3 class="value-title"><i class="bi bi-check-circle"></i> Sostenibilidad</h3>
-      <p class="value-text">Minimizamos nuestro impacto ambiental mediante prácticas responsables.</p>
-    </div>
-    <div class="value-box">
-      <h3 class="value-title"><i class="bi bi-check-circle"></i> Identidad cultural</h3>
-      <p class="value-text">Elevamos el café colombiano como símbolo de nuestras raíces.</p>
-    </div>
-    <div class="value-box">
-      <h3 class="value-title"><i class="bi bi-check-circle"></i> Equidad y acceso</h3>
-      <p class="value-text">Democratizamos el mejor café colombiano para todos los hogares.</p>
-    </div>
-  </div>
-</div>
-</div>
+  </section>
   <!------------------------------------------------------------------------------------------------------------>
   <!----------------------------------------PERFIL DE EQUIPOS-------------------------------------------------------------------->
   <!------------------------------------------------------------------------------------------------------------>
 
   <section class="team-section" id="team">
-    <div class="container">
+    <div class="container Equipo-lacafe">
       <div class="section-title">
-        <h2>Nuestro Equipo</h2>
-        <p>Conoce a los profesionales apasionados que hacen posible este maravilloso proyecto</p>
+        <h2 class="titulo_equipo">Nuestro Equipo</h2>
+        <p class="color-texto">Familiariza con nosotros </p>
       </div>
       <div class="row justify-content-center mb-4">
         <!-- Member 1 -->
@@ -267,7 +343,7 @@
         <div class="col-lg-4 col-md-6 col-sm-12">
           <div class="team-card card-delay-3">
             <div class="member-photo">
-              <img src="/assets/img/foto_miguel.jpg" alt="Miguel S">
+              <img src="../assets/img/foto_miguel.jpg" alt="Miguel S">
             </div>
             <h3 class="member-name">Miguel S</h3>
             <div class="member-role">Desarrollador Backend</div>
@@ -323,24 +399,77 @@
   <!-------------------------------------------------------------->
   <!---------------------------seccion video storytelling----------------------------------->
   <!-------------------------------------------------------------->
-  <section class="seccion-video text-light">
+   <section class="seccion-video text-light">
     <div class="overlay">
-      <div class="container py-5">
-        <div class="content-box text-center py-4 px-3">
-          <h2 class="cormorant-garamond-estilado fs-1 mb-3">Nuestro Café, Nuestra Identidad</h2>
-          <p class="cormorant-garamond-estilado fs-2 mb-4">
-            "El café es identidad, es parte de nuestra cultura y de nuestra gente"
-          </p>
-          <div class="ratio ratio-16x9">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/io5xmIaPIJ0?si=ZXyZdjot6WzDG24b"
-              title="YouTube video player" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
+        <div class="container py-5">
+            <div class="content-box text-center py-4 px-3">
+                <h2 class="cormorant-garamond-estilado fs-1 mb-3">Nuestro Café, Nuestra Identidad</h2>
+                <p class="cormorant-garamond-estilado fs-2 mb-4">
+                    "El café es identidad, es parte de nuestra cultura y de nuestra gente"
+                </p>
+                <div class="ratio ratio-16x9">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/io5xmIaPIJ0?si=ZXyZdjot6WzDG24b"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
+     <footer>
+        <div class="container-fluid">
+            <div class="row footerA">
+
+                <!-- Logo -->
+                <div class="col-4 logoFooter">
+                    <img src="../../../components/assets-global/img/ChatGPT Image 14 ago 2025, 15_07_00.png" alt="Logo de La Cafetalera" style="width: 350px;">
+                </div>
+
+                <!-- Menú de enlaces -->
+                <div class="col-md-2 col-sm-6">
+                    <ul class="mt-3 list-unstyled lista_footer">
+                        <li class="mb-2"><i class="bi bi-house-door-fill me-2"></i><a href="#" class="footer-link">Inicio</a></li>
+                        <li class="mb-2"><i class="bi bi-grid-fill me-2"></i><a href="#" class="footer-link">Catálogo</a></li>
+                        <li class="mb-2"><i class="bi bi-envelope-fill me-2"></i><a href="#" class="footer-link">Contáctenos</a></li>
+                        <li class="mb-2"><i class="bi bi-person-fill me-2"></i><a href="#" class="footer-link">Login/Registro</a></li>
+                        <li class="mb-2"><i class="bi bi-pencil-square me-2"></i><a href="#" class="footer-link">CRUD</a></li>
+                    </ul>
+                </div>
+
+                <!-- Información de contacto -->
+                <div class="col-md-2 col-sm-6 mt-2">
+                    <h4 class="fw-bold">Contacto</h4>
+                    <address class="mb-0">
+                        <p><i class="bi bi-geo-alt-fill me-2"></i>Bogotá, Colombia</p>
+                        <p><i class="bi bi-telephone-fill me-2"></i><a href="tel:+573001234567" class="text-light text-decoration-none">+57 300 123 4567</a></p>
+                        <p><i class="bi bi-envelope-fill me-2"></i><a href="mailto:contacto@lacafetalera.com" class="text-light text-decoration-none">contacto@lacafetalera.com</a></p>
+                    </address>
+                </div>
+
+                <!-- Redes sociales -->
+                <div class="col-md-2 col-sm-6 mt-2">
+                    <h4 class="fw-bold">Síguenos</h4>
+                    <a href="#" aria-label="Facebook" class="text-light me-3"><i class="bi bi-facebook fs-4"></i></a>
+                    <a href="#" aria-label="Instagram" class="text-light me-3"><i class="bi bi-instagram fs-4"></i></a>
+                    <a href="#" aria-label="TikTok" class="text-light me-3"><i class="bi bi-tiktok fs-4"></i></a>
+                    <a href="#" aria-label="YouTube" class="text-light"><i class="bi bi-youtube fs-4"></i></a>
+                </div>
+
+                <!-- Métodos de pago -->
+                <div class="col-md-2 col-sm-6 mt-2">
+                    <h4 class="fw-bold">Métodos de pago</h4>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Tarjeta Visa" width="50" class="me-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Tarjeta Mastercard" width="50" class="me-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="Pago con PayPal" width="60">
+                </div>
+            </div>
+        </div>
+
+        <!-- Derechos de autor -->
+        <div class="bg-dark text-center py-2">
+            <p class="mb-0">© 2025 La Cafetalera. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
   <!-- Solo un script de Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>

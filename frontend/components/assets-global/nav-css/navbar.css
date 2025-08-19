@@ -1,103 +1,172 @@
-.navbar{
-    background-color: #f7e4c6 !important;
-    position:relative;
-    top: 0;
-    left: 0;
-    padding: 1px 1px;
-    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.4); 
-    width: 100%;
-    z-index: 1000; /* o mayor, para que esté encima del contenido */    
+
+/* 🎨 Fondo principal de la navbar */
+.navbar {
+  background-color: #f7e4c6 !important;
+  padding: 0.5rem 1rem;
+}
+
+/* 🧭 Marca principal */
+.navbar-brand {
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  color: #000;
+  font-weight: 900;
+  font-style: normal;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #8c5637;
+}
+
+.navbar-brand img {
+  max-width: 100px;
+  height: auto;
+}
+
+/* 📁 Ítems del menú */
+.navbar-nav {
+  flex-direction: row;
+  flex-grow: 1;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+.navbar-collapse {
+  justify-content: center;
 }
 
 
 .navbar-nav .nav-item {
-  display:inline;
-  flex-direction:column;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  margin: 0 8px;
 }
 
+/* 🔗 Enlaces del menú */
 .navbar-nav .nav-link {
   display: flex;
-  flex-direction:column;
   align-items: center;
-  font-size: 0.80rem;
-  padding: 10px;
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
+  font-weight: 500;
+  color: #000;
+  text-decoration: none;
+  padding: 8px 12px;
+  white-space: nowrap;
+  position: relative;
+  transition: color 0.3s ease;
+  border-radius: 8px;
+  gap: 6px;
 }
 
 .navbar-nav .nav-link i {
-  font-size: 1.1rem;
-  animation-duration: inherit;
-  margin-bottom: 0px;
+  font-size: 1.2rem;
+  color: #582919;
+  margin-right: 6px;
+}
+
+/* ✨ Subrayado animado */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #582919;
+  transition: width 0.6s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: #8c5637 !important;
+}
+
+/* 👤 Botón uniforme (sesión, etc.) */
+.btn-uniforme {
+  background-color: #582919;
+  color: #f7e4c6;
+  min-width: 140px;
+  padding: 0.5rem 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* 🖱 Hover para botones */
+.btn-outline-custom:hover,
+.btn-uniforme:hover {
+  background-color: #f7e4c6;
+  border-color: #582919;
   color: #582919;
 }
- 
-    
-    .navbar-brand {
-      font-family:'Playfair Display',serif; /* Elegante y con carácter */
-      font-size: 2rem;
-      color: #582919; /* Tono café profundo */
-      font-weight: 1000;
-      font-style: italic;
-      text-transform:none;
-      letter-spacing: 0.5px;
-      transition: color 0.3s ease;
-      
-}
 
-.navbar-brand:hover {
-  color: #8c5637; /* Café claro al pasar el cursor */
-}
-
-
-    .nav-link {
-      position:relative;
-      font-family:'Playfair Display',serif;
-      font-size: smaller ;
-      font-weight: 500;
-      display:flex;
-      color:#4B6950;
-      text-decoration:none;      
-      transition:color 0.3s ease;
-      padding: 5px ; /* Reduce espacio interno para hacerlo más compacto */
-      margin: 2px 8px;    /* Reduce espacio entre ítems */
-    }
-
-    /* Línea inferior invisible por defecto */
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0%;
-      height: 2px;
-      background-color: #4B6950;
-      transition: width 0.6s ease;
-    }
-
-    /* Al pasar el mouse, aparece la línea */
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    .nav-link:hover{
-        color: #8c5637  !important;;
-    }
-
-.btn-outline-custom {
-  color: #4B6950; 
-  border: 2px solid #8c5637;
-  background-color: #8c5637;
-  font-family: 'Playfair Display', serif;
-  color: #a5998f;
+/* 🛒 Botón carrito como CTA */
+#botonCarritosm {
+  background-color:#8c5637;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  box-shadow: 0 4px 12px #;
   transition: all 0.3s ease;
-  border-radius: 30%;
-  margin-right: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
 }
 
-.btn-outline-custom:hover {
-  background-color: #4B6950;
-  font-family: 'Playfair Display', serif;
-  color: #000;
+#botonCarritosm:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(255, 87, 34, 0.5);
+  background-color: #582919;
 }
 
-  
+#botonCarritosm i {
+  font-size: 1.2rem;
+  margin-right: 6px;
+}
+
+/* 📱 Responsividad para móviles */
+@media (max-width: 991px) {
+  .navbar-nav {
+    flex-direction: column !important;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .nav-link {
+    font-size: 1.05rem;
+    padding: 12px;
+  }
+
+  .navbar-brand {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  #botonCarritosm,
+  #botonSesion {
+    width: 90%;
+    margin: 10px auto;
+    font-size: 1rem;
+  }
+
+  .btn-uniforme {
+    min-width: unset;
+    width: 90%;
+  }
+}

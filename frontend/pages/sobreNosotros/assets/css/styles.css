@@ -1,11 +1,104 @@
 /* ====== FUENTES Y BASE ====== */
 body {
-    background: white;
+    background: #f7e4c6;
     min-height: 100vh;
     font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
+}
 
+.navbar {
+    background-color: #a4a977 !important;
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 1px 1px;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar-nav .nav-item {
+    display: inline;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar-nav .nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.80rem;
+    padding: 10px;
+}
+
+.navbar-nav .nav-link i {
+    font-size: 1.1rem;
+    margin-bottom: 0px;
+    color: #582919;
+}
+
+.navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #582919;
+    font-weight: 1000;
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: #8c5637;
+}
+
+.nav-link {
+    position: relative;
+    font-family: 'Playfair Display', serif;
+    font-size: smaller;
+    font-weight: 500;
+    display: flex;
+    color: #4B6950;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 5px;
+    margin: 2px 8px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #4B6950;
+    transition: width 0.6s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: #8c5637 !important;
+}
+
+.btn-outline-custom {
+    color: #4B6950;
+    border: 2px solid #8c5637;
+    background-color: #8c5637;
+    font-family: 'Playfair Display', serif;
+    color: #a5998f;
+    transition: all 0.3s ease;
+    border-radius: 30%;
+    margin-right: 25px;
+}
+
+.btn-outline-custom:hover {
+    background-color: #4B6950;
+    color: #000;
 }
 
 h1,
@@ -27,214 +120,230 @@ p,
     font-family: 'Lato', sans-serif;
 }
 
-/* ====== CARRUSEL ======
-.carrusel-fullscreen {
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ====== CARRUSEL ====== */
+.h2_sebas,
+.h2_sebas_1,
+.h2_sebas_2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    width: 600px;
+    color: #582919;
 }
+
+.h2_sebas_1 {
+    margin-left: 50px;
+}
+
+.h2_sebas_2 {
+    margin-left: -50px;
+    color: #582919;
+}
+
+.texto_sebas {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+}
+
 .carousel {
-  overflow: visible;
-  position: relative;
+    overflow: visible;
+    position: relative;
 }
 
 .carousel-control-prev,
 .carousel-control-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  background: none;
-  border: none;
-  padding: 0;
-  width: 50px;
-  height: 50px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: none;
+    border: none;
+    padding: 0;
 }
-.carousel-control-prev { left: 60px; }
-.carousel-control-next { right: 60px; }
+.imagenSebas2{
+    margin-left: 140px;
+}
+.carousel-control-prev {
+    left: 2%;
+}
+
+.carousel-control-next {
+    right: 2%;
+}
+
 .custom-carousel-icon {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.4));
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.4));
 }
+
 .imagen_historia_sebas {
-  border-radius: 10%;
-  width: 500px;
-  height: 350px;
-  object-fit: cover;
-  opacity: 0;
-  transform: translateY(100px);
-  animation: fadeInUp 2s ease forwards;
-}
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.circulo_sebas_fondo {
-  margin-left: 150px;
-  background-color: #a4a977;
-  width: 500px;
-  height: 500px;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%;
-  animation: deformacion 10s ease-in-out infinite;
-  transition: all 0.5s ease;
-}
-@keyframes deformacion {
-  0% { border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%; }
-  50% { border-radius: 40% 80% 55% 85% / 75% 30% 90% 60%; }
-  100% { border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%; }
-}
-.h2_sebas, .h2_sebas_1, .h2_sebas_2 {
-  font-size: 40px;
-  width: 600px;
-}
-.h2_sebas_1 { margin-left: 50px; }
-.h2_sebas_2 { margin-left: -50px; }
-.texto_sebas_carusel {
-  margin-top: 50px;
-  text-align: center;
-  padding: 0 10px;
-  font-size: 18px;
-} */
-
-/* ====== STORYTELLING FULLSCREEN ====== */
-.seccion-video {
-    position: relative;
-    background-image: url('../img/cafetaleros-storytelling.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
-}
-
-.seccion-video .overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 4rem 0;
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
-}
-
-.content-box {
-    background-color: rgba(255, 255, 255, 0.07);
-    border-radius: 15px;
-    padding: 2rem;
-    backdrop-filter: blur(3px);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-}
-
-.cormorant-garamond-estilado {
-    font-family: "Cormorant Garamond", serif !important;
-}
-
-.seccion-video h2 {
-    color: #BBF1BB;
-    font-weight: 900;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-}
-
-.seccion-video p {
-    color: #F7E4C6;
-    font-weight: 600;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-/* ====== MISIÓN, VISIÓN Y VALORES ====== */
-.mision-vision-title {
-    background: #8C5637;
-    margin-left: 0;
-    width: 900px;
-    height: 100px;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-}
-
-/* Imagen */
-.coffee-img {
-    border-radius: 20px;
-    animation: floatAnimation 4s ease-in-out infinite;
-    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
-    max-width: 100%;
-    height: 400px;
-}
-
-/* Título */
-.titulo1 {
-    color: #BBF1BB;
-    font-size: 3.5rem;
-    font-weight: 700;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 10%;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: cover;
     opacity: 0;
-    animation: fadeIn 0.3s ease-in forwards;
+    transform: translateY(100px);
+    animation: fadeInUp 2s ease forwards;
+    margin: 0 auto;
 }
 
-@keyframes fadeIn {
+.imagenSebas2 {
+    margin-left: 0;
+}
+
+.carousel-item.active .animacion-slide2 {
+    animation: fadeInLeft2 1.2s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInUp {
     to {
         opacity: 1;
+        transform: translateY(0);
     }
 }
 
-/* Contenedor texto misión/visión */
-.paula-mvv-container {
+.circulo_sebas_fondo {
+    background-color: #a4a977;
+    width: 80vw;
+    max-width: 400px;
+    height: 80vw;
+    max-height: 400px;
+    padding: 20px;
+    margin: 20px auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    color: #8C5637;
-    animation: fadeInUp 1.5s ease-out forwards;
-    animation-delay: 0.3s;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%;
+    animation: deformacion 10s ease-in-out infinite;
+    transition: all 0.5s ease;
+    text-align: center;
 }
 
-/* Caja misión/visión */
-.mvv-box {
-    background-color: #8C5637;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+@keyframes deformacion {
+    0% {
+        border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%;
+    }
+
+    50% {
+        border-radius: 40% 80% 55% 85% / 75% 30% 90% 60%;
+    }
+
+    100% {
+        border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%;
+    }
+}
+
+.texto_sebas_carusel {
+    margin-top: 50px;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    padding: 0 10px;
+    font-size: 18px;
+}
+
+/* ====== MISIÓN Y VISIÓN ====== */
+.mision-vision-wrapper {
+    background-color: #f1ddba;
+    border-radius: 20px;
+    padding: 50px 15px;
+}
+
+.mvv-box,
+.Contenido_Vision {
+    margin: 20px auto;
+    height: auto;
+    max-width: 550px;
+    width: 100%;
     padding: 20px;
-    flex: 1; /* que se reparta el espacio dentro de .col */
+    border-bottom-right-radius: 50px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .paula-title {
-    font-weight: blod;
-    color: white;
-    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: #582919;
+    font-size: 4rem;
     margin-bottom: 1rem;
-    text-align: center;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 3px 5px rgba(255, 255, 255, 0.3);
 }
 
 .paula-text {
-    font-size: 1.1rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
     line-height: 1.6;
-    color: #BBF1BB;
-    text-align: center;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    color: #000;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* Valores */
+.coffee-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+    margin: 0 auto;
+    display: block;
+}
+
+.titulo_equipo {
+    color: #582919;
+    font-size: 3rem;
+    padding-top: 20px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* ====== VALORES ====== */
+
+.imagenes_valores {
+    height: 100px;
+    width: 80px;
+}
+
+.imagenes_valores1 {
+    height: 100px;
+    width: 100px;
+}
+.parrafotitle{
+      font-family: "Edu NSW ACT Cursive", cursive;
+      text-align: center;  
+      font-size: 1.4rem;
+}
+.imagenes_valores2 {
+    height: 100px;
+    width: 100px;
+}
+
+.imagenes_valores3 {
+    height: 100px;
+    width: 100px;
+}
+
+.imagenes_valores4 {
+    height: 100px;
+    width: 100px;
+}
+
 .values-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
 }
 
 .value-box {
-    background-color: #BBF1BB;
+    background-color: #ffffff;
     border-radius: 8px;
     padding: 20px;
+    border: 1px #a4a977 solid;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
 }
 
 .value-box:hover {
@@ -243,10 +352,10 @@ p,
 }
 
 .value-title {
-    color: #4B6950;
-    font-size: 1.2rem;
+    color: #8C5637;
+    font-size: 1.4rem;
     margin-bottom: 10px;
-    border-bottom: 2px solid #93BE88;
+    border-bottom: 2px solid black;
     padding-bottom: 8px;
     text-align: center;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -260,20 +369,8 @@ p,
     text-align: center;
 }
 
-/* Animación imagen */
-/* @keyframes floatAnimation {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
-} */
-
-
 /* ====== EQUIPO ====== */
 .team-section {
-    padding: 100px 0;
     position: relative;
     overflow: hidden;
 }
@@ -294,15 +391,17 @@ p,
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-.section-title p {
+.color-texto {
     font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.9);
-    max-width: 600px;
+    color: rgba(0, 0, 0, 0.9);
+    max-width: 90%;
+    text-align: center;
     margin: 0 auto;
+    font-family: "Edu NSW ACT Cursive", cursive;
 }
 
 .team-card {
-    background: #BBF1BB;
+    background: #8C5637;
     color: #582919;
     backdrop-filter: blur(20px);
     border-radius: 25px;
@@ -335,7 +434,7 @@ p,
     overflow: hidden;
     border: 5px solid transparent;
     background: linear-gradient(45deg, #93BE88, #4B6950) padding-box,
-        linear-gradient(45deg, #93BE88, #4B6950) border-box;
+        linear-gradient(45deg, #ffffff, #919191) border-box;
     transition: all 0.3s ease;
 }
 
@@ -357,15 +456,15 @@ p,
 .member-name {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 10px;
+    color: white;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .member-role {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #8C5637;
+    color: white;
     text-align: center;
     margin-bottom: 20px;
     text-transform: uppercase;
@@ -374,7 +473,7 @@ p,
 
 .member-bio {
     font-size: 1rem;
-    color: #4B6950;
+    color: white;
     text-align: center;
     line-height: 1.6;
     margin-bottom: 25px;
@@ -396,8 +495,8 @@ p,
     justify-content: center;
     color: white;
     text-decoration: none;
-    transition: all 0.3s ease;
     font-size: 1.2rem;
+    transition: all 0.3s ease;
 }
 
 .social-link:hover {
@@ -406,13 +505,81 @@ p,
     color: white;
 }
 
-/* ====== RESPONSIVE ====== */
+.containerFooter {
+    background-color: brown;
+}
+
+.logoFooter {
+    margin-top: -60px;
+}
+
+footer {
+    background-color: #000;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    padding: 30px 2px;
+    color: #f5f5f5;
+}
+
+.lista_footer,
+footer a {
+    color: #f5f5f5;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #54a63e;
+}
+
+footer p {
+    color: #f5f5f5;
+}
+
+footer .bg-secondary {
+    background-color: #000 !important;
+    color: #f5f5f5;
+}
+
+.footerA {
+    align-items: center;
+    padding: 20px 0;
+}
+.cormorant-garamond-estilado {
+  font-family: "Cormorant Garamond", serif !important;
+}
+
+
+
+/* Fondo con overlay oscuro para contraste */
+.seccion-video {
+  position: relative;
+  background-image: url('../img/cafetaleros-storytelling.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.seccion-video .overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* Capa semitransparente */
+  padding: 4rem 0;
+}
+
+/* Contenedor estético para el contenido */
+.content-box {
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 15px;
+  padding: 2rem;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+/* ====== RESPONSIVE GENERAL ====== */
 @media (max-width: 1200px) {
 
     .circulo_sebas_fondo,
     .imagen_historia_sebas {
-        width: 350px !important;
-        height: 350px !important;
+        max-width: 350px;
+        max-height: 350px;
     }
 
     .h2_sebas,
@@ -424,13 +591,6 @@ p,
 }
 
 @media (max-width: 820px) {
-
-    .carrusel-fullscreen,
-    .carousel-inner,
-    .carousel-item {
-        min-height: 60vh;
-    }
-
     .imagen_historia_sebas {
         width: 100% !important;
         height: auto !important;
@@ -449,35 +609,6 @@ p,
     .texto_sebas_carusel {
         font-size: 14px;
         margin-top: 20px;
-    }
-
-    .carousel-inner>.carousel-item>.d-flex {
-        flex-direction: column !important;
-    }
-
-    .circulo_sebas_fondo {
-        width: 80vw !important;
-        height: 80vw !important;
-        max-width: 400px;
-        max-height: 400px;
-        margin: 20px auto;
-        padding: 20px;
-        border-radius: 73% 48% 91% 22% / 40% 75% 38% 66%;
-        animation: deformacion 10s ease-in-out infinite;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .circulo_sebas_fondo p,
-    .circulo_sebas_fondo .texto_sebas_carusel {
-        font-size: 14px;
-        line-height: 1.4;
-        margin: 0;
-        padding: 0 10px;
-        max-width: 90%;
-        text-align: center;
     }
 }
 
@@ -516,5 +647,17 @@ p,
 @media (max-width: 480px) {
     .values-container {
         grid-template-columns: 1fr;
+    }
+
+    .paula-title {
+        font-size: 1.5rem;
+    }
+
+    .paula-text {
+        font-size: 0.85rem;
+    }
+
+    .titulo_equipo {
+        font-size: 2rem
     }
 }

@@ -2,17 +2,7 @@
   font-family: "Cormorant Garamond", serif !important;
 }
 
-/* Mejora la legibilidad del texto */
-h2 {
-  color: #BBF1BB;
-  font-weight: 900;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-}
-p {
-  color: #F7E4C6;
-  font-weight: 600;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-}
+
 
 /* Fondo con overlay oscuro para contraste */
 .seccion-video {
