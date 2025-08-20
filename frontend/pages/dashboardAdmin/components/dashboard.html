@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <title>Mi red social</title>
+</head>
+<body>
+    <h1><strong>Mi Red Social</strong></h1>
+
+    <div class="container">
+        <h2><strong>Crear publicación</strong></h2>
+        <form action="" method="get" class="form" id="formulario">
+            <div class="form">
+                <label for="titulo">Ingrese el titulo de su publicación: </label>
+                <input type="text" name="titulo" id="nuevoTitulo" required>
+            </div>
+            <div class="form">
+                <label for="descripcion">Ingrese la descripción de su publicación: </label>
+                <input type="text" name="descripcion" id="nuevaDescripcion" required>
+            </div>
+            <div class="form">
+                <label for="imagen">Seleccione la imagen de su publicación: </label>
+                <input type="file" name="imagen" id="nuevaImagen" accept="image/*">
+                <img id="preview" style="max-width: 300px; display: block; margin-top: 10px;">
+            </div>
+            <div class="form">
+                <button type="submit" id="botonCrear">Crear Publicación!</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <h2><strong>Feed de publicaciones: </strong></h2>
+        <div id="feed">
+            <div class="container" id="contenedor-card">
+
+            </div>
+        </div>
+    </div>
+
+    
+<script src="script.js"></script>
+</body>
+</html>
