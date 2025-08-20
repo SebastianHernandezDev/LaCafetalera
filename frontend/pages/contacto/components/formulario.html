@@ -21,45 +21,60 @@
 
 </head>
 <body>
-    <section class="global-form">
-        <div class="container container-form">
-            <div class="row g-4">
-                <!-- Formulario -->
-                <div class="col-12 col-lg-6">
-                    <section class="form-section">
-                        <h1>Contáctanos</h1>
-                        <p class="subtitle">Descubre el auténtico sabor del café colombiano</p>
-                        
-                        <form id="contactForm">
-                            <div class="mb-3">
-                                <label for="nombre">Nombre completo</label>
-                                <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ingresa tu nombre" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+">
-                            </div>
+        <section class="global-form">
+            <section class="container-form">
+                <section class="form-section">
+                            <h1>Contáctanos</h1>
+                            <p class="subtitle">Descubre el auténtico sabor del café colombiano</p>
 
-                            <div class="mb-3">
-                                <label for="email">Correo electrónico</label>
-                                <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
-                            </div>
+                                <div id="successMessage" class="success-message">
+                                    ¡Gracias! Tu mensaje ha sido enviado correctamente. Te contactaremos pronto.
+                                </div>
+                                
+                                <div id="errorMessage" class="error-message">
+                                    Hubo un error al enviar tu mensaje. Por favor, intenta nuevamente.
+                                </div>
 
-                            <div class="mb-3">
-                                <label for="telefono">Teléfono</label>
-                                <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="+57 300 123 4567" pattern="^(\+57|0)?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" maxlength="10" required>
-                            </div>
+                                <form id="contactForm" action="https://formspree.io/f/mpwlnklp" method="POST">
+                                    
+                                    <!-- Campo oculto para especificar el asunto del email -->
+                                    <input type="hidden" name="_subject" value="Nuevo mensaje desde formulario web">
+                                    
+                                    <!-- Campo oculto para redirigir después del envío (opcional) -->
+                                    <input type="hidden" name="_next" value="https://tusitio.com/gracias.html">
+                                    
+                                    <!-- Campo oculto para evitar captcha en algunos casos -->
+                                    <input type="hidden" name="_captcha" value="false">
 
-                            <div class="mb-3">
-                                <label for="asunto">Asunto</label>
-                                <input type="text" id="asunto" name="asunto" class="form-control" placeholder="¿En qué te podemos ayudar?" required minlength="5" maxlength="50">
-                            </div>
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre completo</label>
+                                        <input type="text" id="nombre" name="name" placeholder="Ingresa tu nombre completo" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+">
+                                    </div>
 
-                            <div class="mb-3">
-                                <label for="mensaje">Mensaje</label>
-                                <textarea id="mensaje" name="mensaje" class="form-control" placeholder="Cuéntanos sobre tu interés en nuestros cafés colombianos..." required maxlength="300"></textarea>
-                            </div>
+                                    <div class="form-group">
+                                        <label for="email">Correo electrónico</label>
+                                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                                    </div>
 
-                            <button type="submit" class="submit-btn">Enviar mensaje</button>
-                        </form>
-                    </section>
-                </div>
+                                    <div class="form-group">
+                                        <label for="telefono">Teléfono</label>
+                                        <input type="tel" id="telefono" name="telefono" placeholder="+57 300 123 4567" pattern="^(\+57|0)?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="asunto">Asunto</label>
+                                        <input type="text" id="asunto" name="asunto" placeholder="¿En qué te podemos ayudar?" required minlength="5" maxlength="50">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="mensaje">Mensaje</label>
+                                        <textarea id="mensaje" name="message" placeholder="Cuéntanos sobre tu interés en nuestros cafés colombianos..." required maxlength="300"></textarea>
+                                    </div>
+                                    
+                                    <button type="submit" class="submit-btn" id="submitBtn">Enviar mensaje</button>
+                                </form>
+
+                        </section>
 
                 <!-- FAQ / Información -->
                 <div class="col-12 col-lg-6">

@@ -7,84 +7,6 @@ body {
     padding: 0;
 }
 
-.navbar {
-    background-color: #a4a977 !important;
-    position: relative;
-    top: 0;
-    left: 0;
-    padding: 1px 1px;
-    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
-    width: 100%;
-    z-index: 1000;
-}
-
-.navbar-nav .nav-item {
-    display: inline;
-    flex-direction: column;
-    align-items: center;
-}
-
-.navbar-nav .nav-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 0.80rem;
-    padding: 10px;
-}
-
-.navbar-nav .nav-link i {
-    font-size: 1.1rem;
-    margin-bottom: 0px;
-    color: #582919;
-}
-
-.navbar-brand {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    color: #582919;
-    font-weight: 1000;
-    font-style: italic;
-    text-transform: none;
-    letter-spacing: 0.5px;
-    transition: color 0.3s ease;
-}
-
-.navbar-brand:hover {
-    color: #8c5637;
-}
-
-.nav-link {
-    position: relative;
-    font-family: 'Playfair Display', serif;
-    font-size: smaller;
-    font-weight: 500;
-    display: flex;
-    color: #4B6950;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    padding: 5px;
-    margin: 2px 8px;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0%;
-    height: 2px;
-    background-color: #4B6950;
-    transition: width 0.6s ease;
-}
-
-.nav-link:hover::after {
-    width: 100%;
-}
-
-.nav-link:hover {
-    color: #8c5637 !important;
-}
-
 .btn-outline-custom {
     color: #4B6950;
     border: 2px solid #8c5637;
@@ -544,34 +466,6 @@ footer .bg-secondary {
 .footerA {
     align-items: center;
     padding: 20px 0;
-}
-.cormorant-garamond-estilado {
-  font-family: "Cormorant Garamond", serif !important;
-}
-
-
-
-/* Fondo con overlay oscuro para contraste */
-.seccion-video {
-  position: relative;
-  background-image: url('../img/cafetaleros-storytelling.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.seccion-video .overlay {
-  background-color: rgba(0, 0, 0, 0.5); /* Capa semitransparente */
-  padding: 4rem 0;
-}
-
-/* Contenedor estético para el contenido */
-.content-box {
-  background-color: rgba(255, 255, 255, 0.07);
-  border-radius: 15px;
-  padding: 2rem;
-  backdrop-filter: blur(3px);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 /* ====== RESPONSIVE GENERAL ====== */
 @media (max-width: 1200px) {
