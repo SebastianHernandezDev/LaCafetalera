@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "name": "Café Premium Arboleda",
+        "price": 24.990,
+        "image": "../assets/img/1.png",
+        "description": "Intenso y aromático, perfecto para los amantes del café fuerte. Notas de chocolate negro y nueces."
+    },
+    {
+        "id": 2,
+        "name": "Café Americano Orgánico",
+        "price": 18.500,
+        "image": "../assets/img/2.png",
+        "description": "Café con arte latte incluido. Equilibrio perfecto entre café y el amor de nuestros campesinos."
+    },
+    {
+        "id": 3,
+        "name": "Filtro Chemex",
+        "price": 16.750,
+        "image": "../assets/img/3.png",
+        "description": "Café orgánico de origen único, cultivado en las montañas de Colombia. Sabor suave y balanceado."
+    },
+    {
+        "id": 4,
+        "name": "Prensa Francesa",
+        "price": 22.000,
+        "image": "../assets/img/4.png",
+        "description": "Delicioso café con un toque de vainilla natural. Cremoso y con un aroma irresistible."
+    },
+    {
+        "id": 5,
+        "name": "Filtro de Café",
+        "price": 20.250,
+        "image": "../assets/img/5.png",
+        "description": "Café de extracción lenta, perfecto para días calurosos. Sabor concentrado y refrescante."
+    },
+    {
+        "id": 6,
+        "name": "Café Premium",
+        "price": 25.500,
+        "image": "../assets/img/6.png",
+        "description": "Pastillas de café recargable para una combinación perfecta de café y chocolate."
+    },
+    {
+        "id": 7,
+        "name": "Filtro de Café",
+        "price": 19.900,
+        "image": "../assets/img/7.png",
+        "description": "Método de filtrado tradicional que resalta las notas frutales y florales del grano."
+    },
+    {
+        "id": 8,
+        "name": "Filtro Chemex",
+        "price": 21.750,
+        "image": "../assets/img/8.jpeg",
+        "description": "La herramienta perfecta para el filtrado de nuestro café tradicional."
+    },
+    {
+        "id": 9,
+        "name": "Recargable de Café",
+        "price": 17.500,
+        "image": "../assets/img/9.jpeg",
+        "description": "Un objeto que te permite llamar la taza tradicional, desde el campo a tu mesa."
+    },
+    {
+        "id": 10,
+        "name": "Café Expreso",
+        "price": 23.000,
+        "image": "../assets/img/10.jpeg",
+        "description": "Una gran cantidad de café que te rendira para tus mejores dias, y todo el tiempo."
+    }
+]
