@@ -7,7 +7,7 @@
 }
 
 footer {
-    background-color: #000000; 
+    background-color: #2e2e2e; 
     font-family: 'Lato', sans-serif; 
     font-size: 15px;
     padding: 30px 2px;
@@ -33,7 +33,7 @@ footer p {
 }
 
 footer .bg-secondary {
-    background-color: #000000 !important;
+    background-color: #2e2e2e !important;
     color: #f5f5f5; 
 }
 
