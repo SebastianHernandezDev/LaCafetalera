@@ -1,6 +1,6 @@
 /* ====== FUENTES Y BASE ====== */
 body {
-    background: #f7e4c6;
+    background: #fff    ;
     min-height: 100vh;
     font-family: 'Lato', sans-serif;
     margin: 0;
@@ -170,8 +170,7 @@ p,
 
 /* ====== MISIÓN Y VISIÓN ====== */
 .mision-vision-wrapper {
-    background-color: #f1ddba;
-    border-radius: 20px;
+    background-color: #F7E4C6;
     padding: 50px 15px;
 }
 
@@ -259,7 +258,7 @@ p,
 }
 
 .value-box {
-    background-color: #ffffff;
+    background-color: #F7E4C6;
     border-radius: 8px;
     padding: 20px;
     border: 1px #a4a977 solid;
@@ -466,6 +465,34 @@ footer .bg-secondary {
 .footerA {
     align-items: center;
     padding: 20px 0;
+}
+.cormorant-garamond-estilado {
+  font-family: "Cormorant Garamond", serif !important;
+}
+
+
+
+/* Fondo con overlay oscuro para contraste */
+.seccion-video {
+  position: relative;
+  background-image: url('../img/cafetaleros-storytelling.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.seccion-video .overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* Capa semitransparente */
+  padding: 4rem 0;
+}
+
+/* Contenedor estético para el contenido */
+.content-box {
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 15px;
+  padding: 2rem;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 /* ====== RESPONSIVE GENERAL ====== */
 @media (max-width: 1200px) {

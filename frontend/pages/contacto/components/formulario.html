@@ -1,142 +1,171 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto - Café Colombiano</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../contacto/assets/css/formulario.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto - Café Colombiano</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/formulario.css">
+  <link rel="stylesheet" href="../../../components/assets-global/nav-css/navbar.css">
 </head>
 <body>
-        <section class="global-form">
-            <section class="container-form">
-                <section class="form-section">
-                            <h1>Contáctanos</h1>
-                            <p class="subtitle">Descubre el auténtico sabor del café colombiano</p>
+   <header>
+    <nav class="navbar navbar-expand-lg py-2 shadow-lg bg-body-tertiary rounded container">
+      <div class="container-fluid">
+        <!-- Logo + Marca -->
+        <a href="#" class="d-flex align-items-center text-decoration-none">
+          <img src="/frontend/components/assets-global/img/logo.png" alt="logo" width="100"
+            class="img-fluid me-2 imagenNavbar">
+        </a>
 
-                                <div id="successMessage" class="success-message">
-                                    ¡Gracias! Tu mensaje ha sido enviado correctamente. Te contactaremos pronto.
-                                </div>
-                                
-                                <div id="errorMessage" class="error-message">
-                                    Hubo un error al enviar tu mensaje. Por favor, intenta nuevamente.
-                                </div>
+        <!-- Botón hamburguesa -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCafe"
+          aria-controls="navbarCafe" aria-expanded="false" aria-label="botón menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-                                <form id="contactForm" action="https://formspree.io/f/mpwlnklp" method="POST">
-                                    
-                                    <!-- Campo oculto para especificar el asunto del email -->
-                                    <input type="hidden" name="_subject" value="Nuevo mensaje desde formulario web">
-                                    
-                                    <!-- Campo oculto para redirigir después del envío (opcional) -->
-                                    <input type="hidden" name="_next" value="https://tusitio.com/gracias.html">
-                                    
-                                    <!-- Campo oculto para evitar captcha en algunos casos -->
-                                    <input type="hidden" name="_captcha" value="false">
+        <!-- Menú colapsable -->
+        <div class="collapse navbar-collapse justify-content-between align-items-center" id="navbarCafe">
+          <!-- Menú principal -->
+          <ul class="navbar-nav d-flex flex-row flex-wrap gap-3 mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link montserrat" href="#hero2">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link montserrat" href="#products">Catálogo</a></li>
+            <li class="nav-item"><a class="nav-link montserrat" href="../../sobreNosotros/components/index.html">Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link montserrat" href="#hola">Contacto</a></li>
+          </ul>
 
-                                    <div class="form-group">
-                                        <label for="nombre">Nombre completo</label>
-                                        <input type="text" id="nombre" name="name" placeholder="Ingresa tu nombre completo" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="email">Correo electrónico</label>
-                                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="telefono">Teléfono</label>
-                                        <input type="tel" id="telefono" name="telefono" placeholder="+57 300 123 4567" pattern="^(\+57|0)?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="asunto">Asunto</label>
-                                        <input type="text" id="asunto" name="asunto" placeholder="¿En qué te podemos ayudar?" required minlength="5" maxlength="50">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="mensaje">Mensaje</label>
-                                        <textarea id="mensaje" name="message" placeholder="Cuéntanos sobre tu interés en nuestros cafés colombianos..." required maxlength="300"></textarea>
-                                    </div>
-                                    
-                                    <button type="submit" class="submit-btn" id="submitBtn">Enviar mensaje</button>
-                                </form>
-
-                        </section>
-
-                <!-- FAQ / Información -->
-                <div class="col-12 col-lg-6">
-                    <section class="info-section">
-                        <div class="coffee-icon"><i class="bi bi-cup-hot"></i></div>
-                        <h2 class="info-title">Preguntas Frecuentes</h2>
-                        
-                        <div class="faq-container">
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span>¿Cómo garantizan la calidad del café?</span>
-                                    <span class="faq-toggle">+</span>
-                                </div>
-                                <div class="faq-answer">
-                                    <p>Seleccionamos nuestros granos directamente de las mejores fincas del eje cafetero colombiano, garantizando frescura y calidad premium en cada envío.</p>
-                                </div>
-                            </div>
-
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span>¿Cuáles son los tiempos de entrega?</span>
-                                    <span class="faq-toggle">+</span>
-                                </div>
-                                <div class="faq-answer">
-                                    <p>Realizamos entregas en Bogotá y Medellín en 24-48 horas. Para otras ciudades, el tiempo estimado es de 3-5 días hábiles.</p>
-                                </div>
-                            </div>
-
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span>¿Ofrecen café orgánico?</span>
-                                    <span class="faq-toggle">+</span>
-                                </div>
-                                <div class="faq-answer">
-                                    <p>Sí, contamos con una línea completa de café orgánico certificado, cultivado sin pesticidas ni químicos artificiales.</p>
-                                </div>
-                            </div>
-
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span>¿Tienen programa de suscripción?</span>
-                                    <span class="faq-toggle">+</span>
-                                </div>
-                                <div class="faq-answer">
-                                    <p>Ofrecemos suscripciones mensuales con descuentos especiales y envío gratuito. Personaliza tu pedido según tus preferencias.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="contact-info">
-                            <h3 class="contact-title">Información de Contacto</h3>
-                            <div class="contact-item">Bogotá, Colombia</div>
-                            <div class="contact-item">+57 (322) 123 4567</div>
-                            <div class="contact-item">info@LaCafetalera.com</div>
-                        </div>
-                    </section>
-                </div>
-            </div>
+          <!-- Botón de iniciar sesión / registrarse -->
+          <div class="d-flex gap-2 btn-iniciarSesion">
+            <a href="#cuadro" id="botonSesion" class="btn btn-carrito montserrat boton-login-navbar">
+              <i class="bi bi-person-fill letrasLogin me-2"></i> <strong>Iniciar sesión</strong>
+            </a>
+          </div>
         </div>
-    </section>
+      </div>
+    </nav>
+  </header>
+<section class="global-form">
+  <div class="container-form">
+    <div class="row g-0">
+      
+      <!-- FORMULARIO -->
+      <div class="col-12 col-lg-6 form-section">
+        <h1>Contáctanos</h1>
+        <p class="subtitle">Descubre el auténtico sabor del café colombiano</p>
 
-    <script src="formulario.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Toggle FAQ
-        document.querySelectorAll('.faq-question').forEach(item => {
-            item.addEventListener('click', () => {
-                const parent = item.parentElement;
-                parent.classList.toggle('active');
-            });
-        });
-    </script>
+        <div id="successMessage" class="success-message">
+          ¡Gracias! Tu mensaje ha sido enviado correctamente. Te contactaremos pronto.
+        </div>
+
+        <div id="errorMessage" class="error-message">
+          Hubo un error al enviar tu mensaje. Por favor, intenta nuevamente.
+        </div>
+
+        <form id="contactForm" action="https://formspree.io/f/mpwlnklp" method="POST">
+          <input type="hidden" name="_subject" value="Nuevo mensaje desde formulario web">
+          <input type="hidden" name="_next" value="https://tusitio.com/gracias.html">
+          <input type="hidden" name="_captcha" value="false">
+
+          <div class="form-group">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="name" placeholder="Ingresa tu nombre completo" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+57 300 123 4567" pattern="^(\+57|0)?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$" required>
+          </div>
+
+          <div class="form-group">
+            <label for="asunto">Asunto</label>
+            <input type="text" id="asunto" name="asunto" placeholder="¿En qué te podemos ayudar?" required minlength="5" maxlength="50">
+          </div>
+
+          <div class="form-group">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="message" placeholder="Cuéntanos sobre tu interés en nuestros cafés colombianos..." required maxlength="300"></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">Enviar mensaje</button>
+        </form>
+      </div>
+
+      <!-- FAQ -->
+      <div class="col-12 col-lg-6 info-section">
+        <div class="coffee-icon"><i class="bi bi-cup-hot"></i></div>
+        <h2 class="info-title">Preguntas Frecuentes</h2>
+
+        <div class="faq-container">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>¿Cómo garantizan la calidad del café?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>Seleccionamos nuestros granos directamente de las mejores fincas del eje cafetero colombiano, garantizando frescura y calidad premium en cada envío.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>¿Cuáles son los tiempos de entrega?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>Realizamos entregas en Bogotá y Medellín en 24-48 horas. Para otras ciudades, el tiempo estimado es de 3-5 días hábiles.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>¿Ofrecen café orgánico?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>Sí, contamos con una línea completa de café orgánico certificado, cultivado sin pesticidas ni químicos artificiales.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>¿Tienen programa de suscripción?</span>
+              <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>Ofrecemos suscripciones mensuales con descuentos especiales y envío gratuito. Personaliza tu pedido según tus preferencias.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-info">
+          <h3 class="contact-title">Información de Contacto</h3>
+          <div class="contact-item">Bogotá, Colombia</div>
+          <div class="contact-item">+57 (322) 123 4567</div>
+          <div class="contact-item">info@LaCafetalera.com</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script src="formulario.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Toggle FAQ
+  document.querySelectorAll('.faq-question').forEach(item => {
+    item.addEventListener('click', () => {
+      const parent = item.parentElement;
+      parent.classList.toggle('active');
+    });
+  });
+</script>
 </body>
 </html>

@@ -28,12 +28,12 @@
 <body>
 
   <header>
-    <nav class="navbar navbar-expand-lg py-2 shadow-lg bg-body-tertiary rounded mb-0">
+    <nav class="navbar navbar-expand-lg py-2 shadow-lg bg-body-tertiary rounded container">
       <div class="container-fluid">
         <!-- Logo + Marca -->
         <a href="#" class="d-flex align-items-center text-decoration-none">
-          <img src="/frontend/pages/contacto/assets/img/Logo2.png" alt="logo" width="100" class="img-fluid me-2">
-          <span class="navbar-brand mb-0 h1 montserrat">La Cafetalera</span>
+          <img src="/frontend/components/assets-global/img/logo.png" alt="logo" width="100"
+            class="img-fluid me-2 imagenNavbar">
         </a>
 
         <!-- Botón hamburguesa -->
@@ -49,24 +49,22 @@
             <li class="nav-item"><a class="nav-link montserrat" href="#hero2">Inicio</a></li>
             <li class="nav-item"><a class="nav-link montserrat" href="#products">Catálogo</a></li>
             <li class="nav-item"><a class="nav-link montserrat" href="#services">Nosotros</a></li>
-            <li class="nav-item"><a class="nav-link montserrat" href="#contact">Contacto</a></li>
+            <li class="nav-item"><a class="nav-link montserrat"
+                href="../../contacto/components/formulario.html">Contacto</a></li>
           </ul>
 
-          <!-- Botones -->
-          <div class="d-flex gap-2">
-            <a href="#cuadro" id="botonSesion" class="btn btn-carrito montserrat">
-              <i class="bi bi-person-circle"></i> Acceder
-            </a>
-            <a href="#cuadro" id="botonCarritosm" class="btn btn-carrito montserrat">
-              <i class="bi bi-cart"></i> Mi Carrito
+          <!-- Botón de iniciar sesión / registrarse -->
+          <div class="d-flex gap-2 btn-iniciarSesion">
+            <a href="#cuadro" id="botonSesion" class="btn btn-carrito montserrat boton-login-navbar">
+              <i class="bi bi-person-fill letrasLogin me-2"></i> <strong>Iniciar sesión</strong>
             </a>
           </div>
         </div>
       </div>
-      </div>
     </nav>
   </header>
 
+  </a>
   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -97,7 +95,7 @@
           </div>
           <div class="col-md-6 text-center">
             <img src="../assets/img/historiasebas.png"
-              class="imagen_historia_sebas img-fluid ps-5 rounded d-none d-lg-block" alt="Historia 3">
+              class="imagen_historia_sebas imgSeba1 img-fluid ps-5 rounded d-none d-lg-block" alt="Historia 3">
           </div>
         </div>
       </div>
@@ -131,7 +129,7 @@
         <div class="d-flex flex-column flex-md-row align-items-center justify-content-center p-5">
           <div class="col-md-6 text-start">
             <div class="circulo_sebas_fondo">
-              <h2 class="h2_sebas_1">La Chispa de la Idea</h2>
+              <h2 class="h2_sebas_1 text-center">La Chispa de la Idea</h2>
               <p class="texto_sebas_carusel">
                 <strong>Un equipo de entusiastas de la tecnología y la caficultura se unió con una visión clara:
                   desarrollar
