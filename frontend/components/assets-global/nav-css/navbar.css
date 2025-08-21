@@ -1,11 +1,12 @@
 
 /* 🎨 Fondo principal de la navbar */
 .navbar {
-  background-color:  rgb(255, 255, 255)!important;
+  background-color: rgb(255, 255, 255) !important;
   padding: 0.5rem 1rem;
   box-shadow: #000;
   height: 80px;
-  width: 1800px;
+  width: 100%; /* ✅ Mejora para responsive */
+  max-width: 100%;
 }
 .boton-login-navbar {
   font-size: 1.1rem;
@@ -194,5 +195,50 @@
   .btn-uniforme {
     min-width: unset;
     width: 90%;
+  }
+}
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background-color: #fff; /* o #F7E4C6 si prefieres */
+    padding: 1rem;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  }
+
+  .navbar-nav {
+    flex-direction: column !important;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .btn-iniciarSesion {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  #botonSesion {
+    width: 100%;
+    text-align: center;
+  }
+}
+@media (max-width: 991px) {
+  .navbar-collapse {
+    width: 100vw !important;
+    left: 0;
+    top: 80px; /* Altura de tu navbar fija */
+    position: absolute;
+    background-color: white; /* o #fff o el color que prefieras */
+    z-index: 999;
+    padding: 1rem 0;
+    border-top: 1px solid #ccc;
+  }
+
+  .navbar-collapse.show {
+    display: block !important;
+  }
+
+  .navbar-nav {
+    width: 100%;
   }
 }
