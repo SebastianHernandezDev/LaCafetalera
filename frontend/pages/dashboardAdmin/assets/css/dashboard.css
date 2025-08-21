@@ -1,0 +1,196 @@
+/* =========================
+   ESTILOS GENERALES
+========================= */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  color: #343a40;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+/* =========================
+   ENCABEZADO
+========================= */
+#header {
+  background-color: #007bff;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: left;
+}
+
+/* =========================
+   SECCIONES
+========================= */
+section {
+  margin-bottom: 20px;
+}
+
+.bg-light {
+  background-color: #e9ecef !important;
+}
+
+/* =========================
+   FORMULARIOS
+========================= */
+.form-control,
+.form-select {
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* =========================
+   BOTONES
+========================= */
+.btn {
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 10px 16px;
+}
+
+/* =========================
+   CONTENEDOR DE CARDS
+========================= */
+#contenedorCards {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: #343a40;
+  color: white;
+  border-radius: 5px;
+  padding: 15px;
+  max-height: 80vh;
+}
+
+/* =========================
+   ANIMACIONES
+========================= */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================
+   CARDS INDIVIDUALES
+========================= */
+.card.h-100 {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.card-img-top {
+  height: 120px;
+  object-fit: cover;
+}
+
+.eliminar-btn {
+  font-size: 0.85rem;
+  padding: 0.3rem 0.6rem;
+}
+
+/* =========================
+   RESPONSIVIDAD - TABLETS
+========================= */
+@media (max-width: 768px) {
+  #header {
+    text-align: center;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .col-md-6 {
+    margin-bottom: 20px;
+  }
+
+  #contenedorCards {
+    height: auto;
+  }
+}
+
+/* =========================
+   RESPONSIVIDAD - MÓVILES
+========================= */
+@media (max-width: 576px) {
+  body {
+    padding: 10px;
+  }
+
+  #header {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  h2, h3 {
+    font-size: 1.5rem;
+  }
+
+  .form-control,
+  .form-select {
+    font-size: 14px;
+  }
+
+  .col-md-2 {
+    margin-bottom: 10px;
+  }
+
+  .img-fluid {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* =========================
+   RESPONSIVIDAD - DESKTOP
+========================= */
+@media (min-width: 992px) {
+  .col-md-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .btn {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+
+  .card.h-100 {
+    font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+
+  h1, h2, h3 {
+    font-size: 2rem;
+  }
+
+  .card-img-top {
+    height: 140px;
+  }
+
+  .eliminar-btn {
+    font-size: 0.9rem;
+  }
+}

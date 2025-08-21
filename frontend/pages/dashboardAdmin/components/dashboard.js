@@ -1,91 +1,144 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const formulario = document.getElementById('formulario');
-    const contenedor = document.getElementById('contenedor-card');
-    const imagenInput = document.getElementById('nuevaImagen');
-    const imgPreview = document.getElementById('preview');
+let imagenBase64 = "";
 
-    // Vista previa de la imagen
-    imagenInput.addEventListener('change', function () {
-        const archivo = imagenInput.files[0];
-        if (archivo) {
-            const urlTemporal = URL.createObjectURL(archivo);
-            imgPreview.src = urlTemporal;
-            imgPreview.style.display = 'block';
-        } else {
-            imgPreview.style.display = 'none';
-            imgPreview.src = '';
-        }
+// 🔄 Inicializar productos desde localStorage
+function initializeProducts() {
+  const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
+  if (existingProducts.length === 0) {
+    localStorage.setItem("products", JSON.stringify([])); // Inicializa vacío si no hay productos
+  }
+}
+
+// ➕ Agregar producto desde el formulario
+document.getElementById("admin-insert").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+  const producto = {
+    id: formData.get("id"),
+    name: formData.get("name"),
+    price: formData.get("price"),
+    description: formData.get("description"),
+    stock: formData.get("stock"),
+    nuevoStock: formData.get("nuevoStock"),
+    status: formData.get("status"),
+    imageName: formData.get("imagenProducto")?.name || "",
+    image: imagenBase64
+  };
+
+  guardarProducto(producto);           // Guarda en localStorage
+  renderPreviewCard(producto);         // Muestra la card
+  cargarInventario();                  // Actualiza la tabla
+
+  this.reset();                        // Limpia el formulario
+  document.getElementById("nombreImagen").textContent = "";
+  imagenBase64 = "";                   // Reinicia la imagen
+});
+
+// 💾 Guardar producto en localStorage
+function guardarProducto(producto) {
+  const productos = getProducts();
+  productos.push(producto);
+  localStorage.setItem("products", JSON.stringify(productos));
+}
+
+// 📷 Manejar la selección de imagen
+document.getElementById("imagenProducto").addEventListener("change", function (event) {
+  const file = event.target.files[0];
+  const nombrePreview = document.getElementById("nombreImagen");
+
+  if (file) {
+    nombrePreview.textContent = `📁 Archivo seleccionado: ${file.name}`;
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      imagenBase64 = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  } else {
+    nombrePreview.textContent = "";
+    imagenBase64 = "";
+  }
+});
+
+// 📦 Obtener productos del localStorage
+function getProducts() {
+  return JSON.parse(localStorage.getItem("products")) || [];
+}
+
+// 🖼️ Renderizar todas las cards de vista previa
+function renderAllPreviewCards() {
+  const container = document.getElementById("previewCards");
+  container.innerHTML = "";
+  const productos = getProducts();
+  productos.forEach(renderPreviewCard);
+  activarBotonesEliminar(); // 
+}
+// 🖼️ Renderizar una card individual
+function renderPreviewCard(producto) {
+  const container = document.getElementById("previewCards");
+
+  const card = document.createElement("div");
+  card.className = "col-md-4 fade-in";
+
+  card.innerHTML = `
+    <div class="card h-100">
+      <img src="${producto.image}" class="card-img-top" alt="${producto.name}" onerror="this.src='https://via.placeholder.com/300x180?text=Sin+imagen'">
+      <div class="card-body">
+        <h5 class="card-title">${producto.name}</h5>
+        <p class="card-text text-truncate" title="${producto.description}">${producto.description}</p>
+        <p class="card-text"><strong>Precio:</strong> ${producto.price} COP</p>
+        <p class="card-text"><strong>Stock:</strong> ${producto.stock} → ${producto.nuevoStock}</p>
+        <span class="badge bg-secondary">${producto.status}</span>
+        <button class="btn btn-sm btn-danger mt-3 eliminar-btn" data-id="${producto.id}">🗑️ Eliminar</button>
+      </div>
+    </div>
+  `;
+
+  container.appendChild(card);
+}
+
+function activarBotonesEliminar() {
+  const botones = document.querySelectorAll(".eliminar-btn");
+  botones.forEach(boton => {
+    boton.addEventListener("click", function () {
+      const id = this.getAttribute("data-id");
+      eliminarProducto(id);
     });
+  });
+}
 
-    formulario.addEventListener('submit', (e) => {
-        e.preventDefault();
+function eliminarProducto(id) {
+  let productos = getProducts();
+  productos = productos.filter(p => p.id !== id);
+  localStorage.setItem("products", JSON.stringify(productos));
+  renderAllPreviewCards(); // Actualiza cards
+  cargarInventario();      // Actualiza tabla
+}
 
-        const titulo = document.getElementById('nuevoTitulo').value;
-        const descripcion = document.getElementById('nuevaDescripcion').value;
-        const imagenArchivo = imagenInput.files[0];
+// 📋 Cargar inventario en la tabla
+function cargarInventario() {
+  const productos = getProducts();
+  const tabla = document.getElementById("tabla-inventario");
+  tabla.innerHTML = "";
 
-        const card = document.createElement('div');
-        card.className = 'card mt-3';
-        card.style.width = '18rem';
+  productos.forEach(producto => {
+    const fila = document.createElement("tr");
+    fila.innerHTML = `
+      <td>${producto.id}</td>
+      <td>${producto.name}</td>
+      <td>${producto.price}</td>
+      <td>${producto.description}</td>
+      <td>${producto.stock || "-"}</td>
+      <td>${producto.nuevoStock || "-"}</td>
+      <td><img src="${producto.image}" alt="${producto.name}" style="width: 50px; height: auto;" onerror="this.src='https://via.placeholder.com/50?text=Sin+imagen'"></td>
+      <td>${producto.status}</td>
+    `;
+    tabla.appendChild(fila);
+  });
+}
 
-        const contenidoCard = document.createElement('div');
-        contenidoCard.className = 'card-body';
-
-        const tituloElem = document.createElement('h5');
-        tituloElem.className = 'card-title';
-        tituloElem.textContent = titulo;
-
-        const descripcionElem = document.createElement('p');
-        descripcionElem.className = 'card-text';
-        descripcionElem.textContent = descripcion;
-
-        // Botón de Like
-        const likeBtn = document.createElement('button');
-        likeBtn.className = 'btn btn-outline-danger btn-sm';
-        likeBtn.innerHTML = '❤️ Like';
-
-        const contadorLikes = document.createElement('span');
-        contadorLikes.textContent = ' 0';
-        contadorLikes.className = 'ms-2';
-
-        let likes = 0;
-        likeBtn.addEventListener('click', () => {
-            likes++;
-            contadorLikes.textContent = ` ${likes}`;
-        });
-
-        // Agregar imagen si hay
-        if (imagenArchivo) {
-            const lector = new FileReader();
-            lector.onload = function (evento) {
-                const imagen = document.createElement('img');
-                imagen.src = evento.target.result;
-                imagen.className = 'card-img-top';
-                imagen.alt = 'Imagen de la publicación';
-
-                contenidoCard.appendChild(tituloElem);
-                contenidoCard.appendChild(descripcionElem);
-                contenidoCard.appendChild(likeBtn);
-                contenidoCard.appendChild(contadorLikes);
-
-                card.appendChild(imagen);
-                card.appendChild(contenidoCard);
-                contenedor.appendChild(card);
-            };
-            lector.readAsDataURL(imagenArchivo);
-        } else {
-            contenidoCard.appendChild(tituloElem);
-            contenidoCard.appendChild(descripcionElem);
-            contenidoCard.appendChild(likeBtn);
-            contenidoCard.appendChild(contadorLikes);
-
-            card.appendChild(contenidoCard);
-            contenedor.appendChild(card);
-        }
-
-        // Limpiar formulario y preview
-        formulario.reset();
-        imgPreview.style.display = 'none';
-        imgPreview.src = '';
-    });
+// 🚀 Inicializar todo al cargar la página
+window.addEventListener("DOMContentLoaded", () => {
+  initializeProducts();
+  renderAllPreviewCards();
+  cargarInventario();
 });
