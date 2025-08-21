@@ -1,0 +1,23 @@
+.containerFooter{
+    background-color: brown;
+}
+.logoFooter{
+    margin-top: -60px;
+
+}
+footer {
+    background-color: #a5998f;
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    padding: 2px;
+}
+.lista_footer {
+    color:rgb(11, 32, 17);
+    
+}
+footer a{
+    color: rgb(11, 32, 17);
+}
+footer p{
+    color: rgb(11, 32, 17);
+}
