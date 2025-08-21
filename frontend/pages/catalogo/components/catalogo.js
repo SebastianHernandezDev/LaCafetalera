@@ -72,27 +72,21 @@ function renderProducts() {
 function addToCart(productId) {
     const products = getProducts();
     const product = products.find(p => p.id === productId);
-    
+         
     if (product) {
-        // Logica carrito VA AQUI
-        alert(`"${product.name}" agregado al carrito!\n(Funcionalidad carrito pendiente a implementación)`);
+        // USAR TU FUNCIÓN
+        agregarAlCarrito(productId);
         
-        // Animación del botón de agregar carrito.
+        // Animación original de tu compañera
         const button = event.target;
         const originalText = button.innerHTML;
         button.innerHTML = '<i class="fas fa-check"></i> ¡Agregado!';
         button.style.background = 'linear-gradient(135deg, #4CAF50, #66BB6A)';
-        
+                 
         setTimeout(() => {
             button.innerHTML = originalText;
             button.style.background = 'linear-gradient(135deg, #8C5637, #a4a977)';
         }, 1500);
     }
 }
-
-// Event listeners
-document.addEventListener('DOMContentLoaded', async function() {
-    await initializeProducts();
-    renderProducts();
-});
 
