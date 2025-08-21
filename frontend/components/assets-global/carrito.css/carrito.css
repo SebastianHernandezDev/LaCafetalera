@@ -1,0 +1,53 @@
+#botonCarritoFijo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  height: 70px;
+  width: 70px;
+  background-color: #8c5637;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: width 0.3s ease, padding 0.3s ease, background-color 0.3s ease;
+  padding: 0;
+  text-decoration: none;
+}
+
+/* Ícono */
+#botonCarritoFijo i {
+  font-size: 1.8rem;
+  transition: transform 0.3s ease;
+}
+
+/* Texto oculto realmente */
+#botonCarritoFijo .texto-carrito {
+  visibility: hidden;
+  width: 0;
+  opacity: 0;
+  margin-left: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Hover */
+#botonCarritoFijo:hover {
+  width: 160px;
+  padding-left: 20px;
+  justify-content: flex-start;
+  background-color: #73452d;
+}
+
+#botonCarritoFijo:hover .texto-carrito {
+  visibility: visible;
+  width: auto;
+  opacity: 1;
+  margin-left: 10px;
+}
