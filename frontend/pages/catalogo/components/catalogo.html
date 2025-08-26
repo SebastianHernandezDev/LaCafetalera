@@ -16,15 +16,15 @@
   <!-- Botón flotante del carrito -->
   <button 
     type="button" 
-    class="btn btn-primary position-fixed" 
+    class="btn btn-success position-fixed" 
     id="carritoFlotante" 
     data-bs-toggle="offcanvas" 
     data-bs-target="#carritoOffcanvas"
     aria-label="Abrir carrito"
-    style="bottom: 20px; right: 20px; z-index: 1050; border-radius: 50%; width: 60px; height: 60px;"
+    style="bottom: 20px; right: 20px; z-index: 1050; border-radius: 50%; width: 80px; height: 80px;"
   >
-    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="contadorCarrito">
+    <i class="fas fa-shopping-cart fs-4" aria-hidden="true"></i>
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-5" id="contadorCarrito">
       0
     </span>
   </button>
@@ -64,6 +64,29 @@
       </div>
     </div>
   </div>
+
+  <!--Modal de alerta(borrado de carrito)-->
+  <div class="modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminar carrito</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="confirmarMensaje">¿Deseas borrar el carrito de compras?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button"  id="confirmarOk" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" id="confirmarCancelar" class="btn btn-primary">Borrar</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
 
   <!-- Contenedor catálogo -->
   <div class="containerCatalogo">
