@@ -13,7 +13,9 @@ body{
     align-items: center;
     justify-content: center;
 }
-
+.tituloPanel{
+    font-size: 50px;
+}
 .container-form {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
