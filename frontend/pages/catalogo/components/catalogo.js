@@ -12,13 +12,33 @@ async function fetchProducts() {
     }
 }
 
+
+///////////////////////////////////////////ID NUEVOS SOLUCION SOLUCION SOLUCION//////////////////////
+// Generar nuevo ID único para productos
+function generateUniqueId() {
+    const products = getProducts();
+    if (products.length === 0) return 1;
+    
+    // Encontrar el ID más alto y sumar 1
+    const maxId = Math.max(...products.map(p => p.id || 0));
+    return maxId + 1;
+}
+///////////////////////////////////////////ID NUEVOS SOLUCION SOLUCION SOLUCION//////////////////////
+
+
+
 // Inicializar productos (si no existen en localStorage)
 async function initializeProducts() {
     const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
     if (existingProducts.length === 0) {
         const defaultProducts = await fetchProducts();
         if (defaultProducts.length > 0) {
-            localStorage.setItem("products", JSON.stringify(defaultProducts));
+            // Asegurar que todos los productos tengan un ID
+            const productsWithIds = defaultProducts.map((product, index) => ({
+                ...product,
+                id: product.id || index + 1
+            }));
+            localStorage.setItem("products", JSON.stringify(productsWithIds));
         }
     }
 }
@@ -32,6 +52,37 @@ function getProducts() {
 function saveProducts(products) {
     localStorage.setItem("products", JSON.stringify(products));
 }
+
+
+
+
+
+///////////////////////////////////////////ID NUEVOS SOLUCION SOLUCION SOLUCION//////////////////////
+
+// Agregar nuevo producto al catálogo
+function addNewProduct(productData) {
+    const products = getProducts();
+    const newProduct = {
+        id: generateUniqueId(),
+        name: productData.name,
+        description: productData.description,
+        price: productData.price,
+        image: productData.image || '../assets/img/placeholder.png',
+        createdAt: new Date().toISOString()
+    };
+    
+    products.push(newProduct);
+    saveProducts(products);
+    renderProducts();
+    
+    return newProduct;
+}
+
+///////////////////////////////////////////ID NUEVOS SOLUCION SOLUCION SOLUCION//////////////////////
+
+
+
+
 
 // Renderizar productos en el catálogo
 function renderProducts() {
@@ -82,8 +133,3 @@ function addToCart(productId, event) {
     }
 }
 
-// ===== INICIALIZACIÓN =====
-document.addEventListener("DOMContentLoaded", async () => {
-    await initializeProducts();
-    renderProducts();
-});
