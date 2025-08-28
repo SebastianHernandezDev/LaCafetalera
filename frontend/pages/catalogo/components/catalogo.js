@@ -1,63 +1,89 @@
-document.getElementById('admin-insert').addEventListener('submit', function (e) {
-  e.preventDefault();
+// ====== CATALOGO ======
 
-  const form = e.target;
-  const id = parseInt(form.id.value);
-  const name = form.name.value.trim();
-  const price = parseFloat(form.price.value);
-  const description = form.description.value.trim();
-  const nuevoStock = parseInt(form.nuevoStock.value);
-  const status = form.status.value;
-  const imageFile = form.imagenProducto.files[0];
+// Obtener productos desde JSON local
+async function fetchProducts() {
+    try {
+        const response = await fetch("../assets/data/products.json");
+        if (!response.ok) throw new Error("No se pudo cargar el archivo products.json");
+        return await response.json();
+    } catch (error) {
+        console.error("Error al obtener los productos:", error);
+        return [];
+    }
+}
 
-  const products = getProducts();
+// Inicializar productos (si no existen en localStorage)
+async function initializeProducts() {
+    const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
+    if (existingProducts.length === 0) {
+        const defaultProducts = await fetchProducts();
+        if (defaultProducts.length > 0) {
+            localStorage.setItem("products", JSON.stringify(defaultProducts));
+        }
+    }
+}
 
-  // Validaciones
-  if (id <= 0 || isNaN(id)) {
-    alert("El ID debe ser un número positivo.");
-    return;
-  }
+// Obtener productos de localStorage
+function getProducts() {
+    return JSON.parse(localStorage.getItem("products")) || [];
+}
 
-  if (products.some(p => p.id === id)) {
-    alert("Ya existe un producto con ese ID.");
-    return;
-  }
+// Guardar productos en localStorage
+function saveProducts(products) {
+    localStorage.setItem("products", JSON.stringify(products));
+}
 
-  if (price < 0 || isNaN(price)) {
-    alert("El precio no puede ser negativo.");
-    return;
-  }
+// Renderizar productos en el catálogo
+function renderProducts() {
+    const products = getProducts();
+    const catalogGrid = document.getElementById("catalogGrid");
 
-  if (nuevoStock < 1 || isNaN(nuevoStock)) {
-    alert("El nuevo stock debe ser al menos 1.");
-    return;
-  }
+    if (!catalogGrid) return;
 
-  if (!imageFile) {
-    alert("Debe subir una imagen del producto.");
-    return;
-  }
+    if (products.length === 0) {
+        catalogGrid.innerHTML = `<div class="no-products">No hay productos disponibles en el catálogo.</div>`;
+        return;
+    }
 
-  // Crear URL temporal para imagen
-  const imageURL = URL.createObjectURL(imageFile);
+    catalogGrid.innerHTML = products.map(product => `
+        <div class="product-card" data-id="${product.id}">
+            <img src="${product.image}" alt="${product.name}" class="product-image"
+                onerror="this.src='../assets/img/placeholder.png'">
+            <div class="product-info">
+                <h3 class="product-name">${product.name}</h3>
+                <p class="product-description">${product.description}</p>
+                <div class="product-price">$${parseFloat(product.price).toFixed(2)}</div>
+                <button class="btn-cart" onclick="addToCart(${product.id}, event)">
+                    <i class="fas fa-shopping-cart"></i> AGREGAR AL CARRITO
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
 
-  // Crear nuevo producto
-  const newProduct = {
-    id,
-    name,
-    price,
-    description,
-    stock: nuevoStock,
-    status,
-    image: imageURL
-  };
+// Agregar al carrito
+function addToCart(productId, event) {
+    const products = getProducts();
+    const product = products.find(p => p.id === productId);
 
-  // Guardar y renderizar
-  products.push(newProduct);
-  saveProducts(products);
-  renderProducts();
-  form.reset();
-  document.getElementById('nombreImagen').textContent = '';
+    if (product) {
+        agregarAlCarrito(productId); // función del carrito flotante
 
-  alert("¡Producto agregado con éxito!");
+        // Animación de feedback
+        const button = event.target.closest("button");
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check"></i> ¡Agregado!';
+        button.style.background = 'linear-gradient(135deg, #4CAF50, #66BB6A)';
+
+        setTimeout(() => {
+            button.innerHTML = originalText;
+            button.style.background = '#8C5637';
+        }, 1500);
+    }
+}
+
+// ===== INICIALIZACIÓN =====
+document.addEventListener("DOMContentLoaded", async () => {
+    await initializeProducts();
+    renderProducts();
 });
