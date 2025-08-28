@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="/frontend/pages/dashboardAdmin/assets/css/dashboard.css" />
   <link rel="stylesheet" href="../../../components/assets-global/nav-css/navbar.css" />
+  <link rel="stylesheet" href="../../../components/assets-global/footer-css/footer.css">
 </head>
 
 <body>
@@ -34,8 +35,10 @@
           <!-- Menú principal -->
           <ul class="navbar-nav d-flex flex-row flex-wrap gap-3 mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link montserrat" href="#hero2">Inicio</a></li>
-            <li class="nav-item"><a class="nav-link montserrat" href="#products">Catálogo</a></li>
-            <li class="nav-item"><a class="nav-link montserrat" href="#services">Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link montserrat"
+                href="../../catalogo/components/catalogo.html">Catálogo</a></li>
+            <li class="nav-item"><a class="nav-link montserrat"
+                href="../../sobreNosotros/components/index.html">Nosotros</a></li>
             <li class="nav-item"><a class="nav-link montserrat"
                 href="../../contacto/components/formulario.html">Contacto</a></li>
           </ul>
@@ -93,42 +96,45 @@
     <div class="row gy-4">
 
       <!-- 📝 Columna izquierda: Formulario -->
-     <!-- CAMBIO: eliminamos "Stock Actual" -->
-<div class="col-12 col-lg-6">
-  <h3><i class="bi bi-pencil-square"></i> Agregar producto </h3>
-  <form id="admin-insert" class="d-flex flex-column gap-3">
-    <div class="mb-1">
-      <input type="number" class="form-control" placeholder="No.Id" name="id" required min="1" />
-    </div>
-    <div class="mb-1">
-      <input type="text" class="form-control" placeholder="Nombre del producto" name="name" required />
-    </div>
-    <div class="mb-1">
-      <input type="number" step="0.01" class="form-control" placeholder="Precio COP" name="price" required min="0" />
-    </div>
-    <div class="mb-1">
-      <input type="text" class="form-control" placeholder="Descripción del producto" name="description" required />
-    </div>
-    <div class="mb-1">
-      <input type="number" class="form-control" placeholder="Nuevo Stock" name="nuevoStock" required min="1" />
-    </div>
-    <div class="mb-1">
-      <select class="form-select" name="status" required>
-        <option value="En CEDI">En CEDI</option>
-        <option value="En Tránsito">En Tránsito</option>
-        <option value="Sin Enviar a CEDI">Sin Enviar a CEDI</option>
-      </select>
-    </div>
-    <div class="d-flex flex-column gap-1">
-      <label for="imagenProducto" class="btn btn-primary w-100">
-        <i class="bi bi-cloud-arrow-up"></i> Subir imagen
-      </label>
-      <input type="file" id="imagenProducto" name="imagenProducto" accept="image/*" style="display: none;" required>
-      <small id="nombreImagen" class="text-muted mt-1 d-block"></small>
-      <button type="submit" class="btn btn-success w-100">Agregar Producto</button>
-    </div>
-  </form>
-</div>
+      <!-- CAMBIO: eliminamos "Stock Actual" -->
+      <div class="col-12 col-lg-6">
+        <h3> Agregar producto </h3>
+        <form id="admin-insert" class="d-flex flex-column gap-3">
+          <div class="mb-1">
+            <input type="number" class="form-control" placeholder="No.Id" name="id" required min="1" />
+          </div>
+          <div class="mb-1">
+            <input type="text" class="form-control" placeholder="Nombre del producto" name="name" required />
+          </div>
+          <div class="mb-1">
+            <input type="number" step="0.01" class="form-control" placeholder="Precio COP" name="price" required
+              min="0" />
+          </div>
+          <div class="mb-1">
+            <input type="text" class="form-control" placeholder="Descripción del producto" name="description"
+              required />
+          </div>
+          <div class="mb-1">
+            <input type="number" class="form-control" placeholder="Nuevo Stock" name="nuevoStock" required min="1" />
+          </div>
+          <div class="mb-1">
+            <select class="form-select" name="status" required>
+              <option value="En CEDI">En CEDI</option>
+              <option value="En Tránsito">En Tránsito</option>
+              <option value="Sin Enviar a CEDI">Sin Enviar a CEDI</option>
+            </select>
+          </div>
+          <div class="d-flex flex-column gap-1">
+            <label for="imagenProducto" class="btn btn-primary w-100">
+              <i class="bi bi-cloud-arrow-up"></i> Subir imagen
+            </label>
+            <input type="file" id="imagenProducto" name="imagenProducto" accept="image/*" style="display: none;"
+              required>
+            <small id="nombreImagen" class="text-muted mt-1 d-block"></small>
+            <button type="submit" class="btn btn-success w-100">Agregar Producto</button>
+          </div>
+        </form>
+      </div>
 
       <!-- 🖼️ Columna derecha: Vista previa -->
       <div class="col-12 col-lg-6">
@@ -172,7 +178,70 @@
       </div>
     </div>
   </main>
+  <footer class="bg-dark text-light pt-4">
+    <div class="container-fluid">
+      <div class="row footerA text-center text-md-start">
 
+        <!-- Logo -->
+        <div class="col-12 col-sm-12 col-lg-4 logoFooter mb-2 d-flex justify-content-center">
+          <img src="../../../components/assets-global/img/ChatGPT Image 14 ago 2025, 15_07_00.png" alt="Logo de La Cafetalera"
+            class="img-fluid" style="max-width: 250px; height: auto;">
+        </div>
+
+        <!-- Menú de enlaces -->
+        <div class="col-6 col-md-3 col-lg-2 mb-3">
+          <ul class="mt-3 list-unstyled lista_footer">
+            <li class="mb-2"><i class="bi bi-house-door-fill me-2"></i><a href="#"
+                class="footer-link text-light text-decoration-none">Inicio</a></li>
+            <li class="mb-2"><i class="bi bi-grid-fill me-2"></i><a href="#"
+                class="footer-link text-light text-decoration-none">Catálogo</a></li>
+            <li class="mb-2"><i class="bi bi-envelope-fill me-2"></i><a href="#"
+                class="footer-link text-light text-decoration-none">Contáctenos</a></li>
+            <li class="mb-2"><i class="bi bi-person-fill me-2"></i><a href="#"
+                class="footer-link text-light text-decoration-none">Login/Registro</a></li>
+            <li class="mb-2"><i class="bi bi-pencil-square me-2"></i><a href="#"
+                class="footer-link text-light text-decoration-none">CRUD</a></li>
+          </ul>
+        </div>
+
+        <!-- Información de contacto -->
+        <div class="col-6 col-md-3 col-lg-2 mb-3">
+          <h4 class="fw-bold">Contacto</h4>
+          <address class="mb-0">
+            <p><i class="bi bi-geo-alt-fill me-2"></i>Bogotá, Colombia</p>
+            <p><i class="bi bi-telephone-fill me-2"></i><a href="tel:+573001234567"
+                class="text-light text-decoration-none">+57 300 123 4567</a></p>
+            <p><i class="bi bi-envelope-fill me-2"></i><a href="mailto:contacto@lacafetalera.com"
+                class="text-light text-decoration-none">contacto@lacafetalera.com</a></p>
+          </address>
+        </div>
+
+        <!-- Redes sociales -->
+        <div class="col-6 col-md-3 col-lg-2 mb-3">
+          <h4 class="fw-bold">Síguenos</h4>
+          <a href="#" aria-label="Facebook" class="text-light me-3"><i class="bi bi-facebook fs-4"></i></a>
+          <a href="#" aria-label="Instagram" class="text-light me-3"><i class="bi bi-instagram fs-4"></i></a>
+          <a href="#" aria-label="TikTok" class="text-light me-3"><i class="bi bi-tiktok fs-4"></i></a>
+          <a href="#" aria-label="YouTube" class="text-light"><i class="bi bi-youtube fs-4"></i></a>
+        </div>
+
+        <!-- Métodos de pago -->
+        <div class="col-6 col-md-3 col-lg-2 mb-3">
+          <h4 class="fw-bold">Métodos de pago</h4>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Tarjeta Visa" width="50"
+            class="me-2">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Tarjeta Mastercard"
+            width="50" class="me-2">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="Pago con PayPal" width="60">
+        </div>
+      </div>
+    </div>
+
+    <!-- Derechos de autor -->
+    <div class="bg-grey text-center py-2 mt-3">
+      <p class="mb-0">© 2025 La Cafetalera. Todos los derechos reservados.</p>
+    </div>
+  </footer>
   <script src="/frontend/pages/dashboardAdmin/components/dashboard.js"></script>
 </body>
 
