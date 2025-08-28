@@ -10,7 +10,7 @@ function guardarCarrito(carrito) {
     localStorage.setItem('cart', JSON.stringify(carrito));
 }
 
-// Obtener productos originales (usar la función de tu compañera)
+// Obtener productos originales
 function obtenerProductos() {
     return JSON.parse(localStorage.getItem('products')) || [];
 }
@@ -47,7 +47,7 @@ function mostrarProductosCarrito() {
                         
                         <!-- Imagen del producto -->
                         <div class="col-3">
-                            <img src="${producto.image}" alt="${producto.name}" class="img-fluid rounded" style="max-height: 60px; object-fit: cover;">
+                            <img src="${producto.image}" alt="${producto.name}" class="img-fluid rounded" style="max-height: 160px; object-fit: cover;">
                         </div>
                         
                         <!-- Información del producto -->
@@ -161,10 +161,33 @@ document.addEventListener('DOMContentLoaded', function() {
         mostrarProductosCarrito();
     });
     
-    // Evento para vaciar carrito
-    document.getElementById('vaciarCarrito').addEventListener('click', function() {
-        if (confirm('¿Estás seguro de que quieres vaciar el carrito?')) {
-            vaciarCarrito();
-        }
+    // Funcion para mostrar el modal de confirmacion
+    function mostrarConfirmacion(message, callback) {
+    document.getElementById("confirmarMensaje").innerText = message;
+    const confirmModal = new bootstrap.Modal(document.getElementById("confirmModal"));
+    confirmModal.show();
+
+    // Botones
+    const okButton = document.getElementById("confirmarOk");
+    const cancelButton = document.getElementById("confirmarCancelar");
+
+    okButton.onclick = function () {
+    callback(true);
+    confirmModal.hide();
+    };
+
+    cancelButton.onclick = function () {
+    callback(false);
+    confirmModal.hide();
+     };
+    }
+
+     document.getElementById('vaciarCarrito').addEventListener('click', function () {
+      mostrarConfirmacion("¿Estás seguro de que quieres vaciar el carrito?", function (respuesta) {
+      if (respuesta) {
+        vaciarCarrito();
+      }
     });
+
+   });
 });
