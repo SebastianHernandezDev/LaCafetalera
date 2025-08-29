@@ -12,7 +12,7 @@ async function fetchProducts() {
     }
 }
 
-// Inicializar productos (si no existen en localStorage)
+// Inicializar productos si no existen en localStorage
 async function initializeProducts() {
     const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
     if (existingProducts.length === 0) {
@@ -23,7 +23,7 @@ async function initializeProducts() {
     }
 }
 
-// Obtener productos de localStorage
+// Obtener productos desde localStorage
 function getProducts() {
     return JSON.parse(localStorage.getItem("products")) || [];
 }
@@ -33,15 +33,33 @@ function saveProducts(products) {
     localStorage.setItem("products", JSON.stringify(products));
 }
 
-// Renderizar productos en el catálogo
-function renderProducts() {
-    const products = getProducts();
+// 🔍 Filtro por nombre (sin tildes y sin importar mayúsculas)
+function aplicarFiltroNombre() {
+    const input = document.getElementById("buscadorNombre").value;
+
+    const normalizar = str =>
+        str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+    const nombreBuscado = normalizar(input);
+    const productos = getProducts();
+
+    const productosFiltrados = productos.filter(producto => {
+        const nombreNormalizado = normalizar(producto.name);
+        return nombreNormalizado.includes(nombreBuscado);
+    });
+
+    renderProducts(productosFiltrados);
+}
+
+// 🖼 Renderizar productos
+function renderProducts(productos = null) {
+    const products = productos || getProducts();
     const catalogGrid = document.getElementById("catalogGrid");
 
     if (!catalogGrid) return;
 
     if (products.length === 0) {
-        catalogGrid.innerHTML = `<div class="no-products">No hay productos disponibles en el catálogo.</div>`;
+        catalogGrid.innerHTML = `<div class="no-products">No hay productos disponibles.</div>`;
         return;
     }
 
@@ -61,15 +79,14 @@ function renderProducts() {
     `).join('');
 }
 
-// Agregar al carrito
+// 🛒 Agregar al carrito
 function addToCart(productId, event) {
     const products = getProducts();
     const product = products.find(p => p.id === productId);
 
     if (product) {
-        agregarAlCarrito(productId); // función del carrito flotante
+        agregarAlCarrito(productId); // función externa
 
-        // Animación de feedback
         const button = event.target.closest("button");
         const originalText = button.innerHTML;
         button.innerHTML = '<i class="fas fa-check"></i> ¡Agregado!';
@@ -82,8 +99,14 @@ function addToCart(productId, event) {
     }
 }
 
-// ===== INICIALIZACIÓN =====
+// 🚀 Inicialización
 document.addEventListener("DOMContentLoaded", async () => {
     await initializeProducts();
     renderProducts();
+
+    // Evento de búsqueda por nombre
+    const buscador = document.getElementById("buscadorNombre");
+    if (buscador) {
+        buscador.addEventListener("input", aplicarFiltroNombre);
+    }
 });
