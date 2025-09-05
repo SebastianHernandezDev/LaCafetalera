@@ -1,7 +1,7 @@
 const form = document.getElementById("registerForm");
-const alertContainer = document.getElementById("alert-container");
 
-// regex
+// Regex
+const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/; // solo letras y espacios
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^[0-9]{10}$/;
 const passwordRegex = {
@@ -14,14 +14,6 @@ const passwordRegex = {
 // Usuarios guardados
 let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-// Mostrar alertas en pantalla
-function showAlert(type, messages) {
-  alertContainer.innerHTML = `
-    <div class="alert alert-${type}" role="alert">
-      ${Array.isArray(messages) ? `<ul>${messages.map(m => `<li>${m}</li>`).join("")}</ul>` : messages}
-    </div>`;
-}
-
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -32,50 +24,60 @@ form.addEventListener("submit", (e) => {
   const password = document.getElementById("password");
   const confirmPassword = document.getElementById("confirmPassword");
 
-  let errores = [];
+  let valid = true;
 
-  // resetear clases
-  [nombres, apellidos, correo, celular, password, confirmPassword].forEach(i => {
-    i.classList.remove("is-invalid","is-valid");
+  // Resetear clases
+  [nombres, apellidos, correo, celular, password, confirmPassword].forEach((i) => {
+    i.classList.remove("is-invalid", "is-valid");
   });
 
-  // validar nombres
-  if (!nombres.value.trim()) {
-    errores.push("El campo Nombres es obligatorio.");
+  // Validaciones nombres
+  
+  if (!nombres.value.trim() || !nameRegex.test(nombres.value.trim())) {
     nombres.classList.add("is-invalid");
+    valid = false;
   } else {
     nombres.classList.add("is-valid");
   }
 
-  // validar apellidos
-  if (!apellidos.value.trim()) {
-    errores.push("El campo Apellidos es obligatorio.");
+  // Validaciones apellidos
+  
+  if (!apellidos.value.trim() || !nameRegex.test(apellidos.value.trim())) {
     apellidos.classList.add("is-invalid");
+    valid = false;
   } else {
     apellidos.classList.add("is-valid");
   }
 
-  // validar correo
+  // Validaciones correo
+ 
   if (!emailRegex.test(correo.value.trim())) {
-    errores.push("Ingrese un correo electrónico válido.");
     correo.classList.add("is-invalid");
-  } else if (usuarios.some(u => u.correo === correo.value.trim())) {
-    errores.push("El correo ya está registrado.");
+    valid = false;
+  } else if (usuarios.some((u) => u.correo === correo.value.trim())) {
     document.getElementById("correoError").innerText = "Este correo ya está en uso.";
     correo.classList.add("is-invalid");
+    valid = false;
   } else {
     correo.classList.add("is-valid");
   }
 
-  // validar celular
+  // Validaciones celular
+  
   if (!phoneRegex.test(celular.value.trim())) {
-    errores.push("El número de celular debe tener exactamente 10 dígitos.");
     celular.classList.add("is-invalid");
+    valid = false;
+  } else if (usuarios.some((u) => u.celular === celular.value.trim())) {
+    const celularFeedback = celular.nextElementSibling;
+    celularFeedback.innerText = "Este número de celular ya está registrado.";
+    celular.classList.add("is-invalid");
+    valid = false;
   } else {
     celular.classList.add("is-valid");
   }
 
-  // validar contraseña
+  // Validaciones contraseña
+
   let passErrors = [];
   if (password.value.length < 8) passErrors.push("Debe tener al menos 8 caracteres.");
   if (!passwordRegex.upper.test(password.value)) passErrors.push("Debe contener al menos una letra mayúscula.");
@@ -83,38 +85,76 @@ form.addEventListener("submit", (e) => {
   if (!passwordRegex.number.test(password.value)) passErrors.push("Debe contener al menos un número.");
   if (!passwordRegex.special.test(password.value)) passErrors.push("Debe contener al menos un carácter especial.");
 
+  const passwordFeedback = document.getElementById("passwordError");
+
   if (passErrors.length > 0) {
-    errores = errores.concat(passErrors);
     password.classList.add("is-invalid");
-    document.getElementById("passwordError").innerText = passErrors.join(" ");
+    passwordFeedback.style.display = "block";
+    passwordFeedback.innerHTML = passErrors.join("<br>");
+    valid = false;
   } else {
+    password.classList.remove("is-invalid");
     password.classList.add("is-valid");
+    passwordFeedback.style.display = "none";
   }
 
-  // validar confirma password
+  // Validaciones confirmación password
+ 
+  const confirmFeedback = confirmPassword.nextElementSibling;
   if (confirmPassword.value !== password.value || !confirmPassword.value) {
-    errores.push("Las contraseñas no coinciden.");
     confirmPassword.classList.add("is-invalid");
+    confirmFeedback.style.display = "block";
+    valid = false;
   } else {
+    confirmPassword.classList.remove("is-invalid");
     confirmPassword.classList.add("is-valid");
+    confirmFeedback.style.display = "none";
   }
 
-  // mostrar resumen arriba en la pantalla
-  if (errores.length > 0) {
-    showAlert("danger", errores);
-  } else {
-    // guardar en localStorage
+  // Guardar si todo es válido
+  
+  if (valid) {
     usuarios.push({
       nombres: nombres.value.trim(),
       apellidos: apellidos.value.trim(),
       correo: correo.value.trim(),
       celular: celular.value.trim(),
-      password: password.value
+      password: password.value,
     });
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-    showAlert("success", "Usuario registrado con éxito ✅");
+    alert("Usuario registrado con éxito ✅");
+
     form.reset();
-    [nombres, apellidos, correo, celular, password, confirmPassword].forEach(i => i.classList.remove("is-valid"));
+    [nombres, apellidos, correo, celular, password, confirmPassword].forEach((i) =>
+      i.classList.remove("is-valid")
+    );
+  }
+});
+
+
+// Mostrar/Ocultar contraseñas
+
+document.getElementById("togglePassword").addEventListener("click", function () {
+  const passwordInput = document.getElementById("password");
+  const icon = this.querySelector("i");
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    icon.classList.replace("bi-eye", "bi-eye-slash");
+  } else {
+    passwordInput.type = "password";
+    icon.classList.replace("bi-eye-slash", "bi-eye");
+  }
+});
+
+document.getElementById("toggleConfirmPassword").addEventListener("click", function () {
+  const confirmInput = document.getElementById("confirmPassword");
+  const icon = this.querySelector("i");
+  if (confirmInput.type === "password") {
+    confirmInput.type = "text";
+    icon.classList.replace("bi-eye", "bi-eye-slash");
+  } else {
+    confirmInput.type = "password";
+    icon.classList.replace("bi-eye-slash", "bi-eye");
   }
 });
