@@ -39,6 +39,42 @@ function cambiarCantidad(productId, nuevaCantidad) {
     }
 }
 
+// Función para vaciar carrito con SweetAlert
+function vaciarCarrito() {
+    const carrito = obtenerCarrito();
+    if(carrito.length === 0){
+        Swal.fire({
+            title: "Carrito Vacío",
+            text: "los productos fueron eliminados",
+            icon: "info"
+        });
+    }else{
+         Swal.fire({
+        title: '¿Estás seguro?',
+        text: "Se eliminarán todos los productos del carrito",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, vaciar carrito',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.removeItem('cart');
+            mostrarProductosCarrito();
+            actualizarResumen();
+            
+            // Mostrar confirmación
+            Swal.fire(
+                '¡Eliminado!',
+                'El carrito ha sido vaciado.',
+                'success'
+            );
+        }
+    });
+    }
+}
+
 // Función para actualizar el resumen de compra
 function actualizarResumen() {
     const carrito = obtenerCarrito();
@@ -90,13 +126,12 @@ function mostrarProductosCarrito(){
                 
                 htmlProductos += `
                     <div class="d-flex align-items-start border-bottom pb-3 mb-3" data-product-id="${producto.id}">
-                        <input class="form-check-input me-3 mt-3" type="checkbox" id="product${index}">
-                        <img src="${producto.image || 'https://via.placeholder.com/80x100'}" class="me-3" alt="${producto.name}" style="width: 80px; height: 100px; object-fit: cover;">
+                        <img src="${producto.image || 'https://via.placeholder.com/120x140'}" class="me-3" alt="${producto.name}" style="width: 120px; height: 140px; object-fit: cover;">
                         <div class="flex-grow-1">
                             <div class="d-flex justify-content-between align-items-start">
                                 <div>
                                     <h4 class="mb-1">${producto.name}</h4>
-                                    <button class="btn btn-danger p-0 text-white p-1 eliminar-producto" 
+                                    <button class="btn btn-outline-danger p-0  py-1 px-3 mt-2 eliminar-producto" 
                                             style="font-size: 0.9rem;" 
                                             data-product-id="${producto.id}">
                                         Eliminar
@@ -104,19 +139,19 @@ function mostrarProductosCarrito(){
                                 </div>
                                 <div class="text-end">
                                     <div class="d-flex align-items-center justify-content-end mb-2">
-                                    <span class="mx-3 text-muted"> cantidad: </span>
-                                        <button class="btn btn-outline-secondary btn-sm btn-cantidad" 
+                                    <span class="m-2 text-muted">cantidad:  </span>
+                                        <button class="btn btn-outline-warning btn-sm btn-cantidad" 
                                                 data-product-id="${producto.id}" 
                                                 data-action="decrease">-</button>
                                         <span class="mx-3 cantidad-display">${itemCarrito.cantidad}</span>
-                                        <button class="btn btn-outline-secondary btn-sm btn-cantidad" 
+                                        <button class="btn btn-outline-primary btn-sm btn-cantidad" 
                                                 data-product-id="${producto.id}" 
                                                 data-action="increase">+</button>
                                     </div>
                                     <div>
                                         ${producto.originalPrice ? `<small class="text-muted text-decoration-line-through">$${producto.originalPrice.toLocaleString('es-CO')}</small>` : ''}
-                                        <div class="fw-bold fs-5"><span class="m-2 fs-5 text-muted">Precio:</span>$${precioFormateado}</div>
-                                        <div class="text-muted small">Subtotal: $${subtotalFormateado}</div>
+                                        <div class="fw-bold fs-5 "><span class ="fs-5 ">Precio: </span>$${precioFormateado}</div>
+                                        <div class="text-muted small mt-2">Subtotal: $${subtotalFormateado}</div>
                                     </div>
                                 </div>
                             </div>
@@ -174,9 +209,6 @@ function agregarEventListeners() {
 document.addEventListener('DOMContentLoaded', function() {   
     mostrarProductosCarrito();                      
     
-    document.getElementById('vaciarCarrito').addEventListener('click', function() {                 
-        localStorage.removeItem('cart');                
-        mostrarProductosCarrito();
-        actualizarResumen();
-    });         
+    // Evento para vaciar carrito con SweetAlert
+    document.getElementById('vaciarCarrito').addEventListener('click', vaciarCarrito);         
 });

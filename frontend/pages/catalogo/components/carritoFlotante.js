@@ -62,15 +62,15 @@ function mostrarProductosCarrito() {
 
                             <div class="col">
                                 <div class="d-flex align-items-center justify-content-center">
-                                    <span class="mx-3 text-muted"> cantidad: </span>
-                                    <button class="btn btn-outline-secondary btn-sm" onclick="disminuirCantidad(${producto.id})" type="button">
+                                    <span class="mx-3 text-muted">cantidad: </span>
+                                    <button class="btn btn-outline-warning btn-sm mx-2" onclick="disminuirCantidad(${producto.id})" type="button">
                                         <i class="fas fa-minus"></i>
                                     </button>
-                                    <span class="mx-2 fw-bold">${itemCarrito.cantidad}</span>
-                                    <button class="btn btn-outline-secondary btn-sm" onclick="aumentarCantidad(${producto.id})" type="button">
+                                    <span class=" fw-bold">${itemCarrito.cantidad}</span>
+                                    <button class="btn btn-outline-primary btn-sm mx-2" onclick="aumentarCantidad(${producto.id})" type="button">
                                         <i class="fas fa-plus"></i>
                                     </button>
-                                    <button class="btn btn-outline-danger btn-sm ms-2" onclick="eliminarProducto(${producto.id})" type="button">
+                                    <button class="btn btn-outline-danger btn-sm mx-2" onclick="eliminarProducto(${producto.id})" type="button">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
@@ -139,8 +139,28 @@ function eliminarProducto(productoId) {
 }
 
 function vaciarCarrito() {
-    localStorage.removeItem('cart');
-    mostrarProductosCarrito();
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "Se eliminarán todos los productos del carrito",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, vaciar carrito',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.removeItem('cart');
+            mostrarProductosCarrito();
+            
+            // Opcional: mostrar confirmación
+            Swal.fire(
+                '¡Eliminado!',
+                'El carrito ha sido vaciado.',
+                'success'
+            );
+        }
+    });
 }
 
 function actualizarContador() {
@@ -158,35 +178,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Evento para mostrar productos cuando se abra el carrito
     document.getElementById('carritoFlotante').addEventListener('click', function() {
         mostrarProductosCarrito();
-    });
     
-    // Funcion para mostrar el modal de confirmacion
-    function mostrarConfirmacion(message, callback) {
-    document.getElementById("confirmarMensaje").innerText = message;
-    const confirmModal = new bootstrap.Modal(document.getElementById("confirmModal"));
-    confirmModal.show();
-
-    // Botones
-    const okButton = document.getElementById("confirmarOk");
-    const cancelButton = document.getElementById("confirmarCancelar");
-
-    okButton.onclick = function () {
-    callback(true);
-    confirmModal.hide();
-    };
-
-    cancelButton.onclick = function () {
-    callback(false);
-    confirmModal.hide();
-     };
-    }
-
-     document.getElementById('vaciarCarrito').addEventListener('click', function () {
-      mostrarConfirmacion("¿Estás seguro de que quieres vaciar el carrito?", function (respuesta) {
-      if (respuesta) {
-        vaciarCarrito();
-      }
-    });
-
-   });
+    document.getElementById('vaciarCarrito').addEventListener('click', vaciarCarrito);
+       
+    })
 });
