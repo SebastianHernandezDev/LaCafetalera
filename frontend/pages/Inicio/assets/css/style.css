@@ -1,0 +1,39 @@
+/* Fuente general */
+body {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Hero con imagen de fondo */
+.hero {
+  position: relative;
+  height: 100vh;
+  background: url("../img/hero-cafe.jpg") center/cover no-repeat;
+}
+
+.hero .overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero .content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Cards */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Títulos estilizados */
+.cormorant-garamond-estilado {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+}
