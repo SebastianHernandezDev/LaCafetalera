@@ -7,26 +7,36 @@
 }
 
 body {
-  background-image: url(/frontend/pages/dashboardAdmin/assets/img/cafe1.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: linear-gradient(-90deg, #bfa27c,#f7e4c6);
+  background-size: 600% 600%;
+  animation: gradienteAnimado 10s ease infinite;
   min-height: 100vh;
   color: #582919;
+  font-size: 16px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
-  font-size: 16px;
 }
 
 /* Encabezados */
 h1, h2, h3, .main-title, .product-name, .product-price {
   font-weight: 700;
   text-align: center;
-  color: #582919;
-  text-shadow: 3px 3px 6px rgba(247, 228, 198, 0.8);
+  color: #582919;  
   padding: 10px 0;
   transition: color 0.3s ease;
+}
+
+@keyframes gradienteAnimado {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 h1, .main-title {
@@ -101,10 +111,13 @@ h3, .product-name {
 /* Layout columnas formulario y vista previa */
 #dosColumnas {
   display: flex;
+  align-items: stretch;
   flex-direction: column;
   gap: 2rem;
-  margin-top: 40px;
+  margin-top: 30px;
 }
+
+
 
 @media (min-width: 992px) {
   #dosColumnas {
@@ -118,13 +131,16 @@ h3, .product-name {
 
 /* Cards */
 .product-card, .narrow-card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  will-change: transform;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideInUp 0.8s ease-out forwards;
+    position: relative;
+    display: grid;
 }
 
 .product-card:hover, .narrow-card:hover {
@@ -134,10 +150,9 @@ h3, .product-name {
 
 .product-image {
   width: 100%;
-  height: 180px;
+  height: 250px;
   object-fit: cover;
-  border-radius: 20px 20px 0 0;
-  transition: transform 0.4s ease;
+  transition: all 0.3s ease;
 }
 
 .product-card:hover .product-image {
@@ -145,15 +160,32 @@ h3, .product-name {
 }
 
 .product-info {
-  padding: 15px 20px;
-  text-align: center;
+ padding: 25px;
+}
+
+.product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: #4B6950;
+    margin-bottom: 10px;
+    font-weight: 700;
 }
 
 .product-description {
-  font-size: 0.9rem;
-  color: #6b4f3a;
-  margin: 10px 0 15px;
-  line-height: 1.5;
+    color: #8C5637;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    height: 60px;
+    overflow: hidden;
+}
+
+.product-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #93BE88;
+    font-weight: 700;
+    margin-bottom: 20px;
 }
 
 /* Botones */
@@ -207,11 +239,18 @@ h3, .product-name {
 }
 
 .btn-cart {
-  background: #8C5637;
-  color: white;
-  width: 100%;
-  font-size: 1rem;
-  padding: 10px 0;
+     background: #8C5637;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-cart:hover {
@@ -243,13 +282,20 @@ form#admin-insert button:focus {
 
 /* Dashboard container */
 #contenedorCards {
-  background-color: rgba(255, 255, 255, 0.95);
+ background-color: rgba(255, 255, 255, 0.95);
   border-radius: 25px;
   padding: 2rem;
   box-shadow: 0 15px 40px rgba(0,0,0,0.15);
   transition: background-color 0.3s ease;
+  height: 90%;
   max-height: 600px;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 2rem;
+
+
 }
 
 /* Tabla inventario */
@@ -440,139 +486,129 @@ form#admin-insert button:focus {
   }
 }
 
-/* Contenedor principal */
-.header .card {
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 1.5rem;
-  align-items: start;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 1.5rem;
+
+.admin-section {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;  
   border-radius: 1rem;
-  background-color: #fdf8f3;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  animation: fadeSlideUp 0.8s ease-in-out;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  background-color: #fff3e0; /* fondo translúcido */
+  backdrop-filter: blur(10px);                
+  -webkit-backdrop-filter: blur(10px);
+  
+  
+
 }
 
-/* Foto de perfil */
-.profile-photo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+.admin-header {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.profile-photo img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid #93BE88;
-  transition: transform 0.3s ease;
+.admin-header h2 {
+  font-size: 1.8rem;
+  color: #5d4037;
 }
 
-.profile-photo img:hover {
-  transform: scale(1.05);
-}
-
-.profile-photo .badge {
-  margin-top: 0.5rem;
-  background: linear-gradient(135deg, #4B6950, #93BE88);
-  color: #fff;
-  font-size: 0.7rem;
-  padding: 0.3rem 0.6rem;
-  border-radius: 1rem;
-}
-
-/* Información principal */
-.profile-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.profile-info h3 {
-  font-size: 1.2rem;
-  margin: 0;
-  color: #4B6950;
-}
-
-.profile-info p {
-  font-size: 0.85rem;
-  color: #8C5637;
-  margin: 0;
-}
-
-.profile-details {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  margin-top: 0.5rem;
-}
-
-.profile-details div {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-/* Contacto y redes */
-.profile-contact {
+/* 🧱 Contenedor horizontal */
+.admin-content {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
-  padding-top: 0.8rem;
-  border-top: 1px solid #ddd;
-  font-size: 0.8rem;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.profile-contact a {
-  text-decoration: none;
-  color: #333;
+/* 📋 Bloque de datos del administrador */
+.admin-block {
+  flex: 1;
+  min-width: 300px;
+}
+
+.admin-block h3 {
+  font-size: 1.2rem;
+  color: #6d4c41;
+  margin-bottom: 1rem;
+}
+
+/* 📸 Foto + datos */
+.admin-info {
   display: flex;
+  gap: 1rem;
   align-items: center;
-  gap: 0.3rem;
-  transition: all 0.2s ease;
 }
 
-.profile-contact a:hover {
-  color: #8C5637;
-  transform: translateY(-2px);
+.admin-photo img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #bfa27c;
 }
 
-/* 🌐 Responsividad */
+.admin-details p {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #424242;
+}
+
+/* 📦 Inventario */
+.inventory-summary {
+  flex: 1;
+  min-width: 300px;
+  background-color: #8C5637;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+}
+
+.inventory-summary h3 {
+  font-size: 1.2rem;
+  color: #6d4c41;
+  margin-bottom: 1rem;
+}
+
+.inventory-summary p {
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+}
+
+/* 📱 Responsive */
 @media (max-width: 768px) {
-  .header .card {
-    display: flex;
+  .admin-content {
     flex-direction: column;
-    padding: 1rem;
-    gap: 1rem;
-  }
-
-  .profile-photo {
-    align-self: center;
-    margin-bottom: 0.5rem;
-  }
-
-  .profile-info {
-    text-align: center;
     align-items: center;
   }
 
-  .profile-details {
-    grid-template-columns: 1fr;
+  .admin-info {
+    flex-direction: column;
     text-align: center;
   }
 
-  .profile-contact {
-    justify-content: center;
-    text-align: center;
+  .inventory-summary {
+    width: 100%;
+    margin-top: 1rem;
   }
+}
+.actualizado {
+  animation: resaltar 0.8s ease;
+  align-content: center;
+}
 
-  .profile-contact a {
-    justify-content: center;
-  }
+@keyframes resaltar {
+  0% { background-color: #f7e4c6; }
+  100% { background-color: transparent; }
+}
+.campo-descripcion {
+  resize: vertical;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+  margin-bottom: 1rem;
 }

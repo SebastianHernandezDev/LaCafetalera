@@ -84,6 +84,8 @@ body {
     transform: translateY(50px);
     animation: slideInUp 0.8s ease-out forwards;
     position: relative;
+    width: 100%;
+    max-width: 400px;
 }
 
 .product-card:hover {
