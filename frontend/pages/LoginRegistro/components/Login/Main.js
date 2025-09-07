@@ -13,9 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const password = document.getElementById("password").value.trim();
 
         try {
-            // Verificar si es administrador desde admin.json
             const response = await fetch("../../assets/data/admin.json");
-
             const admin = await response.json();
 
             if (correo === admin.correo && password === admin.password) {
@@ -23,28 +21,52 @@ document.addEventListener("DOMContentLoaded", function () {
                     correo: admin.correo,
                     rol: "admin"
                 }));
-                alert("Bienvenido Admin ");
+
+                await Swal.fire({
+                    icon: "success",
+                    title: "Bienvenido Admin",
+                    text: "Accediendo al panel administrativo...",
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+
                 return window.location.href = "../../../dashboardAdmin/components/dashboard.html";
             }
 
+            // Buscar entre usuarios normales
             const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
             const user = usuarios.find(u => u.correo === correo && u.password === password);
 
             if (!user) {
-                alert("Correo o contraseña incorrectos.");
-                return;
+                return Swal.fire({
+                    icon: "error",
+                    title: "Correo o contraseña incorrectos",
+                    text: "Por favor verifica tus credenciales.",
+                });
             }
 
             localStorage.setItem("usuarioActivo", JSON.stringify({
                 correo: user.correo,
                 rol: "usuario"
             }));
-            alert(`Bienvenido, ${user.nombres}`);
-            window.location.href = "../../../index.html";
+
+            await Swal.fire({
+                icon: "success",
+                title: `¡Bienvenido, ${user.nombres}!`,
+                text: "Redirigiendo al inicio...",
+                timer: 2000,
+                showConfirmButton: false
+            });
+
+            window.location.href = "../../../Inicio/components/index.html";
 
         } catch (error) {
             console.error("Error al verificar el login:", error);
-            alert("Hubo un problema al iniciar sesión. Inténtalo más tarde.");
+            Swal.fire({
+                icon: "error",
+                title: "Error inesperado",
+                text: "Hubo un problema al iniciar sesión. Inténtalo más tarde."
+            });
         }
     });
 

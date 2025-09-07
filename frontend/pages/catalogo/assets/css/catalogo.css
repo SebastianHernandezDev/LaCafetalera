@@ -15,7 +15,9 @@
     font-size: 1.25rem;
     color: #7a5c4b;
 }
-
+.hero-catalogo{
+    margin-top: 100px;
+}
 .mensaje-compra h2 {
     font-size: 1.8rem;
 }
@@ -304,4 +306,13 @@ body {
     .product-price {
         font-size: 24px;
     }
+}
+.historia-parrafo {
+  max-height: 150px; /* altura inicial */
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.historia-parrafo.expandido {
+  max-height: 2000px; /* altura suficiente para mostrar todo el contenido */
 }

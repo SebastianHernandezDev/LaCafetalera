@@ -171,11 +171,18 @@ form.addEventListener("submit", (e) => {
     });
 
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
-    alert("Usuario registrado con éxito ✅");
 
-    setTimeout(() => {
+    Swal.fire({
+      icon: 'success',
+      title: '¡Registro exitoso!',
+      text: 'Usuario registrado con éxito.',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      backdrop: true,
+    }).then(() => {
       window.location.href = "../Login/login.html";
-    }, 100);
+    });
 
     form.reset();
     [nombres, apellidos, correo, celular, password, confirmPassword].forEach((i) =>
