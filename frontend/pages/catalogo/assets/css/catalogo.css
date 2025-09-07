@@ -293,3 +293,12 @@ body {
         font-size: 24px;
     }
 }
+.historia-parrafo {
+  max-height: 150px; /* altura inicial */
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.historia-parrafo.expandido {
+  max-height: 2000px; /* altura suficiente para mostrar todo el contenido */
+}
