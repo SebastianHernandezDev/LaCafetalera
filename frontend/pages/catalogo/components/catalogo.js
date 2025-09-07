@@ -17,12 +17,12 @@ function showcart() {
     const usuarioJSON = localStorage.getItem("usuarioActivo");
     const usuario = usuarioJSON ? JSON.parse(usuarioJSON) : null;
 
-    if (!usuario || (usuario.rol && usuario.rol.toLowerCase() !== "admin")) {
+    if (!usuario|| (usuario.rol && usuario.rol.toLowerCase() !== "admin")) {
         adminbotton.removeAttribute("hidden");
     }
 
     adminbotton.addEventListener("click", function (event) {
-        event.preventDefault(); // ✅ evita que se dispare el offcanvas automáticamente
+        event.preventDefault(); 
 
         if (!usuarioJSON) {
             Swal.fire({
