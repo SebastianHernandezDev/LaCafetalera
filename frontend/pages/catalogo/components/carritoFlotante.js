@@ -46,7 +46,7 @@ function mostrarProductosCarrito() {
                     <div class="row g-3 align-items-center">
                         
                         <!-- Imagen del producto -->
-                        <div class="col-3">
+                        <div class="col-6">
                             <img src="${producto.image}" alt="${producto.name}" class="img-fluid rounded" style="max-height: 160px; object-fit: cover;">
                         </div>
                         
@@ -59,24 +59,23 @@ function mostrarProductosCarrito() {
                         </div>
                         
                         <!-- Controles -->
-                        <div class="col-3">
-                            <div class="d-flex align-items-center justify-content-center mb-2">
-                                <button class="btn btn-outline-secondary btn-sm" onclick="disminuirCantidad(${producto.id})" type="button">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <span class="mx-2 fw-bold">${itemCarrito.cantidad}</span>
-                                <button class="btn btn-outline-secondary btn-sm" onclick="aumentarCantidad(${producto.id})" type="button">
-                                    <i class="fas fa-plus"></i>
-                                </button>
+
+                            <div class="col">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <span class="mx-3 text-muted"> cantidad: </span>
+                                    <button class="btn btn-outline-secondary btn-sm" onclick="disminuirCantidad(${producto.id})" type="button">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <span class="mx-2 fw-bold">${itemCarrito.cantidad}</span>
+                                    <button class="btn btn-outline-secondary btn-sm" onclick="aumentarCantidad(${producto.id})" type="button">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger btn-sm ms-2" onclick="eliminarProducto(${producto.id})" type="button">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
                             </div>
-                            
-                            <div class="text-center">
-                                <button class="btn btn-outline-danger btn-sm" onclick="eliminarProducto(${producto.id})" type="button">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
+                    
                     </div>
                 </div>
             `;

@@ -1,0 +1,19 @@
+.offcanvas.offcanvas-start {
+  width: 450px; /* o el ancho que quieras */
+}
+.offcanvas-body {
+  font-size: 1.05rem;   /* letras un poco más grandes */
+}
+
+.producto-carrito img {
+  height: 120px;        /* aumenta imagen */
+  width: auto;
+}
+
+.producto-carrito h6 {
+  font-size: 1.1rem;
+}
+
+.producto-carrito small {
+  font-size: 0.95rem;
+}
