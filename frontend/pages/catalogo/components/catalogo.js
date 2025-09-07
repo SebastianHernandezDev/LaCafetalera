@@ -1,5 +1,36 @@
 // ====== CATALOGO ======
-
+function AdminPanel() {
+    const boto = document.getElementById("botonSesion");
+    if (!boto) return;
+    const usuarioJSON = localStorage.getItem("usuarioActivo");
+    if (!usuarioJSON) return;
+    const usuario = JSON.parse(usuarioJSON);
+    if (usuario.rol && usuario.rol.toLowerCase() === "admin") {
+        boto.setAttribute("href", "../../dashboardAdmin/components/dashboard.html");
+        boto.innerHTML = `<i class="bi bi-speedometer2 letrasLogin me-2"></i> <strong>Admin Panel</strong>`;
+    }
+}
+function showcart() {
+    const adminbotton = document.getElementById("carritoFlotante");
+    if (!adminbotton) return;
+    const usuarioJSON = localStorage.getItem("usuarioActivo");
+    if (!usuarioJSON) {
+        adminbotton.removeAttribute("hidden");
+        return;
+    }
+    const usuario = JSON.parse(usuarioJSON);
+    if (usuario.rol && usuario.rol.toLowerCase() !== "admin") {
+        adminbotton.removeAttribute("hidden");
+    }
+      
+}
+function elminarproducto(products) {
+    let productos = getProducts();
+    productos = productos.filter(p => p.id !== products.id);
+    saveProducts(productos);
+    renderProducts(productos);
+    cargarInventario();
+}
 // Obtener productos desde JSON local
 async function fetchProducts() {
     try {
@@ -55,7 +86,7 @@ function aplicarFiltroNombre() {
 function renderProducts(productos = null) {
     const products = productos || getProducts();
     const catalogGrid = document.getElementById("catalogGrid");
-
+    const isAdmin = localStorage.getItem("usuarioActivo") && JSON.parse(localStorage.getItem("usuarioActivo")).rol === "admin";
     if (!catalogGrid) return;
 
     if (products.length === 0) {
@@ -71,8 +102,12 @@ function renderProducts(productos = null) {
                 <h3 class="product-name">${product.name}</h3>
                 <p class="product-description">${product.description}</p>
                 <div class="product-price">$${parseFloat(product.price).toFixed(2)}</div>
-                <button class="btn-cart" onclick="addToCart(${product.id}, event)">
-                    <i class="fas fa-shopping-cart"></i> AGREGAR AL CARRITO
+                    <button class="${isAdmin ? 'btn-disabled' : 'btn-cart'}"
+                onclick="${isAdmin ? `eliminarProducto(${product.id})` : `addToCart(${product.id}, event)`}">
+                <i class="fas fa-${isAdmin ? 'trash' : 'shopping-cart'}"></i>
+                ${isAdmin ? 'Eliminar del Catalogo' : 'AGREGAR AL CARRITO'}
+            </button>
+
                 </button>
             </div>
         </div>
@@ -96,6 +131,7 @@ function addToCart(productId, event) {
             button.innerHTML = originalText;
             button.style.background = '#8C5637';
         }, 1500);
+
     }
 }
 
@@ -103,6 +139,10 @@ function addToCart(productId, event) {
 document.addEventListener("DOMContentLoaded", async () => {
     await initializeProducts();
     renderProducts();
+    showcart();
+    AdminPanel();
+
+
 
     // Evento de búsqueda por nombre
     const buscador = document.getElementById("buscadorNombre");

@@ -83,6 +83,18 @@ body {
     transition: all 0.3s ease;
 
 }
+.btn-disabled{
+
+    background: gray;
+    width: 200px;
+    height: 40px;
+    align-items: center;
+    color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: #4b2e2e;
+    
+}
 
 .admin-link:hover {
     transform: translateY(-3px);
