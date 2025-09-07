@@ -1,5 +1,7 @@
 let imagenBase64 = "";
 
+
+
 // 🔄 Inicializar productos desde localStorage
 function initializeProducts() {
   const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
@@ -123,7 +125,7 @@ function cargarInventario() {
   productos.forEach(producto => {
     const fila = document.createElement("tr");
     fila.innerHTML = `
-      <td>${producto.id}</td>
+      <td>${producto.id}</td>]
       <td>${producto.name}</td>
       <td>${producto.price}</td>
       <td>${producto.description}</td>
@@ -136,9 +138,23 @@ function cargarInventario() {
   });
 }
 
+
+
 // 🚀 Inicializar todo al cargar la página
 window.addEventListener("DOMContentLoaded", () => {
   initializeProducts();
   renderAllPreviewCards();
   cargarInventario();
+
+ const logoutbtn = document.getElementById("logoutbottom");
+  if (logoutbtn) {
+    logoutbtn.addEventListener("click", (e) => {
+      e.preventDefault(); //
+
+      sessionStorage.removeItem("token");
+      localStorage.removeItem("usuarioActivo");
+
+      window.location = "../../Inicio/components/index.html";
+    });
+  }
 });
