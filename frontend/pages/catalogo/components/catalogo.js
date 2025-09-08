@@ -1,4 +1,7 @@
 // ====== CATALOGO ======
+<<<<<<< HEAD
+ 
+=======
 function AdminPanel() {
     const boto = document.getElementById("botonSesion");
     if (!boto) return;
@@ -54,6 +57,7 @@ function elminarproducto(products) {
     renderProducts(productos);
     cargarInventario();
 }
+>>>>>>> 864cc75b59257672df6a63730770a1763039ddf3
 // Obtener productos desde JSON local
 async function fetchProducts() {
     try {
@@ -65,8 +69,13 @@ async function fetchProducts() {
         return [];
     }
 }
+<<<<<<< HEAD
+ 
+// Inicializar productos (si no existen en localStorage)
+=======
 
 // Inicializar productos si no existen en localStorage
+>>>>>>> 864cc75b59257672df6a63730770a1763039ddf3
 async function initializeProducts() {
     const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
     if (existingProducts.length === 0) {
@@ -76,16 +85,29 @@ async function initializeProducts() {
         }
     }
 }
+<<<<<<< HEAD
+ 
+// Obtener productos de localStorage
+=======
 
 // Obtener productos desde localStorage
+>>>>>>> 864cc75b59257672df6a63730770a1763039ddf3
 function getProducts() {
     return JSON.parse(localStorage.getItem("products")) || [];
 }
-
+ 
 // Guardar productos en localStorage
 function saveProducts(products) {
     localStorage.setItem("products", JSON.stringify(products));
 }
+<<<<<<< HEAD
+ 
+// Renderizar productos en el catálogo
+function renderProducts() {
+    const products = getProducts();
+    const catalogGrid = document.getElementById("catalogGrid");
+ 
+=======
 
 // 🔍 Filtro por nombre (sin tildes y sin importar mayúsculas)
 function aplicarFiltroNombre() {
@@ -110,13 +132,14 @@ function renderProducts(productos = null) {
     const products = productos || getProducts();
     const catalogGrid = document.getElementById("catalogGrid");
     const isAdmin = localStorage.getItem("usuarioActivo") && JSON.parse(localStorage.getItem("usuarioActivo")).rol === "admin";
+>>>>>>> 864cc75b59257672df6a63730770a1763039ddf3
     if (!catalogGrid) return;
-
+ 
     if (products.length === 0) {
         catalogGrid.innerHTML = `<div class="no-products">No hay productos disponibles.</div>`;
         return;
     }
-
+ 
     catalogGrid.innerHTML = products.map(product => `
         <div class="product-card" data-id="${product.id}">
             <img src="${product.image}" alt="${product.name}" class="product-image"
@@ -136,8 +159,13 @@ function renderProducts(productos = null) {
         </div>
     `).join('');
 }
+<<<<<<< HEAD
+ 
+// Agregar al carrito
+=======
 
 // 🛒 Agregar al carrito
+>>>>>>> 864cc75b59257672df6a63730770a1763039ddf3
 function addToCart(productId, event) {
     const usuarioJSON = localStorage.getItem("usuarioActivo");
 
@@ -163,23 +191,34 @@ function addToCart(productId, event) {
     // ✅ Usuario logueado, continuar normalmente
     const products = getProducts();
     const product = products.find(p => p.id === productId);
-
+ 
     if (product) {
+<<<<<<< HEAD
+        agregarAlCarrito(productId); // función del carrito flotante
+ 
+        // Animación de feedback
+=======
         agregarAlCarrito(productId); // función externa que ya tienes
 
+>>>>>>> 864cc75b59257672df6a63730770a1763039ddf3
         const button = event.target.closest("button");
         const originalText = button.innerHTML;
         button.innerHTML = '<i class="fas fa-check"></i> ¡Agregado!';
         button.style.background = 'linear-gradient(135deg, #4CAF50, #66BB6A)';
-
+ 
         setTimeout(() => {
             button.innerHTML = originalText;
             button.style.background = '#8C5637';
         }, 1500);
     }
 }
+<<<<<<< HEAD
+ 
+// ===== INICIALIZACIÓN =====
+=======
 
 // 🚀 Inicialización
+>>>>>>> 864cc75b59257672df6a63730770a1763039ddf3
 document.addEventListener("DOMContentLoaded", async () => {
     showcart();
     await initializeProducts();
@@ -194,3 +233,4 @@ document.addEventListener("DOMContentLoaded", async () => {
         buscador.addEventListener("input", aplicarFiltroNombre);
     }
 });
+ 

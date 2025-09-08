@@ -1,49 +1,203 @@
 let imagenBase64 = "";
+let productosEnPreview = [];
 
-
-
-// 🔄 Inicializar productos desde localStorage
-function initializeProducts() {
-  const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
-  if (existingProducts.length === 0) {
-    localStorage.setItem("products", JSON.stringify([])); // Inicializa vacío si no hay productos
+// 🔄 Inicializar productos desde JSON local
+async function initializeProducts() {
+  const existingProducts = JSON.parse(localStorage.getItem("products"));
+  if (!existingProducts || existingProducts.length === 0) {
+    try {
+      const response = await fetch("../assets/data/products.json");
+      if (!response.ok) throw new Error('No se pudo cargar productos.json');
+      const productosIniciales = await response.json();
+      localStorage.setItem("products", JSON.stringify(productosIniciales));
+    } catch (error) {
+      console.error("Error cargando productos iniciales:", error);
+      localStorage.setItem("products", JSON.stringify([]));
+    }
   }
 }
 
-// ➕ Agregar producto desde el formulario
+// 📋 Obtener productos
+function getProducts() {
+  return JSON.parse(localStorage.getItem("products")) || [];
+}
+
+// 🖼️ Renderizar una card individual
+function renderPreviewCard(producto) {
+  const container = document.getElementById("previewCards");
+
+  const card = document.createElement("div");
+  card.className = "product-card col-12 col-md-6 col-lg-4 preview";
+  card.setAttribute("data-id", producto.id);
+
+  card.innerHTML = `
+    <img src="${producto.image}" alt="${producto.name}" class="product-image" onerror="this.src='https://via.placeholder.com/300x180?text=Sin+imagen'">
+    <div class="product-info">
+      <h3 class="product-name">${producto.name}</h3>
+      <p class="product-description">${producto.description}</p>
+      <p class="product-price">${producto.price} COP</p>
+      <button class="btn-cart eliminar-btn mt-2" data-id="${producto.id}">🗑️ Eliminar</button>
+    </div>
+  `;
+
+  card.querySelector(".eliminar-btn").addEventListener("click", () => {
+    card.classList.add("desaparecer");
+    setTimeout(() => card.remove(), 500);
+    actualizarCampoIdPreview();
+
+    // Eliminar producto del array productosEnPreview
+    productosEnPreview = productosEnPreview.filter(p => p.id !== producto.id);
+
+    // Si no quedan productos en preview, ocultar botón confirmar guardar
+    if (productosEnPreview.length === 0) {
+      document.getElementById("confirmar-guardar").classList.remove("visible");
+    }
+
+    // 🔁 Actualizar el campo ID visualmente
+    actualizarCampoIdPreview();
+  });
+
+  container.appendChild(card);
+}
+
+// ➕ Generar vista previa sin guardar (agregar múltiples productos)
 document.getElementById("admin-insert").addEventListener("submit", function (e) {
   e.preventDefault();
 
   const formData = new FormData(this);
-  const producto = {
-    id: formData.get("id"),
-    name: formData.get("name"),
-    price: formData.get("price"),
-    description: formData.get("description"),
-    stock: formData.get("stock"),
-    nuevoStock: formData.get("nuevoStock"),
-    status: formData.get("status"),
+  const campoId = document.getElementById("campo-id");
+  const idGenerado = Number(campoId.value.replace("ID ", "")) || 1;
+
+  const nuevoProducto = {
+    id: idGenerado,
+    name: formData.get("name") || "Producto sin nombre",
+    price: formData.get("price") || "0",
+    description: formData.get("description") || "Sin descripción",
+    stock: formData.get("stock") || "-",
+    nuevoStock: formData.get("nuevoStock") || "-",
+    status: formData.get("status") || "Sin estado",
     imageName: formData.get("imagenProducto")?.name || "",
-    image: imagenBase64
+    image: imagenBase64 || "https://via.placeholder.com/300x180?text=Sin+imagen"
   };
 
-  guardarProducto(producto);           // Guarda en localStorage
-  renderPreviewCard(producto);         // Muestra la card
-  cargarInventario();                  // Actualiza la tabla
+  productosEnPreview.push(nuevoProducto);
+  renderPreviewCard(nuevoProducto);
 
-  this.reset();                        // Limpia el formulario
+  // Limpiar formulario primero
+  this.reset();
   document.getElementById("nombreImagen").textContent = "";
-  imagenBase64 = "";                   // Reinicia la imagen
+  imagenBase64 = "";
+
+  // Ahora actualizar el campo ID al siguiente valor
+  campoId.value = `ID ${idGenerado + 1}`;
+
+  // Mostrar botón confirmar guardar para guardar todos los productos en preview
+  document.getElementById("confirmar-guardar").classList.add("visible");
 });
 
-// 💾 Guardar producto en localStorage
-function guardarProducto(producto) {
-  const productos = getProducts();
-  productos.push(producto);
-  localStorage.setItem("products", JSON.stringify(productos));
+// ✅ Confirmar y guardar todos los productos en preview
+function confirmarGuardarHandler() {
+  if (productosEnPreview.length === 0) {
+    alert("⚠️ No hay productos en vista previa para guardar.");
+    return;
+  }
+
+  let productosGuardados = getProducts();
+
+  // Evitar IDs duplicados
+  const idsGuardados = new Set(productosGuardados.map(p => p.id));
+  const productosNuevos = productosEnPreview.filter(p => !idsGuardados.has(p.id));
+
+  if (productosNuevos.length === 0) {
+    alert("⚠️ Todos los productos en vista previa ya existen.");
+    return;
+  }
+
+  productosGuardados = productosGuardados.concat(productosNuevos);
+  localStorage.setItem("products", JSON.stringify(productosGuardados));
+
+  cargarInventario();
+
+  // Limpiar preview
+  productosEnPreview = [];
+  const container = document.getElementById("previewCards");
+  container.innerHTML = "";
+
+  const btnConfirmarGuardar = document.getElementById("confirmar-guardar");
+  btnConfirmarGuardar.classList.remove("visible");
+  document.getElementById("admin-insert").reset();
+  document.getElementById("nombreImagen").textContent = "";
+  imagenBase64 = "";
+
+  generarIdInventario();
 }
 
-// 📷 Manejar la selección de imagen
+// 💾 Guardar producto individual (no usado en esta versión, pero lo dejo por si acaso)
+function guardarProducto(producto) {
+  const productos = getProducts();
+  const existe = productos.some(p => p.id === producto.id);
+  if (existe) return false;
+
+  productos.push(producto);
+  localStorage.setItem("products", JSON.stringify(productos));
+  return true;
+}
+
+function actualizarCampoIdPreview() {
+  const campoId = document.getElementById("campo-id");
+  const idsPreview = productosEnPreview.map(p => Number(p.id)).filter(id => !isNaN(id));
+  const maxIdPreview = idsPreview.length > 0 ? Math.max(...idsPreview) : getMaxIdInventario();
+  const nuevoId = maxIdPreview + 1;
+  campoId.value = `ID ${nuevoId}`;
+}
+
+// 📋 Cargar inventario en tabla
+function cargarInventario() {
+  const productosRaw = getProducts();
+  const productos = normalizarProductos(productosRaw);
+  const tabla = document.getElementById("tabla-inventario");
+  tabla.innerHTML = "";
+
+  productos.forEach(producto => {
+    const fila = document.createElement("tr");
+    fila.innerHTML = `
+      <td>${producto.id}</td>
+      <td>${producto.name}</td>
+      <td>${producto.price}</td>
+      <td>${producto.description}</td>
+      <td>${producto.stock}</td>
+      <td>${producto.nuevoStock}</td>
+      <td><img src="${producto.image}" alt="${producto.name}" style="width: 50px;" onerror="this.src='https://via.placeholder.com/50?text=Sin+imagen'"></td>
+      <td>${producto.status}</td>
+      <td><button class="btn-eliminar" data-id="${producto.id}">🗑️</button></td>
+    `;
+
+    tabla.appendChild(fila);
+  });
+  conectarBotonesEliminar();
+}
+
+function getMaxIdInventario() {
+  const productos = getProducts();
+  const ids = productos.map(p => Number(p.id)).filter(id => !isNaN(id));
+  return ids.length > 0 ? Math.max(...ids) : 0;
+}
+
+// 🧼 Normalizar producto
+function normalizarProductos(productos) {
+  return productos.map(p => ({
+    id: p.id,
+    name: p.name || "Producto sin nombre",
+    price: p.price || "0",
+    description: p.description || "Sin descripción",
+    stock: p.stock || "-",
+    nuevoStock: p.nuevoStock || "-",
+    status: p.status || "Sin estado",
+    image: p.image || "https://via.placeholder.com/50?text=Sin+imagen"
+  }));
+}
+
+// 📷 Imagen base64
 document.getElementById("imagenProducto").addEventListener("change", function (event) {
   const file = event.target.files[0];
   const nombrePreview = document.getElementById("nombreImagen");
@@ -61,100 +215,98 @@ document.getElementById("imagenProducto").addEventListener("change", function (e
   }
 });
 
-// 📦 Obtener productos del localStorage
-function getProducts() {
-  return JSON.parse(localStorage.getItem("products")) || [];
-}
+// 📊 Actualizar resumen inventario
+document.getElementById("actualizar-inventario").addEventListener("click", () => {
+  const data = localStorage.getItem("products");
+  if (!data) return;
 
-// 🖼️ Renderizar todas las cards de vista previa
-function renderAllPreviewCards() {
-  const container = document.getElementById("previewCards");
-  container.innerHTML = "";
+  const inventario = JSON.parse(data);
+  const totalProductos = inventario.length;
+  let sumaPrecios = 0;
+
+  inventario.forEach(item => {
+    const precio = parseFloat(item.price);
+    if (!isNaN(precio)) sumaPrecios += precio;
+  });
+
+  const promedioPrecio = (sumaPrecios / totalProductos).toFixed(2);
+
+  animarCampo("total-registros", totalProductos);
+  animarCampo("valor-total", `$${sumaPrecios.toLocaleString("es-CO")}`);
+  animarCampo("precio-promedio", `$${promedioPrecio}`);
+});
+
+// ✨ Animación de campos
+const animarCampo = (id, valor) => {
+  const campo = document.getElementById(id);
+  campo.textContent = valor;
+  campo.classList.add("actualizado");
+  setTimeout(() => campo.classList.remove("actualizado"), 800);
+};
+
+// 🆔 Generar nuevo ID
+function generarIdInventario() {
   const productos = getProducts();
-  productos.forEach(renderPreviewCard);
-  activarBotonesEliminar(); // 
-}
-// 🖼️ Renderizar una card individual
-function renderPreviewCard(producto) {
-  const container = document.getElementById("previewCards");
+  const ids = productos.map(p => Number(p.id)).filter(id => !isNaN(id));
+  const maxId = ids.length > 0 ? Math.max(...ids) : 0;
+  const nuevoId = maxId + 1;
 
-  const card = document.createElement("div");
-  card.className = "col-md-4 fade-in";
-
-  card.innerHTML = `
-    <div class="card h-100">
-      <img src="${producto.image}" class="card-img-top" alt="${producto.name}" onerror="this.src='https://via.placeholder.com/300x180?text=Sin+imagen'">
-      <div class="card-body">
-        <h5 class="card-title">${producto.name}</h5>
-        <p class="card-text text-truncate" title="${producto.description}">${producto.description}</p>
-        <p class="card-text"><strong>Precio:</strong> ${producto.price} COP</p>
-        <p class="card-text"><strong>Stock:</strong> ${producto.stock} → ${producto.nuevoStock}</p>
-        <span class="badge bg-secondary">${producto.status}</span>
-        <button class="btn btn-sm btn-danger mt-3 eliminar-btn" data-id="${producto.id}">🗑️ Eliminar</button>
-      </div>
-    </div>
-  `;
-
-  container.appendChild(card);
+  const campoId = document.getElementById("campo-id");
+  if (campoId) campoId.value = `ID ${nuevoId}`;
 }
 
-function activarBotonesEliminar() {
-  const botones = document.querySelectorAll(".eliminar-btn");
-  botones.forEach(boton => {
-    boton.addEventListener("click", function () {
-      const id = this.getAttribute("data-id");
+// 🚀 Inicializar al cargar
+window.addEventListener("DOMContentLoaded", async () => {
+  await initializeProducts();
+  cargarInventario();
+  generarIdInventario();
+  document.getElementById("confirmar-guardar").classList.remove("visible");
+
+  // Asignar listener al botón confirmar-guardar aquí
+  const btnConfirmarGuardar = document.getElementById("confirmar-guardar");
+  if (btnConfirmarGuardar) {
+    btnConfirmarGuardar.addEventListener("click", confirmarGuardarHandler);
+  }
+});
+
+const botonesEliminar = document.querySelectorAll(".btn-eliminar");
+botonesEliminar.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const id = Number(btn.getAttribute("data-id"));
+    eliminarProducto(id);
+  });
+});
+
+function eliminarProducto(id) {
+  const confirmacion = confirm(`¿Eliminar el producto con ID ${id}?`);
+  if (!confirmacion) return;
+
+  let productos = getProducts();
+  productos = productos.filter(p => Number(p.id) !== id);
+  localStorage.setItem("products", JSON.stringify(productos));
+
+  cargarInventario();
+  generarIdInventario();
+  alert(`🗑️ Producto con ID ${id} eliminado correctamente.`);
+}
+
+function conectarBotonesEliminar() {
+  const botonesEliminar = document.querySelectorAll(".btn-eliminar");
+  botonesEliminar.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = Number(btn.getAttribute("data-id"));
       eliminarProducto(id);
     });
   });
 }
 
-function eliminarProducto(id) {
-  let productos = getProducts();
-  productos = productos.filter(p => p.id !== id);
-  localStorage.setItem("products", JSON.stringify(productos));
-  renderAllPreviewCards(); // Actualiza cards
-  cargarInventario();      // Actualiza tabla
-}
+const descripcionInput = document.getElementById("description");
+const contador = document.createElement("small");
+contador.id = "contador-caracteres";
+descripcionInput.parentNode.appendChild(contador);
 
-// 📋 Cargar inventario en la tabla
-function cargarInventario() {
-  const productos = getProducts();
-  const tabla = document.getElementById("tabla-inventario");
-  tabla.innerHTML = "";
-
-  productos.forEach(producto => {
-    const fila = document.createElement("tr");
-    fila.innerHTML = `
-      <td>${producto.id}</td>]
-      <td>${producto.name}</td>
-      <td>${producto.price}</td>
-      <td>${producto.description}</td>
-      <td>${producto.stock || "-"}</td>
-      <td>${producto.nuevoStock || "-"}</td>
-      <td><img src="${producto.image}" alt="${producto.name}" style="width: 50px; height: auto;" onerror="this.src='https://via.placeholder.com/50?text=Sin+imagen'"></td>
-      <td>${producto.status}</td>
-    `;
-    tabla.appendChild(fila);
-  });
-}
-
-
-
-// 🚀 Inicializar todo al cargar la página
-window.addEventListener("DOMContentLoaded", () => {
-  initializeProducts();
-  renderAllPreviewCards();
-  cargarInventario();
-
- const logoutbtn = document.getElementById("logoutbottom");
-  if (logoutbtn) {
-    logoutbtn.addEventListener("click", (e) => {
-      e.preventDefault(); //
-
-      sessionStorage.removeItem("token");
-      localStorage.removeItem("usuarioActivo");
-
-      window.location = "../../Inicio/components/index.html";
-    });
-  }
+descripcionInput.addEventListener("input", () => {
+  const max = descripcionInput.getAttribute("maxlength");
+  const actual = descripcionInput.value.length;
+  contador.textContent = `Caracteres: ${actual}/${max}`;
 });
