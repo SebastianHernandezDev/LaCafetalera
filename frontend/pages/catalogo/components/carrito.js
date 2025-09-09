@@ -125,21 +125,33 @@ function mostrarProductosCarrito(){
                 const precioFormateado = producto.price.toLocaleString('es-CO');
                 
                 htmlProductos += `
-                    <div class="d-flex align-items-start border-bottom pb-3 mb-3" data-product-id="${producto.id}">
-                        <img src="${producto.image || 'https://via.placeholder.com/120x140'}" class="me-3" alt="${producto.name}" style="width: 120px; height: 140px; object-fit: cover;">
+                    <div class="d-flex flex-column flex-md-row align-items-start border-bottom pb-3 mb-3" data-product-id="${producto.id}">
+                        <img src="${producto.image || 'https://via.placeholder.com/120x140'}" 
+                            class="me-0 me-md-3 mb-3 mb-md-0 rounded align-self-center align-self-md-start" 
+                            alt="${producto.name}" 
+                            style="width: 130px; height: 160px; object-fit: cover;">
+                        
                         <div class="flex-grow-1">
-                            <div class="d-flex justify-content-between align-items-start">
-                                <div>
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start">
+                                <div class="order-1 order-md-1 w-100 w-md-auto">
                                     <h4 class="mb-1">${producto.name}</h4>
-                                    <button class="btn btn-outline-danger p-0  py-1 px-3 mt-2 eliminar-producto" 
+                                    <button class="btn btn-outline-danger p-0 py-1 px-3 mt-2 eliminar-producto" 
                                             style="font-size: 0.9rem;" 
                                             data-product-id="${producto.id}">
                                         Eliminar
                                     </button>
+                                    <div class="card mt-3">
+                                        <div class="card-body">
+                                            <p class="card-text">
+                                                ${producto.description}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="text-end">
-                                    <div class="d-flex align-items-center justify-content-end mb-2">
-                                    <span class="m-2 text-muted">cantidad:  </span>
+                                
+                                <div class="order-2 order-md-2 text-start text-md-end mt-3 mt-md-0">
+                                    <div class="d-flex align-items-center justify-content-start justify-content-md-end mb-2">
+                                        <span class="m-2 text-muted">cantidad:</span>
                                         <button class="btn btn-outline-warning btn-sm btn-cantidad" 
                                                 data-product-id="${producto.id}" 
                                                 data-action="decrease">-</button>
@@ -150,7 +162,7 @@ function mostrarProductosCarrito(){
                                     </div>
                                     <div>
                                         ${producto.originalPrice ? `<small class="text-muted text-decoration-line-through">$${producto.originalPrice.toLocaleString('es-CO')}</small>` : ''}
-                                        <div class="fw-bold fs-5 "><span class ="fs-5 ">Precio: </span>$${precioFormateado}</div>
+                                        <div class="fw-bold fs-5 mt-1"><span class="fs-5">Precio: </span>$${precioFormateado}</div>
                                         <div class="text-muted small mt-2">Subtotal: $${subtotalFormateado}</div>
                                     </div>
                                 </div>
@@ -158,7 +170,7 @@ function mostrarProductosCarrito(){
                         </div>
                     </div>
                 `;
-            }
+            }   
         });
         
         // Encontrar el elemento después del cual insertar los productos

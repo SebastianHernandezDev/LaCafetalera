@@ -1,0 +1,44 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: white; /* fondo general blanco */
+}
+
+/* Header y navbar verdes */
+header {
+  background-color: #93BE88;
+}
+
+header nav {
+  background-color: #93BE88 !important; /* fuerza el verde en el nav */
+}
+
+/* Main siempre blanco */
+main {
+  flex: 1; /* ocupa el espacio disponible */
+  background-color: white;
+}
+
+.footerA {
+  min-height: 200px;
+  display: flex;              /* ahora sí forzamos flexbox */
+  align-items: center;        /* centra verticalmente todas las columnas */
+}
+
+.logoFooter {
+  display: flex;
+  justify-content: center;    /* centra horizontal */
+  align-items: center;        /* centra vertical */
+  height: 100%;
+}
+
+.logo-img {
+  max-width: 180px;
+  height: auto;
+}
