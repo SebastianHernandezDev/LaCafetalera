@@ -43,7 +43,6 @@ function renderPreviewCard(producto) {
   card.querySelector(".eliminar-btn").addEventListener("click", () => {
     card.classList.add("desaparecer");
     setTimeout(() => card.remove(), 500);
-    actualizarCampoIdPreview();
 
     // Eliminar producto del array productosEnPreview
     productosEnPreview = productosEnPreview.filter(p => p.id !== producto.id);
@@ -98,7 +97,11 @@ document.getElementById("admin-insert").addEventListener("submit", function (e) 
 // ✅ Confirmar y guardar todos los productos en preview
 function confirmarGuardarHandler() {
   if (productosEnPreview.length === 0) {
-    alert("⚠️ No hay productos en vista previa para guardar.");
+    Swal.fire({
+      icon: 'warning',
+      title: 'Atención',
+      text: '⚠️ No hay productos en vista previa para guardar.'
+    });
     return;
   }
 
@@ -109,7 +112,11 @@ function confirmarGuardarHandler() {
   const productosNuevos = productosEnPreview.filter(p => !idsGuardados.has(p.id));
 
   if (productosNuevos.length === 0) {
-    alert("⚠️ Todos los productos en vista previa ya existen.");
+    Swal.fire({
+      icon: 'warning',
+      title: 'Atención',
+      text: '⚠️ Todos los productos en vista previa ya existen.'
+    });
     return;
   }
 
@@ -130,9 +137,17 @@ function confirmarGuardarHandler() {
   imagenBase64 = "";
 
   generarIdInventario();
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Guardado',
+    text: '✅ Productos guardados correctamente.',
+    timer: 2000,
+    showConfirmButton: false
+  });
 }
 
-// 💾 Guardar producto individual (no usado en esta versión, pero lo dejo por si acaso)
+// 💾 Guardar producto individual 
 function guardarProducto(producto) {
   const productos = getProducts();
   const existe = productos.some(p => p.id === producto.id);
@@ -269,25 +284,31 @@ window.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-const botonesEliminar = document.querySelectorAll(".btn-eliminar");
-botonesEliminar.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const id = Number(btn.getAttribute("data-id"));
-    eliminarProducto(id);
-  });
-});
-
 function eliminarProducto(id) {
-  const confirmacion = confirm(`¿Eliminar el producto con ID ${id}?`);
-  if (!confirmacion) return;
+  Swal.fire({
+    title: `¿Eliminar el producto con ID ${id}?`,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sí, eliminar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let productos = getProducts();
+      productos = productos.filter(p => Number(p.id) !== id);
+      localStorage.setItem("products", JSON.stringify(productos));
 
-  let productos = getProducts();
-  productos = productos.filter(p => Number(p.id) !== id);
-  localStorage.setItem("products", JSON.stringify(productos));
+      cargarInventario();
+      generarIdInventario();
 
-  cargarInventario();
-  generarIdInventario();
-  alert(`🗑️ Producto con ID ${id} eliminado correctamente.`);
+      Swal.fire({
+        icon: 'success',
+        title: 'Eliminado',
+        text: `🗑️ Producto con ID ${id} eliminado correctamente.`,
+        timer: 2000,
+        showConfirmButton: false
+      });
+    }
+  });
 }
 
 function conectarBotonesEliminar() {
