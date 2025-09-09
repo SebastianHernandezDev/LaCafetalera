@@ -1,7 +1,7 @@
 let imagenBase64 = "";
 let productosEnPreview = [];
 
-// 🔄 Inicializar productos desde JSON local
+// Inicializar productos desde JSON local
 async function initializeProducts() {
   const existingProducts = JSON.parse(localStorage.getItem("products"));
   if (!existingProducts || existingProducts.length === 0) {
@@ -17,12 +17,12 @@ async function initializeProducts() {
   }
 }
 
-// 📋 Obtener productos
+//  Obtener productos
 function getProducts() {
   return JSON.parse(localStorage.getItem("products")) || [];
 }
 
-// 🖼️ Renderizar una card individual
+//  Renderizar una card individual
 function renderPreviewCard(producto) {
   const container = document.getElementById("previewCards");
 
@@ -53,14 +53,14 @@ function renderPreviewCard(producto) {
       document.getElementById("confirmar-guardar").classList.remove("visible");
     }
 
-    // 🔁 Actualizar el campo ID visualmente
+    //  Actualizar el campo ID visualmente
     actualizarCampoIdPreview();
   });
 
   container.appendChild(card);
 }
 
-// ➕ Generar vista previa sin guardar (agregar múltiples productos)
+//  Generar vista previa sin guardar (agregar múltiples productos)
 document.getElementById("admin-insert").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -310,3 +310,22 @@ descripcionInput.addEventListener("input", () => {
   const actual = descripcionInput.value.length;
   contador.textContent = `Caracteres: ${actual}/${max}`;
 });
+const botonSesion = document.getElementById("botonSesion");
+const usuarioActivo = localStorage.getItem("usuarioActivo");
+
+if (usuarioActivo) {
+  // Cambiar a "Cerrar sesión"
+  botonSesion.innerHTML = '<i class="bi bi-box-arrow-right letrasLogin me-2"></i><strong>Cerrar sesión</strong>';
+
+  // Cerrar sesión al hacer clic
+  botonSesion.addEventListener("click", () => {
+    localStorage.removeItem("usuarioActivo");
+    alert("👋 Sesión cerrada con éxito.");
+    window.location.href = "/index.html"; // Ajusta esta ruta si es diferente
+  });
+} else {
+  // Si no hay sesión activa, redirigir a login
+  botonSesion.addEventListener("click", () => {
+    window.location.href = "../../LoginRegistro/components/resgistro.html";
+  });
+}

@@ -45,8 +45,8 @@
 
           <!-- Botón de iniciar sesión / registrarse -->
           <div class="d-flex gap-2 btn-iniciarSesion">
-            <a href="../../LoginRegistro/components/resgistro.html" id="botonSesion" class="btn btn-carrito montserrat boton-login-navbar">
-              <i class="bi bi-person-fill letrasLogin me-2"></i> <strong>Iniciar sesión</strong>
+            <a id="botonSesion" class="btn btn-carrito montserrat boton-login-navbar" role="button">
+              <i class="bi bi-person-fill letrasLogin me-2"></i> <strong>cerrar sesión</strong>
             </a>
           </div>
         </div>
@@ -55,121 +55,116 @@
   </header>
   <main class="container-fluid px-3 px-md-5" id="main">
 
-   <!-- 🟦 Encabezado -->
-<body>
-<section class="admin-section">
-  <div class="admin-header">
-    <h2>¡Bienvenida de nuevo, Paula!</h2>
-  </div>
+    <!-- 🟦 Encabezado -->
 
-  <div class="admin-content">
-    <!-- 📋 Datos del administrador -->
-    <div class="admin-block">
-      <h3>Datos del administrador</h3>
-      <div class="admin-info">
-        <div class="admin-photo">
-          <img src="/frontend/pages/dashboardAdmin/assets/img/Admin.png" alt="Foto del administrador">
+    <body>
+      <section class="admin-section">
+        <div class="admin-header">
+          <h2>¡Bienvenida de nuevo, Paula!</h2>
         </div>
-        <div class="admin-details">
-          <p><strong>Nombre:</strong> La Cafetería</p>
-          <p><strong>Razón social:</strong> Comercializadora La Cafetería S.A.S</p>
-          <p><strong>Administrador:</strong> Paula Rodríguez</p>
+
+        <div class="admin-content">
+          <!-- 📋 Datos del administrador -->
+          <div class="admin-block">
+            <h3>Datos del administrador</h3>
+            <div class="admin-info">
+              <div class="admin-photo">
+                <img src="/frontend/pages/dashboardAdmin/assets/img/Admin.png" alt="Foto del administrador">
+              </div>
+              <div class="admin-details">
+                <p><strong>Nombre:</strong> La Cafetería</p>
+                <p><strong>Razón social:</strong> Comercializadora La Cafetería S.A.S</p>
+                <p><strong>Administrador:</strong> Paula Rodríguez</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 📦 Inventario general -->
+          <div class="inventory-summary">
+            <h3>Inventario general</h3>
+            <p><strong>Total de productos registrados:</strong> <span id="total-registros">12</span></p>
+            <p><strong>Valor total del inventario:</strong> <span id="valor-total">$30,283.14</span></p>
+            <p><strong>Precio promedio por producto:</strong> <span id="precio-promedio">$2,521.51</span></p>
+            <button id="actualizar-inventario" class="btn-success">🔄 Actualizar inventario</button>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- 📦 Inventario general -->
-    <div class="inventory-summary">
-      <h3>Inventario general</h3>
-      <p><strong>Total de productos registrados:</strong> <span id="total-registros">12</span></p>
-      <p><strong>Valor total del inventario:</strong> <span id="valor-total">$30,283.14</span></p>
-      <p><strong>Precio promedio por producto:</strong> <span id="precio-promedio">$2,521.51</span></p>
-      <button id="actualizar-inventario" class="btn-success">🔄 Actualizar inventario</button>
-    </div>
-  </div>
-  
-</section>
+      </section>
 
-    <!-- 🧩 Sección principal con dos columnas -->
-    <div class="row gy-4">
-  
-      <div class="col-12 col-lg-6">
-        <h3> Agregar producto </h3>
-        <form id="admin-insert" class="d-flex flex-column gap-3">
-          <div class="mb-1">
-            <input type="text" class="form-control" placeholder="No.Id" name="id" id="campo-id" readonly />     
-            <input type="text" class="form-control" placeholder="Nombre del producto" name="name" required />      
-            <input type="number" step="0.01" class="form-control" placeholder="Precio COP" name="price" required min="0" />  
-            <label for="description">Descripción del producto</label>
-            <textarea 
-              id="description" 
-              name="description" 
-              class="form-control campo-descripcion" 
-              rows="4" 
-              maxlength="250" 
-              placeholder="Escribe una descripción detallada..." 
-              required
-            ></textarea>
-            <input type="number" class="form-control" placeholder="Nuevo Stock" name="nuevoStock" required min="1" />
-            <select class="form-select" name="status" required>
-              <option value="En CEDI">En CEDI</option>
-              <option value="En Tránsito">En Tránsito</option>
-              <option value="Sin Enviar a CEDI">Sin Enviar a CEDI</option>
-            </select>
-          </div>
-          <div class="d-flex flex-column gap-1">
-            <label for="imagenProducto" class="btn btn-primary w-100">
-              <i class="bi bi-cloud-arrow-up"></i> Subir imagen
-            </label>
-            <input type="file" id="imagenProducto" name="imagenProducto" accept="image/*" style="display: none;"
-              required>
-            <small id="nombreImagen" class="text-muted mt-1 d-block"></small>
-            <button type="submit" class="btn btn-success w-100">Vista Previa</button>            
-          </div>
-        </form>     
-       </div>
-      
-      <!-- 🖼️ Columna derecha: Vista previa -->
-      <div class="col-12 col-lg-6">
-        <h3><i class="bi bi-images"></i> Vista previa de productos agregados</h3>
-        <div id="contenedorCards" class="overflow-auto p-2 rounded bg-dark text-white" style="max-height: 600px;">
-          <div id="previewCards" class="row g-3">
-            <!-- Aquí se generan las cards dinámicamente -->
+      <!-- 🧩 Sección principal con dos columnas -->
+      <div class="row gy-4">
+
+        <div class="col-12 col-lg-6">
+          <h3> Agregar producto </h3>
+          <form id="admin-insert" class="d-flex flex-column gap-3">
+            <div class="mb-1">
+              <input type="text" class="form-control" placeholder="No.Id" name="id" id="campo-id" readonly />
+              <input type="text" class="form-control" placeholder="Nombre del producto" name="name" required />
+              <input type="number" step="0.01" class="form-control" placeholder="Precio COP" name="price" required
+                min="0" />
+              <label for="description">Descripción del producto</label>
+              <textarea id="description" name="description" class="form-control campo-descripcion" rows="4"
+                maxlength="250" placeholder="Escribe una descripción detallada..." required></textarea>
+              <input type="number" class="form-control" placeholder="Nuevo Stock" name="nuevoStock" required min="1" />
+              <select class="form-select" name="status" required>
+                <option value="En CEDI">En CEDI</option>
+                <option value="En Tránsito">En Tránsito</option>
+                <option value="Sin Enviar a CEDI">Sin Enviar a CEDI</option>
+              </select>
+            </div>
+            <div class="d-flex flex-column gap-1">
+              <label for="imagenProducto" class="btn btn-primary w-100">
+                <i class="bi bi-cloud-arrow-up"></i> Subir imagen
+              </label>
+              <input type="file" id="imagenProducto" name="imagenProducto" accept="image/*" style="display: none;"
+                required>
+              <small id="nombreImagen" class="text-muted mt-1 d-block"></small>
+              <button type="submit" class="btn btn-success w-100">Vista Previa</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 🖼️ Columna derecha: Vista previa -->
+        <div class="col-12 col-lg-6">
+          <h3><i class="bi bi-images"></i> Vista previa de productos agregados</h3>
+          <div id="contenedorCards" class="overflow-auto p-2 rounded bg-dark text-white" style="max-height: 600px;">
+            <div id="previewCards" class="row g-3">
+              <!-- Aquí se generan las cards dinámicamente -->
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- 🔄 Botón debajo de las columnas -->
-    <div class="row mt-5">
-      <div class="col-12 col-md-6 offset-md-3">
-        <button id="confirmar-guardar" class="btn btn-warning w-100 mt-2">✅ Confirmar y Guardar</button>
-      </div>
-    </div>
-
-    <!-- 📋 Sección de Inventario -->
-    <div class="row mt-5">
-      <div class="col-12">
-        <h2><i class="bi bi-card-list"></i> Mi inventario</h2>
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Nombre del Producto</th>
-                <th>Precio (COP)</th>
-                <th>Descripción del Producto</th>
-                <th>Stock Actual</th>
-                <th>Nuevo Stock</th>
-                <th>Imagen</th>
-                <th>Estado mercancía</th>
-              </tr>
-            </thead>
-            <tbody id="tabla-inventario"></tbody>
-          </table>
+      <!-- 🔄 Botón debajo de las columnas -->
+      <div class="row mt-5">
+        <div class="col-12 col-md-6 offset-md-3">
+          <button id="confirmar-guardar" class="btn btn-warning w-100 mt-2">✅ Confirmar y Guardar</button>
         </div>
       </div>
-    </div>
+
+      <!-- 📋 Sección de Inventario -->
+      <div class="row mt-5">
+        <div class="col-12">
+          <h2><i class="bi bi-card-list"></i> Mi inventario</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Nombre del Producto</th>
+                  <th>Precio (COP)</th>
+                  <th>Descripción del Producto</th>
+                  <th>Stock Actual</th>
+                  <th>Nuevo Stock</th>
+                  <th>Imagen</th>
+                  <th>Estado mercancía</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-inventario"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
   </main>
   <footer class="bg-dark text-light pt-4">
     <div class="container-fluid">
@@ -177,8 +172,8 @@
 
         <!-- Logo -->
         <div class="col-12 col-sm-12 col-lg-4 logoFooter mb-2 d-flex justify-content-center">
-          <img src="../../../components/assets-global/img/ChatGPT Image 14 ago 2025, 15_07_00.png" alt="Logo de La Cafetalera"
-            class="img-fluid" style="max-width: 250px; height: auto;">
+          <img src="../../../components/assets-global/img/ChatGPT Image 14 ago 2025, 15_07_00.png"
+            alt="Logo de La Cafetalera" class="img-fluid" style="max-width: 250px; height: auto;">
         </div>
 
         <!-- Menú de enlaces -->
@@ -236,7 +231,9 @@
     </div>
   </footer>
   <script src="/frontend/pages/dashboardAdmin/components/dashboard.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-XqfsHdCPQ3qqHt6XqZGT1UQtfhHP2XzRja8G5E+Y53kNtdRO7WfBeJvKLNUgD8Pj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-XqfsHdCPQ3qqHt6XqZGT1UQtfhHP2XzRja8G5E+Y53kNtdRO7WfBeJvKLNUgD8Pj"
+    crossorigin="anonymous"></script>
 
 </body>
 
