@@ -40,6 +40,7 @@ function renderPreviewCard(producto) {
     </div>
   `;
 
+  // Evento para eliminar producto de la vista previa
   card.querySelector(".eliminar-btn").addEventListener("click", () => {
     card.classList.add("desaparecer");
     setTimeout(() => card.remove(), 500);
@@ -60,7 +61,8 @@ function renderPreviewCard(producto) {
 }
 
 // ➕ Generar vista previa sin guardar (agregar múltiples productos)
-document.getElementById("admin-insert").addEventListener("submit", function (e) {
+const formAdminInsert = document.getElementById("admin-insert");
+formAdminInsert.addEventListener("submit", function (e) {
   e.preventDefault();
 
   const formData = new FormData(this);
@@ -82,12 +84,12 @@ document.getElementById("admin-insert").addEventListener("submit", function (e) 
   productosEnPreview.push(nuevoProducto);
   renderPreviewCard(nuevoProducto);
 
-  // Limpiar formulario primero
+  // Limpiar formulario
   this.reset();
   document.getElementById("nombreImagen").textContent = "";
   imagenBase64 = "";
 
-  // Ahora actualizar el campo ID al siguiente valor
+  // Actualizar el campo ID al siguiente valor
   campoId.value = `ID ${idGenerado + 1}`;
 
   // Mostrar botón confirmar guardar para guardar todos los productos en preview
@@ -132,7 +134,7 @@ function confirmarGuardarHandler() {
 
   const btnConfirmarGuardar = document.getElementById("confirmar-guardar");
   btnConfirmarGuardar.classList.remove("visible");
-  document.getElementById("admin-insert").reset();
+  formAdminInsert.reset();
   document.getElementById("nombreImagen").textContent = "";
   imagenBase64 = "";
 
@@ -145,25 +147,6 @@ function confirmarGuardarHandler() {
     timer: 2000,
     showConfirmButton: false
   });
-}
-
-// 💾 Guardar producto individual 
-function guardarProducto(producto) {
-  const productos = getProducts();
-  const existe = productos.some(p => p.id === producto.id);
-  if (existe) return false;
-
-  productos.push(producto);
-  localStorage.setItem("products", JSON.stringify(productos));
-  return true;
-}
-
-function actualizarCampoIdPreview() {
-  const campoId = document.getElementById("campo-id");
-  const idsPreview = productosEnPreview.map(p => Number(p.id)).filter(id => !isNaN(id));
-  const maxIdPreview = idsPreview.length > 0 ? Math.max(...idsPreview) : getMaxIdInventario();
-  const nuevoId = maxIdPreview + 1;
-  campoId.value = `ID ${nuevoId}`;
 }
 
 // 📋 Cargar inventario en tabla
@@ -184,18 +167,12 @@ function cargarInventario() {
       <td>${producto.nuevoStock}</td>
       <td><img src="${producto.image}" alt="${producto.name}" style="width: 50px;" onerror="this.src='https://via.placeholder.com/50?text=Sin+imagen'"></td>
       <td>${producto.status}</td>
-      <td><button class="btn-eliminar" data-id="${producto.id}">🗑️</button></td>
+      <td><button class="btn-eliminar btn btn-danger btn-sm" data-id="${producto.id}">🗑️</button></td>
     `;
 
     tabla.appendChild(fila);
   });
   conectarBotonesEliminar();
-}
-
-function getMaxIdInventario() {
-  const productos = getProducts();
-  const ids = productos.map(p => Number(p.id)).filter(id => !isNaN(id));
-  return ids.length > 0 ? Math.max(...ids) : 0;
 }
 
 // 🧼 Normalizar producto
@@ -270,20 +247,7 @@ function generarIdInventario() {
   if (campoId) campoId.value = `ID ${nuevoId}`;
 }
 
-// 🚀 Inicializar al cargar
-window.addEventListener("DOMContentLoaded", async () => {
-  await initializeProducts();
-  cargarInventario();
-  generarIdInventario();
-  document.getElementById("confirmar-guardar").classList.remove("visible");
-
-  // Asignar listener al botón confirmar-guardar aquí
-  const btnConfirmarGuardar = document.getElementById("confirmar-guardar");
-  if (btnConfirmarGuardar) {
-    btnConfirmarGuardar.addEventListener("click", confirmarGuardarHandler);
-  }
-});
-
+// Eliminar producto del inventario
 function eliminarProducto(id) {
   Swal.fire({
     title: `¿Eliminar el producto con ID ${id}?`,
@@ -311,6 +275,7 @@ function eliminarProducto(id) {
   });
 }
 
+// Conectar botones eliminar en tabla
 function conectarBotonesEliminar() {
   const botonesEliminar = document.querySelectorAll(".btn-eliminar");
   botonesEliminar.forEach(btn => {
@@ -321,6 +286,22 @@ function conectarBotonesEliminar() {
   });
 }
 
+// Actualizar campo ID en preview
+function actualizarCampoIdPreview() {
+  const campoId = document.getElementById("campo-id");
+  const idsPreview = productosEnPreview.map(p => Number(p.id)).filter(id => !isNaN(id));
+  const maxIdPreview = idsPreview.length > 0 ? Math.max(...idsPreview) : getMaxIdInventario();
+  const nuevoId = maxIdPreview + 1;
+  campoId.value = `ID ${nuevoId}`;
+}
+
+function getMaxIdInventario() {
+  const productos = getProducts();
+  const ids = productos.map(p => Number(p.id)).filter(id => !isNaN(id));
+  return ids.length > 0 ? Math.max(...ids) : 0;
+}
+
+// Contador de caracteres para descripción
 const descripcionInput = document.getElementById("description");
 const contador = document.createElement("small");
 contador.id = "contador-caracteres";
@@ -330,4 +311,18 @@ descripcionInput.addEventListener("input", () => {
   const max = descripcionInput.getAttribute("maxlength");
   const actual = descripcionInput.value.length;
   contador.textContent = `Caracteres: ${actual}/${max}`;
+});
+
+// Inicialización al cargar la página
+window.addEventListener("DOMContentLoaded", async () => {
+  await initializeProducts();
+  cargarInventario();
+  generarIdInventario();
+  document.getElementById("confirmar-guardar").classList.remove("visible");
+
+  // Asignar listener al botón confirmar-guardar
+  const btnConfirmarGuardar = document.getElementById("confirmar-guardar");
+  if (btnConfirmarGuardar) {
+    btnConfirmarGuardar.addEventListener("click", confirmarGuardarHandler);
+  }
 });

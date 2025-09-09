@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard de Inventario</title>
+  <title>Dashboard Administrador</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -18,21 +18,17 @@
     <nav class="navbar navbar-expand-lg py-2 shadow-lg bg-body-tertiary rounded container">
 
       <div class="container-fluid">
-        <!-- Logo + Marca -->
         <a href="#" class="d-flex align-items-center text-decoration-none">
           <img src="/frontend/components/assets-global/img/logo.png" alt="logo" width="100"
             class="img-fluid me-2 imagenNavbar">
         </a>
 
-        <!-- Botón hamburguesa -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCafe"
           aria-controls="navbarCafe" aria-expanded="false" aria-label="botón menú">
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Menú colapsable -->
         <div class="collapse navbar-collapse justify-content-between align-items-center" id="navbarCafe">
-          <!-- Menú principal -->
           <ul class="navbar-nav d-flex flex-row flex-wrap gap-3 mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link montserrat" href="#hero2">Inicio</a></li>
             <li class="nav-item"><a class="nav-link montserrat"
@@ -43,7 +39,6 @@
                 href="../../contacto/components/formulario.html">Contacto</a></li>
           </ul>
 
-          <!-- Botón de iniciar sesión / registrarse -->
           <div class="d-flex gap-2 btn-iniciarSesion">
             <a href="../../LoginRegistro/components/resgistro.html" id="botonSesion" class="btn btn-carrito montserrat boton-login-navbar">
               <i class="bi bi-person-fill letrasLogin me-2"></i> <strong>Iniciar sesión</strong>
@@ -55,58 +50,49 @@
   </header>
   <main class="container-fluid px-3 px-md-5" id="main">
 
-   <!-- 🟦 Encabezado -->
-
-  <div class="admin-header">
-    <h2>¡Bienvenido de Nuevo!</h2>
-  </div>
-<section class="admin-section">
-  <div class="admin-content">
-    <!-- 📋 Datos del administrador -->
-    <div class="admin-block">
-      <h3>Datos del administrador</h3>
-      <div class="admin-info">
-        <div class="admin-photo">
-          <img src="/frontend/pages/dashboardAdmin/assets/img/Admin.png" alt="Foto del administrador">
-        </div>
-        <div class="admin-details">
-          <p><strong>Nombre:</strong> La Cafetería</p>
-          <p><strong>Razón social:</strong> Comercializadora La Cafetería S.A.S</p>
-          <p><strong>Administrador:</strong> Paula Rodríguez</p>
-        </div>
-      </div>
+    <div class="admin-header">
+      <h1>Dashboard Administrador</h1>
     </div>
+    <section class="admin-section">
+      <div class="admin-inventory-container">
+        <div class="admin-info">
+          <div class="admin-photo">
+            <img src="/frontend/pages/dashboardAdmin/assets/img/Admin.png" alt="Foto del administrador">
+          </div>
+          <div class="admin-details">
+            <p><strong>Nombre:</strong> La Cafetería</p>
+            <p><strong>Razón social:</strong> Comercializadora La Cafetería S.A.S</p>
+            <p><strong>Administrador:</strong> Paula Rodríguez</p>
+          </div>
+        </div>
 
-    <!-- 📦 Inventario general -->
-    <div class="inventory-summary">
-      <h3>Inventario general</h3>
-      <p><strong>Total de productos registrados:</strong> <span id="total-registros">12</span></p>
-      <p><strong>Valor total del inventario:</strong> <span id="valor-total">$30,283.14</span></p>
-      <p><strong>Precio promedio por producto:</strong> <span id="precio-promedio">$2,521.51</span></p>
-      <button id="actualizar-inventario" class="btn-success">🔄 Actualizar inventario</button>
-    </div>
-  </div>
-  
-</section>
+        <div class="inventory-summary">
+          <p><strong>Total de productos registrados:</strong> <span id="total-registros">12</span></p>
+          <p><strong>Valor total del inventario:</strong> <span id="valor-total">$30,283.14</span></p>
+          <p><strong>Precio promedio por producto:</strong> <span id="precio-promedio">$2,521.51</span></p>
+          <div class="boton-derecha">
+            <button id="actualizar-inventario" class="btn-success"><i class="bi bi-arrow-clockwise"></i></button>
+          </div>
+        </div>
+    </section>
 
-    <!-- 🧩 Sección principal con dos columnas -->
     <div class="row gy-4">
-  
+
       <div class="col-12 col-lg-6">
-        <h3> Agregar producto </h3>
+        <h3><i class="bi bi-database-fill-add"></i> Agregar producto</h3>
         <form id="admin-insert" class="d-flex flex-column gap-3">
           <div class="mb-1">
-            <input type="text" class="form-control" placeholder="No.Id" name="id" id="campo-id" readonly />     
-            <input type="text" class="form-control" placeholder="Nombre del producto" name="name" required />      
-            <input type="number" step="0.01" class="form-control" placeholder="Precio COP" name="price" required min="0" />  
+            <input type="text" class="form-control" placeholder="No.Id" name="id" id="campo-id" readonly />
+            <input type="text" class="form-control" placeholder="Nombre del producto" name="name" required />
+            <input type="number" step="0.01" class="form-control" placeholder="Precio COP" name="price" required min="0" />
             <label for="description">Descripción del producto</label>
-            <textarea 
-              id="description" 
-              name="description" 
-              class="form-control campo-descripcion" 
-              rows="4" 
-              maxlength="250" 
-              placeholder="Escribe una descripción detallada..." 
+            <textarea
+              id="description"
+              name="description"
+              class="form-control campo-descripcion"
+              rows="4"
+              maxlength="250"
+              placeholder="Escribe una descripción detallada..."
               required
             ></textarea>
             <input type="number" class="form-control" placeholder="Nuevo Stock" name="nuevoStock" required min="1" />
@@ -116,37 +102,32 @@
               <option value="Sin Enviar a CEDI">Sin Enviar a CEDI</option>
             </select>
           </div>
-          <div class="d-flex flex-column gap-1">
-            <label for="imagenProducto" class="btn btn-primary w-100">
+
+          <div class="d-flex flex-wrap gap-3 justify-content-center">
+            <label for="imagenProducto" class="btn btn-primary flex-fill text-center" style="min-width: 120px;">
               <i class="bi bi-cloud-arrow-up"></i> Subir imagen
             </label>
-            <input type="file" id="imagenProducto" name="imagenProducto" accept="image/*" style="display: none;"
-              required>
-            <small id="nombreImagen" class="text-muted mt-1 d-block"></small>
-            <button type="submit" class="btn btn-success w-100">Vista Previa</button>            
+            <button type="submit" class="btn btn-success flex-fill text-center" style="min-width: 120px;">
+              Vista Previa
+            </button>
+            <button id="confirmar-guardar" class="btn btn-warning flex-fill text-center" style="min-width: 120px;">
+              Confirmar y Guardar
+            </button>
           </div>
-        </form>     
-       </div>
-      
-      <!-- 🖼️ Columna derecha: Vista previa -->
+          <input type="file" id="imagenProducto" name="imagenProducto" accept="image/*" style="display: none;" required>
+          <small id="nombreImagen" class="text-muted mt-1 d-block text-center"></small>
+        </form>
+      </div>
+
       <div class="col-12 col-lg-6">
-        <h3><i class="bi bi-images"></i> Vista previa de productos agregados</h3>
-        <div id="contenedorCards" class="overflow-auto p-2 rounded bg-dark text-white" style="max-height: 600px;">
+        <h3><i class="bi bi-view-stacked"></i> Vista previa de productos agregados</h3>
+        <div id="contenedorCards" class="overflow-auto p-2 rounded bg-dark text-white">
           <div id="previewCards" class="row g-3">
-            <!-- Aquí se generan las cards dinámicamente -->
-          </div>
+            </div>
         </div>
       </div>
     </div>
 
-    <!-- 🔄 Botón debajo de las columnas -->
-    <div class="row mt-5">
-      <div class="col-12 col-md-6 offset-md-3">
-        <button id="confirmar-guardar" class="btn btn-warning w-100 mt-2">✅ Confirmar y Guardar</button>
-      </div>
-    </div>
-
-    <!-- 📋 Sección de Inventario -->
     <div class="row mt-5">
       <div class="col-12">
         <h2><i class="bi bi-card-list"></i> Mi inventario</h2>
@@ -162,6 +143,7 @@
                 <th>Nuevo Stock</th>
                 <th>Imagen</th>
                 <th>Estado mercancía</th>
+                <th></th>
               </tr>
             </thead>
             <tbody id="tabla-inventario"></tbody>
@@ -174,13 +156,11 @@
     <div class="container-fluid">
       <div class="row footerA text-center text-md-start">
 
-        <!-- Logo -->
         <div class="col-12 col-sm-12 col-lg-4 logoFooter mb-2 d-flex justify-content-center">
           <img src="../../../components/assets-global/img/ChatGPT Image 14 ago 2025, 15_07_00.png" alt="Logo de La Cafetalera"
             class="img-fluid" style="max-width: 250px; height: auto;">
         </div>
 
-        <!-- Menú de enlaces -->
         <div class="col-6 col-md-3 col-lg-2 mb-3">
           <ul class="mt-3 list-unstyled lista_footer">
             <li class="mb-2"><i class="bi bi-house-door-fill me-2"></i><a href="#"
@@ -196,7 +176,6 @@
           </ul>
         </div>
 
-        <!-- Información de contacto -->
         <div class="col-6 col-md-3 col-lg-2 mb-3">
           <h4 class="fw-bold">Contacto</h4>
           <address class="mb-0">
@@ -208,7 +187,6 @@
           </address>
         </div>
 
-        <!-- Redes sociales -->
         <div class="col-6 col-md-3 col-lg-2 mb-3">
           <h4 class="fw-bold">Síguenos</h4>
           <a href="#" aria-label="Facebook" class="text-light me-3"><i class="bi bi-facebook fs-4"></i></a>
@@ -217,7 +195,6 @@
           <a href="#" aria-label="YouTube" class="text-light"><i class="bi bi-youtube fs-4"></i></a>
         </div>
 
-        <!-- Métodos de pago -->
         <div class="col-6 col-md-3 col-lg-2 mb-3">
           <h4 class="fw-bold">Métodos de pago</h4>
           <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Tarjeta Visa" width="50"
@@ -229,17 +206,12 @@
       </div>
     </div>
 
-    <!-- Derechos de autor -->
     <div class="bg-grey text-center py-2 mt-3">
       <p class="mb-0">© 2025 La Cafetalera. Todos los derechos reservados.</p>
     </div>
   </footer>
 
-  <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <!-- Tu script principal -->
   <script src="/frontend/pages/dashboardAdmin/components/dashboard.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-3h6t5Zg+U0Z5WZkQw9FZKzZzYvZKzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZz
-
-</html>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-3h6t5Zg+U0Z5WZkQw9FZKzZzYvZKzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZzZ

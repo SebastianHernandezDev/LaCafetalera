@@ -1,13 +1,13 @@
 /* Variables CSS */
 :root {
-  --color-primario: #8C5637;
+  --color-primario: #BBF1BB;
   --color-secundario: #93BE88;
-  --color-fondo: #ffffff; /* corregido */
+  --color-fondo: #f7e4c6;
   --color-texto: #582919;
   --color-navbar-bg: rgba(75, 105, 80, 0.85);
 }
 
-/* Mejor reset */
+/* Reset y base */
 html {
   box-sizing: border-box;
   font-family: 'Lato', sans-serif;
@@ -20,23 +20,20 @@ html {
 }
 
 body {
-  background: linear-gradient(-90deg, #bfa27c, var(--color-fondo));
+  background: linear-gradient(-90deg, #f7e4c6, var(--color-fondo));
   background-size: 600% 600%;
   animation: gradienteAnimado 10s ease infinite;
-  min-height: 100vh;
-  color: var(--color-texto);
+  min-height: 100vh;  
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 0 10px; /* padding base para móviles */
+  padding: 0 10px;
 }
 
 /* Encabezados */
 h1, h2, h3, .main-title, .product-name, .product-price {
   font-weight: 700;
-  text-align: center;
-  color: var(--color-texto);
   padding: 5px 0;
   transition: color 0.3s ease;
   margin-top: 18px;
@@ -44,34 +41,41 @@ h1, h2, h3, .main-title, .product-name, .product-price {
 }
 
 @keyframes gradienteAnimado {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 h1, .main-title {
-  font-size: 2.8rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  color: #4B6950;
+  margin-bottom: 10px;
+  align-items: center;
 }
 
 h2 {
-  font-size: 2rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  color: #4B6950;
+  margin-bottom: 10px;
+  align-items: center;
 }
 
 h3, .product-name {
-  font-size: 1.4rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: #5d4037;
+  margin-bottom: 10px;
 }
 
 .product-price {
   font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
+  font-size: 28px;
   color: var(--color-secundario);
   font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 /* Navbar personalizado */
@@ -83,7 +87,7 @@ h3, .product-name {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* para que en móviles se adapte */
+  flex-wrap: wrap;
 }
 
 .navbar .nav-link {
@@ -103,28 +107,13 @@ h3, .product-name {
   border-color: var(--color-secundario);
   background: transparent;
   cursor: pointer;
-  display: none; /* oculto en desktop */
+  display: none;
 }
 
 .navbar-toggler-icon {
   filter: invert(1);
   width: 24px;
   height: 24px;
-}
-
-/* Mostrar toggler en móviles */
-@media (max-width: 768px) {
-  .navbar-toggler {
-    display: block;
-  }
-  .navbar .nav-link {
-    width: 100%;
-    padding: 0.75rem 0;
-    text-align: center;
-  }
-  .navbar-collapse {
-    width: 100%;
-  }
 }
 
 /* Botón iniciar sesión */
@@ -154,6 +143,7 @@ h3, .product-name {
   padding: 0 20px 40px;
   width: 100%;
   box-sizing: border-box;
+  background-color: #f5f5f5;
 }
 
 /* Layout columnas formulario y vista previa */
@@ -164,7 +154,7 @@ h3, .product-name {
   gap: 2rem;
   margin-top: 30px;
   width: 100%;
-  flex-wrap: wrap; /* permite que los hijos bajen en pantallas pequeñas */
+  flex-wrap: wrap;
 }
 
 @media (min-width: 768px) {
@@ -174,7 +164,7 @@ h3, .product-name {
   }
   #dosColumnas > div {
     flex: 1 1 0;
-    min-width: 300px; /* evita que se hagan demasiado pequeños */
+    min-width: 300px;
   }
 }
 
@@ -183,15 +173,17 @@ h3, .product-name {
   background: white;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
   transition: all 0.4s ease;
   opacity: 0;
   transform: translateY(50px);
-  animation: slideInUp 0.8s ease forwards;
+  animation: slideInUp 0.8s ease-out forwards;
   position: relative;
-  display: grid;
-  max-width: 100%;
-  margin-bottom: 1.5rem;
+  width: 80%;
+  max-width: 400px;
+  margin-top: 30px;
+  margin-left: 100px;
+  align-items: center;
 }
 
 .product-card:hover, .narrow-card:hover {
@@ -201,8 +193,7 @@ h3, .product-name {
 
 .product-image {
   width: 100%;
-  height: auto;
-  max-height: 250px;
+  height: 250px;
   object-fit: cover;
   transition: all 0.3s ease;
 }
@@ -229,18 +220,14 @@ h3, .product-name {
   font-size: 14px;
   line-height: 1.6;
   margin-bottom: 15px;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  height: 60px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  height: auto;
 }
 
 .product-price {
   font-family: 'Playfair Display', serif;
   font-size: 28px;
-  color: var(--color-secundario);
+  color: #93BE88;
   font-weight: 700;
   margin-bottom: 20px;
 }
@@ -267,6 +254,7 @@ h3, .product-name {
 .btn-primary {
   background: linear-gradient(135deg, #4B6950, var(--color-secundario));
   color: #fff;
+  height: auto;
 }
 
 .btn-primary:hover, .btn-primary:focus {
@@ -277,8 +265,10 @@ h3, .product-name {
 }
 
 .btn-success {
-  background: var(--color-primario);
-  color: #fff;
+  display: flex;
+  justify-content: flex-end;
+  background: #8C5637;
+  align-items: center;
 }
 
 .btn-success:hover, .btn-success:focus {
@@ -301,7 +291,7 @@ h3, .product-name {
 }
 
 .btn-cart {
-  background: var(--color-primario);
+  background: #8C5637;
   color: white;
   border: none;
   padding: 12px 25px;
@@ -309,14 +299,10 @@ h3, .product-name {
   font-family: 'Lato', sans-serif;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease;
   width: 100%;
-  max-width: 280px;
   position: relative;
   overflow: hidden;
-  white-space: nowrap;
-  margin: 0 auto;
-  font-size: 1rem;
 }
 
 .btn-cart:hover {
@@ -337,6 +323,8 @@ form#admin-insert button {
   margin-bottom: 15px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   box-sizing: border-box;
+  margin-top: 15px;
+  border-color: #3a4b3a;
 }
 
 form#admin-insert input:focus,
@@ -349,20 +337,22 @@ form#admin-insert button:focus {
 
 /* Dashboard container */
 #contenedorCards {
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-radius: 25px !important;
   padding: 2rem;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  box-shadow: inset 0 8px 20px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
-  height: 90%;
-  max-height: 600px;
+  height: 100%;
+  max-height: 750px;
+  max-width: 600px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   gap: 2rem;
   width: 100%;
   box-sizing: border-box;
+  background-image: radial-gradient(circle at top left, rgba(255,255,255,0.6), transparent);
 }
 
 /* Tabla inventario */
@@ -429,75 +419,6 @@ form#admin-insert button:focus {
   transform: scale(1.1);
 }
 
-/* Tabla responsive para tablets y móviles */
-@media (max-width: 768px) {
-  .table thead {
-    display: none;
-  }
-  .table tbody td {
-    display: block;
-    text-align: right;
-    padding-left: 50%;
-    position: relative;
-  }
-  .table tbody td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 10px;
-    top: 12px;
-    font-weight: 700;
-    color: var(--color-secundario);
-    text-transform: uppercase;
-    font-size: 0.85rem;
-  }
-  .table tbody tr {
-    margin-bottom: 1.5rem;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    background: #fff;
-    padding: 15px 10px;
-  }
-  .table img {
-    width: 50px;
-    height: 50px;
-  }
-}
-
-/* Mejoras para móviles pequeños */
-@media (max-width: 480px) {
-  body {
-    padding: 10px;
-  }
-  h1, h2, h3, .main-title {
-    font-size: 1.6rem;
-  }
-  .subtitle {
-    font-size: 1rem;
-  }
-  #dosColumnas {
-    flex-direction: column !important;
-  }
-  form#admin-insert input,
-  form#admin-insert select,
-  form#admin-insert button {
-    font-size: 0.9rem;
-    padding: 10px;
-  }
-  .btn-primary,
-  .btn-success,
-  .btn-secondary {
-    font-size: 0.9rem;
-    padding: 10px 15px;
-  }
-  .product-card,
-  .narrow-card {
-    margin-bottom: 25px;
-  }
-  .product-image {
-    max-height: 140px;
-  }
-}
-
 /* Animaciones suaves */
 @keyframes slideInUp {
   from {
@@ -529,21 +450,41 @@ form#admin-insert button:focus {
   }
 }
 
+.admin-inventory-container {
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  gap: 1px;
+  flex-wrap: wrap;
+  background-color:#fff;
+  border-radius: 0.8rem;
+}
+
+.admin-info,
+.inventory-summary {
+  flex: 1;
+  min-width: 300px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 0.8rem;
+}
+
 .admin-section {
   max-width: 1200px;
-  margin: 2rem auto;
-  padding: 2rem;  
-  border-radius: 1rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  background-color: rgba(255, 243, 224, 0.8);
-  backdrop-filter: blur(10px);                
+  margin: 1rem auto;
+  padding: 0;
+  border-radius: 0.8rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  background-color: rgba(245, 245, 245, 0.8);
+  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-sizing: border-box;
 }
 
 .admin-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .admin-header h2 {
@@ -555,11 +496,12 @@ form#admin-insert button:focus {
 .admin-content {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
   box-sizing: border-box;
+  background-color:#fff;
 }
 
 /* Bloque de datos del administrador */
@@ -577,18 +519,22 @@ form#admin-insert button:focus {
 
 /* Foto + datos */
 .admin-info {
-  display: flex;
+  flex: 1;
+  min-width: 300px;
+  display:flex;
+  padding: 3rem;
   gap: 1rem;
   align-items: center;
   flex-wrap: wrap;
 }
 
 .admin-photo img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid #bfa27c;
+  max-width: 100%;
+  height: auto;
 }
 
 .admin-details p {
@@ -600,13 +546,15 @@ form#admin-insert button:focus {
 
 /* Inventario */
 .inventory-summary {
-  flex: 1;
+  display: flex;
+  justify-content:flex-start;
   min-width: 300px;
-  background-color: var(--color-primario);
-  color: #fff;
-  padding: 1rem;
+  background-color:#fff;
+  color: #582919;
+  padding: 2rem;
   border-radius: 0.8rem;
   box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+  text-align:left;
 }
 
 .inventory-summary h3 {
@@ -620,13 +568,69 @@ form#admin-insert button:focus {
   font-size: 0.95rem;
 }
 
-/* Responsive admin content */
-@media (max-width: 768px) {
-  .admin-content {
-    flex-direction: column;
-    align-items: center;
+/* ------------------ */
+/* RESPONSIVE DESIGN  */
+/* ------------------ */
+
+/* Mostrar botón hamburguesa en tablets y móviles */
+@media (max-width: 1024px) {
+  .navbar-toggler {
+    display: block;
+  }
+  .navbar .nav-link {
+    width: 100%;
+    padding: 0.75rem 0;
+    text-align: center;
+  }
+  .navbar-collapse {
+    width: 100%;
   }
 
-  .admin-info {
+  /* Ajustar layout columnas a columna única */
+  #dosColumnas {
     flex-direction: column;
-   
+    gap: 1.5rem;
+  }
+
+  /* Ajustar tamaño de cards */
+  .product-card, .narrow-card {
+    width: 90% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Ajustar tamaño de texto en encabezados */
+  h1, .main-title {
+    font-size: 36px;
+  }
+  h2 {
+    font-size: 30px;
+  }
+  h3, .product-name {
+    font-size: 18px;
+  }
+}
+
+/* Móviles grandes y tablets pequeñas */
+@media (max-width: 768px) {
+  /* Layout columnas a columna única */
+  #dosColumnas {
+    flex-direction: column !important;
+  }
+
+  /* Admin container apila vertical */
+  .admin-inventory-container {
+    flex-direction: column !important;
+  }
+
+  .admin-info, .inventory-summary {
+    min-width: 100% !important;
+  }
+
+  /* Ajustar padding body para móviles */
+  body {
+    padding: 10px;
+  }
+
+  /* Ajustar tamaño de texto */
+  
