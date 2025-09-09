@@ -45,8 +45,8 @@
 
           <!-- Botón de iniciar sesión / registrarse -->
           <div class="d-flex gap-2 btn-iniciarSesion">
-            <a href="#" id="logoutbottom" class="btn btn-carrito montserrat boton-login-navbar">
-              <i class="bi bi-person-fill  me-2"></i> <strong>Cerrar Sesión</strong>
+            <a href="../../LoginRegistro/components/resgistro.html" id="botonSesion" class="btn btn-carrito montserrat boton-login-navbar">
+              <i class="bi bi-person-fill letrasLogin me-2"></i> <strong>Iniciar sesión</strong>
             </a>
           </div>
         </div>
@@ -55,69 +55,62 @@
   </header>
   <main class="container-fluid px-3 px-md-5" id="main">
 
+   <!-- 🟦 Encabezado -->
+<body>
+<section class="admin-section">
+  <div class="admin-header">
+    <h2>¡Bienvenida de nuevo, Paula!</h2>
+  </div>
 
-
-    <!-- 🟦 Encabezado -->
-    <section class="container my-5">
-      <div class="card shadow-lg border-0 rounded-4 p-4 bg-white">
-        <div class="row g-3 align-items-center">
-          <div class="col-md-2 text-center">
-            <img src="../assets/img/Admin.png" alt="Foto del administrador" class="rounded-circle border border-3"
-              style="width: 100px; height: 100px; object-fit: cover; border-color: #bfa27c;">
-            <span class="badge bg-success mt-2">Administrador</span>
-          </div>
-
-          <div class="col-md-10">
-            <h3 class="fw-bold mb-2" style="font-family: 'Playfair Display', serif; color: #5d4037;">
-              ¡Bienvenida de nuevo, Paula!
-            </h3>
-            <p style="font-family: 'Lato', sans-serif; color: #424242;">Consulta la información actual.</p>
-
-            <div class="row mt-3" style="font-family: 'Lato', sans-serif;">
-              <div class="col-sm-6 mb-2">
-                <strong><i class="bi bi-bag me-2 text-muted"></i>Nombre:</strong>
-                <span id="nombreTienda" class="ms-1">La Cafetalera</span>
-              </div>
-              <div class="col-sm-6 mb-2">
-                <strong><i class="bi bi-file-earmark-text me-2 text-muted"></i>Razón social:</strong>
-                <span id="razonSocial" class="ms-1">Comercializadora La Cafetalera S.A.S</span>
-              </div>
-              <div class="col-sm-6">
-                <strong><i class="bi bi-person-circle me-2 text-muted"></i>Administrador:</strong>
-                <span id="nombreAdmin" class="ms-1">Paula Rodríguez</span>
-              </div>
-            </div>
-          </div>
+  <div class="admin-content">
+    <!-- 📋 Datos del administrador -->
+    <div class="admin-block">
+      <h3>Datos del administrador</h3>
+      <div class="admin-info">
+        <div class="admin-photo">
+          <img src="/frontend/pages/dashboardAdmin/assets/img/Admin.png" alt="Foto del administrador">
+        </div>
+        <div class="admin-details">
+          <p><strong>Nombre:</strong> La Cafetería</p>
+          <p><strong>Razón social:</strong> Comercializadora La Cafetería S.A.S</p>
+          <p><strong>Administrador:</strong> Paula Rodríguez</p>
         </div>
       </div>
-    </section>
+    </div>
+
+    <!-- 📦 Inventario general -->
+    <div class="inventory-summary">
+      <h3>Inventario general</h3>
+      <p><strong>Total de productos registrados:</strong> <span id="total-registros">12</span></p>
+      <p><strong>Valor total del inventario:</strong> <span id="valor-total">$30,283.14</span></p>
+      <p><strong>Precio promedio por producto:</strong> <span id="precio-promedio">$2,521.51</span></p>
+      <button id="actualizar-inventario" class="btn-success">🔄 Actualizar inventario</button>
+    </div>
+  </div>
+  
+</section>
 
     <!-- 🧩 Sección principal con dos columnas -->
     <div class="row gy-4">
-
-      <!-- 📝 Columna izquierda: Formulario -->
-      <!-- CAMBIO: eliminamos "Stock Actual" -->
+  
       <div class="col-12 col-lg-6">
         <h3> Agregar producto </h3>
         <form id="admin-insert" class="d-flex flex-column gap-3">
           <div class="mb-1">
-            <input type="number" class="form-control" placeholder="No.Id" name="id" required min="1" />
-          </div>
-          <div class="mb-1">
-            <input type="text" class="form-control" placeholder="Nombre del producto" name="name" required />
-          </div>
-          <div class="mb-1">
-            <input type="number" step="0.01" class="form-control" placeholder="Precio COP" name="price" required
-              min="0" />
-          </div>
-          <div class="mb-1">
-            <input type="text" class="form-control" placeholder="Descripción del producto" name="description"
-              required />
-          </div>
-          <div class="mb-1">
+            <input type="text" class="form-control" placeholder="No.Id" name="id" id="campo-id" readonly />     
+            <input type="text" class="form-control" placeholder="Nombre del producto" name="name" required />      
+            <input type="number" step="0.01" class="form-control" placeholder="Precio COP" name="price" required min="0" />  
+            <label for="description">Descripción del producto</label>
+            <textarea 
+              id="description" 
+              name="description" 
+              class="form-control campo-descripcion" 
+              rows="4" 
+              maxlength="250" 
+              placeholder="Escribe una descripción detallada..." 
+              required
+            ></textarea>
             <input type="number" class="form-control" placeholder="Nuevo Stock" name="nuevoStock" required min="1" />
-          </div>
-          <div class="mb-1">
             <select class="form-select" name="status" required>
               <option value="En CEDI">En CEDI</option>
               <option value="En Tránsito">En Tránsito</option>
@@ -131,11 +124,11 @@
             <input type="file" id="imagenProducto" name="imagenProducto" accept="image/*" style="display: none;"
               required>
             <small id="nombreImagen" class="text-muted mt-1 d-block"></small>
-            <button type="submit" class="btn btn-success w-100">Agregar Producto</button>
+            <button type="submit" class="btn btn-success w-100">Vista Previa</button>            
           </div>
-        </form>
-      </div>
-
+        </form>     
+       </div>
+      
       <!-- 🖼️ Columna derecha: Vista previa -->
       <div class="col-12 col-lg-6">
         <h3><i class="bi bi-images"></i> Vista previa de productos agregados</h3>
@@ -150,7 +143,7 @@
     <!-- 🔄 Botón debajo de las columnas -->
     <div class="row mt-5">
       <div class="col-12 col-md-6 offset-md-3">
-        <button class="btn btn-secondary w-100">ACTUALIZAR CATÁLOGO</button>
+        <button id="confirmar-guardar" class="btn btn-warning w-100 mt-2">✅ Confirmar y Guardar</button>
       </div>
     </div>
 
