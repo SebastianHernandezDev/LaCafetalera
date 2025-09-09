@@ -321,22 +321,48 @@ body {
   margin: 0 auto;       /* centradas */
 }
 
-/* -------------------------
-   Historias - truncado + expandir
-   ------------------------- */
-
-.historia-parrafo {
-  /* truncado en 3 líneas con ellipsis (WebKit) */
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  transition: max-height 0.35s ease;
-  max-height: 4.6em; /* aprox 3 líneas (ajusta si tu fuente cambia) */
+/* Contenedor de productos destacados */
+.productos-destacados {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f7f9fc; /* opcional */
 }
 
-/* Estado expandido: muestra todo */
-.historia-parrafo.expandido {
-  -webkit-line-clamp: unset;
-  max-height: 2000px; /* suficientemente grande para mostrar todo */
+.productos-destacados h2 {
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: bold;
 }
+
+/* Contenedor flexible */
+.productos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Card de producto */
+.producto-card {
+  width: 280px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.producto-card img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.producto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+
+

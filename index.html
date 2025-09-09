@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="./frontend/pages/Inicio/assets/css/style.css">
 </head>
 <body>
-<header>
+  <header>
    <nav class="navbar navbar-expand-lg py-2 shadow-lg bg-body-tertiary rounded container">
       <div class="container-fluid">
         <!-- Logo + Marca -->
@@ -51,7 +51,7 @@
         </div>
       </div>
     </nav>
-</header>
+  </header>
 
 <!-- HERO -->
 <header class="hero text-center p-4">
@@ -61,64 +61,70 @@
   </div>
 
   <!-- Productos destacados -->
-  <div class="row mt-4">
-    <div class="col-12 col-md-6 col-lg-4 mb-4">
-      <div class="producto-card">
-        <img src="./frontend/pages/catalogo/assets/img/1.png" class="img-fluid" alt="Café Premium Arboleda">
-        <h4>Café Premium Arboleda</h4>
-        <p>Intenso y aromático, perfecto para los amantes del café fuerte. Notas de chocolate negro y nueces.</p>
-        <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn-ver-producto">Ver Producto</a>
-      </div>
+
+  <div class="productos">
+
+    <!-- Producto 1 -->
+    <div class="producto-card">
+      <img src="./frontend/pages/catalogo/assets/img/1.png" alt="Café Premium Arboleda">
+      <h4>Café Premium Arboleda</h4>
+      <p>Intenso y aromático, perfecto para los amantes del café fuerte. Notas de chocolate negro y nueces.</p>
+      <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn-ver-producto">Ver Producto</a>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-4 mb-4">
-      <div class="producto-card">
-        <img src="./frontend/pages/catalogo/assets/img/2.png" class="img-fluid" alt="Café Orgánico">
-        <h4>Café Americano Orgánico</h4>
-        <p>Café con arte latte incluido. Equilibrio perfecto entre café y el amor de nuestros campesinos.</p>
-        <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn-ver-producto">Ver Producto</a>
-      </div>
+    <!-- Producto 2 -->
+    <div class="producto-card">
+      <img src="./frontend/pages/catalogo/assets/img/2.png" alt="Café Orgánico">
+      <h4>Café Americano Orgánico</h4>
+      <p>Café con arte latte incluido. Equilibrio perfecto entre café y el amor de nuestros campesinos.</p>
+      <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn-ver-producto">Ver Producto</a>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-4 mb-4">
-      <div class="producto-card">
-        <img src="./frontend/pages/catalogo/assets/img/3.png" class="img-fluid" alt="Café de Altura">
-        <h4>Filtro Chemex</h4>
-        <p>Café orgánico de origen único, cultivado en las montañas de Colombia. Sabor suave y balanceado.</p>
-        <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn-ver-producto">Ver Producto</a>
-      </div>
+    <!-- Producto 3 -->
+    <div class="producto-card">
+      <img src="./frontend/pages/catalogo/assets/img/3.png" alt="Café de Altura">
+      <h4>Filtro Chemex</h4>
+      <p>Café orgánico de origen único, cultivado en las montañas de Colombia. Sabor suave y balanceado.</p>
+      <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn-ver-producto">Ver Producto</a>
     </div>
+
   </div>
 
   <!-- Botón al final -->
-  <div class="hero-btn mt-3">
+  <div class="hero-btn">
     <a href="#storytelling" class="btn-hero">Conócenos</a>
   </div>
-</header>
+
+
 
 <!-- VALORES DIFERENCIALES -->
 <section class="valores container my-5">
-  <h2 class="main-title text-center mb-4">Nuestros Valores</h2>
+  <h2 class="main-title text-center mb-4">Nuestros Sellos</h2>
   <div class="row text-center">
     <div class="col-12 col-md-6 col-lg-4 mb-4">
       <div class="product-card">
         <img src="./frontend/pages/Inicio/assets/img/Elementos del café en armonía.png" alt="Café Orgánico" class="img-fluid">
         <h3 class="product-name">Café Orgánico</h3>
-        <p class="product-description">Respetamos la tierra y apoyamos prácticas sostenibles...</p>
+        <p class="product-description">Respetamos la tierra y apoyamos prácticas sostenibles. Cada grano es cultivado sin químicos, 
+          conservando la pureza de la naturaleza. Promovemos la biodiversidad y cuidamos los suelos fértiles de nuestras montañas. 
+          Así garantizamos un café saludable, auténtico y lleno de vida en cada taza.</p>
       </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-4">
       <div class="product-card">
         <img src="./frontend/pages/Inicio/assets/img/Productor de café en su tierra.png" alt="Caficultores Locales" class="img-fluid">
         <h3 class="product-name">Caficultores Locales</h3>
-        <p class="product-description">Trabajamos directamente con las comunidades caficultoras...</p>
+        <p class="product-description">Trabajamos directamente con las comunidades caficultoras. Generamos oportunidades justas que fortalecen la economía rural. 
+          Impulsamos proyectos comunitarios que transforman realidades en el campo. Cada compra es un aporte directo al bienestar y al futuro de nuestras familias caficultoras.</p>
       </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-4">
       <div class="product-card">
         <img src="./frontend/pages/Inicio/assets/img/Tostado Artesanal de Café.png" alt="Tostado Artesanal" class="img-fluid">
         <h3 class="product-name">Tostado Artesanal</h3>
-        <p class="product-description">Un proceso único que resalta los mejores aromas...</p>
+        <p class="product-description">Un proceso único que resalta los mejores aromas. Cada lote es cuidado con paciencia y experiencia heredada por generaciones. 
+          El tostado lento y preciso garantiza una textura suave y equilibrada en cada grano. 
+          Así logramos un café con carácter propio, lleno de matices que conquistan el paladar.</p>
       </div>
     </div>
   </div>
@@ -196,6 +202,65 @@
   </div>
 </section>
 
+<footer class="bg-dark text-light pt-4">
+    <div class="container-fluid">
+      <div class="row footerA text-center text-md-start">
+
+        <!-- Logo -->
+        <div class="col-12 col-sm-12 col-lg-4 logoFooter mb-2 d-flex justify-content-center">
+        <img src="./frontend/components/assets-global/img/cafetalerafooter.png"
+
+            alt="Logo de La Cafetalera" 
+            class="img-fluid"
+            style="max-width: 250px; height: auto;">
+        </div>
+
+        <!-- Menú de enlaces -->
+        <div class="col-6 col-md-3 col-lg-2 mb-3">
+          <ul class="mt-3 list-unstyled lista_footer">
+            <li class="mb-2"><i class="bi bi-house-door-fill me-2"></i><a href="#" class="footer-link text-light text-decoration-none">Inicio</a></li>
+            <li class="mb-2"><i class="bi bi-grid-fill me-2"></i><a href="#" class="footer-link text-light text-decoration-none">Catálogo</a></li>
+            <li class="mb-2"><i class="bi bi-envelope-fill me-2"></i><a href="#" class="footer-link text-light text-decoration-none">Contáctenos</a></li>
+            <li class="mb-2"><i class="bi bi-person-fill me-2"></i><a href="#" class="footer-link text-light text-decoration-none">Login/Registro</a></li>
+            <li class="mb-2"><i class="bi bi-pencil-square me-2"></i><a href="#" class="footer-link text-light text-decoration-none">CRUD</a></li>
+          </ul>
+        </div>
+
+        <!-- Información de contacto -->
+        <div class="col-6 col-md-3 col-lg-2 mb-3">
+          <h4 class="fw-bold">Contacto</h4>
+          <address class="mb-0">
+            <p><i class="bi bi-geo-alt-fill me-2"></i>Bogotá, Colombia</p>
+            <p><i class="bi bi-telephone-fill me-2"></i><a href="tel:+573001234567" class="text-light text-decoration-none">+57 300 123 4567</a></p>
+            <p><i class="bi bi-envelope-fill me-2"></i><a href="mailto:contacto@lacafetalera.com" class="text-light text-decoration-none">contacto@lacafetalera.com</a></p>
+          </address>
+        </div>
+
+        <!-- Redes sociales -->
+        <div class="col-6 col-md-3 col-lg-2 mb-3">
+          <h4 class="fw-bold">Síguenos</h4>
+          <a href="#" aria-label="Facebook" class="text-light me-3"><i class="bi bi-facebook fs-4"></i></a>
+          <a href="#" aria-label="Instagram" class="text-light me-3"><i class="bi bi-instagram fs-4"></i></a>
+          <a href="#" aria-label="TikTok" class="text-light me-3"><i class="bi bi-tiktok fs-4"></i></a>
+          <a href="#" aria-label="YouTube" class="text-light"><i class="bi bi-youtube fs-4"></i></a>
+        </div>
+
+        <!-- Métodos de pago -->
+        <div class="col-6 col-md-3 col-lg-2 mb-3">
+          <h4 class="fw-bold">Métodos de pago</h4>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Tarjeta Visa" width="50" class="me-2">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Tarjeta Mastercard" width="50" class="me-2">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="Pago con PayPal" width="60">
+        </div>
+      </div>
+    </div>
+
+    <!-- Derechos de autor -->
+    <div class="bg-grey text-center py-2 mt-3">
+      <p class="mb-0">© 2025 La Cafetalera. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -203,4 +268,6 @@
 <!-- Script personalizado -->
 <script src="./frontend/pages/Inicio/components/script.js"></script>
 
+
+</body>
 </html>
