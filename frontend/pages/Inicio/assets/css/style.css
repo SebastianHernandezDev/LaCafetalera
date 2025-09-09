@@ -1,0 +1,245 @@
+/* =======================
+   RESET
+======================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =======================
+   BODY
+======================= */
+body {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  font-family: 'Lato', sans-serif;
+  color: #000000;
+}
+
+/* =======================
+   HERO
+======================= */
+.hero {
+  position: relative;
+  height: auto;
+  background: url('../img/hero-cafe.jpg') no-repeat center/cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 60px 20px;
+  color: #000;
+}
+
+.hero .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+}
+
+.hero .content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero .main-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.hero .subtitle {
+  font-family: "Edu NSW ACT Cursive", cursive;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-hero {
+  display: inline-block;
+  background: #4B6950;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 25px;
+  text-align: center;
+  margin-top: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-hero:hover {
+  background: #627a63;
+}
+
+/* =======================
+   TÍTULOS
+======================= */
+.main-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.subtitle {
+  font-family: "Edu NSW ACT Cursive", cursive;
+  font-size: 1.3rem;
+  font-weight: 300;
+  text-align: center;
+}
+
+/* =======================
+   VALORES / PRODUCT-CARD
+======================= */
+.product-card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.product-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.product-description {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+/* =======================
+   PRODUCTOS DESTACADOS
+======================= */
+.productos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.producto-card {
+  width: 280px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.producto-card img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.producto-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.producto-card p {
+  font-size: 14px;
+  color: #503c31;
+}
+
+.producto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+.btn-ver-producto {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #4B6950;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-ver-producto:hover {
+  background-color: #93BE88;
+  transform: translateY(-2px);
+}
+
+/* =======================
+   HISTORIAS DE CAFICULTORES
+======================= */
+.historias img {
+  max-width: 60%;
+  height: auto;
+  border-radius: 15px;
+  display: block;
+  margin: 0 auto;
+}
+
+.historia-parrafo {
+  font-size: 16px;
+  color: #503c31;
+  line-height: 1.6;
+  overflow: hidden;
+  max-height: 80px;
+  transition: max-height 0.25s ease;
+}
+
+.historia-parrafo.expandido {
+  max-height: 2000px;
+}
+
+.ver-mas-btn {
+  margin-top: 10px;
+  background-color: #4B6950;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.ver-mas-btn:hover {
+  background-color: #93BE88;
+}
+
+/* =======================
+   BOTÓN CATÁLOGO
+======================= */
+.catalogo {
+  display: inline-block;
+  background-color: #4B6950;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+}
+
+.catalogo:hover {
+  background-color: #627a63;
+  transform: scale(1.05);
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.2);
+  text-decoration: none;
+}

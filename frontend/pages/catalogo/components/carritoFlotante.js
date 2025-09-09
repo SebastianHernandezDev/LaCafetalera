@@ -35,13 +35,7 @@ function mostrarProductosCarrito() {
     const carrito = obtenerCarrito();
     const productos = obtenerProductos();
     const contenedor = document.getElementById('productosCarrito');
-    
-    // Limpiar carrito de productos que ya no existen
-    const carritoLimpio = carrito.filter(item => validarProducto(item.id));
-    if (carritoLimpio.length !== carrito.length) {
-        guardarCarrito(carritoLimpio);
-    }
-    
+
     // Si no hay productos en el carrito
     if (carritoLimpio.length === 0) {
         contenedor.innerHTML = '';
@@ -50,30 +44,24 @@ function mostrarProductosCarrito() {
         actualizarContador();
         return;
     }
-    
+
     // Si hay productos, crear el HTML
     let htmlProductos = '';
     let total = 0;
-    
-    // Ordenar carrito por ID para mantener consistencia
-    carritoLimpio.sort((a, b) => a.id - b.id);
-    
-    carritoLimpio.forEach(itemCarrito => {
+
+    carrito.forEach(itemCarrito => {
         const producto = productos.find(p => p.id === itemCarrito.id);
         if (producto) {
             const subtotal = parseFloat(producto.price) * itemCarrito.cantidad;
             total += subtotal;
-            
+
             htmlProductos += `
                 <div class="producto-carrito border-bottom py-3" data-producto-id="${producto.id}">
                     <div class="row g-3 align-items-center">
                         
                         <!-- Imagen del producto -->
-                        <div class="col-3">
-                            <img src="${producto.image}" alt="${producto.name}" 
-                                 class="img-fluid rounded" 
-                                 style="max-height: 160px; object-fit: cover;"
-                                 onerror="this.src='../assets/img/placeholder.png'">
+                        <div class="col-6">
+                            <img src="${producto.image}" alt="${producto.name}" class="img-fluid rounded" style="max-height: 160px; object-fit: cover;">
                         </div>
                         
                         <!-- Información del producto -->
@@ -85,42 +73,35 @@ function mostrarProductosCarrito() {
                         </div>
                         
                         <!-- Controles -->
-                        <div class="col-3">
-                            <div class="d-flex align-items-center justify-content-center mb-2">
-                                <button class="btn btn-outline-secondary btn-sm" 
-                                        onclick="disminuirCantidad(${producto.id})" 
-                                        type="button">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <span class="mx-2 fw-bold">${itemCarrito.cantidad}</span>
-                                <button class="btn btn-outline-secondary btn-sm" 
-                                        onclick="aumentarCantidad(${producto.id})" 
-                                        type="button">
-                                    <i class="fas fa-plus"></i>
-                                </button>
+
+                            <div class="col">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <span class="mx-3 text-muted">cantidad: </span>
+                                    <button class="btn btn-outline-warning btn-sm mx-2" onclick="disminuirCantidad(${producto.id})" type="button">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <span class=" fw-bold">${itemCarrito.cantidad}</span>
+                                    <button class="btn btn-outline-primary btn-sm mx-2" onclick="aumentarCantidad(${producto.id})" type="button">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                    <button class="btn btn-outline-danger btn-sm mx-2" onclick="eliminarProducto(${producto.id})" type="button">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
                             </div>
-                            
-                            <div class="text-center">
-                                <button class="btn btn-outline-danger btn-sm" 
-                                        onclick="eliminarProducto(${producto.id})" 
-                                        type="button">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
+                    
                     </div>
                 </div>
             `;
         }
     });
-    
+
     // Mostrar productos y total
     contenedor.innerHTML = htmlProductos;
     document.getElementById('totalCarrito').textContent = `$${total.toFixed(2)}`;
     document.getElementById('carritoVacio').style.display = 'none';
     document.getElementById('carritoFooter').style.display = 'block';
-    
+
     actualizarContador();
 }
 
@@ -135,7 +116,7 @@ function agregarAlCarrito(productoId) {
     
     const carrito = obtenerCarrito();
     const itemExistente = carrito.find(item => item.id === productoId);
-    
+
     if (itemExistente) {
         itemExistente.cantidad += 1;
     } else {
@@ -145,7 +126,7 @@ function agregarAlCarrito(productoId) {
             fechaAgregado: new Date().toISOString()
         });
     }
-    
+
     guardarCarrito(carrito);
     mostrarProductosCarrito();
     return true;
@@ -180,8 +161,28 @@ function eliminarProducto(productoId) {
 }
 
 function vaciarCarrito() {
-    localStorage.removeItem('cart');
-    mostrarProductosCarrito();
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "Se eliminarán todos los productos del carrito",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, vaciar carrito',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.removeItem('cart');
+            mostrarProductosCarrito();
+
+            // Opcional: mostrar confirmación
+            Swal.fire(
+                '¡Eliminado!',
+                'El carrito ha sido vaciado.',
+                'success'
+            );
+        }
+    });
 }
 
 function actualizarContador() {
@@ -196,67 +197,15 @@ function actualizarContador() {
 
 // ===== EVENTOS =====
 
-document.addEventListener('DOMContentLoaded', async function() {
-    // Inicializar productos del catálogo
-    await initializeProducts();
-    renderProducts();
-    
+document.addEventListener('DOMContentLoaded', function () {
     // Actualizar contador al cargar la página
     actualizarContador();
-    
+
     // Evento para mostrar productos cuando se abra el carrito
-    const carritoFlotante = document.getElementById('carritoFlotante');
-    if (carritoFlotante) {
-        carritoFlotante.addEventListener('click', function() {
-            mostrarProductosCarrito();
-        });
-    }
-    
-    // Función para mostrar el modal de confirmación
-    function mostrarConfirmacion(message, callback) {
-        const modalMensaje = document.getElementById("confirmarMensaje");
-        if (modalMensaje) {
-            modalMensaje.innerText = message;
-        }
-        
-        const confirmModal = new bootstrap.Modal(document.getElementById("confirmModal"));
-        confirmModal.show();
+    document.getElementById('carritoFlotante').addEventListener('click', function () {
+        mostrarProductosCarrito();
 
-        // Botones
-        const okButton = document.getElementById("confirmarOk");
-        const cancelButton = document.getElementById("confirmarCancelar");
+        document.getElementById('vaciarCarrito').addEventListener('click', vaciarCarrito);
 
-        okButton.onclick = function () {
-            callback(true);
-            confirmModal.hide();
-        };
-
-        cancelButton.onclick = function () {
-            callback(false);
-            confirmModal.hide();
-        };
-    }
-
-    // Evento para vaciar carrito con confirmación
-    const btnVaciarCarrito = document.getElementById('vaciarCarrito');
-    if (btnVaciarCarrito) {
-        btnVaciarCarrito.addEventListener('click', function () {
-            mostrarConfirmacion("¿Estás seguro de que quieres vaciar el carrito?", function (respuesta) {
-                if (respuesta) {
-                    vaciarCarrito();
-                }
-            });
-        });
-    }
-    
-    // Evento para proceder al checkout
-    const btnCheckout = document.getElementById('procederCheckout');
-    if (btnCheckout) {
-        btnCheckout.addEventListener('click', function() {
-            const resumen = obtenerResumenCarrito();
-            console.log('Resumen del pedido:', resumen);
-            // Aquí puedes agregar la lógica para proceder al checkout
-            alert(`Total a pagar: $${resumen.totalPrecio.toFixed(2)}`);
-        });
-    }
+    })
 });

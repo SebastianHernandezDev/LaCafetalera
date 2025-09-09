@@ -2,21 +2,53 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
+.main-title {
+    font-family: 'Merriweather', serif;
+    font-size: 2.5rem;
+    color: #4b2e2e;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: #7a5c4b;
+}
+.hero-catalogo{
+    margin-top: 100px;
+}
+.mensaje-compra h2 {
+    font-size: 1.8rem;
+}
+
+.mensaje-compra p {
+    font-size: 1.1rem;
+}
+.subtitle{
+    font-family: "Edu NSW ACT Cursive", cursive;
+    color: #503c31;
+    font-size: 1.3rem;
+    font-weight: 300;
+    padding-left: 30px;
+}
 
 body {
-    background: #F7E4C6;
+    background-color: #f5f5f5;
     min-height: 100vh;
-    font-family: 'Lato', sans-serif;
+
 
 }
-
+.title21{
+    font-weight:600;
+}
 .containerCatalogo {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    margin-top: 100px;
 }
+
 
 .header {
     text-align: center;
@@ -30,15 +62,9 @@ body {
     font-size: 48px;
     color: #4B6950;
     margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+
 }
 
-.subtitle {
-    font-family: 'Lato', sans-serif;
-    font-size: 18px;
-    color: #8C5637;
-    font-weight: 300;
-}
 
 .admin-link-section {
     text-align: center;
@@ -57,12 +83,24 @@ body {
     font-family: 'Lato', sans-serif;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(75,105,80,0.2);
+
+}
+.btn-disabled{
+
+    background: gray;
+    width: 200px;
+    height: 40px;
+    align-items: center;
+    color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: #4b2e2e;
+    
 }
 
 .admin-link:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(75,105,80,0.3);
+    box-shadow: 0 10px 25px rgba(75, 105, 80, 0.3);
     text-decoration: none;
     color: white;
 }
@@ -78,17 +116,19 @@ body {
     background: white;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     transition: all 0.4s ease;
     opacity: 0;
     transform: translateY(50px);
     animation: slideInUp 0.8s ease-out forwards;
     position: relative;
+    width: 100%;
+    max-width: 400px;
 }
 
 .product-card:hover {
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
 }
 
 .product-image {
@@ -153,7 +193,7 @@ body {
 
 .btn-cart:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(140,86,55,0.3);
+    box-shadow: 0 8px 20px rgba(140, 86, 55, 0.3);
 }
 
 .delete-btn {
@@ -165,6 +205,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -179,16 +220,45 @@ body {
 }
 
 /* Animación escalonada para las cards */
-.product-card:nth-child(1) { animation-delay: 0.1s; }
-.product-card:nth-child(2) { animation-delay: 0.2s; }
-.product-card:nth-child(3) { animation-delay: 0.3s; }
-.product-card:nth-child(4) { animation-delay: 0.4s; }
-.product-card:nth-child(5) { animation-delay: 0.5s; }
-.product-card:nth-child(6) { animation-delay: 0.6s; }
-.product-card:nth-child(7) { animation-delay: 0.7s; }
-.product-card:nth-child(8) { animation-delay: 0.8s; }
-.product-card:nth-child(9) { animation-delay: 0.9s; }
-.product-card:nth-child(10) { animation-delay: 1.0s; }
+.product-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.product-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.product-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.product-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.product-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.product-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.product-card:nth-child(7) {
+    animation-delay: 0.7s;
+}
+
+.product-card:nth-child(8) {
+    animation-delay: 0.8s;
+}
+
+.product-card:nth-child(9) {
+    animation-delay: 0.9s;
+}
+
+.product-card:nth-child(10) {
+    animation-delay: 1.0s;
+}
 
 .no-products {
     text-align: center;
@@ -238,4 +308,13 @@ body {
     .product-price {
         font-size: 24px;
     }
+}
+.historia-parrafo {
+  max-height: 150px; /* altura inicial */
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.historia-parrafo.expandido {
+  max-height: 2000px; /* altura suficiente para mostrar todo el contenido */
 }

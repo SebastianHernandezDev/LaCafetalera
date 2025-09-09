@@ -3,10 +3,20 @@
 .navbar {
   background-color: rgb(255, 255, 255) !important;
   padding: 0.5rem 1rem;
-  box-shadow: #000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* mejora sombra */
   height: 80px;
-  width: 100%; /* ✅ Mejora para responsive */
-  max-width: 100%;
+  /* ✅ Elimina estas líneas que estiran toda la navbar */
+  /* width: 100%; */
+  /* max-width: 100%; */
+}
+.navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 0 0 10px 10px; /* si quieres esquinas redondeadas */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.navbar {
+  padding: 1rem 1rem; /* arriba y abajo */
 }
 .boton-login-navbar {
   font-size: 1.1rem;
@@ -168,47 +178,24 @@
 
 /* 📱 Responsividad para móviles */
 @media (max-width: 991px) {
-  .navbar-nav {
-    flex-direction: column !important;
-    align-items: center;
-    gap: 0.5rem;
-    text-align: center;
-  }
-
-  .nav-link {
-    font-size: 1.05rem;
-    padding: 12px;
-  }
-
-  .navbar-brand {
-    font-size: 1.8rem;
-    text-align: center;
-  }
-
-  #botonCarritosm,
-  #botonSesion {
-    width: 90%;
-    margin: 10px auto;
-    font-size: 1rem;
-  }
-
-  .btn-uniforme {
-    min-width: unset;
-    width: 90%;
-  }
-}
-@media (max-width: 991px) {
   .navbar-collapse {
-    background-color: #fff; /* o #F7E4C6 si prefieres */
+    background-color: #fff;
     padding: 1rem;
     border-radius: 0 0 10px 10px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    width: 100vw;
+    left: 0;
+    top: 80px;
+    position: absolute;
+    z-index: 999;
+    border-top: 1px solid #ccc;
   }
 
   .navbar-nav {
     flex-direction: column !important;
     align-items: center;
     gap: 0.7rem;
+    width: 100%;
   }
 
   .btn-iniciarSesion {
@@ -217,28 +204,21 @@
     margin-top: 10px;
   }
 
-  #botonSesion {
-    width: 100%;
+  #botonSesion,
+  #botonCarritosm {
+    width: 90%;
+    margin: 10px auto;
+    font-size: 1rem;
     text-align: center;
   }
-}
-@media (max-width: 991px) {
-  .navbar-collapse {
-    width: 100vw !important;
-    left: 0;
-    top: 80px; /* Altura de tu navbar fija */
-    position: absolute;
-    background-color: white; /* o #fff o el color que prefieras */
-    z-index: 999;
-    padding: 1rem 0;
-    border-top: 1px solid #ccc;
+
+  .btn-uniforme {
+    width: 90%;
+    min-width: unset;
   }
 
-  .navbar-collapse.show {
-    display: block !important;
-  }
-
-  .navbar-nav {
-    width: 100%;
+  .nav-link {
+    font-size: 1.05rem;
+    padding: 12px;
   }
 }

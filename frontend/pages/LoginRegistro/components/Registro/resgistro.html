@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/ccs/registro.css">
+</head>
+
+<body>
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="card shadow-lg p-4 rounded-4">
+        <h2 class="text-center mb-4">Registro de Usuario</h2>
+        <form id="registerForm" novalidate>
+
+          <!-- Nombres -->
+          <div class="mb-3">
+            <label for="nombres" class="form-label">Nombres</label>
+            <input type="text" class="form-control" id="nombres" required>
+            <div class="invalid-feedback">Solo se permiten letras, no números ni caracteres especiales.</div>
+          </div>
+
+          <!-- Apellidos -->
+          <div class="mb-3">
+            <label for="apellidos" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" id="apellidos" required>
+            <div class="invalid-feedback">Solo se permiten letras, no números ni caracteres especiales.</div>
+          </div>
+
+          <!-- Correo -->
+          <div class="mb-3">
+            <label for="correo" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="correo" required>
+            <div class="invalid-feedback" id="correoError">Ingrese un correo válido.</div>
+          </div>
+
+          <!-- Celular -->
+          <div class="mb-3">
+            <label for="celular" class="form-label">Número de celular</label>
+            <input type="text" class="form-control" id="celular" required>
+            <div class="invalid-feedback">Debe contener exactamente 10 dígitos numéricos.</div>
+          </div>
+
+          <!-- Contraseña -->
+          <div class="mb-3 position-relative">
+            <label for="password" class="form-label">Contraseña</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="password" required>
+              <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+            <div class="invalid-feedback" id="passwordError">
+              La contraseña debe tener mínimo 8 caracteres, incluir mayúscula, minúscula, número y carácter especial.
+            </div>
+          </div>
+
+          <!-- Confirmar contraseña -->
+          <div class="mb-3 position-relative">
+            <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="confirmPassword" required>
+              <button type="button" class="btn btn-outline-secondary" id="toggleConfirmPassword">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+            <div class="invalid-feedback">Las contraseñas no coinciden.</div>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Registrar</button>
+          <div>
+            <p class="inicioSesion text-center">Ya tienes cuenta? <a href="../Login/login.html"> iniciar sesion</span>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Tu JS -->
+  <script src="main.js"></script>
+</body>
+
+</html>

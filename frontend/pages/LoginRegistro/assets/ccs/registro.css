@@ -1,0 +1,172 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #F6E7D7, #C89F70); /* degradado café-crema */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+/* Contenedor del formulario */
+.card {
+  background: #fffaf3; /* crema claro */
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+
+/* Títulos */
+h2 {
+  color: #6B4226; /* marrón café */
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Labels flotantes */
+.form-floating {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-floating input {
+  border-radius: 10px;
+  border: 2px solid #D6A77A;
+  padding: 1rem 1rem 0.5rem 1rem;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.form-floating label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: #4E342E;
+  font-weight: 500;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* Al enfocar o tener valor */
+.form-floating input:focus + label,
+.form-floating input:not(:placeholder-shown) + label {
+  top: -0.5rem;
+  left: 0.8rem;
+  font-size: 0.8rem;
+  background: #fffaf3;
+  padding: 0 0.25rem;
+  color: #A0522D;
+}
+
+/* --------------------
+   Inputs interactivos
+-------------------- */
+.form-floating input:focus {
+  border-color: #A0522D;
+  box-shadow: 0 0 8px rgba(160, 82, 45, 0.4);
+  outline: none;
+}
+
+/* --------------------
+   Input valido/invalido con transición
+-------------------- */
+.is-valid {
+  border-color: #28a745 !important;
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+  transition: all 0.3s ease;
+}
+
+.is-invalid {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* --------------------
+   Botones
+-------------------- */
+.btn-primary {
+  background: linear-gradient(135deg, #A0522D, #6B4226);
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 0;
+  font-weight: 600;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #6B4226, #4E342E);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* --------------------
+   Input group (contraseña)
+-------------------- */
+.input-group .btn-outline-secondary {
+  border-radius: 0 10px 10px 0;
+  background: #fffaf3;
+  border: 2px solid #D6A77A;
+  color: #4E342E;
+  transition: all 0.3s ease;
+}
+
+.input-group .btn-outline-secondary:hover {
+  background: #F5E4D3;
+  color: #A0522D;
+}
+
+/* Icono al pasar sobre el botón */
+.input-group .btn-outline-secondary i {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.input-group .btn-outline-secondary:hover i {
+  color: #A0522D;
+  transform: scale(1.1);
+}
+
+/* --------------------
+   Mensajes de validación
+-------------------- */
+.invalid-feedback {
+  display: block;
+  font-size: 0.85rem;
+  color: #B00020;
+  margin-top: 0.25rem;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+.is-invalid + .invalid-feedback {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------
+   Alertas superiores
+-------------------- */
+#alert-container .alert {
+  border-radius: 12px;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* --------------------
+   Responsivo
+-------------------- */
+@media (max-width: 768px) {
+  .card {
+    padding: 1.5rem;
+  }
+}
