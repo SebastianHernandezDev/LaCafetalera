@@ -10,64 +10,10 @@ body {
   background-color: #f5f5f5;
   min-height: 100vh;
   font-family: 'Lato', sans-serif;
-  color: #503c31;
+  color: #000000;
 }
 
-/* NAVBAR */
-.navbar {
-  background: #f5f5f5;
-  padding: 15px 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
 
-.navbar-container {
-  width: 100%;
-  max-width: 1200px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar-logo img {
-  height: 50px;
-}
-
-.navbar-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-.navbar-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.navbar-links a:hover {
-  color: #FFD700;
-}
-
-.btn-login {
-  background: #8C5637;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-
-.btn-login:hover {
-  background: #A66A4A;
-  transform: translateY(-2px);
-}
 
 /* HERO */
 .hero {
@@ -317,7 +263,7 @@ body {
 .producto-card h4 {
   font-family: 'Playfair Display', serif;
   margin-bottom: 5px;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .producto-card p {
@@ -364,4 +310,33 @@ body {
 .btn-ver-producto:hover {
   background-color: #93BE88;
   transform: translateY(-2px);
+}
+
+/* Imágenes de las historias */
+.historias img {
+  max-width: 60%;       /* un poquito más pequeñas */
+  height: auto;         /* mantiene proporción */
+  border-radius: 15px;  /* curvas en las esquinas */
+  display: block;       /* para que respeten el centrado */
+  margin: 0 auto;       /* centradas */
+}
+
+/* -------------------------
+   Historias - truncado + expandir
+   ------------------------- */
+
+.historia-parrafo {
+  /* truncado en 3 líneas con ellipsis (WebKit) */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  max-height: 4.6em; /* aprox 3 líneas (ajusta si tu fuente cambia) */
+}
+
+/* Estado expandido: muestra todo */
+.historia-parrafo.expandido {
+  -webkit-line-clamp: unset;
+  max-height: 2000px; /* suficientemente grande para mostrar todo */
 }
