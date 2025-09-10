@@ -85,18 +85,27 @@ body {
     transition: all 0.3s ease;
 
 }
-.btn-disabled{
-
-    background: gray;
+.btn-delete-product {
+    background: gray; /* Rojo oscuro */
     width: 200px;
     height: 40px;
+    display: flex;
     align-items: center;
+    justify-content: center;
     color: white;
     border-radius: 5px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    gap: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border: #4b2e2e;
-    
+    transition: background 0.3s ease;
 }
+
+.btn-delete-product:hover {
+    background: #d63031; /* Rojo más vivo al pasar el mouse */
+}
+
 
 .admin-link:hover {
     transform: translateY(-3px);
