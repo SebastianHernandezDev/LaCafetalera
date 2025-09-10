@@ -64,31 +64,63 @@
     </div>
 
     <!-- Productos destacados -->
-    <div class="productos">
-      <!-- Producto 1 -->
-      <div class="producto-card">
-        <img src="./frontend/pages/catalogo/assets/img/1.png" alt="Café Premium Arboleda">
-        <h4>Café Premium Arboleda</h4>
-        <p>Intenso y aromático, perfecto para los amantes del café fuerte. Notas de chocolate negro y nueces.</p>
-        <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn-ver-producto">Ver Producto</a>
-      </div>
+    <div class="carrusel-container">
+        <div class="productos" id="carrusel">
+            <!-- Producto 1 -->
+            <div class="producto-card">
+                <img src="./frontend/pages/catalogo/assets/img/1.png" alt="Café Premium Arboleda">
+                <h4>Café Premium Arboleda</h4>
+                <p>Intenso y aromático, perfecto para los amantes del café fuerte. Notas de chocolate negro y nueces.</p>
+                <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn-ver-producto">Ver Producto</a>
+            </div>
 
-      <!-- Producto 2 -->
-      <div class="producto-card">
-        <img src="./frontend/pages/catalogo/assets/img/2.png" alt="Café Orgánico">
-        <h4>Café Americano Orgánico</h4>
-        <p>Café con arte latte incluido. Equilibrio perfecto entre café y el amor de nuestros campesinos.</p>
-        <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn-ver-producto">Ver Producto</a>
-      </div>
+            <!-- Producto 2 -->
+            <div class="producto-card">
+                <img src="./frontend/pages/catalogo/assets/img/2.png" alt="Café Orgánico">
+                <h4>Café Americano Orgánico</h4>
+                <p>Café con arte latte incluido. Equilibrio perfecto entre café y el amor de nuestros campesinos.</p>
+                <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn-ver-producto">Ver Producto</a>
+            </div>
 
-      <!-- Producto 3 -->
-      <div class="producto-card">
-        <img src="./frontend/pages/catalogo/assets/img/3.png" alt="Café de Altura">
-        <h4>Filtro Chemex</h4>
-        <p>Café orgánico de origen único, cultivado en las montañas de Colombia. Sabor suave y balanceado.</p>
-        <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn-ver-producto">Ver Producto</a>
-      </div>
+            <!-- Producto 3 -->
+            <div class="producto-card">
+                <img src="./frontend/pages/catalogo/assets/img/3.png" alt="Café de Altura">
+                <h4>Filtro Chemex</h4>
+                <p>Café orgánico de origen único, cultivado en las montañas de Colombia. Sabor suave y balanceado.</p>
+                <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn-ver-producto">Ver Producto</a>
+            </div>
+
+            <!-- Producto 1 (duplicado) -->
+            <div class="producto-card">
+                <img src="./frontend/pages/catalogo/assets/img/1.png" alt="Café Premium Arboleda">
+                <h4>Café Premium Arboleda</h4>
+                <p>Intenso y aromático, perfecto para los amantes del café fuerte. Notas de chocolate negro y nueces.</p>
+                <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn-ver-producto">Ver Producto</a>
+            </div>
+
+            <!-- Producto 2 (duplicado) -->
+            <div class="producto-card">
+                <img src="./frontend/pages/catalogo/assets/img/2.png" alt="Café Orgánico">
+                <h4>Café Americano Orgánico</h4>
+                <p>Café con arte latte incluido. Equilibrio perfecto entre café y el amor de nuestros campesinos.</p>
+                <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn-ver-producto">Ver Producto</a>
+            </div>
+
+            <!-- Producto 3 (duplicado) -->
+            <div class="producto-card">
+                <img src="./frontend/pages/catalogo/assets/img/3.png" alt="Café de Altura">
+                <h4>Filtro Chemex</h4>
+                <p>Café orgánico de origen único, cultivado en las montañas de Colombia. Sabor suave y balanceado.</p>
+                <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn-ver-producto">Ver Producto</a>
+            </div>
+        </div>
     </div>
+
+    <div class="carrusel-indicators">
+        <span class="indicator active" data-slide="0"></span>
+        <span class="indicator" data-slide="1"></span>
+    </div>
+
 
     <!-- Botón al final -->
     <div class="hero-btn">
@@ -102,28 +134,34 @@
     <div class="row text-center">
       <div class="col-12 col-md-6 col-lg-4 mb-4">
         <div class="product-card">
+          <div class="image-container-card">
           <img src="./frontend/pages/Inicio/assets/img/Elementos del café en armonía.png" alt="Café Orgánico" class="img-fluid">
+          </div>
           <h3 class="product-name">Café Orgánico</h3>
-          <p class="product-description">Respetamos la tierra y apoyamos prácticas sostenibles. Cada grano es cultivado sin químicos, 
+          <p class="product-description w-75 mx-auto">Respetamos la tierra y apoyamos prácticas sostenibles. Cada grano es cultivado sin químicos, 
             conservando la pureza de la naturaleza. Promovemos la biodiversidad y cuidamos los suelos fértiles de nuestras montañas. 
-            Así garantizamos un café saludable, auténtico y lleno de vida en cada taza.</p>
+            </p>
         </div>
       </div>
       <div class="col-12 col-md-6 col-lg-4 mb-4">
         <div class="product-card">
-          <img src="./frontend/pages/Inicio/assets/img/Productor de café en su tierra.png" alt="Caficultores Locales" class="img-fluid">
+          <div class="image-container-card">
+            <img src="./frontend/pages/Inicio/assets/img/Productor de café en su tierra.png" alt="Caficultores Locales" class="img-fluid">
+          </div>
           <h3 class="product-name">Caficultores Locales</h3>
-          <p class="product-description">Trabajamos directamente con las comunidades caficultoras. Generamos oportunidades justas que fortalecen la economía rural. 
-            Impulsamos proyectos comunitarios que transforman realidades en el campo. Cada compra es un aporte directo al bienestar y al futuro de nuestras familias caficultoras.</p>
+          <p class="product-description w-75 mx-auto">Trabajamos directamente con las comunidades caficultoras. Generamos oportunidades justas que fortalecen la economía rural. 
+            Impulsamos proyectos comunitarios que transforman realidades en el campo.</p>
         </div>
       </div>
       <div class="col-12 col-md-6 col-lg-4 mb-4">
         <div class="product-card">
-          <img src="./frontend/pages/Inicio/assets/img/Tostado Artesanal de Café.png" alt="Tostado Artesanal" class="img-fluid">
+          <div class="image-container-card">
+            <img src="./frontend/pages/Inicio/assets/img/Tostado Artesanal de Café.png" alt="Tostado Artesanal" class="img-fluid">
+          </div>
           <h3 class="product-name">Tostado Artesanal</h3>
-          <p class="product-description">Un proceso único que resalta los mejores aromas. Cada lote es cuidado con paciencia y experiencia heredada por generaciones. 
-            El tostado lento y preciso garantiza una textura suave y equilibrada en cada grano. 
-            Así logramos un café con carácter propio, lleno de matices que conquistan el paladar.</p>
+          <p class="product-description  w-75 mx-auto">Un proceso único que resalta los mejores aromas. Cada lote es cuidado con paciencia y experiencia heredada por generaciones. 
+            El tostado lento y preciso garantiza una textura suave. 
+            Así logramos un café con carácter propio.</p>
         </div>
       </div>
     </div>
@@ -154,50 +192,68 @@
     <h2 class="main-title text-center mb-4">Historias de Nuestros Caficultores</h2>
 
     <div class="row mb-4 align-items-center">
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6 mb-4">
         <img src="./frontend/pages/Inicio/assets/img/Historia1.png" class="img-fluid" alt="Caficultor 1">
       </div>
-      <div class="col-12 col-md-6">
-        <h3>Don José – Tradición y Familia</h3>
-        <p>Desde niño, Don José ha trabajado en el cafetal heredado de sus abuelos. 
-          Su amor por la tierra y el café lo ha llevado a mantener prácticas sostenibles y enseñar a las nuevas generaciones a respetar la naturaleza y la tradición cafetera. 
-          Con el tiempo, conoció a La Cafetalera, una plataforma que conecta directamente a pequeños productores con consumidores conscientes. 
-          Gracias a esta iniciativa, Don José ha podido vender su café a precios justos, 
-          recibir reconocimiento por la calidad de su producto y acceder a herramientas que lo ayudan a mejorar sus cultivos.</p>
-        <button class="ver-mas-btn">Ver más</button>
+        <div class="col-12 col-md-6 mb-4">
+          <h3>Don José – Tradición y Familia</h3>
+          <div class="texto-corto">
+            <p>Desde niño, Don José ha trabajado en el cafetal heredado de sus abuelos. Su amor por la tierra y el café lo ha llevado a mantener prácticas sostenibles...</p>
+          </div>
+          <div class="texto-completo" style="display: none;">
+            <p>Desde niño, Don José ha trabajado en el cafetal heredado de sus abuelos.
+              Su amor por la tierra y el café lo ha llevado a mantener prácticas sostenibles y enseñar a las nuevas generaciones a respetar la naturaleza y la tradición cafetera.
+              Con el tiempo, conoció a La Cafetalera, una plataforma que conecta directamente a pequeños productores con consumidores conscientes.
+              Gracias a esta iniciativa, Don José ha podido vender su café a precios justos,
+              recibir reconocimiento por la calidad de su producto y acceder a herramientas que lo ayudan a mejorar sus cultivos.</p>
+          </div>
+          <button class="ver-mas-btn" onclick="toggleTexto(this)">Ver más</button>
+        </div>
       </div>
     </div>
 
     <div class="row mb-4 align-items-center flex-md-row-reverse">
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6 mb-4">
         <img src="./frontend/pages/Inicio/assets/img/Historia2.png" class="img-fluid" alt="Caficultora 2">
       </div>
-      <div class="col-12 col-md-6">
-        <h3>Doña María – Fuerza de Mujer</h3>
-        <p>Doña María lidera una comunidad de caficultoras que han transformado su región. 
-          A pesar de los desafíos y las barreras que enfrentan las mujeres en el sector agrícola, 
-          a través de esta plataforma, Doña María ha logrado que los cafés producidos por su comunidad lleguen directamente a consumidores que valoran su trabajo, 
-          reconociendo la calidad y el esfuerzo detrás de cada grano. 
-          Cada taza de café cuenta una historia de resiliencia, dedicación y fuerza femenina, y gracias a La Cafetalera, Doña María sabe que el impacto de su labor trasciende su región y llega a personas que aprecian y respetan su esfuerzo.</p>
-        <button class="ver-mas-btn">Ver más</button>
-      </div>
+        <div class="col-12 col-md-6 mb-4">
+          <h3>Doña María – Fuerza de Mujer</h3>
+          <div class="texto-corto">
+            <p>Doña María lidera una comunidad de caficultoras que han transformado su región.
+              A pesar de los desafíos y las barreras que enfrentan las mujeres en el sector agrícola...</p>
+          </div>
+          <div class="texto-completo" style="display: none;">
+            <p>Doña María lidera una comunidad de caficultoras que han transformado su región.
+              A pesar de los desafíos y las barreras que enfrentan las mujeres en el sector agrícola,
+              a través de esta plataforma, Doña María ha logrado que los cafés producidos por su comunidad lleguen directamente a consumidores que valoran su trabajo,
+              reconociendo la calidad y el esfuerzo detrás de cada grano.
+              Cada taza de café cuenta una historia de resiliencia, dedicación y fuerza femenina, y gracias a La Cafetalera, Doña María sabe que el impacto de su labor trasciende su región y llega a personas que aprecian y respetan su esfuerzo.</p>
+          </div>
+          <button class="ver-mas-btn" onclick="toggleTexto(this)">Ver más</button>
+        </div>
     </div>
 
     <div class="row mb-4 align-items-center">
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6 mb-4">
         <img src="./frontend/pages/Inicio/assets/img/Historia3.png" class="img-fluid" alt="Caficultor 3">
       </div>
-      <div class="col-12 col-md-6">
-        <h3>Carlos – Innovación en el Campo</h3>
-        <p>Carlos siempre ha sentido un profundo respeto por las tradiciones cafetaleras de su familia, 
-          pero también una curiosidad insaciable por la innovación. 
-          Desde joven, soñaba con mejorar los cultivos sin perder la esencia del café que lo vio crecer. 
-          Hoy, gracias a La Cafetalera, ha podido combinar tradición y tecnología, implementando nuevas técnicas de riego, 
-          control de calidad y procesamiento que elevan la excelencia de su café, 
-          conservando los sabores auténticos que caracterizan su región. 
-          Gracias a La Cafetalera, su esfuerzo y creatividad tienen un impacto real y reconocido, mostrando que la pasión por el café puede transformar vidas.</p>
-        <button class="ver-mas-btn">Ver más</button>
-      </div>
+        <div class="col-12 col-md-6 mb-4">
+          <h3>Carlos – Innovación en el Campo</h3>
+          <div class="texto-corto">
+            <p>Carlos siempre ha sentido un profundo respeto por las tradiciones cafetaleras de su familia, pero también una curiosidad insaciable por la innovación.
+              Desde joven, soñaba con mejorar los cultivos sin perder la esencia del café que lo vio crecer...</p>
+          </div>
+          <div class="texto-completo" style="display: none;">
+            <p>Carlos siempre ha sentido un profundo respeto por las tradiciones cafetaleras de su familia,
+              pero también una curiosidad insaciable por la innovación.
+              Desde joven, soñaba con mejorar los cultivos sin perder la esencia del café que lo vio crecer.
+              Hoy, gracias a La Cafetalera, ha podido combinar tradición y tecnología, implementando nuevas técnicas de riego,
+              control de calidad y procesamiento que elevan la excelencia de su café,
+              conservando los sabores auténticos que caracterizan su región.
+              Gracias a La Cafetalera, su esfuerzo y creatividad tienen un impacto real y reconocido, mostrando que la pasión por el café puede transformar vidas.</p>
+          </div>
+          <button class="ver-mas-btn" onclick="toggleTexto(this)">Ver más</button>
+        </div>
     </div>
   </section>
 

@@ -97,12 +97,28 @@ body {
    VALORES / PRODUCT-CARD
 ======================= */
 .product-card {
-  background: #fff;
+  background: #e2a07a;
   border-radius: 20px;
   overflow: hidden;
   transition: all 0.3s ease;
   box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
+
+  .image-container-card {
+    position: relative;
+    display: inline-block; 
+  }
+
+  .image-container-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #e2a07a); /* Degradado de transparente a blanco */
+    pointer-events: none; 
+  }
 
 .product-card:hover {
   transform: translateY(-8px) scale(1.02);
@@ -124,63 +140,94 @@ body {
 /* =======================
    PRODUCTOS DESTACADOS
 ======================= */
-.productos {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
+        .carrusel-container {
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            border-radius: 15px;
+        }
 
-.producto-card {
-  width: 280px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
+        .productos {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 20px;
+            padding: 20px 0;
+        }
 
-.producto-card img {
-  max-width: 100%;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  height: 150px;
-  object-fit: cover;
-}
+        /* ======================= PRODUCTOS DESTACADOS ======================= */
+        .producto-card {
+            width: 280px;
+            background: #fcdcca;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            flex-shrink: 0;
+        }
 
-.producto-card h4 {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  margin-bottom: 5px;
-}
+        .producto-card img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            height: 150px;
+            object-fit: cover;
+        }
 
-.producto-card p {
-  font-size: 14px;
-  color: #503c31;
-}
+        .producto-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
 
-.producto-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-}
+        .producto-card p {
+            font-size: 14px;
+            color: #503c31;
+        }
 
-.btn-ver-producto {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #4B6950;
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
+        .producto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+        }
 
-.btn-ver-producto:hover {
-  background-color: #93BE88;
-  transform: translateY(-2px);
-}
+        .btn-ver-producto {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #4B6950;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-ver-producto:hover {
+            background-color: #93BE88;
+            transform: translateY(-2px);
+        }
+
+        /* Indicadores del carrusel */
+        .carrusel-indicators {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: inline-block;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .indicator.active {
+            background-color: #4B6950;
+        }
 
 /* =======================
    HISTORIAS DE CAFICULTORES
