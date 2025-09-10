@@ -37,7 +37,7 @@ function mostrarProductosCarrito() {
     const contenedor = document.getElementById('productosCarrito');
 
     // Si no hay productos en el carrito
-    if (carritoLimpio.length === 0) {
+    if (carrito.length === 0) {
         contenedor.innerHTML = '';
         document.getElementById('carritoVacio').style.display = 'block';
         document.getElementById('carritoFooter').style.display = 'none';
