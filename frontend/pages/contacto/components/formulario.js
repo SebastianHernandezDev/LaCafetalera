@@ -1,4 +1,47 @@
- document.getElementById('contactForm').addEventListener('submit', function(e) {
+function AdminPanel() {
+  const boto = document.getElementById("botonSesion");
+  if (!boto) return;
+
+  const usuarioJSON = localStorage.getItem("usuarioActivo");
+
+  // Si NO hay usuario, mostrar botón para iniciar sesión
+  if (!usuarioJSON) {
+    boto.setAttribute("href", "/frontend/pages/LoginRegistro/components/Login/login.html");
+    boto.innerHTML = `<i class="bi bi-person-fill letrasLogin me-2"></i><strong>Iniciar Sesión</strong>`;
+    boto.onclick = null; // Limpia cualquier evento anterior
+    return;
+  }
+
+  const usuario = JSON.parse(usuarioJSON);
+
+  // Si es admin, mostrar botón para ir al panel admin
+  if (usuario.rol && usuario.rol.toLowerCase() === "admin") {
+    boto.setAttribute("href", "/frontend/pages/dashboardAdmin/components/dashboard.html");
+    boto.innerHTML = `<i class="bi bi-speedometer2 me-2"></i><strong>Admin Panel</strong>`;
+    boto.onclick = null; // Limpia cualquier evento anterior
+    return;
+  }
+
+
+  boto.removeAttribute("href"); // Quita el href para que use el onclick
+  boto.innerHTML = `<i class="bi bi-box-arrow-right me-2"></i><strong>Cerrar Sesión</strong>`;
+  boto.onclick = function (e) {
+    e.preventDefault();
+    Swal.fire({
+      title: '¿Deseas cerrar sesión?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, cerrar sesión',
+      cancelButtonText: 'Cancelar'
+    }).then(result => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("usuarioActivo");
+        window.location.href = "../../../../index.html"; // Redirige a la página de inicio
+      }
+    });
+  };
+}
+document.getElementById('contactForm').addEventListener('submit', function(e) {
             const submitBtn = document.getElementById('submitBtn');
             const successMsg = document.getElementById('successMessage');
             const errorMsg = document.getElementById('errorMessage');
@@ -56,3 +99,6 @@
         
         // Inicializar contador
         mensajeTextarea.dispatchEvent(new Event('input'));
+
+document.addEventListener("DOMContentLoaded", () => {
+  AdminPanel();});

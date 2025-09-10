@@ -57,32 +57,7 @@ h3, .product-name {
   font-weight: 700;
 }
 
-/* Navbar personalizado */
-.navbar {
-  background: rgba(75, 105, 80, 0.85);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  transition: background-color 0.3s ease;
-}
 
-.navbar .nav-link {
-  color: #f7e4c6;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.navbar .nav-link:hover,
-.navbar .nav-link:focus {
-  color: #93BE88;
-  text-decoration: underline;
-}
-
-.navbar-toggler {
-  border-color: #93BE88;
-}
-
-.navbar-toggler-icon {
-  filter: invert(1);
-}
 
 /* Botón iniciar sesión */
 .btn-carrito {

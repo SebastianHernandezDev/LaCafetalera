@@ -1,6 +1,7 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #F6E7D7, #C89F70); /* degradado café-crema */
+  background-image: url('../img/fondo.png');
+  background-o: ;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -54,7 +55,6 @@ h2 {
   transition: all 0.3s ease;
 }
 
-/* Al enfocar o tener valor */
 .form-floating input:focus + label,
 .form-floating input:not(:placeholder-shown) + label {
   top: -0.5rem;
@@ -65,9 +65,7 @@ h2 {
   color: #A0522D;
 }
 
-/* --------------------
-   Inputs interactivos
--------------------- */
+
 .form-floating input:focus {
   border-color: #A0522D;
   box-shadow: 0 0 8px rgba(160, 82, 45, 0.4);

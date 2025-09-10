@@ -8,7 +8,7 @@ function AdminPanel() {
     // Si NO hay usuario, mostrar botón para iniciar sesión
     if (!usuarioJSON) {
         boto.setAttribute("href", "../../LoginRegistro/components/Login/login.html");
-        boto.innerHTML = `<i class="bi bi-box-arrow-in-right me-2"></i><strong>Iniciar Sesión</strong>`;
+        boto.innerHTML = `<i class="bi bi-person-fill letrasLogin me-2"></i><strong>Iniciar Sesión</strong>`;
         boto.onclick = null; // Limpia cualquier evento anterior
         return;
     }
@@ -23,7 +23,7 @@ function AdminPanel() {
         return;
     }
 
-    // Si es usuario normal, mostrar botón de cerrar sesión
+
     boto.removeAttribute("href"); // Quita el href para que use el onclick
     boto.innerHTML = `<i class="bi bi-box-arrow-right me-2"></i><strong>Cerrar Sesión</strong>`;
     boto.onclick = function (e) {
@@ -50,7 +50,7 @@ function showcart() {
     const usuarioJSON = localStorage.getItem("usuarioActivo");
 
     if (!usuarioJSON) {
-        // ❌ Nadie logueado → Ocultar carrito
+  
         adminbotton.setAttribute("hidden", "true");
         return;
     }
@@ -58,10 +58,10 @@ function showcart() {
     const usuario = JSON.parse(usuarioJSON);
 
     if (usuario.rol && usuario.rol.toLowerCase() === "admin") {
-        // 👑 Si es admin → Ocultar carrito
+  
         adminbotton.setAttribute("hidden", "true");
     } else {
-        // 👤 Usuario normal → Mostrar carrito
+   
         adminbotton.removeAttribute("hidden");
     }
 
