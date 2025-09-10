@@ -1,7 +1,7 @@
 let imagenBase64 = "";
 let productosEnPreview = [];
 
-// 🔄 Inicializar productos desde JSON local
+// Inicializar productos desde JSON local
 async function initializeProducts() {
   const existingProducts = JSON.parse(localStorage.getItem("products"));
   if (!existingProducts || existingProducts.length === 0) {
@@ -17,12 +17,12 @@ async function initializeProducts() {
   }
 }
 
-// 📋 Obtener productos
+//  Obtener productos
 function getProducts() {
   return JSON.parse(localStorage.getItem("products")) || [];
 }
 
-// 🖼️ Renderizar una card individual
+//  Renderizar una card individual
 function renderPreviewCard(producto) {
   const container = document.getElementById("previewCards");
 
@@ -53,7 +53,7 @@ function renderPreviewCard(producto) {
       document.getElementById("confirmar-guardar").classList.remove("visible");
     }
 
-    // 🔁 Actualizar el campo ID visualmente
+    //  Actualizar el campo ID visualmente
     actualizarCampoIdPreview();
   });
 

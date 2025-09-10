@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 showConfirmButton: false
             });
 
-            window.location.href = "../../../Inicio/components/index.html";
+            window.location.href = "../../../../../index.html";
 
         } catch (error) {
             console.error("Error al verificar el login:", error);

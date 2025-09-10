@@ -1,33 +1,76 @@
 // ====== CATALOGO ======
-<<<<<<< HEAD
- 
-=======
 function AdminPanel() {
     const boto = document.getElementById("botonSesion");
     if (!boto) return;
+
     const usuarioJSON = localStorage.getItem("usuarioActivo");
-    if (!usuarioJSON) return;
+
+    // Si NO hay usuario, mostrar botón para iniciar sesión
+    if (!usuarioJSON) {
+        boto.setAttribute("href", "../../LoginRegistro/components/Login/login.html");
+        boto.innerHTML = `<i class="bi bi-person-fill letrasLogin me-2"></i><strong>Iniciar Sesión</strong>`;
+        boto.onclick = null; // Limpia cualquier evento anterior
+        return;
+    }
+
     const usuario = JSON.parse(usuarioJSON);
+
+    // Si es admin, mostrar botón para ir al panel admin
     if (usuario.rol && usuario.rol.toLowerCase() === "admin") {
         boto.setAttribute("href", "../../dashboardAdmin/components/dashboard.html");
-        boto.innerHTML = `<i class="bi bi-speedometer2 letrasLogin me-2"></i> <strong>Admin Panel</strong>`;
+        boto.innerHTML = `<i class="bi bi-speedometer2 me-2"></i><strong>Admin Panel</strong>`;
+        boto.onclick = null; // Limpia cualquier evento anterior
+        return;
     }
+
+
+    boto.removeAttribute("href"); // Quita el href para que use el onclick
+    boto.innerHTML = `<i class="bi bi-box-arrow-right me-2"></i><strong>Cerrar Sesión</strong>`;
+    boto.onclick = function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: '¿Deseas cerrar sesión?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, cerrar sesión',
+            cancelButtonText: 'Cancelar'
+        }).then(result => {
+            if (result.isConfirmed) {
+                localStorage.removeItem("usuarioActivo");
+                window.location.href = "../../Inicio/components/index.html";
+            }
+        });
+    };
 }
+
 function showcart() {
     const adminbotton = document.getElementById("carritoFlotante");
     if (!adminbotton) return;
 
     const usuarioJSON = localStorage.getItem("usuarioActivo");
-    const usuario = usuarioJSON ? JSON.parse(usuarioJSON) : null;
 
-    if (!usuario|| (usuario.rol && usuario.rol.toLowerCase() !== "admin")) {
+    if (!usuarioJSON) {
+  
+        adminbotton.setAttribute("hidden", "true");
+        return;
+    }
+
+    const usuario = JSON.parse(usuarioJSON);
+
+    if (usuario.rol && usuario.rol.toLowerCase() === "admin") {
+  
+        adminbotton.setAttribute("hidden", "true");
+    } else {
+   
         adminbotton.removeAttribute("hidden");
     }
 
+    // Evento para mostrar carrito
     adminbotton.addEventListener("click", function (event) {
-        event.preventDefault(); 
+        event.preventDefault();
 
-        if (!usuarioJSON) {
+        const currentUser = localStorage.getItem("usuarioActivo");
+        if (!currentUser) {
             Swal.fire({
                 icon: 'warning',
                 title: '¡Atención!',
@@ -35,11 +78,12 @@ function showcart() {
                 timer: 2500,
                 showConfirmButton: false,
                 timerProgressBar: true,
-                backdrop: true,
                 allowOutsideClick: false,
-                allowEscapeKey: false
-            }).then(() => {
-                window.location.href = "../../LoginRegistro/components/Login/login.html";
+                allowEscapeKey: false,
+                backdrop: true,
+                didClose: () => {
+                    window.location.href = "../../LoginRegistro/components/Login/login.html";
+                }
             });
         } else {
             const carritoOffcanvas = document.getElementById('carritoOffcanvas');
@@ -57,7 +101,6 @@ function elminarproducto(products) {
     renderProducts(productos);
     cargarInventario();
 }
->>>>>>> 864cc75b59257672df6a63730770a1763039ddf3
 // Obtener productos desde JSON local
 async function fetchProducts() {
     try {
@@ -69,29 +112,24 @@ async function fetchProducts() {
         return [];
     }
 }
-<<<<<<< HEAD
- 
-// Inicializar productos (si no existen en localStorage)
-=======
 
 // Inicializar productos si no existen en localStorage
->>>>>>> 864cc75b59257672df6a63730770a1763039ddf3
 async function initializeProducts() {
     const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
     if (existingProducts.length === 0) {
         const defaultProducts = await fetchProducts();
         if (defaultProducts.length > 0) {
-            localStorage.setItem("products", JSON.stringify(defaultProducts));
+            // Asegurar que todos los productos tengan un ID
+            const productsWithIds = defaultProducts.map((product, index) => ({
+                ...product,
+                id: product.id || index + 1
+            }));
+            localStorage.setItem("products", JSON.stringify(productsWithIds));
         }
     }
 }
-<<<<<<< HEAD
- 
-// Obtener productos de localStorage
-=======
 
 // Obtener productos desde localStorage
->>>>>>> 864cc75b59257672df6a63730770a1763039ddf3
 function getProducts() {
     return JSON.parse(localStorage.getItem("products")) || [];
 }
@@ -100,14 +138,6 @@ function getProducts() {
 function saveProducts(products) {
     localStorage.setItem("products", JSON.stringify(products));
 }
-<<<<<<< HEAD
- 
-// Renderizar productos en el catálogo
-function renderProducts() {
-    const products = getProducts();
-    const catalogGrid = document.getElementById("catalogGrid");
- 
-=======
 
 // 🔍 Filtro por nombre (sin tildes y sin importar mayúsculas)
 function aplicarFiltroNombre() {
@@ -132,7 +162,6 @@ function renderProducts(productos = null) {
     const products = productos || getProducts();
     const catalogGrid = document.getElementById("catalogGrid");
     const isAdmin = localStorage.getItem("usuarioActivo") && JSON.parse(localStorage.getItem("usuarioActivo")).rol === "admin";
->>>>>>> 864cc75b59257672df6a63730770a1763039ddf3
     if (!catalogGrid) return;
  
     if (products.length === 0) {
@@ -159,13 +188,8 @@ function renderProducts(productos = null) {
         </div>
     `).join('');
 }
-<<<<<<< HEAD
- 
-// Agregar al carrito
-=======
 
 // 🛒 Agregar al carrito
->>>>>>> 864cc75b59257672df6a63730770a1763039ddf3
 function addToCart(productId, event) {
     const usuarioJSON = localStorage.getItem("usuarioActivo");
 
@@ -193,14 +217,8 @@ function addToCart(productId, event) {
     const product = products.find(p => p.id === productId);
  
     if (product) {
-<<<<<<< HEAD
-        agregarAlCarrito(productId); // función del carrito flotante
- 
-        // Animación de feedback
-=======
         agregarAlCarrito(productId); // función externa que ya tienes
 
->>>>>>> 864cc75b59257672df6a63730770a1763039ddf3
         const button = event.target.closest("button");
         const originalText = button.innerHTML;
         button.innerHTML = '<i class="fas fa-check"></i> ¡Agregado!';
@@ -212,13 +230,8 @@ function addToCart(productId, event) {
         }, 1500);
     }
 }
-<<<<<<< HEAD
- 
-// ===== INICIALIZACIÓN =====
-=======
 
 // 🚀 Inicialización
->>>>>>> 864cc75b59257672df6a63730770a1763039ddf3
 document.addEventListener("DOMContentLoaded", async () => {
     showcart();
     await initializeProducts();

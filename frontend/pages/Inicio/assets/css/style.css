@@ -1,282 +1,34 @@
-/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body */
+/* =======================
+   BODY
+======================= */
 body {
   background-color: #f5f5f5;
   min-height: 100vh;
   font-family: 'Lato', sans-serif;
-  color: #503c31;
+  color: #000000;
 }
-
-/* NAVBAR */
-.navbar {
-  background: #f5f5f5;
-  padding: 15px 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+.botonSesion{
+    font-weight: bolder;
 }
-
-.navbar-container {
-  width: 100%;
-  max-width: 1200px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar-logo img {
-  height: 50px;
-}
-
-.navbar-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-.navbar-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.navbar-links a:hover {
-  color: #FFD700;
-}
-
-.btn-login {
-  background: #8C5637;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-
-.btn-login:hover {
-  background: #A66A4A;
-  transform: translateY(-2px);
-}
-
-/* HERO */
+/* =======================
+   HERO
+======================= */
 .hero {
   position: relative;
-  height: 90vh;
+  height: auto;
   background: url('../img/hero-cafe.jpg') no-repeat center/cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.hero .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-}
-
-.hero .content {
-  position: relative;
-  color: rgb(4, 4, 4);
-  z-index: 1;
-}
-
-.hero .main-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 48px;
-  color: #000000;
-  margin-bottom: 10px;
-}
-
-.hero .subtitle {
-  font-family: 'Merriweather', serif;
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-
-.btn-hero {
-  display: inline-block;
-  background: #7b7b7b;
-  color: rgb(0, 0, 0);
-  padding: 12px 30px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-
-.btn-hero:hover {
-  background: #A66A4A;
-}
-
-/* CONTENEDORES */
-.containerCatalogo {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 20px;
-}
-
-/* TITULOS */
-.main-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
-  color: #000000;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.subtitle {
-  font-family: "Edu NSW ACT Cursive", cursive;
-  color: #000000;
-  font-size: 1.3rem;
-  font-weight: 300;
-  text-align: center;
-}
-
-/* GRID DE VALORES */
-.catalog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px;
-}
-
-.product-card {
-  background: white;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0);
-  transition: all 0.4s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-10px) scale(1.02);
-}
-
-.product-image {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-}
-
-.product-info {
-  padding: 25px;
-}
-
-.product-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 24px;
-  color: #000000;
-  font-weight: 700;
-}
-
-.product-description {
-  color: #000000;
-  font-size: 14px;
-  line-height: 1.6;
-  margin-top: 10px;
-}
-
-/* HISTORIAS DE CAFICULTORES */
-.historia-card {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 50px;
-}
-
-.historia-card.reverse {
-  flex-direction: row-reverse;
-}
-
-.historia-card img {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 15px;
-}
-
-.historia-texto {
-  max-width: 600px;
-}
-
-.historia-parrafo {
-  font-size: 16px;
-  color: #503c31;
-  line-height: 1.6;
-  overflow: hidden;
-  max-height: 80px; /* Tamaño inicial */
-  transition: max-height 0.25s ease;
-}
-
-.historia-parrafo.expandido {
-  max-height: 2000px; /* altura suficiente para todo el contenido */
-}
-
-/* Botón "Ver más" */
-.ver-mas-btn {
-  margin-top: 10px;
-  background-color: #4B6950;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.5s ease;
-}
-
-.ver-mas-btn:hover {
-  background-color: #93BE88;
-}
-
-
-
-
-/* Botón personalizado "Conoce nuestros productos" */
-.catalogo {
-  display: inline-block;
-  background-color: #4B6950; /* Verde mata */
-  color: #fff;
-  font-weight: bold;
-  text-decoration: none;
-  padding: 12px 28px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-.catalogo:hover {
-  background-color: #627a63; /* Verde más oscuro */
-  transform: scale(1.05);
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.215);
-  text-decoration: none;
-}
-
-.hero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* contenido arriba */
+  justify-content: flex-start;
   text-align: center;
   padding: 60px 20px;
-  background: url('../img/hero-cafe.jpg') no-repeat center/cover;
-  position: relative;
   color: #000;
 }
 
@@ -289,49 +41,21 @@ body {
   background: rgba(0,0,0,0.4);
 }
 
-.productos-destacados {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin: 40px 0;
+.hero .content {
+  position: relative;
+  z-index: 1;
 }
 
-.producto-card {
-  background: rgba(255,255,255,0.95);
-  border-radius: 15px;
-  padding: 20px;
-  width: 220px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.producto-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 10px;
+.hero .main-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
   margin-bottom: 10px;
 }
 
-.producto-card h4 {
-  font-family: 'Playfair Display', serif;
-  margin-bottom: 5px;
-  font-size: 18px;
-}
-
-.producto-card p {
-  font-size: 14px;
-  color: #503c31;
-}
-
-.producto-card:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
-
-.hero-btn {
-  margin-top: 20px;
+.hero .subtitle {
+  font-family: "Edu NSW ACT Cursive", cursive;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
 .btn-hero {
@@ -340,6 +64,8 @@ body {
   color: #fff;
   padding: 12px 30px;
   border-radius: 25px;
+  text-align: center;
+  margin-top: 30px;
   text-decoration: none;
   font-weight: bold;
   transition: all 0.3s ease;
@@ -349,19 +75,217 @@ body {
   background: #627a63;
 }
 
-.btn-ver-producto {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #4B6950;
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s ease, transform 0.3s ease;
+/* =======================
+   TÍTULOS
+======================= */
+.main-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
-.btn-ver-producto:hover {
+.subtitle {
+  font-family: "Edu NSW ACT Cursive", cursive;
+  font-size: 1.3rem;
+  font-weight: 300;
+  text-align: center;
+}
+
+/* =======================
+   VALORES / PRODUCT-CARD
+======================= */
+.product-card {
+  background: #e2a07a;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+  .image-container-card {
+    position: relative;
+    display: inline-block; 
+  }
+
+  .image-container-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #e2a07a); /* Degradado de transparente a blanco */
+    pointer-events: none; 
+  }
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.product-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.product-description {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+/* =======================
+   PRODUCTOS DESTACADOS
+======================= */
+        .carrusel-container {
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            border-radius: 15px;
+        }
+
+        .productos {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        /* ======================= PRODUCTOS DESTACADOS ======================= */
+        .producto-card {
+            width: 280px;
+            background: #fcdcca;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            flex-shrink: 0;
+        }
+
+        .producto-card img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .producto-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .producto-card p {
+            font-size: 14px;
+            color: #503c31;
+        }
+
+        .producto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+        }
+
+        .btn-ver-producto {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #4B6950;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-ver-producto:hover {
+            background-color: #93BE88;
+            transform: translateY(-2px);
+        }
+
+        /* Indicadores del carrusel */
+        .carrusel-indicators {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: inline-block;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .indicator.active {
+            background-color: #4B6950;
+        }
+
+/* =======================
+   HISTORIAS DE CAFICULTORES
+======================= */
+.historias img {
+  max-width: 60%;
+  height: auto;
+  border-radius: 15px;
+  display: block;
+  margin: 0 auto;
+}
+
+.historia-parrafo {
+  font-size: 16px;
+  color: #503c31;
+  line-height: 1.6;
+  overflow: hidden;
+  max-height: 80px;
+  transition: max-height 0.25s ease;
+}
+
+.historia-parrafo.expandido {
+  max-height: 2000px;
+}
+
+.ver-mas-btn {
+  margin-top: 10px;
+  background-color: #4B6950;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.ver-mas-btn:hover {
   background-color: #93BE88;
-  transform: translateY(-2px);
+}
+
+/* =======================
+   BOTÓN CATÁLOGO
+======================= */
+.catalogo {
+  display: inline-block;
+  background-color: #4B6950;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+}
+
+.catalogo:hover {
+  background-color: #627a63;
+  transform: scale(1.05);
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.2);
+  text-decoration: none;
 }
