@@ -5,26 +5,23 @@ function AdminPanel() {
 
     const usuarioJSON = localStorage.getItem("usuarioActivo");
 
-    // Si NO hay usuario, mostrar botón para iniciar sesión
     if (!usuarioJSON) {
         boto.setAttribute("href", "../../LoginRegistro/components/Login/login.html");
         boto.innerHTML = `<i class="bi bi-person-fill letrasLogindebes iniciarme-2"></i><strong>Iniciar Sesión</strong>`;
-        boto.onclick = null; // Limpia cualquier evento anterior
+        boto.onclick = null;
         return;
     }
 
     const usuario = JSON.parse(usuarioJSON);
 
-    // Si es admin, mostrar botón para ir al panel admin
     if (usuario.rol && usuario.rol.toLowerCase() === "admin") {
         boto.setAttribute("href", "../../dashboardAdmin/components/dashboard.html");
         boto.innerHTML = `<i class="bi bi-speedometer2 me-2"></i><strong>Admin Panel</strong>`;
-        boto.onclick = null; // Limpia cualquier evento anterior
+        boto.onclick = null;
         return;
     }
 
-
-    boto.removeAttribute("href"); // Quita el href para que use el onclick
+    boto.removeAttribute("href");
     boto.innerHTML = `<i class="bi bi-box-arrow-right me-2"></i><strong>Cerrar Sesión</strong>`;
     boto.onclick = function (e) {
         e.preventDefault();
@@ -50,7 +47,6 @@ function showcart() {
     const usuarioJSON = localStorage.getItem("usuarioActivo");
 
     if (!usuarioJSON) {
-  
         adminbotton.setAttribute("hidden", "true");
         return;
     }
@@ -58,14 +54,11 @@ function showcart() {
     const usuario = JSON.parse(usuarioJSON);
 
     if (usuario.rol && usuario.rol.toLowerCase() === "admin") {
-  
         adminbotton.setAttribute("hidden", "true");
     } else {
-   
         adminbotton.removeAttribute("hidden");
     }
 
-    // Evento para mostrar carrito
     adminbotton.addEventListener("click", function (event) {
         event.preventDefault();
 
@@ -93,15 +86,14 @@ function showcart() {
     });
 }
 
-
 function eliminarProducto(productId) {
     let productos = getProducts();
-    productos = productos.filter(p => p.id !== productId);
+    productos = productos.filter(p => Number(p.id) !== Number(productId));
     saveProducts(productos);
     renderProducts(productos);
     cargarInventario();
 }
-// Obtener productos desde JSON local
+
 async function fetchProducts() {
     try {
         const response = await fetch("../assets/data/products.json");
@@ -113,13 +105,11 @@ async function fetchProducts() {
     }
 }
 
-// Inicializar productos si no existen en localStorage
 async function initializeProducts() {
     const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
     if (existingProducts.length === 0) {
         const defaultProducts = await fetchProducts();
         if (defaultProducts.length > 0) {
-            // Asegurar que todos los productos tengan un ID
             const productsWithIds = defaultProducts.map((product, index) => ({
                 ...product,
                 id: product.id || index + 1
@@ -129,17 +119,14 @@ async function initializeProducts() {
     }
 }
 
-// Obtener productos desde localStorage
 function getProducts() {
     return JSON.parse(localStorage.getItem("products")) || [];
 }
- 
-// Guardar productos en localStorage
+
 function saveProducts(products) {
     localStorage.setItem("products", JSON.stringify(products));
 }
 
-// 🔍 Filtro por nombre (sin tildes y sin importar mayúsculas)
 function aplicarFiltroNombre() {
     const input = document.getElementById("buscadorNombre").value;
 
@@ -157,18 +144,19 @@ function aplicarFiltroNombre() {
     renderProducts(productosFiltrados);
 }
 
-// 🖼 Renderizar productos
 function renderProducts(productos = null) {
     const products = productos || getProducts();
     const catalogGrid = document.getElementById("catalogGrid");
-    const isAdmin = localStorage.getItem("usuarioActivo") && JSON.parse(localStorage.getItem("usuarioActivo")).rol === "admin";
+    const usuario = JSON.parse(localStorage.getItem("usuarioActivo"));
+    const isAdmin = usuario && usuario.rol === "admin";
+
     if (!catalogGrid) return;
- 
+
     if (products.length === 0) {
         catalogGrid.innerHTML = `<div class="no-products">No hay productos disponibles.</div>`;
         return;
     }
- 
+
     catalogGrid.innerHTML = products.map(product => `
         <div class="product-card" data-id="${product.id}">
             <img src="${product.image}" alt="${product.name}" class="product-image"
@@ -177,22 +165,48 @@ function renderProducts(productos = null) {
                 <h3 class="product-name">${product.name}</h3>
                 <p class="product-description">${product.description}</p>
                 <div class="product-price">$${parseFloat(product.price).toFixed(2)}</div>
-                    <button class="${isAdmin ? 'btn-disabled' : 'btn-cart'}"
-               onclick="${isAdmin ? `eliminarProducto(${product.id})` : `addToCart(${product.id}, event)`}"
-                <i class="fas fa-${isAdmin ? 'trash' : 'shopping-cart'}"></i>
-                ${isAdmin ? 'Eliminar del Catalogo' : 'AGREGAR AL CARRITO'}
-            </button>
-
-                </button>
+                ${isAdmin
+            ? `<button class="btn-delete-product" data-id="${product.id}">
+                         <i class="fas fa-trash"></i> Eliminar del Catálogo
+                       </button>`
+            : `<button class="btn-cart" onclick="addToCart(${product.id}, event)">
+                         <i class="fas fa-shopping-cart"></i> AGREGAR AL CARRITO
+                       </button>`
+        }
             </div>
         </div>
     `).join('');
+
+    if (isAdmin) {
+        document.querySelectorAll('.btn-delete-product').forEach(button => {
+            button.addEventListener('click', function () {
+                const id = Number(this.getAttribute('data-id'));
+
+                Swal.fire({
+                    title: "¿Estás seguro?",
+                    text: "Esta acción eliminará el producto del catálogo.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Sí, eliminar",
+                    cancelButtonText: "Cancelar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // ⏳ Espera a eliminar y volver a renderizar
+                        let productos = getProducts();
+                        productos = productos.filter(p => Number(p.id) !== id);
+                        saveProducts(productos);
+                        renderProducts(productos); // 🔁 Re-renderiza con lista actualizada
+
+                        Swal.fire("Eliminado", "El producto fue eliminado correctamente.", "success");
+                    }
+                });
+            });
+        });
+    }
 }
 
-// 🛒 Agregar al carrito
 function addToCart(productId, event) {
     const usuarioJSON = localStorage.getItem("usuarioActivo");
-
 
     if (!usuarioJSON) {
         event.preventDefault();
@@ -209,21 +223,20 @@ function addToCart(productId, event) {
         }).then(() => {
             window.location.href = "/frontend/pages/LoginRegistro/components/Login/login.html";
         });
-        return; // ⛔ Importante: NO ejecutar lo que viene después
+        return;
     }
 
-    // ✅ Usuario logueado, continuar normalmente
     const products = getProducts();
     const product = products.find(p => p.id === productId);
- 
+
     if (product) {
-        agregarAlCarrito(productId); // función externa que ya tienes
+        agregarAlCarrito(productId);
 
         const button = event.target.closest("button");
         const originalText = button.innerHTML;
         button.innerHTML = '<i class="fas fa-check"></i> ¡Agregado!';
         button.style.background = 'linear-gradient(135deg, #4CAF50, #66BB6A)';
- 
+
         setTimeout(() => {
             button.innerHTML = originalText;
             button.style.background = '#8C5637';
@@ -238,12 +251,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderProducts();
     AdminPanel();
 
-
-
-    // Evento de búsqueda por nombre
     const buscador = document.getElementById("buscadorNombre");
     if (buscador) {
         buscador.addEventListener("input", aplicarFiltroNombre);
     }
 });
- 
