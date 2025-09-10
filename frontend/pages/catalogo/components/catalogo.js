@@ -119,7 +119,12 @@ async function initializeProducts() {
     if (existingProducts.length === 0) {
         const defaultProducts = await fetchProducts();
         if (defaultProducts.length > 0) {
-            localStorage.setItem("products", JSON.stringify(defaultProducts));
+            // Asegurar que todos los productos tengan un ID
+            const productsWithIds = defaultProducts.map((product, index) => ({
+                ...product,
+                id: product.id || index + 1
+            }));
+            localStorage.setItem("products", JSON.stringify(productsWithIds));
         }
     }
 }

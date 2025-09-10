@@ -15,6 +15,20 @@ function obtenerProductos() {
     return JSON.parse(localStorage.getItem('products')) || [];
 }
 
+
+
+
+///////////////////////////////////////////ID NUEVOS SOLUCION SOLUCION SOLUCION//////////////////////
+// Validar que un producto existe antes de agregarlo
+function validarProducto(productoId) {
+    const productos = obtenerProductos();
+    return productos.some(p => p.id === productoId);
+}
+///////////////////////////////////////////ID NUEVOS SOLUCION SOLUCION SOLUCION//////////////////////
+
+
+
+
 // ===== FUNCIÓN PRINCIPAL: MOSTRAR PRODUCTOS EN EL CARRITO =====
 
 function mostrarProductosCarrito() {
@@ -23,7 +37,7 @@ function mostrarProductosCarrito() {
     const contenedor = document.getElementById('productosCarrito');
 
     // Si no hay productos en el carrito
-    if (carrito.length === 0) {
+    if (carritoLimpio.length === 0) {
         contenedor.innerHTML = '';
         document.getElementById('carritoVacio').style.display = 'block';
         document.getElementById('carritoFooter').style.display = 'none';
@@ -38,7 +52,7 @@ function mostrarProductosCarrito() {
     carrito.forEach(itemCarrito => {
         const producto = productos.find(p => p.id === itemCarrito.id);
         if (producto) {
-            const subtotal = producto.price * itemCarrito.cantidad;
+            const subtotal = parseFloat(producto.price) * itemCarrito.cantidad;
             total += subtotal;
 
             htmlProductos += `
@@ -94,6 +108,12 @@ function mostrarProductosCarrito() {
 // ===== FUNCIONES DE CARRITO =====
 
 function agregarAlCarrito(productoId) {
+    // Validar que el producto existe
+    if (!validarProducto(productoId)) {
+        console.error(`Producto con ID ${productoId} no encontrado`);
+        return false;
+    }
+    
     const carrito = obtenerCarrito();
     const itemExistente = carrito.find(item => item.id === productoId);
 
@@ -102,12 +122,14 @@ function agregarAlCarrito(productoId) {
     } else {
         carrito.push({
             id: productoId,
-            cantidad: 1
+            cantidad: 1,
+            fechaAgregado: new Date().toISOString()
         });
     }
 
     guardarCarrito(carrito);
     mostrarProductosCarrito();
+    return true;
 }
 
 function aumentarCantidad(productoId) {
@@ -166,8 +188,12 @@ function vaciarCarrito() {
 function actualizarContador() {
     const carrito = obtenerCarrito();
     const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
-    document.getElementById('contadorCarrito').textContent = totalItems;
+    const contador = document.getElementById('contadorCarrito');
+    if (contador) {
+        contador.textContent = totalItems;
+    }
 }
+
 
 // ===== EVENTOS =====
 
