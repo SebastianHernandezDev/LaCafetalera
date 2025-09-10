@@ -8,7 +8,7 @@ function AdminPanel() {
     // Si NO hay usuario, mostrar botón para iniciar sesión
     if (!usuarioJSON) {
         boto.setAttribute("href", "../../LoginRegistro/components/Login/login.html");
-        boto.innerHTML = `<i class="bi bi-person-fill letrasLogin me-2"></i><strong>Iniciar Sesión</strong>`;
+        boto.innerHTML = `<i class="bi bi-person-fill letrasLogindebes iniciarme-2"></i><strong>Iniciar Sesión</strong>`;
         boto.onclick = null; // Limpia cualquier evento anterior
         return;
     }
@@ -37,7 +37,7 @@ function AdminPanel() {
         }).then(result => {
             if (result.isConfirmed) {
                 localStorage.removeItem("usuarioActivo");
-                window.location.href = "../../Inicio/components/index.html";
+                window.location.href = "http://127.0.0.1:5501/frontend/pages/LoginRegistro/components/Login/login.html";
             }
         });
     };
@@ -82,7 +82,7 @@ function showcart() {
                 allowEscapeKey: false,
                 backdrop: true,
                 didClose: () => {
-                    window.location.href = "../../LoginRegistro/components/Login/login.html";
+                    window.location.href = "/frontend/pages/LoginRegistro/components/Login/login.html";
                 }
             });
         } else {
@@ -94,9 +94,9 @@ function showcart() {
 }
 
 
-function elminarproducto(products) {
+function eliminarProducto(productId) {
     let productos = getProducts();
-    productos = productos.filter(p => p.id !== products.id);
+    productos = productos.filter(p => p.id !== productId);
     saveProducts(productos);
     renderProducts(productos);
     cargarInventario();
@@ -178,7 +178,7 @@ function renderProducts(productos = null) {
                 <p class="product-description">${product.description}</p>
                 <div class="product-price">$${parseFloat(product.price).toFixed(2)}</div>
                     <button class="${isAdmin ? 'btn-disabled' : 'btn-cart'}"
-                onclick="${isAdmin ? `eliminarProducto(${product.id})` : `addToCart(${product.id}, event)`}">
+               onclick="${isAdmin ? `eliminarProducto(${product.id})` : `addToCart(${product.id}, event)`}"
                 <i class="fas fa-${isAdmin ? 'trash' : 'shopping-cart'}"></i>
                 ${isAdmin ? 'Eliminar del Catalogo' : 'AGREGAR AL CARRITO'}
             </button>
@@ -193,7 +193,7 @@ function renderProducts(productos = null) {
 function addToCart(productId, event) {
     const usuarioJSON = localStorage.getItem("usuarioActivo");
 
-    // ❌ Si NO hay usuario, mostrar alerta y detener
+
     if (!usuarioJSON) {
         event.preventDefault();
         Swal.fire({
@@ -207,7 +207,7 @@ function addToCart(productId, event) {
             allowOutsideClick: false,
             allowEscapeKey: false
         }).then(() => {
-            window.location.href = "../../LoginRegistro/";
+            window.location.href = "/frontend/pages/LoginRegistro/components/Login/login.html";
         });
         return; // ⛔ Importante: NO ejecutar lo que viene después
     }
