@@ -3,24 +3,26 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dashboard Administrador</title>
+  <!-- Bootstrap CSS 5.3.7 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <!-- Tus estilos personalizados -->
   <link rel="stylesheet" href="/frontend/pages/dashboardAdmin/assets/css/dashboard.css" />
   <link rel="stylesheet" href="../../../components/assets-global/nav-css/navbar.css" />
-  <link rel="stylesheet" href="../../../components/assets-global/footer-css/footer.css">
+  <link rel="stylesheet" href="../../../components/assets-global/footer-css/footer.css" />
 </head>
 
 <body>
   <header>
     <nav class="navbar navbar-expand-lg py-2 shadow-lg bg-body-tertiary rounded container">
-
       <div class="container-fluid">
         <a href="#" class="d-flex align-items-center text-decoration-none">
           <img src="/frontend/components/assets-global/img/logo.png" alt="logo" width="100"
-            class="img-fluid me-2 imagenNavbar">
+            class="img-fluid me-2 imagenNavbar" />
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCafe"
@@ -48,8 +50,8 @@
       </div>
     </nav>
   </header>
-  <main class="container-fluid px-3 px-md-5" id="main">
 
+  <main class="container-fluid px-3 px-md-5" id="main">
     <div class="admin-header">
       <h1>Dashboard Administrador</h1>
     </div>
@@ -57,7 +59,7 @@
       <div class="admin-inventory-container">
         <div class="admin-info">
           <div class="admin-photo">
-            <img src="/frontend/pages/dashboardAdmin/assets/img/Admin.png" alt="Foto del administrador">
+            <img src="/frontend/pages/dashboardAdmin/assets/img/Admin.png" alt="Foto del administrador" />
           </div>
           <div class="admin-details">
             <p><strong>Nombre:</strong> La Cafetería</p>
@@ -71,13 +73,13 @@
           <p><strong>Valor total del inventario:</strong> <span id="valor-total">$30,283.14</span></p>
           <p><strong>Precio promedio por producto:</strong> <span id="precio-promedio">$2,521.51</span></p>
           <div class="boton-derecha">
-            <button id="actualizar-inventario" class="btn-success"><i class="bi bi-arrow-clockwise"></i></button>
+            <button id="actualizar-inventario" class="btn btn-success"><i class="bi bi-arrow-clockwise"></i></button>
           </div>
         </div>
+      </div>
     </section>
 
     <div class="row gy-4">
-
       <div class="col-12 col-lg-6">
         <h3><i class="bi bi-database-fill-add"></i> Agregar producto</h3>
         <form id="admin-insert" class="d-flex flex-column gap-3">
@@ -86,15 +88,8 @@
             <input type="text" class="form-control" placeholder="Nombre del producto" name="name" required />
             <input type="number" step="0.01" class="form-control" placeholder="Precio COP" name="price" required min="0" />
             <label for="description">Descripción del producto</label>
-            <textarea
-              id="description"
-              name="description"
-              class="form-control campo-descripcion"
-              rows="4"
-              maxlength="250"
-              placeholder="Escribe una descripción detallada..."
-              required
-            ></textarea>
+            <textarea id="description" name="description" class="form-control campo-descripcion" rows="4" maxlength="250"
+              placeholder="Escribe una descripción detallada..." required></textarea>
             <input type="number" class="form-control" placeholder="Nuevo Stock" name="nuevoStock" required min="1" />
             <select class="form-select" name="status" required>
               <option value="En CEDI">En CEDI</option>
@@ -102,28 +97,27 @@
               <option value="Sin Enviar a CEDI">Sin Enviar a CEDI</option>
             </select>
           </div>
-          <div class="d-flex flex-wrap gap-3 justify-content-center">
-            <label for="imagenProducto" class="btn btn-primary boton-accion subir-imagen">
+          <div class="boton-contenedor">
+            <label for="imagenProducto" class="boton-accion subir-imagen">
               <i class="bi bi-cloud-arrow-up"></i> Subir imagen
             </label>
-            <button type="submit" class="btn btn-success boton-accion vista-previa">Vista Previa
-            </button>
-            <button id="confirmar-guardar" class="btn btn-warning boton-accion confirmar-guardar">
-              Confirmar y Guardar
-            </button>
+            <input type="file" id="imagenProducto" name="imagenProducto" accept="image/*" style="display: none;" required />
+            <small id="nombreImagen" class="nombre-imagen">Nombre de la imagen</small>
           </div>
-          <input type="file" id="imagenProducto" name="imagenProducto" accept="image/*" style="display: none;" required>
-          <small id="nombreImagen" class="text-muted mt-1 d-block text-center"></small>
+          <div class="grupo-botones">
+            <button type="submit" class="boton-accion vista-previa">Vista Previa</button>
+            <button id="confirmar-guardar" class="boton-accion guardar" type="button">Confirmar y Guardar</button>
+          </div>
         </form>
       </div>
 
       <div class="col-12 col-lg-6">
         <h3><i class="bi bi-view-stacked"></i> Vista previa de productos agregados</h3>
         <div id="contenedorCards" class="overflow-auto p-2 rounded bg-dark text-white">
-          <div id="previewCards" class="row g-3">
-            </div>
+          <div id="previewCards" class="row g-3"></div>
         </div>
       </div>
+    </div>
 
     <div class="row mt-5">
       <div class="col-12">
@@ -147,14 +141,15 @@
           </table>
         </div>
       </div>
+    </div>
   </main>
+
   <footer class="bg-dark text-light pt-4">
     <div class="container-fluid">
       <div class="row footerA text-center text-md-start">
-
         <div class="col-12 col-sm-12 col-lg-4 logoFooter mb-2 d-flex justify-content-center">
-          <img src="../../../components/assets-global/img/ChatGPT Image 14 ago 2025, 15_07_00.png"
-            alt="Logo de La Cafetalera" class="img-fluid" style="max-width: 250px; height: auto;">
+          <img src="../../../components/assets-global/img/ChatGPT Image 14 ago 2025, 15_07_00.png" alt="Logo de La Cafetalera"
+            class="img-fluid" style="max-width: 250px; height: auto;" />
         </div>
 
         <div class="col-6 col-md-3 col-lg-2 mb-3">
@@ -192,10 +187,10 @@
         <div class="col-6 col-md-3 col-lg-2 mb-3">
           <h4 class="fw-bold">Métodos de pago</h4>
           <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Tarjeta Visa" width="50"
-            class="me-2">
+            class="me-2" />
           <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Tarjeta Mastercard"
-            width="50" class="me-2">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="Pago con PayPal" width="60">
+            width="50" class="me-2" />
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="Pago con PayPal" width="60" />
         </div>
       </div>
     </div>
@@ -205,6 +200,16 @@
     </div>
   </footer>
 
+  <!-- Scripts al final para mejor rendimiento -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="/frontend/pages/dashboardAdmin/components/dashboard.js"></script>
+<<<<<<< HEAD
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+=======
+  <!-- Bootstrap JS Bundle 5.3.7 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+Y5qL0h+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+
+</html>
+>>>>>>> 49e3d670b9b2e735f9398b875a826393f2ad24b2
