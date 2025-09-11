@@ -148,3 +148,43 @@ carruselContainer.addEventListener('mouseleave', () => {
 document.addEventListener("DOMContentLoaded", () => {
   AdminPanel();
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const mensajes = document.querySelectorAll(".chat-bubble");
+  let index = 0;
+  let iniciado = false; // para que solo se ejecute una vez
+
+  // Ocultar todos los mensajes al inicio
+  mensajes.forEach(msg => {
+    msg.style.opacity = "0";
+    msg.style.transform = "translateY(20px)";
+  });
+
+  function mostrarMensaje() {
+    if (index < mensajes.length) {
+      const msg = mensajes[index];
+      msg.style.transition = "all 0.8s ease";
+      msg.style.opacity = "1";
+      msg.style.transform = "translateY(0)";
+      index++;
+      setTimeout(mostrarMensaje, 2500); // siguiente mensaje cada 2.5s
+    }
+  }
+
+  // Usamos Intersection Observer
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !iniciado) {
+        iniciado = true; // evita que se repita la animación al hacer scroll
+        mostrarMensaje();
+        observer.disconnect(); // deja de observar una vez iniciado
+      }
+    });
+  }, { threshold: 0.3 }); // 30% visible en pantalla
+
+  // Observar la sección de Nuestra Historia
+  const section = document.querySelector("#storytelling");
+  if (section) {
+    observer.observe(section);
+  }
+});
