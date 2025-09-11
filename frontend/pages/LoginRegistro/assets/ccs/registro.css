@@ -1,7 +1,7 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-image: url('../img/fondo.png');
-  background-o: ;
+  background-size: cover;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -145,10 +145,11 @@ h2 {
   transition: all 0.3s ease;
 }
 
-.is-invalid + .invalid-feedback {
+.is-invalid ~ .invalid-feedback {
   opacity: 1;
   transform: translateY(0);
 }
+
 
 /* --------------------
    Alertas superiores
