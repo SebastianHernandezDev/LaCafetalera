@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dashboard Administrador</title>
   <!-- Bootstrap CSS 5.3.7 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css
+" rel="stylesheet">
+
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <!-- Tus estilos personalizados -->
@@ -59,7 +60,7 @@
       <div class="admin-inventory-container">
         <div class="admin-info">
           <div class="admin-photo">
-            <img src="/frontend/pages/dashboardAdmin/assets/img/Admin.png" alt="Foto del administrador" />
+            <img src="/frontend/components/assets-global/img/logo.png" alt="Foto del administrador" />
           </div>
           <div class="admin-details">
             <p><strong>Nombre:</strong> La Cafetería</p>
@@ -84,26 +85,27 @@
         <h3><i class="bi bi-database-fill-add"></i> Agregar producto</h3>
         <form id="admin-insert" class="d-flex flex-column gap-3">
           <div class="mb-1">
-            <input type="text" class="form-control" placeholder="No.Id" name="id" id="campo-id" readonly />
-            <input type="text" class="form-control" placeholder="Nombre del producto" name="name" required />
-            <input type="number" step="0.01" class="form-control" placeholder="Precio COP" name="price" required min="0" />
-            <label for="description">Descripción del producto</label>
-            <textarea id="description" name="description" class="form-control campo-descripcion" rows="4" maxlength="250"
-              placeholder="Escribe una descripción detallada..." required></textarea>
-            <input type="number" class="form-control" placeholder="Nuevo Stock" name="nuevoStock" required min="1" />
-            <select class="form-select" name="status" required>
+          <input type="text" class="form-control" placeholder="No.Id" name="id" id="campo-id" readonly />
+          <input type="text" class="form-control" placeholder="Nombre del producto" name="name" required />
+          <input type="number" step="0.01" class="form-control" placeholder="Precio COP" name="price" required min="0" />
+          <label for="description">Descripción del producto</label>
+          <textarea id="description" name="description" class="form-control campo-descripcion" rows="4" maxlength="250"
+            placeholder="Escribe una descripción detallada..." required></textarea>
+          <input type="number" class="form-control" placeholder="Nuevo Stock" name="nuevoStock" required min="1" />
+          <!-- Aquí envuelve select y botón en un flex container -->
+          <div class="d-flex align-items-center gap-2 mt-2">
+            <select class="form-select flex-grow-1" name="status" required>
               <option value="En CEDI">En CEDI</option>
               <option value="En Tránsito">En Tránsito</option>
               <option value="Sin Enviar a CEDI">Sin Enviar a CEDI</option>
             </select>
-          </div>
-          <div class="boton-contenedor">
-            <label for="imagenProducto" class="boton-accion subir-imagen">
+            <label for="imagenProducto" class="btn btn-personalizado mb-0">
               <i class="bi bi-cloud-arrow-up"></i> Subir imagen
             </label>
+            <span id="nombreImagen"></span>
             <input type="file" id="imagenProducto" name="imagenProducto" accept="image/*" style="display: none;" required />
-            <small id="nombreImagen" class="nombre-imagen">Nombre de la imagen</small>
           </div>
+        </div>
           <div class="grupo-botones">
             <button type="submit" class="boton-accion vista-previa">Vista Previa</button>
             <button id="confirmar-guardar" class="boton-accion guardar" type="button">Confirmar y Guardar</button>
@@ -204,8 +206,8 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="/frontend/pages/dashboardAdmin/components/dashboard.js"></script>
   <!-- Bootstrap JS Bundle 5.3.7 -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+Y5qL0h+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
+  
 </body>
 
 </html>
