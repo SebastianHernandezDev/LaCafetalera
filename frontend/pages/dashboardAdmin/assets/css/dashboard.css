@@ -20,7 +20,7 @@ html {
 }
 
 body {
-  background: linear-gradient(-90deg, #f7e4c6, var(--color-fondo));
+  background: linear-gradient(-90deg, #fdf9f2, var(--color-fondo));
   background-size: 600% 600%;
   animation: gradienteAnimado 10s ease infinite;
   min-height: 100vh;  
@@ -38,7 +38,7 @@ h1, h2, h3, .main-title, .product-name, .product-price {
   transition: color 0.3s ease;
   margin-top: 18px;
   margin-bottom: 18px;
-}
+  }
 
 @keyframes gradienteAnimado {
   0% { background-position: 0% 50%; }
@@ -49,9 +49,10 @@ h1, h2, h3, .main-title, .product-name, .product-price {
 h1, .main-title {
   font-family: 'Playfair Display', serif;
   font-size: 48px;
-  color: #4B6950;
+  color: #000000d7;
   margin-bottom: 10px;
   align-items: center;
+  margin: 50PX;
 }
 
 h2 {
@@ -347,7 +348,7 @@ h3, .product-name {
 .subir-imagen {
   background: linear-gradient(135deg, #4B6950, var(--color-secundario));
   color: #fff;
-  margin-top: 5px;
+  margin-left: 10px;
 }
 
 .subir-imagen:hover,
@@ -374,7 +375,7 @@ h3, .product-name {
 .confirmar-guardar {
   background: #8C5637 !important;
   color: white;
-  
+   
 }
 
 .confirmar-guardar:hover,
