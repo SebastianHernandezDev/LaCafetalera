@@ -74,8 +74,9 @@ h3, .product-name {
   font-size: 28px;
   color: var(--color-secundario);
   font-weight: 700;
-  text-align: center;
+  text-align: left;
   margin-bottom: 20px;
+  padding: 25px;
 }
 
 /* Navbar personalizado */
@@ -129,6 +130,41 @@ h3, .product-name {
   white-space: nowrap;
 }
 
+.eliminar-btn {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;            /* Texto más grande */
+  font-weight: bold;
+  padding: 12px 20px;         /* Más espacio interno */
+  width: 200px; 
+  margin:0 auto ; 
+  margin-bottom: 50px;           /* Ocupa todo el ancho de la card */
+  box-sizing: border-box;     /* Evita que el padding desborde */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display:block;
+  align-items: center;
+  justify-content: center;    /* Centra ícono y texto */
+  gap: 8px;     
+                  
+}
+
+.eliminar-btn:hover {
+  background-color: #d32f2f;      
+  transform: scale(1.05);          
+}
+
+.eliminar-btn:active {
+  background-color: #b71c1c;      
+  transform: scale(0.98);
+}
+
+
+
+
+
 .btn-carrito:hover,
 .btn-carrito:focus {
   background: #7a4b2f;
@@ -168,7 +204,7 @@ h3, .product-name {
   }
 }
 
-/* Cards */
+/* Cards **************************************************/
 .product-card, .narrow-card {
   background: white;
   border-radius: 20px;
@@ -179,11 +215,13 @@ h3, .product-name {
   transform: translateY(50px);
   animation: slideInUp 0.8s ease-out forwards;
   position: relative;
-  width: 80%;
+  width: 100%;
   max-width: 400px;
-  margin-top: 30px;
+  max-height: 600px;
+  margin-top: 20px;
   margin-left: 100px;
   align-items: center;
+  padding: 0%;
 }
 
 .product-card:hover, .narrow-card:hover {
@@ -194,8 +232,12 @@ h3, .product-name {
 .product-image {
   width: 100%;
   height: 250px;
-  object-fit: cover;
+  object-fit:cover;
   transition: all 0.3s ease;
+  display: block;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+
 }
 
 .product-card:hover .product-image {
@@ -203,26 +245,40 @@ h3, .product-name {
 }
 
 .product-info {
-  padding: 25px;
+  padding: 5px;
 }
 
+/**********************************************************************/
 .product-name {
   font-family: 'Playfair Display', serif;
   font-size: 24px;
   color: #4B6950;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
   font-weight: 700;
+  padding: 25px;
 }
 
-/* Truncar descripción con line-clamp */
+/* Truncar descripción con line-clamp *********************/
 .product-description {
   color: #8C5637;
   font-size: 14px;
   line-height: 1.6;
-  margin-bottom: 15px;
-  height: 60px;
+  margin: 0 25px 5px 25px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer; /* Para indicar que se puede hacer clic */
+  transition: all 0.3s ease;
 }
+
+.product-description.expandido {
+  -webkit-line-clamp: unset;
+  display: block;
+  overflow: visible;
+}
+
 
 .product-price {
   font-family: 'Playfair Display', serif;
@@ -230,38 +286,68 @@ h3, .product-name {
   color: #93BE88;
   font-weight: 700;
   margin-bottom: 20px;
+  margin-top: 5px;
 }
+
+.grupo-botones {
+  display: flex;
+  justify-content: center;
+  gap: 1px;               /* Espacio entre botones */
+  flex-wrap: wrap;         /* Se adaptan si no caben en pantalla pequeña */
+  margin-top: 2px;
+}
+
 
 /* Botones generales */
 .boton-accion {
-  min-width: 120px;
-  text-align: center;
-  flex: 1 1 auto;
-  padding: 12px 20px;
-  border-radius: 30px;
-  font-weight: 700;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  background-color: #8C5637;
+  color: white;
   border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  white-space: nowrap;
-  color: #fff;
-  display: inline-flex;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  user-select: none;
+  gap: 6px;
+  min-width: 140px;
 }
 
+
+
 .boton-accion:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-  outline: none;
+  background-color: #6e422a;
+  transform: scale(1.03);
+}
+
+.boton-accion:active {
+  background-color: #5a3521;
+  transform: scale(0.97);
+}
+
+.nombre-imagen {
+  font-size: 13px;
+  color: #6c757d;
+  text-align: center;
+}
+
+.boton-contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
 }
 
 /* Botón Subir imagen */
 .subir-imagen {
   background: linear-gradient(135deg, #4B6950, var(--color-secundario));
   color: #fff;
+  margin-top: 5px;
 }
 
 .subir-imagen:hover,
@@ -271,7 +357,7 @@ h3, .product-name {
 
 /* Botón Vista previa */
 .vista-previa {
-  background: var(--color-primario);
+  background: #8c5637; ;
   color: #fff;
   border: 2px solid var(--color-primario);
 }
@@ -286,7 +372,7 @@ h3, .product-name {
 
 /* Botón Confirmar y Guardar */
 .confirmar-guardar {
-  background: #8C5637;
+  background: #8C5637 !important;
   color: white;
   
 }
@@ -310,14 +396,13 @@ form#admin-insert button {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   box-sizing: border-box;
   margin-top: 15px;
-  border-color: #3a4b3a;
 }
 
 form#admin-insert input:focus,
 form#admin-insert select:focus,
 form#admin-insert button:focus {
   border-color: var(--color-secundario);
-  box-shadow: 0 0 8px rgba(147, 190, 136, 0.6);
+  box-shadow: 0 0 8px rgba(252, 117, 26, 0.6);
   outline: none;
 }
 
@@ -332,7 +417,7 @@ form#admin-insert button:focus {
   max-height: 750px;
   max-width: 600px;
   overflow-y: auto;
-  display: flex;
+  display: grid;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
@@ -617,4 +702,30 @@ form#admin-insert button:focus {
   body {
     padding: 10px;
   }
+}
+
+#actualizar-inventario {
+  background-color: #8C5637;       /* Café armónico */
+  color: white;
+  border: none;
+  border-radius: 50%;              /* Botón redondo */
+  width: 36px;
+  height: 36px;
+  font-size: 18px;                 /* Tamaño del ícono */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#actualizar-inventario:hover {
+  background-color: #6e422a;
+  transform: scale(1.05);
+}
+
+#actualizar-inventario:active {
+  background-color: #5a3521;
+  transform: scale(0.95);
 }
