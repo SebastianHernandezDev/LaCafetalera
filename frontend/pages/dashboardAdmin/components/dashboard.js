@@ -26,6 +26,7 @@ if (botonCerrar) {
 // ---- Resto de tu código: productos, inventario, vista previa, etc ----
 // Mantener todo igual que tu versión original
 let imagenBase64 = "";
+let archivoImagen = null;
 let productosEnPreview = [];
 
 // Inicializar productos desde JSON local
@@ -98,35 +99,48 @@ const formAdminInsert = document.getElementById("admin-insert");
 formAdminInsert.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const formData = new FormData(this);
-  const campoId = document.getElementById("campo-id");
-  const idGenerado = Number(campoId.value.replace("ID ", "")) || 1;
+  const agregarProducto = (base64) => {
+    const formData = new FormData(this);
+    const campoId = document.getElementById("campo-id");
+    const idGenerado = Number(campoId.value.replace("ID ", "")) || 1;
 
-  const nuevoProducto = {
-    id: idGenerado,
-    name: formData.get("name") || "Producto sin nombre",
-    price: formData.get("price") || "0",
-    description: formData.get("description") || "Sin descripción",
-    stock: formData.get("stock") || "-",
-    nuevoStock: formData.get("nuevoStock") || "-",
-    status: formData.get("status") || "Sin estado",
-    imageName: formData.get("imagenProducto")?.name || "",
-    image: imagenBase64 || "https://via.placeholder.com/300x180?text=Sin+imagen"
+    const nuevoProducto = {
+      id: idGenerado,
+      name: formData.get("name") || "Producto sin nombre",
+      price: formData.get("price") || "0",
+      description: formData.get("description") || "Sin descripción",
+      stock: formData.get("stock") || "-",
+      nuevoStock: formData.get("nuevoStock") || "-",
+      status: formData.get("status") || "Sin estado",
+      imageName: archivoImagen?.name || "",
+      image: base64 || "https://via.placeholder.com/300x180?text=Sin+imagen"
+    };
+
+    productosEnPreview.push(nuevoProducto);
+    renderPreviewCard(nuevoProducto);
+
+    // Limpiar formulario
+    this.reset();
+    document.getElementById("nombreImagen").textContent = "";
+    imagenBase64 = "";
+    archivoImagen = null;
+
+    // Actualizar el campo ID al siguiente valor
+    campoId.value = `ID ${idGenerado + 1}`;
+
+    // Mostrar botón confirmar guardar para guardar todos los productos en preview
+    document.getElementById("confirmar-guardar").classList.add("visible");
   };
 
-  productosEnPreview.push(nuevoProducto);
-  renderPreviewCard(nuevoProducto);
-
-  // Limpiar formulario
-  this.reset();
-  document.getElementById("nombreImagen").textContent = "";
-  imagenBase64 = "";
-
-  // Actualizar el campo ID al siguiente valor
-  campoId.value = `ID ${idGenerado + 1}`;
-
-  // Mostrar botón confirmar guardar para guardar todos los productos en preview
-  document.getElementById("confirmar-guardar").classList.add("visible");
+  if (archivoImagen) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      agregarProducto(e.target.result);
+    };
+    reader.readAsDataURL(archivoImagen);
+  } else {
+    agregarProducto("");
+  }
 });
 
 // ✅ Confirmar y guardar todos los productos en preview
@@ -224,16 +238,10 @@ function normalizarProductos(productos) {
 
 // 📷 Imagen base64
 document.getElementById("imagenProducto").addEventListener("change", function (event) {
-  const file = event.target.files[0];
+  archivoImagen = event.target.files[0];
   const nombrePreview = document.getElementById("nombreImagen");
-
-  if (file) {
-    nombrePreview.textContent = `📁 Archivo seleccionado: ${file.name}`;
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      imagenBase64 = e.target.result;
-    };
-    reader.readAsDataURL(file);
+  if (archivoImagen) {
+    nombrePreview.textContent = `📁 Archivo seleccionado: ${archivoImagen.name}`;
   } else {
     nombrePreview.textContent = "";
     imagenBase64 = "";
