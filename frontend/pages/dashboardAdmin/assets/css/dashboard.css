@@ -6,21 +6,21 @@
   --color-texto: #582919;
   --color-navbar-bg: rgba(75, 105, 80, 0.85);
 }
-
+ 
 /* Reset y base */
 html {
   box-sizing: border-box;
   font-family: 'Lato', sans-serif;
 }
-
+ 
 *, *::before, *::after {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
 }
-
+ 
 body {
-  background: linear-gradient(-90deg, #fdf9f2, var(--color-fondo));
+  background: linear-gradient(-90deg, #f7e4c6, var(--color-fondo));
   background-size: 600% 600%;
   animation: gradienteAnimado 10s ease infinite;
   min-height: 100vh;  
@@ -30,7 +30,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   padding: 0 10px;
 }
-
+ 
 /* Encabezados */
 h1, h2, h3, .main-title, .product-name, .product-price {
   font-weight: 700;
@@ -38,23 +38,22 @@ h1, h2, h3, .main-title, .product-name, .product-price {
   transition: color 0.3s ease;
   margin-top: 18px;
   margin-bottom: 18px;
-  }
-
+}
+ 
 @keyframes gradienteAnimado {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
+ 
 h1, .main-title {
   font-family: 'Playfair Display', serif;
   font-size: 48px;
-  color: #000000d7;
+  color: #4B6950;
   margin-bottom: 10px;
   align-items: center;
-  margin: 50PX;
 }
-
+ 
 h2 {
   font-family: 'Playfair Display', serif;
   font-size: 40px;
@@ -62,14 +61,14 @@ h2 {
   margin-bottom: 10px;
   align-items: center;
 }
-
+ 
 h3, .product-name {
   font-family: 'Playfair Display', serif;
   font-size: 20px;
   color: #5d4037;
   margin-bottom: 10px;
 }
-
+ 
 .product-price {
   font-family: 'Playfair Display', serif;
   font-size: 28px;
@@ -79,7 +78,7 @@ h3, .product-name {
   margin-bottom: 20px;
   padding: 25px;
 }
-
+ 
 /* Navbar personalizado */
 .navbar {
   background: var(--color-navbar-bg);
@@ -91,7 +90,7 @@ h3, .product-name {
   align-items: center;
   flex-wrap: wrap;
 }
-
+ 
 .navbar .nav-link {
   color: #f7e4c6;
   font-weight: 600;
@@ -99,25 +98,25 @@ h3, .product-name {
   padding: 0.5rem 1rem;
   display: inline-block;
 }
-
+ 
 .navbar .nav-link:hover,
 .navbar .nav-link:focus {
   color: var(--color-secundario);
 }
-
+ 
 .navbar-toggler {
   border-color: var(--color-secundario);
   background: transparent;
   cursor: pointer;
   display: none;
 }
-
+ 
 .navbar-toggler-icon {
   filter: invert(1);
   width: 24px;
   height: 24px;
 }
-
+ 
 /* Botón iniciar sesión */
 .btn-carrito {
   background: var(--color-primario);
@@ -130,7 +129,7 @@ h3, .product-name {
   cursor: pointer;
   white-space: nowrap;
 }
-
+ 
 .eliminar-btn {
   background-color: #d32f2f;
   color: white;
@@ -139,8 +138,8 @@ h3, .product-name {
   font-size: 16px;            /* Texto más grande */
   font-weight: bold;
   padding: 12px 20px;         /* Más espacio interno */
-  width: 200px; 
-  margin:0 auto ; 
+  width: 200px;
+  margin:0 auto ;
   margin-bottom: 50px;           /* Ocupa todo el ancho de la card */
   box-sizing: border-box;     /* Evita que el padding desborde */
   cursor: pointer;
@@ -148,31 +147,31 @@ h3, .product-name {
   display:block;
   align-items: center;
   justify-content: center;    /* Centra ícono y texto */
-  gap: 8px;     
-                  
+  gap: 8px;    
+                 
 }
-
+ 
 .eliminar-btn:hover {
   background-color: #d32f2f;      
   transform: scale(1.05);          
 }
-
+ 
 .eliminar-btn:active {
   background-color: #b71c1c;      
   transform: scale(0.98);
 }
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
 .btn-carrito:hover,
 .btn-carrito:focus {
   background: #7a4b2f;
   box-shadow: 0 8px 20px rgba(140, 86, 55, 0.5);
   outline: none;
 }
-
+ 
 /* Contenedor principal */
 .containerCatalogo {
   max-width: 1200px;
@@ -182,7 +181,7 @@ h3, .product-name {
   box-sizing: border-box;
   background-color: #f5f5f5;
 }
-
+ 
 /* Layout columnas formulario y vista previa */
 #dosColumnas {
   display: flex;
@@ -193,7 +192,7 @@ h3, .product-name {
   width: 100%;
   flex-wrap: wrap;
 }
-
+ 
 @media (min-width: 768px) {
   #dosColumnas {
     flex-direction: row;
@@ -204,7 +203,7 @@ h3, .product-name {
     min-width: 300px;
   }
 }
-
+ 
 /* Cards **************************************************/
 .product-card, .narrow-card {
   background: white;
@@ -224,12 +223,12 @@ h3, .product-name {
   align-items: center;
   padding: 0%;
 }
-
+ 
 .product-card:hover, .narrow-card:hover {
   transform: translateY(-10px) scale(1.03);
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
 }
-
+ 
 .product-image {
   width: 100%;
   height: 250px;
@@ -238,17 +237,17 @@ h3, .product-name {
   display: block;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-
+ 
 }
-
+ 
 .product-card:hover .product-image {
   transform: scale(1.1);
 }
-
+ 
 .product-info {
   padding: 5px;
 }
-
+ 
 /**********************************************************************/
 .product-name {
   font-family: 'Playfair Display', serif;
@@ -258,7 +257,7 @@ h3, .product-name {
   font-weight: 700;
   padding: 25px;
 }
-
+ 
 /* Truncar descripción con line-clamp *********************/
 .product-description {
   color: #8C5637;
@@ -273,14 +272,14 @@ h3, .product-name {
   cursor: pointer; /* Para indicar que se puede hacer clic */
   transition: all 0.3s ease;
 }
-
+ 
 .product-description.expandido {
   -webkit-line-clamp: unset;
   display: block;
   overflow: visible;
 }
-
-
+ 
+ 
 .product-price {
   font-family: 'Playfair Display', serif;
   font-size: 28px;
@@ -289,7 +288,7 @@ h3, .product-name {
   margin-bottom: 20px;
   margin-top: 5px;
 }
-
+ 
 .grupo-botones {
   display: flex;
   justify-content: center;
@@ -297,8 +296,8 @@ h3, .product-name {
   flex-wrap: wrap;         /* Se adaptan si no caben en pantalla pequeña */
   margin-top: 2px;
 }
-
-
+ 
+ 
 /* Botones generales */
 .boton-accion {
   background-color: #8C5637;
@@ -317,25 +316,25 @@ h3, .product-name {
   gap: 6px;
   min-width: 140px;
 }
-
-
-
+ 
+ 
+ 
 .boton-accion:hover {
   background-color: #6e422a;
   transform: scale(1.03);
 }
-
+ 
 .boton-accion:active {
   background-color: #5a3521;
   transform: scale(0.97);
 }
-
+ 
 .nombre-imagen {
   font-size: 13px;
   color: #6c757d;
   text-align: center;
 }
-
+ 
 .boton-contenedor {
   display: flex;
   flex-direction: column;
@@ -343,26 +342,26 @@ h3, .product-name {
   gap: 12px;
   width: 100%;
 }
-
+ 
 /* Botón Subir imagen */
 .subir-imagen {
   background: linear-gradient(135deg, #4B6950, var(--color-secundario));
   color: #fff;
-  margin-left: 10px;
+  margin-top: 5px;
 }
-
+ 
 .subir-imagen:hover,
 .subir-imagen:focus {
   background: linear-gradient(135deg, #3a4b3a, #7aa36a);
 }
-
+ 
 /* Botón Vista previa */
 .vista-previa {
   background: #8c5637; ;
   color: #fff;
   border: 2px solid var(--color-primario);
 }
-
+ 
 .vista-previa:hover,
 .vista-previa:focus {
   background: #6c5a4a;
@@ -370,20 +369,20 @@ h3, .product-name {
   box-shadow: 0 10px 25px rgba(108, 90, 74, 0.5);
   color: #fff;
 }
-
+ 
 /* Botón Confirmar y Guardar */
 .confirmar-guardar {
   background: #8C5637 !important;
   color: white;
-   
+ 
 }
-
+ 
 .confirmar-guardar:hover,
 .confirmar-guardar:focus {
   background: #7a4b2f;
   box-shadow: 0 10px 25px rgba(140, 86, 55, 0.5);
 }
-
+ 
 /* Formularios */
 form#admin-insert input,
 form#admin-insert select,
@@ -398,7 +397,7 @@ form#admin-insert button {
   box-sizing: border-box;
   margin-top: 15px;
 }
-
+ 
 form#admin-insert input:focus,
 form#admin-insert select:focus,
 form#admin-insert button:focus {
@@ -406,7 +405,7 @@ form#admin-insert button:focus {
   box-shadow: 0 0 8px rgba(252, 117, 26, 0.6);
   outline: none;
 }
-
+ 
 /* Dashboard container */
 #contenedorCards {
   background: linear-gradient(135deg, #4B6950, var(--color-secundario)) !important;
@@ -426,7 +425,7 @@ form#admin-insert button:focus {
   box-sizing: border-box;
   background-image: radial-gradient(circle at top left, rgba(255,255,255,0.6), transparent);
 }
-
+ 
 /* Tabla inventario */
 .table {
   width: 100%;
@@ -440,7 +439,15 @@ form#admin-insert button:focus {
   font-size: 1rem;
   transition: box-shadow 0.3s ease;
 }
-
+ 
+#actualizar-inventario {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  /* resto igual */
+}
+ 
+ 
 .table thead {
   background: linear-gradient(135deg, #4B6950, var(--color-secundario));
   color: #fff;
@@ -448,28 +455,28 @@ form#admin-insert button:focus {
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
-
+ 
 .table thead th {
   padding: 16px 20px;
   border: none;
   text-align: center;
 }
-
+ 
 .table tbody tr {
   transition: background-color 0.3s ease, transform 0.3s ease;
   cursor: default;
 }
-
+ 
 .table tbody tr:nth-child(even) {
   background: #f9f9f9;
 }
-
+ 
 .table tbody tr:hover {
   background: #e6f0e6;
   transform: scale(1.02);
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
-
+ 
 .table tbody td {
   padding: 14px 20px;
   vertical-align: middle;
@@ -477,7 +484,7 @@ form#admin-insert button:focus {
   text-align: center;
   border-bottom: 1px solid #eee;
 }
-
+ 
 .table img {
   width: 60px;
   height: 60px;
@@ -486,11 +493,11 @@ form#admin-insert button:focus {
   box-shadow: 0 3px 8px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
 }
-
+ 
 .table img:hover {
   transform: scale(1.1);
 }
-
+ 
 /* Animaciones suaves */
 @keyframes slideInUp {
   from {
@@ -502,14 +509,14 @@ form#admin-insert button:focus {
     transform: translateY(0);
   }
 }
-
+ 
 /* Animar cards al cargar */
 .product-card, .narrow-card {
   opacity: 0;
   animation: slideInUp 0.8s ease forwards;
   animation-delay: 0.2s;
 }
-
+ 
 /* Animación general */
 @keyframes fadeSlideUp {
   from {
@@ -521,7 +528,7 @@ form#admin-insert button:focus {
     transform: translateY(0);
   }
 }
-
+ 
 .admin-inventory-container {
   display: flex;
   justify-content: space-between;
@@ -531,7 +538,7 @@ form#admin-insert button:focus {
   background-color:#fff;
   border-radius: 0.8rem;
 }
-
+ 
 .admin-info,
 .inventory-summary {
   flex: 1;
@@ -540,7 +547,7 @@ form#admin-insert button:focus {
   padding: 20px;
   border-radius: 0.8rem;
 }
-
+ 
 .admin-section {
   max-width: 1200px;
   margin: 1rem auto;
@@ -552,18 +559,18 @@ form#admin-insert button:focus {
   -webkit-backdrop-filter: blur(10px);
   box-sizing: border-box;
 }
-
+ 
 .admin-header {
   text-align: center;
   margin-bottom: 1rem;
   margin-top: 1rem;
 }
-
+ 
 .admin-header h2 {
   font-size: 1.8rem;
   color: #5d4037;
 }
-
+ 
 /* Contenedor horizontal */
 .admin-content {
   display: flex;
@@ -575,20 +582,20 @@ form#admin-insert button:focus {
   box-sizing: border-box;
   background-color:#fff;
 }
-
+ 
 /* Bloque de datos del administrador */
 .admin-block {
   flex: 1;
   min-width: 300px;
   box-sizing: border-box;
 }
-
+ 
 .admin-block h3 {
   font-size: 1.2rem;
   color: #6d4c41;
   margin-bottom: 1rem;
 }
-
+ 
 /* Foto + datos */
 .admin-info {
   flex: 1;
@@ -599,7 +606,7 @@ form#admin-insert button:focus {
   align-items: center;
   flex-wrap: wrap;
 }
-
+ 
 .admin-photo img {
   width: 150px;
   height: 150px;
@@ -608,14 +615,14 @@ form#admin-insert button:focus {
   max-width: 100%;
   height: auto;
 }
-
+ 
 .admin-details p {
   margin-bottom: 0.5rem;
   font-size: 1rem;
   color: #424242;
   flex: 1 1 150px;
 }
-
+ 
 /* Inventario */
 .inventory-summary {
   display: flex;
@@ -628,22 +635,22 @@ form#admin-insert button:focus {
   box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
   text-align:left;
 }
-
+ 
 .inventory-summary h3 {
   font-size: 1.2rem;
   color: #6d4c41;
   margin-bottom: 1rem;
 }
-
+ 
 .inventory-summary p {
   margin-bottom: 0.6rem;
   font-size: 0.95rem;
 }
-
+ 
 /* ------------------ */
 /* RESPONSIVE DESIGN  */
 /* ------------------ */
-
+ 
 /* Mostrar botón hamburguesa en tablets y móviles */
 @media (max-width: 1024px) {
   .navbar-toggler {
@@ -657,20 +664,20 @@ form#admin-insert button:focus {
   .navbar-collapse {
     width: 100%;
   }
-
+ 
   /* Ajustar layout columnas a columna única */
   #dosColumnas {
     flex-direction: column;
     gap: 1.5rem;
   }
-
+ 
   /* Ajustar tamaño de cards */
   .product-card, .narrow-card {
     width: 90% !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
-
+ 
   /* Ajustar tamaño de texto en encabezados */
   h1, .main-title {
     font-size: 36px;
@@ -682,29 +689,29 @@ form#admin-insert button:focus {
     font-size: 18px;
   }
 }
-
+ 
 /* Móviles grandes y tablets pequeñas */
 @media (max-width: 768px) {
   /* Layout columnas a columna única */
   #dosColumnas {
     flex-direction: column !important;
   }
-
+ 
   /* Admin container apila vertical */
   .admin-inventory-container {
     flex-direction: column !important;
   }
-
+ 
   .admin-info, .inventory-summary {
     min-width: 100% !important;
   }
-
+ 
   /* Ajustar padding body para móviles */
   body {
     padding: 10px;
   }
 }
-
+ 
 #actualizar-inventario {
   background-color: #8C5637;       /* Café armónico */
   color: white;
@@ -720,13 +727,23 @@ form#admin-insert button:focus {
   transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
-
+ 
 #actualizar-inventario:hover {
   background-color: #6e422a;
   transform: scale(1.05);
 }
-
+ 
 #actualizar-inventario:active {
   background-color: #5a3521;
   transform: scale(0.95);
+}
+.btn-personalizado {
+  background-color: #4B6950; /* Color coral */
+  color: white;
+  border: none;
+}
+ 
+.btn-personalizado:hover {
+  background-color: #5d4037;
+  color: #f5f5f5; /* Un tono más oscuro al pasar el mouse */
 }
