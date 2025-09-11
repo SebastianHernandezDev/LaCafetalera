@@ -61,12 +61,12 @@ async function initializeProducts() {
   }
 }
 
-//  Obtener productos
+// Obtener productos
 function getProducts() {
   return JSON.parse(localStorage.getItem("products")) || [];
 }
 
-//  Renderizar una card individual
+// Renderizar una card individual
 function renderPreviewCard(producto) {
   const container = document.getElementById("previewCards");
 
@@ -79,10 +79,16 @@ function renderPreviewCard(producto) {
     <div class="product-info">
       <h3 class="product-name">${producto.name}</h3>
       <p class="product-description">${producto.description}</p>
-      <p class="product-price">${producto.price} COP</p>
-      <button class="btn-cart eliminar-btn mt-2" data-id="${producto.id}">🗑️ Eliminar</button>
+      <div class="product-price">$${parseFloat(producto.price).toFixed(2)}</div>
+      <button class="btn-cart eliminar-btn mt-2" data-id="${producto.id}">Eliminar<i class="bi bi-trash3-fill"></i></button>
     </div>
   `;
+
+  // Agregar listener para expandir descripción
+  const descripcion = card.querySelector(".product-description");
+  descripcion.addEventListener("click", () => {
+    descripcion.classList.toggle("expandido");
+  });
 
   // Evento para eliminar producto de la vista previa
   card.querySelector(".eliminar-btn").addEventListener("click", () => {
@@ -97,7 +103,7 @@ function renderPreviewCard(producto) {
       document.getElementById("confirmar-guardar").classList.remove("visible");
     }
 
-    //  Actualizar el campo ID visualmente
+    // Actualizar el campo ID visualmente
     actualizarCampoIdPreview();
   });
 
@@ -211,7 +217,7 @@ function cargarInventario() {
       <td>${producto.nuevoStock}</td>
       <td><img src="${producto.image}" alt="${producto.name}" style="width: 50px;" onerror="this.src='https://via.placeholder.com/50?text=Sin+imagen'"></td>
       <td>${producto.status}</td>
-      <td><button class="btn-eliminar btn btn-danger btn-sm" data-id="${producto.id}">🗑️</button></td>
+      <td><button class="btn-eliminar btn btn-danger btn-sm" data-id="${producto.id}"><i class="bi bi-trash3-fill"></i></button></td>
     `;
 
     tabla.appendChild(fila);
