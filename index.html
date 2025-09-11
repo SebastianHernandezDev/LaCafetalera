@@ -167,95 +167,146 @@
     </div>
   </section>
 
-  <!-- STORYTELLING -->
-  <section id="storytelling" class="storytelling container text-center my-5">
-    <h2 class="main-title">Nuestra Historia</h2>
-    <p>
-      Crecimos en medio de montañas donde el café no era solo un cultivo,
-      sino parte de la vida diaria 🌄☕. Desde pequeños aprendimos que cada grano guarda el esfuerzo de familias enteras,
-      que se levantan antes del amanecer para cuidar la tierra con amor y paciencia. </p>
+<!-- STORYTELLING - FORMATO CONVERSACIÓN CON MUÑEQUITOS -->
+<section id="storytelling" class="storytelling container my-5">
+  
+  <!-- Blob animado de fondo -->
+  <div class="historia-blob"></div>
+  
+  <!-- Contenido de la historia en formato de chat -->
+  <div class="historia-contenido">
+    <h2 class="main-title text-center mb-4">Nuestra Historia</h2>
 
-    <p>La idea de crear La Cafetalera nació al ver que, aunque nuestro café es de los mejores del mundo, 
-      muchas veces los caficultores no reciben el reconocimiento ni el apoyo que merecen 🌱. 
-      Sentimos la necesidad de hacer algo diferente: darle valor a su trabajo y abrir un puente directo entre ellos y quienes disfrutan una taza cada mañana. 
-      No somos solo una marca, somos una historia compartida 🤝. </p>
-    
-    <p>Queremos que cada sorbo lleve consigo el aroma de nuestra tierra, 
-      la esperanza de nuestras comunidades y el orgullo de ser colombianos 🇨🇴❤️. </p>
-
-    <p>✨ " Porque detrás de cada taza hay un sueño, y ese sueño sabe a café colombiano. "</p>
-    <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn btn catalogo mt-3">Conoce nuestros productos</a>
-  </section>
-
-  <!-- HISTORIAS DE CAFICULTORES -->
-  <section class="historias container my-5">
-    <h2 class="main-title text-center mb-4">Historias de Nuestros Caficultores</h2>
-
-    <div class="row mb-4 align-items-center">
-      <div class="col-12 col-md-6 mb-4">
-        <img src="./frontend/pages/Inicio/assets/img/Historia1.png" class="img-fluid" alt="Caficultor 1">
+    <div class="chat-container">
+      <!-- Mensaje del muñequito 1 -->
+      <div class="chat-bubble left">
+        <div class="avatar"></div>
+        <p>
+          Crecimos en medio de montañas donde el café no era solo un cultivo, 
+          sino parte de la vida diaria. Desde pequeños aprendimos que cada grano guarda el esfuerzo 
+          de familias enteras que se levantan antes del amanecer para cuidar la tierra con amor y paciencia.
+        </p>
       </div>
-        <div class="col-12 col-md-6 mb-4">
-          <h3>Don José – Tradición y Familia</h3>
-          <div class="texto-corto">
-            <p>Desde niño, Don José ha trabajado en el cafetal heredado de sus abuelos. Su amor por la tierra y el café lo ha llevado a mantener prácticas sostenibles...</p>
-          </div>
-          <div class="texto-completo" style="display: none;">
-            <p>Desde niño, Don José ha trabajado en el cafetal heredado de sus abuelos.
-              Su amor por la tierra y el café lo ha llevado a mantener prácticas sostenibles y enseñar a las nuevas generaciones a respetar la naturaleza y la tradición cafetera.
-              Con el tiempo, conoció a La Cafetalera, una plataforma que conecta directamente a pequeños productores con consumidores conscientes.
-              Gracias a esta iniciativa, Don José ha podido vender su café a precios justos,
-              recibir reconocimiento por la calidad de su producto y acceder a herramientas que lo ayudan a mejorar sus cultivos.</p>
-          </div>
-          <button class="ver-mas-btn" onclick="toggleTexto(this)">Ver más</button>
-        </div>
+
+      <!-- Mensaje del muñequito 2 -->
+      <div class="chat-bubble right">
+        <div class="avatar"></div>
+        <p>
+          La idea de crear <strong>La Cafetalera</strong> nació al ver que, aunque nuestro café es de los mejores del mundo, 
+          muchos caficultores no reciben el reconocimiento ni el apoyo que merecen. 
+          Sentimos la necesidad de hacer algo diferente: darle valor a su trabajo y abrir un puente directo 
+          entre ellos y quienes disfrutan una taza cada mañana. 
+        </p>
+      </div>
+
+      <!-- Mensaje del muñequito 1 -->
+      <div class="chat-bubble left">
+        <div class="avatar"></div>
+        <p>
+          No somos solo una marca, somos una historia compartida.  
+          Queremos que cada sorbo lleve consigo el aroma de nuestra tierra, 
+          la esperanza de nuestras comunidades y el orgullo de ser colombianos 🇨🇴.
+        </p>
+      </div>
+
+      <!-- Mensaje del muñequito 2 -->
+      <div class="chat-bubble right">
+        <div class="avatar"></div>
+        <p>✨ "Porque detrás de cada taza hay un sueño, y ese sueño sabe a café colombiano."</p>
       </div>
     </div>
 
-    <div class="row mb-4 align-items-center flex-md-row-reverse">
-      <div class="col-12 col-md-6 mb-4">
-        <img src="./frontend/pages/Inicio/assets/img/Historia2.png" class="img-fluid" alt="Caficultora 2">
-      </div>
-        <div class="col-12 col-md-6 mb-4">
-          <h3>Doña María – Fuerza de Mujer</h3>
-          <div class="texto-corto">
-            <p>Doña María lidera una comunidad de caficultoras que han transformado su región.
-              A pesar de los desafíos y las barreras que enfrentan las mujeres en el sector agrícola...</p>
-          </div>
-          <div class="texto-completo" style="display: none;">
-            <p>Doña María lidera una comunidad de caficultoras que han transformado su región.
-              A pesar de los desafíos y las barreras que enfrentan las mujeres en el sector agrícola,
-              a través de esta plataforma, Doña María ha logrado que los cafés producidos por su comunidad lleguen directamente a consumidores que valoran su trabajo,
-              reconociendo la calidad y el esfuerzo detrás de cada grano.
-              Cada taza de café cuenta una historia de resiliencia, dedicación y fuerza femenina, y gracias a La Cafetalera, Doña María sabe que el impacto de su labor trasciende su región y llega a personas que aprecian y respetan su esfuerzo.</p>
-          </div>
-          <button class="ver-mas-btn" onclick="toggleTexto(this)">Ver más</button>
-        </div>
+    <!-- Botón final -->
+    <div class="text-center mt-4">
+      <a href="./frontend/pages/catalogo/components/catalogo.html" class="btn btn catalogo">
+        Conoce nuestros productos
+      </a>
     </div>
+  </div>
+</section>
 
-    <div class="row mb-4 align-items-center">
-      <div class="col-12 col-md-6 mb-4">
-        <img src="./frontend/pages/Inicio/assets/img/Historia3.png" class="img-fluid" alt="Caficultor 3">
-      </div>
-        <div class="col-12 col-md-6 mb-4">
-          <h3>Carlos – Innovación en el Campo</h3>
-          <div class="texto-corto">
-            <p>Carlos siempre ha sentido un profundo respeto por las tradiciones cafetaleras de su familia, pero también una curiosidad insaciable por la innovación.
-              Desde joven, soñaba con mejorar los cultivos sin perder la esencia del café que lo vio crecer...</p>
-          </div>
-          <div class="texto-completo" style="display: none;">
-            <p>Carlos siempre ha sentido un profundo respeto por las tradiciones cafetaleras de su familia,
-              pero también una curiosidad insaciable por la innovación.
-              Desde joven, soñaba con mejorar los cultivos sin perder la esencia del café que lo vio crecer.
-              Hoy, gracias a La Cafetalera, ha podido combinar tradición y tecnología, implementando nuevas técnicas de riego,
-              control de calidad y procesamiento que elevan la excelencia de su café,
-              conservando los sabores auténticos que caracterizan su región.
-              Gracias a La Cafetalera, su esfuerzo y creatividad tienen un impacto real y reconocido, mostrando que la pasión por el café puede transformar vidas.</p>
-          </div>
-          <button class="ver-mas-btn" onclick="toggleTexto(this)">Ver más</button>
-        </div>
+
+
+<!-- HISTORIAS DE CAFICULTORES -->
+<section class="historias container my-5">
+  <h2 class="main-title text-center mb-4">Historias de Nuestros Caficultores</h2>
+
+  <!-- Historia 1 -->
+  <div class="row mb-4 align-items-center">
+    <div class="col-12 col-md-6 mb-4">
+      <img src="./frontend/pages/Inicio/assets/img/Historia1.png" class="img-fluid" alt="Caficultor 1">
     </div>
-  </section>
+    <div class="col-12 col-md-6 mb-4 storytelling">
+      <div class="historia-blob blob-rosa"></div>
+      <div class="historia-contenido">
+        <h3>Don José – Tradición y Familia</h3>
+        <div class="texto-corto">
+          <p>Desde niño, Don José ha trabajado en el cafetal heredado de sus abuelos. Su amor por la tierra y el café lo ha llevado a mantener prácticas sostenibles...</p>
+        </div>
+        <div class="texto-completo" style="display: none;">
+          <p>Desde niño, Don José ha trabajado en el cafetal heredado de sus abuelos.
+            Su amor por la tierra y el café lo ha llevado a mantener prácticas sostenibles y enseñar a las nuevas generaciones la tradición cafetera.
+            Con el tiempo, conoció a La Cafetalera, una plataforma que conecta directamente a pequeños productores con consumidores conscientes.
+            Gracias a esta iniciativa, Don José ha podido vender su café a precios justos y
+            recibir reconocimiento por la calidad de su producto.</p>
+        </div>
+        <button class="ver-mas-btn" onclick="toggleTexto(this)">Ver más</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Historia 2 -->
+  <div class="row mb-4 align-items-center flex-md-row-reverse">
+    <div class="col-12 col-md-6 mb-4">
+      <img src="./frontend/pages/Inicio/assets/img/Historia2.png" class="img-fluid" alt="Caficultora 2">
+    </div>
+    <div class="col-12 col-md-6 mb-4 storytelling">
+      <div class="historia-blob blob-verde"></div>
+      <div class="historia-contenido">
+        <h3>Doña María – Fuerza de Mujer</h3>
+        <div class="texto-corto">
+          <p>Doña María lidera una comunidad de caficultoras que han transformado su región.
+            A pesar de los desafíos y las barreras que enfrentan las mujeres en el sector agrícola...</p>
+        </div>
+        <div class="texto-completo" style="display: none;">
+          <p>Doña María lidera una comunidad de caficultoras que han transformado su región.
+            A pesar de los desafíos y las barreras que enfrentan las mujeres en el sector agrícola,
+            a través de esta plataforma, Doña María ha logrado que los cafés producidos por su comunidad lleguen directamente a consumidores que valoran su trabajo,
+            reconociendo la calidad y el esfuerzo detrás de cada grano.
+            Cada taza de café cuenta una historia, y doña María sabe que el impacto de su labor llega a personas que aprecian y respetan su esfuerzo.</p>
+        </div>
+        <button class="ver-mas-btn" onclick="toggleTexto(this)">Ver más</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Historia 3 -->
+  <div class="row mb-4 align-items-center">
+    <div class="col-12 col-md-6 mb-4">
+      <img src="./frontend/pages/Inicio/assets/img/Historia3.png" class="img-fluid" alt="Caficultor 3">
+    </div>
+    <div class="col-12 col-md-6 mb-4 storytelling">
+      <div class="historia-blob blob-cerezo"></div>
+      <div class="historia-contenido">
+        <h3>Carlos – Innovación en el Campo</h3>
+        <div class="texto-corto">
+          <p>Carlos siempre ha sentido un profundo respeto por las tradiciones cafetaleras de su familia, pero también una curiosidad insaciable por la innovación.
+            Desde joven, soñaba con mejorar los cultivos sin perder la esencia del café que lo vio crecer...</p>
+        </div>
+        <div class="texto-completo" style="display: none;">
+          <p>Carlos siempre ha sentido un profundo respeto por las tradiciones cafetaleras de su familia,
+            pero también una curiosidad insaciable por la innovación.
+            Hoy ha podido combinar tradición y tecnología, implementando nuevas técnicas de riego,
+            control de calidad y procesamiento que elevan la excelencia de su café,
+            conservando los sabores auténticos que caracterizan su región.
+            Gracias a La Cafetalera, su esfuerzo y creatividad tienen un impacto real y reconocido, mostrando que la pasión por el café puede transformar vidas.</p>
+        </div>
+        <button class="ver-mas-btn" onclick="toggleTexto(this)">Ver más</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 
   <!-- FOOTER -->
   <footer class="bg-dark text-light pt-4">

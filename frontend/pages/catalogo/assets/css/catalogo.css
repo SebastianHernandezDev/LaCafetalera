@@ -113,7 +113,6 @@ body {
     text-decoration: none;
     color: white;
 }
-
 .catalog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -122,6 +121,8 @@ body {
 }
 
 .product-card {
+    display: flex;
+    flex-direction: column;
     background: white;
     border-radius: 20px;
     overflow: hidden;
@@ -142,8 +143,11 @@ body {
 
 .product-image {
     width: 100%;
-    height: 250px;
-    object-fit: cover;
+    height: 200px;           /* altura fija, ajusta según tu diseño */
+    object-fit: cover;        /* recorta sin deformar */
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    display: block;
     transition: all 0.3s ease;
 }
 
@@ -152,6 +156,10 @@ body {
 }
 
 .product-info {
+    flex: 1; /* ocupa todo el espacio disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* separa contenido arriba y botón abajo */
     padding: 25px;
 }
 
@@ -166,21 +174,33 @@ body {
 .product-description {
     color: #8C5637;
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.6;              /* altura de línea */
     margin-bottom: 15px;
-    height: 60px;
-    overflow: hidden;
+
+    display: -webkit-box;   
+    display: box;       /* caja flexible vertical */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; 
+    line-clamp: 3;        /* máximo 3 líneas */
+    overflow: hidden;              /* oculta texto sobrante */
+    text-overflow: ellipsis;       /* agrega los "..." */
+    white-space: normal;
+
+    max-height: calc(1.6em * 3);   /* altura exacta = 3 líneas */
 }
+
 
 .product-price {
     font-family: 'Playfair Display', serif;
     font-size: 28px;
     color: #93BE88;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
-.btn-cart {
+/* Botones */
+.btn-cart,
+.btn-disabled {
     background: #8C5637;
     color: white;
     border: none;
@@ -191,19 +211,18 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     width: 100%;
-    position: relative;
-    overflow: hidden;
-}
-
-
-.btn-cart:hover:before {
-    left: 100%;
 }
 
 .btn-cart:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(140, 86, 55, 0.3);
 }
+
+.btn-disabled {
+    background: gray;
+    cursor: not-allowed;
+}
+
 
 .delete-btn {
     display: none;

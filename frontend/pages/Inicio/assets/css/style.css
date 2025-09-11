@@ -241,7 +241,7 @@ body {
 
 .historia-parrafo {
   font-size: 16px;
-  color: #503c31;
+  color: #000000;
   line-height: 1.6;
   overflow: hidden;
   max-height: 80px;
@@ -289,3 +289,131 @@ body {
   box-shadow: 0px 6px 12px rgba(0,0,0,0.2);
   text-decoration: none;
 }
+
+/* Sección storytelling con fondo blob */
+.storytelling {
+  position: relative;
+  overflow: hidden; /* evita que el blob sobresalga */
+  padding: 4rem 2rem;
+}
+
+/* Blob rectangular animado */
+.historia-blob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 750px;      /* ancho */
+  height: 400px;     /* alto */
+  background-color: #e2a07a; /* verde cálido */
+  transform: translate(-60%, -50%);
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  animation: deformacionBlob 10s ease-in-out infinite;
+  opacity: 0.45; /* baja opacidad para no tapar texto */
+  z-index: 1;
+}
+
+/* Animación del blob */
+@keyframes deformacionBlob {
+  0% {
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  }
+  50% {
+    border-radius: 40% 70% 30% 80% / 60% 30% 70% 40%;
+  }
+  100% {
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  }
+}
+
+/* Contenido encima del blob */
+.historia-contenido {
+  position: relative;
+  z-index: 2; /* asegura que quede por encima del blob */
+  color: #000000;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.historia-contenido .main-title {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 1.5rem;
+}
+
+.historia-contenido p {
+  font-family: "Lato", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+
+/* Imágenes historia */
+.historias img {
+  border-radius: 15px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.historias img:hover {
+  transform: scale(1.05);
+}
+
+
+//
+
+/* Blob animado base */
+.historia-blob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 750px;
+  height: 400px;
+  transform: translate(-60%, -50%);
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  animation: deformacionBlob 10s ease-in-out infinite;
+  opacity: 0.45;
+  z-index: 1;
+}
+
+/* Colores individuales */
+.blob-rosa {
+  background-color: #f7E4C6; 
+}
+
+.blob-verde {
+  background-color: #BBF1BB; 
+}
+
+.blob-cerezo {
+  background-color: #a5998f; 
+}
+
+/* Animación */
+@keyframes deformacionBlob {
+  0% {
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  }
+  50% {
+    border-radius: 40% 70% 30% 80% / 60% 30% 70% 40%;
+  }
+  100% {
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  }
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .historia-blob {
+    width: 100%;
+    height: 250px;
+    transform: translate(-50%, -50%);
+  }
+  .historias h2.main-title {
+    font-size: 1.8rem;
+  }
+}
+
+
