@@ -246,7 +246,11 @@ function cargarInventario() {
       minimumFractionDigits: 0
       })}
       </td>
-      <td data-label="Descripción del Producto">${producto.description}</td>
+      <td data-label="Descripción del Producto" class="descripcion-truncada">
+        <span class="texto-corto">${producto.description}</span>
+        <span class="texto-completo d-none">${producto.description}</span>
+        <button class="ver-mas-btn">Ver más</button>
+      </td>
       <td data-label="Stock Actual">${producto.stock}</td>
       <td data-label="Nuevo Stock">${producto.nuevoStock}</td>
       <td data-label="Imagen"><img src="${producto.image}" alt="${producto.name}" style="width: 50px;"></td>
@@ -257,6 +261,8 @@ function cargarInventario() {
     tabla.appendChild(fila);
   });
   conectarBotonesEliminar();
+  conectarBotonesVerMas();
+
 }
 
 
@@ -397,3 +403,13 @@ window.addEventListener("DOMContentLoaded", async () => {
     btnConfirmarGuardar.addEventListener("click", confirmarGuardarHandler);
   }
 });
+function conectarBotonesVerMas() {
+  document.querySelectorAll('.ver-mas-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const td = btn.closest('.descripcion-truncada');
+      td.querySelector('.texto-corto').classList.add('d-none');
+      td.querySelector('.texto-completo').classList.remove('d-none');
+      btn.style.display = 'none';
+    });
+  });
+}

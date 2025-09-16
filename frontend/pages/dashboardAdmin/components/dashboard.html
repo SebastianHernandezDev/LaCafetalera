@@ -42,10 +42,10 @@
     </nav>
   </header>
 
-  <div class="container-fluid mt-3">
+  <div class="dashboard-container">
     <div class="row">
       <!-- 🧍 Columna izquierda: Panel del administrador -->
-      <aside class="col-12 col-md-4 col-lg-3 sidebar-admin d-flex flex-column justify-content-between py-4 px-3">
+      <aside class="col-12 col-md-4 col-lg-3 sidebar-admin">
         <!-- 🟪 Encabezado -->
         <div class="admin-header text-center mb-4">
           <h1 class="h4 text-acento">Dashboard Administrador</h1>
@@ -110,7 +110,7 @@
       </aside>
 
       <!-- 📦 Columna derecha: contenido principal -->
-      <main class="col-12 col-md-8 col-lg-9">
+      <main class="col-12 col-md-8 col-lg-9"
         <!-- 📊 Resumen del inventario -->
         <section id="resumen-inventario" class="inventory-summary bg-white p-3 rounded shadow-sm mb-4">
           <h4 class="mb-4"><i class="bi bi-bar-chart-fill"></i> Resumen del Inventario</h4>
@@ -206,7 +206,7 @@
     <!-- 📋 Sección de inventario fuera del row principal -->
       <div class="container-fluid my-4">
       <section id="mi-inventario" class="bg-white p-4 rounded shadow-sm">
-        <h3 class="mb-4 text-secondary"><i class="bi bi-card-list me-2"></i>Mi inventario</h3>
+        <h3 class="mb-4"><i class="bi bi-card-list me-2"></i>Mi inventario</h3>
         <div class="table-responsive">
           <table class="table table-striped table-bordered w-100 align-middle">
             <thead class="table-dark">
@@ -228,52 +228,72 @@
       </section>
     </div>
   <!-- Footer -->
-  <footer class="bg-dark text-light pt-4 mt-5">
-    <div class="container-fluid">
-      <div class="row footerA text-center text-md-start">
-        <div class="col-12 col-sm-12 col-lg-4 logoFooter mb-2 d-flex justify-content-center">
-          <img src="../../../components/assets-global/img/ChatGPT Image 14 ago 2025, 15_07_00.png" alt="Logo de La Cafetalera" class="img-fluid" style="max-width: 250px; height: auto;" />
-        </div>
+  <footer class="footer-custom text-light pt-5 pb-4">
+    <div class="container-fluid px-3">
+      
+      <!-- Logo -->
+      <div class="logo-container text-center">
+        <img src="/frontend/components/assets-global/img/logo_cafetalera_recortado.png"
+            alt="Logo de La Cafetalera"
+            class="logoFooter img-fluid">
+        <p class="slogan">Café de calidad directamente de nuestra finca a tu taza.</p>
+      </div>
 
-        <div class="col-6 col-md-3 col-lg-2 mb-3">
-          <ul class="mt-3 list-unstyled lista_footer">
-            <li class="mb-2"><i class="bi bi-house-door-fill me-2"></i><a href="/index.html" class="footer-link text-light text-decoration-none">Inicio</a></li>
-            <li class="mb-2"><i class="bi bi-grid-fill me-2"></i><a href="/frontend/pages/catalogo/components/catalogo.html" class="footer-link text-light text-decoration-none">Catálogo</a></li>
-            <li class="mb-2"><i class="bi bi-envelope-fill me-2"></i><a href="/frontend/pages/contacto/components/formulario.html" class="footer-link text-light text-decoration-none">Contáctenos</a></li>
-            <li class="mb-2"><i class="bi bi-person-fill me-2"></i><a href="/frontend/pages/sobreNosotros/components/index.html" class="footer-link text-light text-decoration-none">Nosotros</a></li>
+      <!-- Menús alineados -->
+      <div class="row justify-content-center text-start text-md-start gy-4">
+        
+        <!-- Menú -->
+        <div class="col-12 col-sm-6 col-md-3 col-lg-2 footer-section">
+          <h5 class="footer-title">Menú</h5>
+          <ul class="list-unstyled">
+            <li><a href="/frontend/pages/sobreNosotros/components/index.html" class="footer-link">Inicio</a></li>
+            <li><a href="/frontend/pages/catalogo/components/catalogo.html" class="footer-link">Catálogo</a></li>
+            <li><a href="/frontend/pages/contacto/components/formulario.html" class="footer-link">Contáctenos</a></li>
+            <li><a href="/frontend/pages/LoginRegistro/components/Login/login.html" class="footer-link">Login/Registro</a></li>
+            <li><a href="/frontend/components/components-global/nav/footer.html" class="footer-link">CRUD</a></li>
           </ul>
         </div>
 
-        <div class="col-6 col-md-3 col-lg-2 mb-3">
-          <h4 class="fw-bold">Contacto</h4>
-          <address class="mb-0">
-            <p><i class="bi bi-geo-alt-fill me-2"></i>Bogotá, Colombia</p>
-            <p><i class="bi bi-telephone-fill me-2"></i><a href="tel:+573001234567" class="text-light text-decoration-none">+57 300 123 4567</a></p>
-            <p><i class="bi bi-envelope-fill me-2"></i><a href="mailto:contacto@lacafetalera.com" class="text-light text-decoration-none">contacto@lacafetalera.com</a></p>
-          </address>
+        <!-- Contacto -->
+        <div class="col-12 col-sm-6 col-md-3 col-lg-2 footer-section">
+          <h5 class="footer-title">Contacto</h5>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-geo-alt-fill me-2"></i>Bogotá, Colombia</li>
+            <li><i class="bi bi-telephone-fill me-2"></i><a href="tel:+573001234567" class="footer-link">+57 300 123 4567</a></li>
+            <li class="mt-2"><i class="bi bi-envelope-fill me-2"></i><a href="mailto:lacafetaleragen@gmail.com" class="footer-link">lacafetaleragen@gmail.com</a></li>
+          </ul>
         </div>
 
-        <div class="col-6 col-md-3 col-lg-2 mb-3">
-          <h4 class="fw-bold">Síguenos</h4>
-          <a href="#" aria-label="Facebook" class="text-light me-3"><i class="bi bi-facebook fs-4"></i></a>
-          <a href="#" aria-label="Instagram" class="text-light me-3"><i class="bi bi-instagram fs-4"></i></a>
-          <a href="#" aria-label="TikTok" class="text-light me-3"><i class="bi bi-tiktok fs-4"></i></a>
-          <a href="#" aria-label="YouTube" class="text-light"><i class="bi bi-youtube fs-4"></i></a>
+        <!-- Síguenos -->
+        <div class="col-12 col-sm-6 col-md-3 col-lg-2 footer-section">
+          <h5 class="footer-title">Síguenos</h5>
+          <div class="d-flex gap-2 flex-wrap">
+            <a href="https://www.facebook.com/?locale=es_LA" class="social-link" aria-label="Facebook"><i class="bi bi-facebook fs-5"></i></a>
+            <a href="https://www.instagram.com/" class="social-link" aria-label="Instagram"><i class="bi bi-instagram fs-5"></i></a>
+            <a href="https://www.tiktok.com/es/" class="social-link" aria-label="TikTok"><i class="bi bi-tiktok fs-5"></i></a>
+            <a href="https://www.youtube.com/" class="social-link" aria-label="YouTube"><i class="bi bi-youtube fs-5"></i></a>
+          </div>
         </div>
 
-        <div class="col-6 col-md-3 col-lg-2 mb-3">
-          <h4 class="fw-bold">Métodos de pago</h4>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Tarjeta Visa" width="50" class="me-2" />
-          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Tarjeta Mastercard" width="50" class="me-2" />
-          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="Pago con PayPal" width="60" />
+        <!-- Métodos de pago -->
+        <div class="col-12 col-sm-6 col-md-3 col-lg-2 footer-section">
+          <h5 class="footer-title">Métodos de pago</h5>
+          <div class="d-flex gap-2 flex-wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa" class="pago-img">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard" class="pago-img">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="pago-img">
+          </div>
         </div>
+
+      </div>
+
+      <!-- Derechos -->
+      <div class="footer-bottom text-center py-3 mt-4">
+        <p class="mb-0 small">© 2025 La Cafetalera. Todos los derechos reservados.</p>
       </div>
     </div>
-
-    <div class="bg-grey text-center py-2 mt-3">
-      <p class="mb-0">© 2025 La Cafetalera. Todos los derechos reservados.</p>
-    </div>
   </footer>
+
 
   <!-- Scripts al final para mejor rendimiento -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
