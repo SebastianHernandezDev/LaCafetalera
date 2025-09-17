@@ -21,28 +21,6 @@
   box-sizing: border-box;
 }
 
-<<<<<<< HEAD
-body {
-  background: linear-gradient(-90deg, #fdf9f2, var(--color-fondo));
-  background-size: 600% 600%;
-  animation: gradienteAnimado 10s ease infinite;
-  min-height: 100vh;  
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  padding: 0 10px;
-}
-
-/* Encabezados */
-h1, h2, h3, .main-title, .product-name, .product-price {
-  font-weight: 700;
-  padding: 5px 0;
-  transition: color 0.3s ease;
-  margin-top: 18px;
-  margin-bottom: 18px;
-  }
-=======
 /* En pantallas medianas y pequeñas, sidebar ocupa menos espacio vertical */
 @media (max-width: 992px) {
   .sidebar-admin {
@@ -65,7 +43,6 @@ h1, h2, h3, .main-title, .product-name, .product-price {
   color: #582919;
   font-size: 2.0rem;
 }
->>>>>>> PaulaNuevo
 
 /* Admin info: compactar espacios */
 .admin-info {
@@ -74,19 +51,9 @@ h1, h2, h3, .main-title, .product-name, .product-price {
   color:#8C5637;
 }
 
-<<<<<<< HEAD
-h1, .main-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 48px;
-  color: #000000d7;
-  margin-bottom: 10px;
-  align-items: center;
-  margin: 50PX;
-=======
 .admin-info .welcome-title h5 {
   font-size: 1.1rem;
   margin-bottom: 0.4rem;
->>>>>>> PaulaNuevo
 }
 
 /* Foto admin: tamaño más pequeño */
@@ -344,170 +311,10 @@ form textarea {
   margin-bottom: 20px;
 }
 
-<<<<<<< HEAD
-.grupo-botones {
-  display: flex;
-  justify-content: center;
-  gap: 1px;               /* Espacio entre botones */
-  flex-wrap: wrap;         /* Se adaptan si no caben en pantalla pequeña */
-  margin-top: 2px;
-}
-
-
-/* Botones generales */
-.boton-accion {
-  background-color: #8C5637;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 12px 24px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  min-width: 140px;
-}
-
-
-
-.boton-accion:hover {
-  background-color: #6e422a;
-  transform: scale(1.03);
-}
-
-.boton-accion:active {
-  background-color: #5a3521;
-  transform: scale(0.97);
-}
-
-.nombre-imagen {
-  font-size: 13px;
-  color: #6c757d;
-  text-align: center;
-}
-
-.boton-contenedor {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-}
-
-/* Botón Subir imagen */
-.subir-imagen {
-  background: linear-gradient(135deg, #4B6950, var(--color-secundario));
-  color: #fff;
-  margin-left: 10px;
-}
-
-.subir-imagen:hover,
-.subir-imagen:focus {
-  background: linear-gradient(135deg, #3a4b3a, #7aa36a);
-}
-
-/* Botón Vista previa */
-.vista-previa {
-  background: #8c5637; ;
-  color: #fff;
-  border: 2px solid var(--color-primario);
-}
-
-.vista-previa:hover,
-.vista-previa:focus {
-  background: #6c5a4a;
-  border-color: #6c5a4a;
-  box-shadow: 0 10px 25px rgba(108, 90, 74, 0.5);
-  color: #fff;
-}
-
-/* Botón Confirmar y Guardar */
-.confirmar-guardar {
-  background: #8C5637 !important;
-  color: white;
-   
-}
-
-.confirmar-guardar:hover,
-.confirmar-guardar:focus {
-  background: #7a4b2f;
-  box-shadow: 0 10px 25px rgba(140, 86, 55, 0.5);
-}
-
-/* Formularios */
-form#admin-insert input,
-form#admin-insert select,
-form#admin-insert button {
-  width: 100%;
-  font-size: 1rem;
-  padding: 14px 18px;
-  border-radius: 20px;
-  border: 2px solid #e0e0e0;
-  margin-bottom: 15px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  box-sizing: border-box;
-  margin-top: 15px;
-}
-
-form#admin-insert input:focus,
-form#admin-insert select:focus,
-form#admin-insert button:focus {
-  border-color: var(--color-secundario);
-  box-shadow: 0 0 8px rgba(252, 117, 26, 0.6);
-  outline: none;
-}
-
-/* Dashboard container */
-#contenedorCards {
-  background: linear-gradient(135deg, #4B6950, var(--color-secundario)) !important;
-  border-radius: 25px !important;
-  padding: 2rem;
-  box-shadow: inset 0 8px 20px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
-  height: 100%;
-  max-height: 750px;
-  max-width: 600px;
-  overflow-y: auto;
-  display: grid;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  width: 100%;
-  box-sizing: border-box;
-  background-image: radial-gradient(circle at top left, rgba(255,255,255,0.6), transparent);
-}
-
-/* Tabla inventario */
-.table {
-  width: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-  background: #fff;
-  margin-top: 30px;
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: 1rem;
-  transition: box-shadow 0.3s ease;
-}
-
-.table thead {
-  background: linear-gradient(135deg, #4B6950, var(--color-secundario));
-  color: #fff;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-=======
 /* Tabla inventario: padding y fuente más compactos */
 #tabla-inventario {
   padding: 1.5rem ;
   border-radius: 0.75rem; 
->>>>>>> PaulaNuevo
 }
 
 .table thead th {
