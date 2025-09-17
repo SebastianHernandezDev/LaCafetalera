@@ -13,7 +13,7 @@ function cerrarSesion() {
         }
     });
 }
-
+ 
 // Asignar listener al botón
 const botonCerrar = document.getElementById("botonSesion");
 if (botonCerrar) {
@@ -22,13 +22,13 @@ if (botonCerrar) {
         cerrarSesion();
     });
 }
-
+ 
 // ---- Resto de tu código: productos, inventario, vista previa, etc ----
 // Mantener todo igual que tu versión original
 let imagenBase64 = "";
 let archivoImagen = null;
 let productosEnPreview = [];
-
+ 
 // Inicializar productos desde JSON local
 async function initializeProducts() {
   const existingProducts = JSON.parse(localStorage.getItem("products"));
@@ -44,20 +44,20 @@ async function initializeProducts() {
     }
   }
 }
-
+ 
 // Obtener productos
 function getProducts() {
   return JSON.parse(localStorage.getItem("products")) || [];
 }
-
+ 
 // Renderizar una card individual
 function renderPreviewCard(producto) {
   const container = document.getElementById("previewCards");
-
+ 
   const card = document.createElement("div");
   card.className = "product-card col-12 col-md-6 col-lg-4 preview";
   card.setAttribute("data-id", producto.id);
-
+ 
   card.innerHTML = `
     <img src="${producto.image}" alt="${producto.name}" class="product-image" onerror="this.src='https://via.placeholder.com/300x180?text=Sin+imagen'">
     <div class="product-info">
@@ -67,43 +67,51 @@ function renderPreviewCard(producto) {
       <button class="btn-cart eliminar-btn mt-2" data-id="${producto.id}">Eliminar<i class="bi bi-trash3-fill"></i></button>
     </div>
   `;
-
+ 
   // Agregar listener para expandir descripción
   const descripcion = card.querySelector(".product-description");
   descripcion.addEventListener("click", () => {
     descripcion.classList.toggle("expandido");
   });
-
+ 
   // Evento para eliminar producto de la vista previa
   card.querySelector(".eliminar-btn").addEventListener("click", () => {
     card.classList.add("desaparecer");
     setTimeout(() => card.remove(), 500);
-
+ 
     // Eliminar producto del array productosEnPreview
     productosEnPreview = productosEnPreview.filter(p => p.id !== producto.id);
-
+ 
     // Si no quedan productos en preview, ocultar botón confirmar guardar
     if (productosEnPreview.length === 0) {
       document.getElementById("confirmar-guardar").classList.remove("visible");
     }
-
+ 
     // Actualizar el campo ID visualmente
     actualizarCampoIdPreview();
   });
-
+ 
   container.appendChild(card);
 }
-
+ 
 // ➕ Generar vista previa sin guardar (agregar múltiples productos)
 const formAdminInsert = document.getElementById("admin-insert");
 formAdminInsert.addEventListener("submit", function (e) {
   e.preventDefault();
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> d1a338c4e5d3f434e5f35c3d6967e4c864b50313
   const agregarProducto = (base64) => {
     const formData = new FormData(this);
     const campoId = document.getElementById("campo-id");
     const idGenerado = Number(campoId.value.replace("ID ", "")) || 1;
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> d1a338c4e5d3f434e5f35c3d6967e4c864b50313
     const nuevoProducto = {
       id: idGenerado,
       name: formData.get("name") || "Producto sin nombre",
@@ -115,15 +123,23 @@ formAdminInsert.addEventListener("submit", function (e) {
       imageName: archivoImagen?.name || "",
       image: base64 || "https://via.placeholder.com/300x180?text=Sin+imagen"
     };
+<<<<<<< HEAD
 
     productosEnPreview.push(nuevoProducto);
     renderPreviewCard(nuevoProducto);
 
+=======
+ 
+    productosEnPreview.push(nuevoProducto);
+    renderPreviewCard(nuevoProducto);
+ 
+>>>>>>> d1a338c4e5d3f434e5f35c3d6967e4c864b50313
     // Limpiar formulario
     this.reset();
     document.getElementById("nombreImagen").textContent = "";
     imagenBase64 = "";
     archivoImagen = null;
+<<<<<<< HEAD
 
     // Actualizar el campo ID al siguiente valor
     campoId.value = `ID ${idGenerado + 1}`;
@@ -132,6 +148,16 @@ formAdminInsert.addEventListener("submit", function (e) {
     document.getElementById("confirmar-guardar").classList.add("visible");
   };
 
+=======
+ 
+    // Actualizar el campo ID al siguiente valor
+    campoId.value = `ID ${idGenerado + 1}`;
+ 
+    // Mostrar botón confirmar guardar para guardar todos los productos en preview
+    document.getElementById("confirmar-guardar").classList.add("visible");
+  };
+ 
+>>>>>>> d1a338c4e5d3f434e5f35c3d6967e4c864b50313
   if (archivoImagen) {
     const reader = new FileReader();
     reader.onload = function (e) {
@@ -142,7 +168,7 @@ formAdminInsert.addEventListener("submit", function (e) {
     agregarProducto("");
   }
 });
-
+ 
 // ✅ Confirmar y guardar todos los productos en preview
 function confirmarGuardarHandler() {
   if (productosEnPreview.length === 0) {
@@ -153,13 +179,13 @@ function confirmarGuardarHandler() {
     });
     return;
   }
-
+ 
   let productosGuardados = getProducts();
-
+ 
   // Evitar IDs duplicados
   const idsGuardados = new Set(productosGuardados.map(p => p.id));
   const productosNuevos = productosEnPreview.filter(p => !idsGuardados.has(p.id));
-
+ 
   if (productosNuevos.length === 0) {
     Swal.fire({
       icon: 'warning',
@@ -168,25 +194,25 @@ function confirmarGuardarHandler() {
     });
     return;
   }
-
+ 
   productosGuardados = productosGuardados.concat(productosNuevos);
   localStorage.setItem("products", JSON.stringify(productosGuardados));
-
+ 
   cargarInventario();
-
+ 
   // Limpiar preview
   productosEnPreview = [];
   const container = document.getElementById("previewCards");
   container.innerHTML = "";
-
+ 
   const btnConfirmarGuardar = document.getElementById("confirmar-guardar");
   btnConfirmarGuardar.classList.remove("visible");
   formAdminInsert.reset();
   document.getElementById("nombreImagen").textContent = "";
   imagenBase64 = "";
-
+ 
   generarIdInventario();
-
+ 
   Swal.fire({
     icon: 'success',
     title: 'Guardado',
@@ -195,14 +221,14 @@ function confirmarGuardarHandler() {
     showConfirmButton: false
   });
 }
-
+ 
 // 📋 Cargar inventario en tabla
 function cargarInventario() {
   const productosRaw = getProducts();
   const productos = normalizarProductos(productosRaw);
   const tabla = document.getElementById("tabla-inventario");
   tabla.innerHTML = "";
-
+ 
   productos.forEach(producto => {
     const fila = document.createElement("tr");
     fila.innerHTML = `
@@ -216,12 +242,12 @@ function cargarInventario() {
       <td>${producto.status}</td>
       <td><button class="btn-eliminar btn btn-danger btn-sm" data-id="${producto.id}"><i class="bi bi-trash3-fill"></i></button></td>
     `;
-
+ 
     tabla.appendChild(fila);
   });
   conectarBotonesEliminar();
 }
-
+ 
 // 🧼 Normalizar producto
 function normalizarProductos(productos) {
   return productos.map(p => ({
@@ -235,7 +261,7 @@ function normalizarProductos(productos) {
     image: p.image || "https://via.placeholder.com/50?text=Sin+imagen"
   }));
 }
-
+ 
 // 📷 Imagen base64
 document.getElementById("imagenProducto").addEventListener("change", function (event) {
   archivoImagen = event.target.files[0];
@@ -247,28 +273,28 @@ document.getElementById("imagenProducto").addEventListener("change", function (e
     imagenBase64 = "";
   }
 });
-
+ 
 // 📊 Actualizar resumen inventario
 document.getElementById("actualizar-inventario").addEventListener("click", () => {
   const data = localStorage.getItem("products");
   if (!data) return;
-
+ 
   const inventario = JSON.parse(data);
   const totalProductos = inventario.length;
   let sumaPrecios = 0;
-
+ 
   inventario.forEach(item => {
     const precio = parseFloat(item.price);
     if (!isNaN(precio)) sumaPrecios += precio;
   });
-
+ 
   const promedioPrecio = (sumaPrecios / totalProductos).toFixed(2);
-
+ 
   animarCampo("total-registros", totalProductos);
   animarCampo("valor-total", `$${sumaPrecios.toLocaleString("es-CO")}`);
   animarCampo("precio-promedio", `$${promedioPrecio}`);
 });
-
+ 
 // ✨ Animación de campos
 const animarCampo = (id, valor) => {
   const campo = document.getElementById(id);
@@ -276,18 +302,18 @@ const animarCampo = (id, valor) => {
   campo.classList.add("actualizado");
   setTimeout(() => campo.classList.remove("actualizado"), 800);
 };
-
+ 
 // 🆔 Generar nuevo ID
 function generarIdInventario() {
   const productos = getProducts();
   const ids = productos.map(p => Number(p.id)).filter(id => !isNaN(id));
   const maxId = ids.length > 0 ? Math.max(...ids) : 0;
   const nuevoId = maxId + 1;
-
+ 
   const campoId = document.getElementById("campo-id");
   if (campoId) campoId.value = `ID ${nuevoId}`;
 }
-
+ 
 // Eliminar producto del inventario
 function eliminarProducto(id) {
   Swal.fire({
@@ -301,10 +327,10 @@ function eliminarProducto(id) {
       let productos = getProducts();
       productos = productos.filter(p => Number(p.id) !== id);
       localStorage.setItem("products", JSON.stringify(productos));
-
+ 
       cargarInventario();
       generarIdInventario();
-
+ 
       Swal.fire({
         icon: 'success',
         title: 'Eliminado',
@@ -315,7 +341,7 @@ function eliminarProducto(id) {
     }
   });
 }
-
+ 
 // Conectar botones eliminar en tabla
 function conectarBotonesEliminar() {
   const botonesEliminar = document.querySelectorAll(".btn-eliminar");
@@ -326,7 +352,7 @@ function conectarBotonesEliminar() {
     });
   });
 }
-
+ 
 // Actualizar campo ID en preview
 function actualizarCampoIdPreview() {
   const campoId = document.getElementById("campo-id");
@@ -335,32 +361,32 @@ function actualizarCampoIdPreview() {
   const nuevoId = maxIdPreview + 1;
   campoId.value = `ID ${nuevoId}`;
 }
-
+ 
 function getMaxIdInventario() {
   const productos = getProducts();
   const ids = productos.map(p => Number(p.id)).filter(id => !isNaN(id));
   return ids.length > 0 ? Math.max(...ids) : 0;
 }
-
+ 
 // Contador de caracteres para descripción
 const descripcionInput = document.getElementById("description");
 const contador = document.createElement("small");
 contador.id = "contador-caracteres";
 descripcionInput.parentNode.appendChild(contador);
-
+ 
 descripcionInput.addEventListener("input", () => {
   const max = descripcionInput.getAttribute("maxlength");
   const actual = descripcionInput.value.length;
   contador.textContent = `Caracteres: ${actual}/${max}`;
 });
-
+ 
 // Inicialización al cargar la página
 window.addEventListener("DOMContentLoaded", async () => {
   await initializeProducts();
   cargarInventario();
   generarIdInventario();
   document.getElementById("confirmar-guardar").classList.remove("visible");
-
+ 
   // Asignar listener al botón confirmar-guardar
   const btnConfirmarGuardar = document.getElementById("confirmar-guardar");
   if (btnConfirmarGuardar) {
