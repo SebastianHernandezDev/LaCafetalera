@@ -56,12 +56,45 @@
               <!-- Título de bienvenida -->
               <h5 class="fw-semibold text-acento mb-2">¡Bienvenido, Antonio!</h5>
 
+<<<<<<< HEAD
               <!-- Foto del administrador -->
               <div class="admin-photo">
                 <img src="/frontend/pages/dashboardAdmin/assets/img/profile photo.jpg"
                     alt="Foto del administrador"
                     class="img-fluid rounded-circle shadow"
                     style="width: 120px; height: 120px; object-fit: cover;" />
+=======
+        <div class="inventory-summary">
+          <p><strong>Total de productos registrados:</strong> <span id="total-registros">12</span></p>
+          <p><strong>Valor total del inventario:</strong> <span id="valor-total">$30,283.14</span></p>
+          <p><strong>Precio promedio por producto:</strong> <span id="precio-promedio">$2,521.51</span></p>
+          <div class="boton-derecha">
+            <button id="actualizar-inventario" class="btn btn-success"><i class="bi bi-arrow-clockwise"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="row gy-4">
+      <div class="col-12 col-lg-6">
+        <h3><i class="bi bi-database-fill-add"></i> Agregar producto</h3>
+        <form id="admin-insert" class="d-flex flex-column gap-3">
+          <div class="mb-1">
+            <input type="text" class="form-control" placeholder="No.Id" name="id" id="campo-id" readonly />
+            <input type="text" class="form-control" placeholder="Nombre del producto" name="name" required />
+            <input type="number" step="0.01" class="form-control" placeholder="Precio COP" name="price" required min="0" />
+            <label for="description">Descripción del producto</label>
+            <textarea id="description" name="description" class="form-control campo-descripcion" rows="4" maxlength="250"
+              placeholder="Escribe una descripción detallada..." required></textarea>
+            <input type="number" class="form-control" placeholder="Nuevo Stock" name="nuevoStock" required min="1" />
+            <div class="row align-items-end mb-3">
+              <div class="col-6">
+                <select class="form-select" name="status" required>
+                  <option value="En CEDI">En CEDI</option>
+                  <option value="En Tránsito">En Tránsito</option>
+                  <option value="Sin Enviar a CEDI">Sin Enviar a CEDI</option>
+                </select>
+>>>>>>> 302d2c9c2174ba3baf7477fc8de0c10787510cfc
               </div>
 
               <!-- Detalles del administrador -->
@@ -134,12 +167,21 @@
               </div>
             </div>
           </div>
+<<<<<<< HEAD
           <div class="text-end mt-3">
             <button id="actualizar-inventario" class="btn btn-actualizar">
               <i class="bi bi-arrow-clockwise"></i> Actualizar
             </button>
           </div>
         </section>
+=======
+          <div class="boton-contenedor">
+            <button type="submit" class="boton-accion vista-previa">Vista Previa</button>
+            <button id="confirmar-guardar" class="boton-accion guardar" type="button">Confirmar y Guardar</button>
+          </div>
+        </form>
+      </div>
+>>>>>>> 302d2c9c2174ba3baf7477fc8de0c10787510cfc
 
         <!-- 🧠 Formulario y Vista previa -->
         <div class="row g-4 flex-column">
@@ -302,8 +344,11 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Tu script personalizado -->
   <script src="/frontend/pages/dashboardAdmin/components/dashboard.js"></script>
+<<<<<<< HEAD
   <!-- Bootstrap JS Bundle 5.3.8 -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+=======
+>>>>>>> 302d2c9c2174ba3baf7477fc8de0c10787510cfc
 </body>
 
 </html>

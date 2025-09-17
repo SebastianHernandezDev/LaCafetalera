@@ -414,3 +414,220 @@ body {
 }
 
 
+      /* Sección principal del hero */
+        .hero-section {
+            margin-top: 40px;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #654321 0%, #2c1810 100%);
+        }
+
+        /* Contenedor del video de fondo */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Mostrar video cuando esté cargado */
+        .video-background.loaded {
+            opacity: 1;
+        }
+
+        /* Configuración del video */
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Overlay oscuro sobre el video */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 24, 16, 0.4);
+            z-index: 2;
+        }
+
+        /* Contenido principal del hero */
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        /* Título principal */
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+
+        /* Línea decorativa debajo del título */
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, #d4a574, #8b4513);
+            border-radius: 2px;
+            animation: expandLine 1.5s ease-out 0.5s both;
+        }
+
+        /* Subtítulo */
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease-out 0.3s both;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Botón principal "EXPLÓRALAS TODAS" */
+        .hero-cta {
+            background: linear-gradient(135deg, #d4a574 0%, #8b4513 100%);
+            color: #ffffff;
+            font-family: "Lato", sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease-out 0.6s both;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+            border-color: #d4a574;
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+
+        .hero-cta:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(139, 69, 19, 0.3);
+        }
+
+        /* Indicador de scroll */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            color: white;
+            opacity: 0.8;
+            animation: bounce 2s infinite;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* ANIMACIONES */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes expandLine {
+            from {
+                width: 0;
+            }
+            to {
+                width: 120px;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .hero-section {
+                margin-top: 20px;
+            }
+            
+            .hero-title {
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero-subtitle {
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-cta {
+                font-size: 16px;
+                padding: 14px 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-cta {
+                font-size: 14px;
+                padding: 12px 24px;
+            }
+        }

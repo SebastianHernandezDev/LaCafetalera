@@ -188,3 +188,40 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(section);
   }
 });
+
+//VIDEOVIDEOVIDEO
+ // Variables principales
+        const video = document.getElementById('heroVideo');
+        const videoBackground = document.getElementById('videoBackground');
+       
+        // Manejar la carga del video
+        video.addEventListener('loadeddata', () => {
+            videoBackground.classList.add('loaded');
+        });
+
+        // Manejo de errores del video
+        video.addEventListener('error', () => {
+            console.warn('Video failed to load, using fallback background');
+            videoBackground.classList.add('loaded');
+        });
+
+        // Asegurar reproducción en móviles
+        function ensureVideoPlays() {
+            if (video.paused) {
+                video.play().catch(e => {
+                    console.warn('Video autoplay failed:', e);
+                });
+            }
+        }
+
+        // Eventos para iniciar video en móviles
+        document.addEventListener('touchstart', ensureVideoPlays, { once: true });
+        document.addEventListener('click', ensureVideoPlays, { once: true });
+
+        // Scroll suave al hacer click en el indicador
+        document.querySelector('.scroll-indicator').addEventListener('click', () => {
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        });
