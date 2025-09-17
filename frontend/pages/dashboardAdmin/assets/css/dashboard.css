@@ -271,7 +271,7 @@ form textarea {
 .btn-cart:hover:before {
     left: 100%;
 }
-
+ 
 .product-image {
   width: 100%;
   height: 250px;
@@ -281,7 +281,7 @@ form textarea {
 .product-card:hover .product-image {
   transform: scale(1.1);
 }
-
+ 
 .product-info {
   padding: 25px;
 }
@@ -316,7 +316,7 @@ form textarea {
   padding: 1.5rem ;
   border-radius: 0.75rem; 
 }
-
+ 
 .table thead th {
   padding: 10px 12px;
   font-size: 0.9rem;

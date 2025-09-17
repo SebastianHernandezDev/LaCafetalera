@@ -23,6 +23,10 @@ const password = document.getElementById("password");
 const confirmPassword = document.getElementById("confirmPassword");
 const passwordFeedback = document.getElementById("passwordError");
 
+// Input-group de password y confirm
+const passwordGroup = password.closest(".input-group");
+const confirmPasswordGroup = confirmPassword.closest(".input-group");
+
 // Validación en tiempo real para campos comunes
 function validarCampo(input, regex, feedbackId = null, mensaje = "") {
   input.addEventListener("input", () => {
@@ -37,7 +41,6 @@ function validarCampo(input, regex, feedbackId = null, mensaje = "") {
         const feedback = document.getElementById(feedbackId);
         if (feedback) feedback.innerText = mensaje;
       }
-
     } else {
       input.classList.remove("is-invalid");
       input.classList.add("is-valid");
@@ -55,8 +58,7 @@ validarCampo(apellidos, nameRegex);
 validarCampo(celular, phoneRegex);
 validarCampo(correo, emailRegex, "correoError", "Ingrese un correo válido.");
 
-
-
+// Validación en tiempo real de password
 password.addEventListener("input", () => {
   const value = password.value;
   const errores = [];
@@ -70,11 +72,13 @@ password.addEventListener("input", () => {
   if (errores.length > 0) {
     password.classList.add("is-invalid");
     password.classList.remove("is-valid");
+    if (passwordGroup) passwordGroup.classList.add("is-invalid");
     passwordFeedback.innerHTML = errores.join("<br>");
     passwordFeedback.style.display = "block";
   } else {
     password.classList.remove("is-invalid");
     password.classList.add("is-valid");
+    if (passwordGroup) passwordGroup.classList.remove("is-invalid");
     passwordFeedback.style.display = "none";
   }
 });
@@ -84,9 +88,11 @@ confirmPassword.addEventListener("input", () => {
   if (confirmPassword.value !== password.value || !confirmPassword.value) {
     confirmPassword.classList.add("is-invalid");
     confirmPassword.classList.remove("is-valid");
+    if (confirmPasswordGroup) confirmPasswordGroup.classList.add("is-invalid");
   } else {
     confirmPassword.classList.remove("is-invalid");
     confirmPassword.classList.add("is-valid");
+    if (confirmPasswordGroup) confirmPasswordGroup.classList.remove("is-invalid");
   }
 });
 
@@ -100,6 +106,8 @@ form.addEventListener("submit", (e) => {
   [nombres, apellidos, correo, celular, password, confirmPassword].forEach((input) => {
     input.classList.remove("is-invalid", "is-valid");
   });
+  if (passwordGroup) passwordGroup.classList.remove("is-invalid");
+  if (confirmPasswordGroup) confirmPasswordGroup.classList.remove("is-invalid");
 
   // Validar nombres y apellidos
   if (!nameRegex.test(nombres.value.trim())) {
@@ -149,6 +157,7 @@ form.addEventListener("submit", (e) => {
 
   if (errores.length > 0) {
     password.classList.add("is-invalid");
+    if (passwordGroup) passwordGroup.classList.add("is-invalid");
     passwordFeedback.innerHTML = errores.join("<br>");
     passwordFeedback.style.display = "block";
     valid = false;
@@ -157,6 +166,7 @@ form.addEventListener("submit", (e) => {
   // Validar confirmación
   if (confirmPassword.value !== passVal || !confirmPassword.value) {
     confirmPassword.classList.add("is-invalid");
+    if (confirmPasswordGroup) confirmPasswordGroup.classList.add("is-invalid");
     valid = false;
   }
 
@@ -209,3 +219,4 @@ document.getElementById("toggleConfirmPassword").addEventListener("click", funct
   icon.classList.toggle("bi-eye");
   icon.classList.toggle("bi-eye-slash");
 });
+

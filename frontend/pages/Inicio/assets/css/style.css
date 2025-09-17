@@ -1,61 +1,280 @@
+/* ===== RESET Y CONFIGURACIÓN BASE ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* =======================
-   BODY
-======================= */
 body {
   background-color: #f5f5f5;
   min-height: 100vh;
   font-family: 'Lato', sans-serif;
   color: #000000;
-}
-.botonSesion{
-    font-weight: bolder;
-}
-/* =======================
-   HERO
-======================= */
-.hero {
-  position: relative;
-  height: auto;
-  background: url('../img/hero-cafe.jpg') no-repeat center/cover;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-  padding: 60px 20px;
-  color: #000;
+  line-height: 1.6;
 }
 
-.hero .overlay {
+/* ===== TIPOGRAFÍA GLOBAL ===== */
+.main-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #8B4513;
+}
+
+.subtitle {
+  font-family: "Edu NSW ACT Cursive", cursive;
+  font-size: 1.3rem;
+  font-weight: 300;
+  text-align: center;
+}
+
+.highlight {
+  background: linear-gradient(120deg, rgba(210,180,140,0.3) 0%, rgba(210,180,140,0.1) 100%);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-weight: bold;
+  color: #8B4513;
+}
+
+/* ===== HERO SECTION CON VIDEO ===== */
+.hero-section {
+  margin-top: 40px;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #654321 0%, #2c1810 100%);
+}
+
+.video-background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
-}
-
-.hero .content {
-  position: relative;
   z-index: 1;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
-.hero .main-title {
+.video-background.loaded {
+  opacity: 1;
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(44, 24, 16, 0.4);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: white;
+  max-width: 800px;
+  padding: 0 20px;
+  animation: fadeInUp 1.5s ease-out;
+}
+
+.hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: 48px;
-  margin-bottom: 10px;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  position: relative;
 }
 
-.hero .subtitle {
-  font-family: "Edu NSW ACT Cursive", cursive;
+.hero-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, #d4a574, #8b4513);
+  border-radius: 2px;
+  animation: expandLine 1.5s ease-out 0.5s both;
+}
+
+.hero-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 300;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeInUp 1.5s ease-out 0.3s both;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.hero-cta {
+  background: linear-gradient(135deg, #d4a574 0%, #8b4513 100%);
+  color: #ffffff;
+  font-family: "Lato", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 12px 30px;
+  border-radius: 50px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeInUp 1.5s ease-out 0.6s both;
+}
+
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+  border-color: #d4a574;
+  color: white;
+  text-decoration: none;
+}
+
+.hero-cta:hover::before {
+  left: 100%;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  color: white;
+  opacity: 0.8;
+  animation: bounce 2s infinite;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* ===== SECCIÓN DE PRODUCTOS ===== */
+.productos-section {
+  background-color: #f5f5f5;
+  padding: 60px 20px;
+}
+
+.carrusel-container {
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  border-radius: 15px;
+}
+
+.productos {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.producto-card {
+  width: 280px;
+  background: #fcdcca;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+.producto-card img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.producto-card h4 {
+  font-family: 'Playfair Display', serif;
   font-size: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
+}
+
+.producto-card p {
+  font-size: 14px;
+  color: #503c31;
+}
+
+.producto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+.btn-ver-producto {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #4B6950;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-ver-producto:hover {
+  background-color: #93BE88;
+  transform: translateY(-2px);
+  color: white;
+  text-decoration: none;
+}
+
+.carrusel-indicators {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ddd;
+  display: inline-block;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.indicator.active {
+  background-color: #4B6950;
 }
 
 .btn-hero {
@@ -73,57 +292,43 @@ body {
 
 .btn-hero:hover {
   background: #627a63;
+  color: white;
+  text-decoration: none;
 }
 
-/* =======================
-   TÍTULOS
-======================= */
-.main-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
-  text-align: center;
-  margin-bottom: 40px;
-}
+/* ===== VALORES DIFERENCIALES ===== */
 
-.subtitle {
-  font-family: "Edu NSW ACT Cursive", cursive;
-  font-size: 1.3rem;
-  font-weight: 300;
-  text-align: center;
-}
-
-/* =======================
-   VALORES / PRODUCT-CARD
-======================= */
 .product-card {
   background: #e2a07a;
   border-radius: 20px;
   overflow: hidden;
   transition: all 0.3s ease;
   box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  padding: 20px;
 }
 
-  .image-container-card {
-    position: relative;
-    display: inline-block; 
-  }
+.image-container-card {
+  position: relative;
+  display: inline-block;
+}
 
-  .image-container-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #e2a07a); /* Degradado de transparente a blanco */
-    pointer-events: none; 
-  }
+.image-container-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #e2a07a);
+  pointer-events: none;
+}
 
 .product-card:hover {
   transform: translateY(-8px) scale(1.02);
 }
 
 .product-name {
+  color: #723910;
   font-family: 'Playfair Display', serif;
   font-size: 24px;
   font-weight: 700;
@@ -131,161 +336,684 @@ body {
 }
 
 .product-description {
+  color: #683008;
   font-size: 14px;
   line-height: 1.6;
   margin-top: 10px;
 }
 
-/* =======================
-   PRODUCTOS DESTACADOS
-======================= */
-        .carrusel-container {
-            max-width: 900px;
-            margin: 0 auto;
-            overflow: hidden;
-            position: relative;
-            border-radius: 15px;
-        }
-
-        .productos {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            gap: 20px;
-            padding: 20px 0;
-        }
-
-        /* ======================= PRODUCTOS DESTACADOS ======================= */
-        .producto-card {
-            width: 280px;
-            background: #fcdcca;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            flex-shrink: 0;
-        }
-
-        .producto-card img {
-            max-width: 100%;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            height: 150px;
-            object-fit: cover;
-        }
-
-        .producto-card h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            margin-bottom: 5px;
-        }
-
-        .producto-card p {
-            font-size: 14px;
-            color: #503c31;
-        }
-
-        .producto-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-        }
-
-        .btn-ver-producto {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #4B6950;
-            color: white;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
-
-        .btn-ver-producto:hover {
-            background-color: #93BE88;
-            transform: translateY(-2px);
-        }
-
-        /* Indicadores del carrusel */
-        .carrusel-indicators {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #ddd;
-            display: inline-block;
-            margin: 0 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .indicator.active {
-            background-color: #4B6950;
-        }
-
-/* =======================
-   HISTORIAS DE CAFICULTORES
-======================= */
-.historias img {
-  max-width: 60%;
-  height: auto;
-  border-radius: 15px;
-  display: block;
-  margin: 0 auto;
-}
-
-.historia-parrafo {
-  font-size: 16px;
-  color: #503c31;
-  line-height: 1.6;
+/* ===== STORYTELLING ===== */
+.storytelling {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
   overflow: hidden;
-  max-height: 80px;
-  transition: max-height 0.25s ease;
+  background: linear-gradient(135deg, rgba(139,69,19,0.1) 0%, rgba(160,82,45,0.1) 100%);
 }
 
-.historia-parrafo.expandido {
-  max-height: 2000px;
+.storytelling::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="coffee-pattern" patternUnits="userSpaceOnUse" width="50" height="50"><circle cx="25" cy="25" r="2" fill="rgba(139,69,19,0.1)"/></pattern></defs><rect width="1000" height="1000" fill="url(%23coffee-pattern)"/></svg>');
+  z-index: -1;
+}
+
+.historia-container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 70vh;
+  transition: transform 0.3s ease;
+}
+
+.historia-container:hover {
+  transform: translateY(-5px);
+}
+
+.imagen-section {
+  position: relative;
+  background: 
+    linear-gradient(
+      45deg, 
+      rgba(139,69,19,0.5), 
+      rgba(160,82,45,0.5)
+    ),
+    url("../img/Bebida.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  color: white;
+  text-align: center;
+}
+
+
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.coffee-bean {
+  position: absolute;
+  width: 15px;
+  height: 20px;
+  background: #8B4513;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  opacity: 0.6;
+  animation: float 6s ease-in-out infinite;
+}
+
+.coffee-bean:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+.coffee-bean:nth-child(2) { top: 40%; right: 20%; animation-delay: 2s; }
+.coffee-bean:nth-child(3) { bottom: 30%; left: 25%; animation-delay: 4s; }
+
+.imagen-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.5s forwards;
+}
+
+.imagen-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  font-style: italic;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 1s forwards;
+}
+
+.contenido-section {
+  padding: 4rem;
+  background: linear-gradient(135deg, #FFFEF7 0%, #FFF8DC 100%);
+  position: relative;
+  overflow-y: auto;
+}
+
+.storytelling .main-title {
+  font-size: 3rem;
+  color: #8B4513;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  opacity: 0;
+  animation: fadeInDown 1s ease-out forwards;
+}
+
+.storytelling .main-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #8B4513, #D2B48C);
+  border-radius: 2px;
+}
+
+.historia-texto {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #4A4A4A;
+  text-align: justify;
+  position: relative;
+  opacity: 0;
+  animation: fadeInLeft 1s ease-out 0.5s forwards;
+}
+
+.historia-texto p {
+  margin-bottom: 1.5rem;
+}
+
+.quote {
+  font-size: 1.3rem;
+  font-style: italic;
+  text-align: center;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(139,69,19,0.1);
+  border-left: 4px solid #8B4513;
+  border-radius: 0 15px 15px 0;
+  position: relative;
+}
+
+.quote::before {
+  content: '"';
+  font-size: 4rem;
+  color: #8B4513;
+  opacity: 0.3;
+  position: absolute;
+  top: -10px;
+  left: 20px;
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 15px 35px;
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 15px rgba(139,69,19,0.3);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 1.5s forwards;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(139,69,19,0.4);
+  color: white;
+  text-decoration: none;
+}
+
+.cta-button:hover::before {
+  left: 100%;
+}
+
+/* ===== HISTORIAS DE CAFICULTORES ===== */
+.historias {
+  padding: 4rem 2rem;
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+}
+
+.historias::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="coffee-pattern" patternUnits="userSpaceOnUse" width="80" height="80"><circle cx="40" cy="40" r="3" fill="rgba(139,69,19,0.1)"/></pattern></defs><rect width="1000" height="1000" fill="url(%23coffee-pattern)"/></svg>');
+  z-index: -1;
+}
+
+.historias .main-title {
+  font-size: 3.5rem;
+  color: #FFFFFF;
+  text-align: center;
+  margin-bottom: 4rem;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  position: relative;
+  opacity: 0;
+  animation: fadeInDown 1s ease-out forwards;
+}
+
+.historias .main-title::after {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+.historia-card {
+  max-width: 1200px;
+  margin: 0 auto 5rem auto;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideInUp 1s ease-out forwards;
+}
+
+.historia-card:nth-child(2) { animation-delay: 0.2s; }
+.historia-card:nth-child(3) { animation-delay: 0.4s; }
+.historia-card:nth-child(4) { animation-delay: 0.6s; }
+
+.historia-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+}
+
+.historia-card.reverse {
+  grid-template-columns: 1fr 1fr;
+}
+
+.historia-card.reverse .imagen-section {
+  order: 2;
+}
+
+.historia-card.reverse .contenido-section {
+  order: 1;
+}
+
+.historia-card .imagen-section {
+  position: relative;
+  background: linear-gradient(45deg, rgba(139,69,19,0.2), rgba(160,82,45,0.2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.historia-card .imagen-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+  animation: shimmer 3s infinite;
+}
+
+.imagen-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.4s ease;
+}
+
+.imagen-container:hover {
+  transform: scale(1.05);
+}
+
+.imagen-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.imagen-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+.historia-card .contenido-section {
+  padding: 3rem;
+  background: linear-gradient(135deg, #FFFEF7 0%, #FFF8DC 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.historia-card .contenido-section h3 {
+  font-size: 2.2rem;
+  color: #8B4513;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.historia-card .contenido-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #8B4513, #D2B48C);
+  border-radius: 2px;
+}
+
+.historia-card .historia-texto {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #4A4A4A;
+  text-align: justify;
+  position: relative;
+}
+
+.texto-preview {
+  max-height: 150px;
+  overflow: hidden;
+  position: relative;
+  transition: max-height 0.5s ease;
+}
+
+.texto-preview.expanded {
+  max-height: 1000px;
+}
+
+.texto-preview:not(.expanded)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(transparent, #FFF8DC);
+  pointer-events: none;
 }
 
 .ver-mas-btn {
-  margin-top: 10px;
-  background-color: #4B6950;
+  margin-top: 1.5rem;
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
   color: white;
   border: none;
-  padding: 8px 15px;
-  border-radius: 8px;
+  border-radius: 25px;
   cursor: pointer;
-  font-weight: 600;
-  transition: background 0.3s ease;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  align-self: flex-start;
+}
+
+.ver-mas-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
 }
 
 .ver-mas-btn:hover {
-  background-color: #93BE88;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(139,69,19,0.3);
 }
 
-/* =======================
-   BOTÓN CATÁLOGO
-======================= */
-.catalogo {
-  display: inline-block;
-  background-color: #4B6950;
-  color: #fff;
-  font-weight: bold;
-  text-decoration: none;
-  padding: 12px 28px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+.ver-mas-btn:hover::before {
+  left: 100%;
 }
 
-.catalogo:hover {
-  background-color: #627a63;
-  transform: scale(1.05);
-  box-shadow: 0px 6px 12px rgba(0,0,0,0.2);
-  text-decoration: none;
+
+/* Tarjetas temáticas */
+.historia-card.tradicion .imagen-section {
+  background: linear-gradient(45deg, rgba(210,180,140,0.3), rgba(222,184,135,0.3));
 }
+
+.historia-card.mujer .imagen-section {
+  background: linear-gradient(45deg, rgba(255,192,203,0.3), rgba(255,182,193,0.3));
+}
+
+.historia-card.innovacion .imagen-section {
+  background: linear-gradient(45deg, rgba(144,238,144,0.3), rgba(152,251,152,0.3));
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes expandLine {
+  from {
+    width: 0;
+  }
+  to {
+    width: 120px;
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-20px) rotate(180deg); 
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  /* Hero Section */
+  .hero-section {
+    margin-top: 20px;
+  }
+  
+  .hero-title {
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-subtitle {
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-cta {
+    font-size: 16px;
+    padding: 14px 32px;
+  }
+
+  /* Productos */
+  .productos-section {
+    padding: 40px 15px;
+  }
+
+  .carrusel-container {
+    max-width: 320px;
+  }
+
+  .producto-card {
+    width: 260px;
+  }
+
+  /* Valores */
+  .product-card {
+    margin-bottom: 2rem;
+  }
+
+  /* Storytelling */
+  .storytelling {
+    padding: 1rem;
+  }
+
+  .historia-container {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .imagen-section {
+    min-height: 40vh;
+    padding: 2rem;
+  }
+
+  .contenido-section {
+    padding: 2rem;
+  }
+
+  .main-title {
+    font-size: 2.2rem;
+  }
+
+  .imagen-title {
+    font-size: 2rem;
+  }
+
+  .historia-texto {
+    font-size: 1rem;
+  }
+
+  /* Historias */
+  .historias {
+    padding: 2rem 1rem;
+  }
+
+  .historias .main-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .historia-card {
+    grid-template-columns: 1fr;
+    margin-bottom: 3rem;
+  }
+
+  .historia-card.reverse .imagen-section,
+  .historia-card.reverse .contenido-section {
+    order: unset;
+  }
+
+  .historia-card .imagen-section {
+    min-height: 300px;
+  }
+
+  .historia-card .contenido-section {
+    padding: 2rem;
+  }
+
+  .historia-card .contenido-section h3 {
+    font-size: 1.8rem;
+  }
+
+  .historia-card .historia-texto {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-cta {
+    font-size: 14px;
+    padding: 12px 24px;
+  }
+
+  .main-title {
+    font-size: 2rem;
+  }
+
+  .carrusel-container {
+    max-width: 280px;
+  }
+
+  .producto-card {
+    width: 240px;
+  }
+}
+
+/* ===== EFECTOS HOVER AVANZADOS ===== */
+.historia-card:hover .imagen-container img {
+  transform: scale(1.1);
+}
+
+.historia-card:hover .icono-cafe {
+  color: rgba(139,69,19,0.3);
+  transform: scale(1.2);
+}
+
+.historia-container:hover .coffee-bean {
+  animation-duration: 3s;
+}
+
+/* ===== ESTILOS ADICIONALES PARA CONSISTENCIA ===== */
+.botonSesion {
+  font-weight: bolder;
+}
+
+/* Footer background fix */
+.bg-grey {
+  background-color: #6c757d;
+}
+
+

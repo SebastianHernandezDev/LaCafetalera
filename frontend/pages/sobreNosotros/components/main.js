@@ -52,3 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+document.querySelectorAll('.team-card').forEach(card => {
+  console.log('Observando card:', card);
+  observer.observe(card);
+});
