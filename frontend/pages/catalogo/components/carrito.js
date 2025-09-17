@@ -1,17 +1,20 @@
-function obtenerCarrito(){     
-    return JSON.parse(localStorage.getItem('cart'))||[]; 
-}  
-console.log("Carrito obtenido")   
+document.getElementById("continuarCompra").addEventListener("click", function () {
+    window.open("../components/factura/components/factura.html", '_blank');
+});
+function obtenerCarrito() {
+    return JSON.parse(localStorage.getItem('cart')) || [];
+}
+console.log("Carrito obtenido")
 
-function guardarCarrito(carrito){     
-    localStorage.setItem('cart', JSON.stringify(carrito)); 
-} 
-console.log("Carrito guardado")  
+function guardarCarrito(carrito) {
+    localStorage.setItem('cart', JSON.stringify(carrito));
+}
+console.log("Carrito guardado")
 
-function obtenerProductos() {     
-    return JSON.parse(localStorage.getItem('products')) || []; 
-}  
-console.log("productos obtenidos de catalogo")   
+function obtenerProductos() {
+    return JSON.parse(localStorage.getItem('products')) || [];
+}
+console.log("productos obtenidos de catalogo")
 
 // Función para eliminar producto del carrito
 function eliminarDelCarrito(productId) {
@@ -28,7 +31,7 @@ function cambiarCantidad(productId, nuevaCantidad) {
         eliminarDelCarrito(productId);
         return;
     }
-    
+
     let carrito = obtenerCarrito();
     const item = carrito.find(item => item.id === productId);
     if (item) {
@@ -42,36 +45,36 @@ function cambiarCantidad(productId, nuevaCantidad) {
 // Función para vaciar carrito con SweetAlert
 function vaciarCarrito() {
     const carrito = obtenerCarrito();
-    if(carrito.length === 0){
+    if (carrito.length === 0) {
         Swal.fire({
             title: "Carrito Vacío",
             text: "los productos fueron eliminados",
             icon: "info"
         });
-    }else{
-         Swal.fire({
-        title: '¿Estás seguro?',
-        text: "Se eliminarán todos los productos del carrito",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Sí, vaciar carrito',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            localStorage.removeItem('cart');
-            mostrarProductosCarrito();
-            actualizarResumen();
-            
-            // Mostrar confirmación
-            Swal.fire(
-                '¡Eliminado!',
-                'El carrito ha sido vaciado.',
-                'success'
-            );
-        }
-    });
+    } else {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Se eliminarán todos los productos del carrito",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, vaciar carrito',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                localStorage.removeItem('cart');
+                mostrarProductosCarrito();
+                actualizarResumen();
+
+                // Mostrar confirmación
+                Swal.fire(
+                    '¡Eliminado!',
+                    'El carrito ha sido vaciado.',
+                    'success'
+                );
+            }
+        });
     }
 }
 
@@ -80,14 +83,14 @@ function actualizarResumen() {
     const carrito = obtenerCarrito();
     const productos = obtenerProductos();
     let total = 0;
-    
+
     carrito.forEach(itemCarrito => {
         const producto = productos.find(p => p.id === itemCarrito.id);
         if (producto) {
             total += producto.price * itemCarrito.cantidad;
         }
     });
-    
+
     // Formatear el precio
     const totalFormateado = total.toLocaleString('es-CO');
     document.getElementById('totalProductos').innerHTML = `<span class="coste">$</span>${totalFormateado}`;
@@ -95,35 +98,35 @@ function actualizarResumen() {
 }
 
 //mostrar productos en el carro   
-function mostrarProductosCarrito(){             
-    const productos = obtenerProductos();             
-    const carrito = obtenerCarrito();             
-        
+function mostrarProductosCarrito() {
+    const productos = obtenerProductos();
+    const carrito = obtenerCarrito();
+
     // En caso de que el carrito esté vacío             
-    if(carrito.length === 0){                 
-        document.getElementById('carritoVacio').style.display = 'block';                 
-        document.getElementById('contenidoCarrito').style.display = 'none';                 
+    if (carrito.length === 0) {
+        document.getElementById('carritoVacio').style.display = 'block';
+        document.getElementById('contenidoCarrito').style.display = 'none';
         console.log("mensaje de carrito vacio mostrado");
-        actualizarResumen();             
-    } else {                 
+        actualizarResumen();
+    } else {
         // Si hay productos, mostrar contenido y ocultar mensaje vacío                 
-        document.getElementById('carritoVacio').style.display = 'none';                 
-        document.getElementById('contenidoCarrito').style.display = 'block';                 
+        document.getElementById('carritoVacio').style.display = 'none';
+        document.getElementById('contenidoCarrito').style.display = 'block';
         console.log("productos mostrados");
-        
+
         // Buscar el contenedor donde insertar los productos
         const contenedorProductos = document.getElementById('contenedorProductos');
-        
+
         // Si hay productos, crear el HTML dinámicamente
         let htmlProductos = '';
-        
+
         carrito.forEach((itemCarrito, index) => {
             const producto = productos.find(p => p.id === itemCarrito.id);
             if (producto) {
                 const subtotal = producto.price * itemCarrito.cantidad;
                 const subtotalFormateado = subtotal.toLocaleString('es-CO');
                 const precioFormateado = producto.price.toLocaleString('es-CO');
-                
+
                 htmlProductos += `
                     <div class="d-flex flex-column flex-md-row align-items-start border-bottom pb-3 mb-3" data-product-id="${producto.id}">
                         <img src="${producto.image || 'https://via.placeholder.com/120x140'}" 
@@ -170,45 +173,45 @@ function mostrarProductosCarrito(){
                         </div>
                     </div>
                 `;
-            }   
+            }
         });
-        
+
         // Encontrar el elemento después del cual insertar los productos
         const elementoReferencia = document.getElementById('headerProductos');
-        
+
         // Eliminar productos existentes si los hay
         const productosExistentes = contenedorProductos.querySelectorAll('[data-product-id]');
         productosExistentes.forEach(elemento => elemento.remove());
-        
+
         // Insertar los nuevos productos después del header de productos
         if (elementoReferencia) {
             elementoReferencia.insertAdjacentHTML('afterend', htmlProductos);
         }
-        
+
         // Agregar event listeners a los botones
         agregarEventListeners();
         actualizarResumen();
-    }          
+    }
 }
 
 // Función para agregar event listeners a los botones dinámicos
 function agregarEventListeners() {
     // Event listeners para botones de eliminar
     document.querySelectorAll('.eliminar-producto').forEach(boton => {
-        boton.addEventListener('click', function() {
+        boton.addEventListener('click', function () {
             const productId = parseInt(this.dataset.productId);
             eliminarDelCarrito(productId);
         });
     });
-    
+
     // Event listeners para botones de cantidad
     document.querySelectorAll('.btn-cantidad').forEach(boton => {
-        boton.addEventListener('click', function() {
+        boton.addEventListener('click', function () {
             const productId = parseInt(this.dataset.productId);
             const action = this.dataset.action;
             const cantidadDisplay = this.parentElement.querySelector('.cantidad-display');
             let cantidadActual = parseInt(cantidadDisplay.textContent);
-            
+
             if (action === 'increase') {
                 cambiarCantidad(productId, cantidadActual + 1);
             } else if (action === 'decrease') {
@@ -218,9 +221,9 @@ function agregarEventListeners() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {   
-    mostrarProductosCarrito();                      
-    
+document.addEventListener('DOMContentLoaded', function () {
+    mostrarProductosCarrito();
+
     // Evento para vaciar carrito con SweetAlert
-    document.getElementById('vaciarCarrito').addEventListener('click', vaciarCarrito);         
+    document.getElementById('vaciarCarrito').addEventListener('click', vaciarCarrito);
 });
