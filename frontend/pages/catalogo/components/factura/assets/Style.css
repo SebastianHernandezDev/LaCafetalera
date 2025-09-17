@@ -1,0 +1,162 @@
+/* ===== ESTILOS DE FACTURA PROFESIONAL ===== */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ece9e6;
+    min-height: 100vh;
+}
+
+/* FACTURA */
+.inovice {
+    background-color: white;
+    width: 210mm;
+    min-height: auto;
+    padding: 20mm;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    color: #000;
+    box-sizing: border-box;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    height: 60px;
+    object-fit: contain;
+}
+
+.logo h2 {
+    font-size: 24px;
+    color: #7b4f2c;
+    margin: 0;
+}
+
+/* Cliente y fecha */
+.data-client, .date-number {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+.data-client ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.data-client li {
+    margin-bottom: 4px;
+}
+
+/* Tabla de productos */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.table th {
+    background-color: #7b4f2c;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+.table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f8f6f3;
+}
+
+/* Totales */
+.total ul {
+    list-style: none;
+    padding-left: 0;
+    font-size: 15px;
+    max-width: 300px;
+    margin-left: auto;
+}
+
+.total li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+/* Firma */
+.signature .line {
+    width: 200px;
+    border-top: 2px solid #7b4f2c;
+    margin: 10px auto;
+}
+
+.signature p {
+    font-style: italic;
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+}
+
+/* Footer */
+.invoice-footer {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.buissnes-info {
+    list-style: none;
+    font-size: 13px;
+    color: #666;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .inovice {
+        padding: 30px 20px;
+    }
+
+    .logo h2 {
+        font-size: 20px;
+    }
+
+    .table th, .table td {
+        font-size: 13px;
+    }
+}
+
+/* Estilo exclusivo para impresión/PDF */
+@media print {
+    body {
+        background: white !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .inovice {
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+    }
+        .no-print {
+        display: none !important;
+    }
+}

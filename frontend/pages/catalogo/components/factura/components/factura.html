@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Factura</title>
+    <link rel="stylesheet" href="../assets/Style.css" />
+    <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .inovice {
+            background: white;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .empresa-info {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .data-client ul,
+        .total ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .data-client,
+        .date-number,
+        .total {
+            margin-bottom: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .signature {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .line {
+            border: none;
+            border-top: 1px solid #000;
+            margin-bottom: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #1ebe5d;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="inovice">
+        <!-- Logo y nombre empresa -->
+        <div class="logo">
+            <img src="/frontend/components/assets-global/img/logo.png" alt="Logo La Cafetalera" style="height: 60px;">
+        </div>
+
+        <!-- Razón social y NIT -->
+        <div class="empresa-info">
+            <p><strong>Razón Social:</strong> La Cafetalera S.A.S</p>
+            <p><strong>NIT:</strong> 901.234.567-8</p>
+        </div>
+
+        <!-- Datos del cliente -->
+        <section class="data-client" id="datosCliente">
+            <ul>
+                <li><strong>Nombre:</strong> <span id="nombreCliente">---</span></li>
+                <li><strong>Teléfono:</strong> <span id="telefonoCliente">---</span></li>
+            </ul>
+        </section>
+
+        <!-- Fecha y número de factura -->
+        <section class="date-number">
+            <p><strong>N° Factura:</strong> <span id="numeroFactura">#001</span></p>
+            <p><strong>Fecha:</strong> <span id="fechaFactura">---</span></p>
+        </section>
+
+        <!-- Tabla de productos -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody id="tablaProductosFactura"></tbody>
+        </table>
+
+        <!-- Totales -->
+        <section class="total">
+            <ul class="total">
+                <li><strong>Subtotal:</strong> <span id="subtotalFactura">$0</span></li>
+                <li><strong>IVA (19%):</strong> <span id="ivaFactura">$0</span></li>
+                <li><strong>Total:</strong> <span id="totalFactura">$0</span></li>
+            </ul>
+        </section>
+
+        <!-- Firma -->
+        <footer class="invoice-footer">
+            <div class="signature">
+                <hr class="line">
+                <p>Firma y Sello</p>
+            </div>
+        </footer>
+
+        <!-- Botón para realizar compra -->
+        <div class="boton-compra ">
+            <button onclick="realizarCompra()" class="btn btn-success no-print">
+                Realizar compra
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</body>
+
+</html>
