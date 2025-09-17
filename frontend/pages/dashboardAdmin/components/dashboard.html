@@ -5,15 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dashboard Administrador</title>
-  <!-- Bootstrap CSS 5.3.7 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css
-" rel="stylesheet">
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> d1a338c4e5d3f434e5f35c3d6967e4c864b50313
-  <!-- Bootstrap Icons -->
+  <!-- Bootstrap CSS 5.3.8 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <!-- Tus estilos personalizados -->
   <link rel="stylesheet" href="/frontend/pages/dashboardAdmin/assets/css/dashboard.css" />
@@ -22,30 +15,23 @@
 </head>
  
 <body>
+  <!-- NAVBAR -->
   <header>
     <nav class="navbar navbar-expand-lg py-2 shadow-lg bg-body-tertiary rounded container">
       <div class="container-fluid">
         <a href="#" class="d-flex align-items-center text-decoration-none">
-          <img src="/frontend/components/assets-global/img/logo.png" alt="logo" width="100"
-            class="img-fluid me-2 imagenNavbar" />
+          <img src="/frontend/components/assets-global/img/logo.png" alt="logo" width="100" class="img-fluid me-2 imagenNavbar" />
         </a>
- 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCafe"
-          aria-controls="navbarCafe" aria-expanded="false" aria-label="botón menú">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCafe" aria-controls="navbarCafe" aria-expanded="false" aria-label="botón menú">
           <span class="navbar-toggler-icon"></span>
         </button>
- 
         <div class="collapse navbar-collapse justify-content-between align-items-center" id="navbarCafe">
           <ul class="navbar-nav d-flex flex-row flex-wrap gap-3 mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link montserrat" href="/index.html">Inicio</a></li>
-            <li class="nav-item"><a class="nav-link montserrat"
-                href="../../catalogo/components/catalogo.html">Catálogo</a></li>
-            <li class="nav-item"><a class="nav-link montserrat"
-                href="../../sobreNosotros/components/index.html">Nosotros</a></li>
-            <li class="nav-item"><a class="nav-link montserrat"
-                href="../../contacto/components/formulario.html">Contacto</a></li>
+            <li class="nav-item"><a class="nav-link montserrat" href="../../catalogo/components/catalogo.html">Catálogo</a></li>
+            <li class="nav-item"><a class="nav-link montserrat" href="../../sobreNosotros/components/index.html">Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link montserrat" href="../../contacto/components/formulario.html">Contacto</a></li>
           </ul>
- 
           <div class="d-flex gap-2 btn-iniciarSesion">
             <a id="botonSesion" class="btn btn-carrito montserrat boton-login-navbar" role="button">
               <i class="bi bi-person-fill letrasLogin me-2"></i> <strong>cerrar sesión</strong>
@@ -55,83 +41,176 @@
       </div>
     </nav>
   </header>
- 
-  <main class="container-fluid px-3 px-md-5" id="main">
-    <div class="admin-header">
-      <h1>Dashboard Administrador</h1>
+
+  <div class="dashboard-container">
+    <div class="row">
+      <!-- 🧍 Columna izquierda: Panel del administrador -->
+      <aside class="col-12 col-md-4 col-lg-3 sidebar-admin">
+        <!-- 🟪 Encabezado -->
+        <div class="admin-header text-center mb-4">
+          <h1 class="h4 text-acento">Dashboard Administrador</h1>
+        </div>
+          <section class="admin-section">
+            <div class="admin-info d-flex flex-column align-items-center text-center gap-3 p-3 rounded shadow-sm" style="background-color: #fffdf7;">
+              
+              <!-- Título de bienvenida -->
+              <h5 class="fw-semibold text-acento mb-2">¡Bienvenido, Antonio!</h5>
+
+              <!-- Foto del administrador -->
+              <div class="admin-photo">
+                <img src="/frontend/pages/dashboardAdmin/assets/img/profile photo.jpg"
+                    alt="Foto del administrador"
+                    class="img-fluid rounded-circle shadow"
+                    style="width: 120px; height: 120px; object-fit: cover;" />
+              </div>
+
+              <!-- Detalles del administrador -->
+              <div class="admin-details text-start w-100 px-2">
+                <p class="mb-2"><strong>Nombre:</strong> <span class="text-muted">La Cafetalera</span></p>
+                <p class="mb-2"><strong>Razón social:</strong><br><span class="text-muted">La Cafetalera S.A.S</span></p>
+                <p class="mb-0"><strong>Administrador:</strong> <span class="text-muted">Antonio Rodríguez</span></p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 🗺️ Mapa de ubicación -->
+          <div class="map-container mt-4">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.999999999999!2d-74.072092!3d4.609710!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a6c5e6f1f1%3A0x123456789abcdef!2sLa%20Cafeter%C3%ADa%20S.A.S!5e0!3m2!1ses!2sco!4v1234567890"
+              width="100%"
+              height="250"
+              style="border:0; border-radius:12px;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </section>
+
+        <!-- 🟦 Menú de navegación -->
+        <nav class="admin-menu w-100 mt-4">
+          <ul class="list-group gap-2">
+            <li class="list-group-item list-group-item-action text-center rounded">
+              <a href="#resumen-inventario" class="text-decoration-none text-dark fw-medium">
+                <i class="bi bi-arrow-repeat me-2"></i> Actualizar Inventario
+              </a>
+            </li>
+            <li class="list-group-item list-group-item-action text-center rounded">
+              <a href="#agregar-producto" class="text-decoration-none text-dark fw-medium">
+                <i class="bi bi-plus-circle me-2"></i> Agregar Producto
+              </a>
+            </li>
+            <li class="list-group-item list-group-item-action text-center rounded">
+              <a href="#mi-inventario" class="text-decoration-none text-dark fw-medium">
+                <i class="bi bi-card-list me-2"></i> Mi Inventario
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- 📦 Columna derecha: contenido principal -->
+      <main class="col-12 col-md-8 col-lg-9"
+        <!-- 📊 Resumen del inventario -->
+        <section id="resumen-inventario" class="inventory-summary bg-white p-3 rounded shadow-sm mb-4">
+          <h4 class="mb-4"><i class="bi bi-bar-chart-fill"></i> Resumen del Inventario</h4>
+          <div class="row g-3">
+            <div class="col-12 col-md-4">
+              <div class="card-resumen">
+                <h6>Total de productos</h6>
+                <p><span id="total-registros">12</span></p>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="card-resumen">
+                <h6>Valor total</h6>
+                <p><span id="valor-total">$30,283.14</span></p>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="card-resumen">
+                <h6>Precio promedio</h6>
+                <p><span id="precio-promedio">$2,523.61</span></p>
+              </div>
+            </div>
+          </div>
+          <div class="text-end mt-3">
+            <button id="actualizar-inventario" class="btn btn-actualizar">
+              <i class="bi bi-arrow-clockwise"></i> Actualizar
+            </button>
+          </div>
+        </section>
+
+        <!-- 🧠 Formulario y Vista previa -->
+        <div class="row g-4 flex-column">
+          <!-- 🛠 Formulario -->
+          <div id="agregar-producto" class="col-12">
+            <h3 class="mb-3"><i class="bi bi-database-fill-add"></i> Agregar producto</h3>
+            <form id="admin-insert" class="container-fluid">
+              <div class="row g-2 mb-2">
+                <div class="col-md-2">
+                  <input type="text" class="form-control" placeholder="ID" name="id" id="campo-id" readonly />
+                </div>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" placeholder="Nombre del producto" name="name" required />
+                </div>
+                <div class="col-md-4">
+                  <input type="number" step="0.01" class="form-control" placeholder="Precio COP" name="price" required min="0" />
+                </div>
+              </div>
+
+              <div class="row g-2 mb-2">
+                <div class="col-12">
+                  <textarea id="description" name="description" class="form-control" rows="2" maxlength="250" placeholder="Descripción del producto..." required></textarea>
+                </div>
+              </div>
+
+              <div class="row g-2 mb-3 align-items-center">
+                <div class="col-md-3">
+                  <input type="number" class="form-control" placeholder="Nuevo Stock" name="nuevoStock" required min="1" />
+                </div>
+                <div class="col-md-5">
+                  <select class="form-select" name="status" required>
+                    <option value="En CEDI">En CEDI</option>
+                    <option value="En Tránsito">En Tránsito</option>
+                    <option value="Sin Enviar a CEDI">Sin Enviar a CEDI</option>
+                  </select>
+                </div>
+                <div class="col-md-4 d-flex align-items-center">
+                  <label for="imagenProducto" class="btn btn-personalizado w-100">
+                    <i class="bi bi-cloud-arrow-up"></i> Subir imagen
+                  </label>
+                  <input type="file" id="imagenProducto" name="imagenProducto" accept="image/*" style="display: none;" required />
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <button type="submit" class="boton-accion vista-previa">Vista Previa</button>
+                <button id="confirmar-guardar" class="boton-accion guardar" type="button">Confirmar y Guardar</button>
+              </div>
+              <small id="nombreImagen" class="text-muted mt-1 d-block"></small>
+            </form>
+          </div>
+
+          <!-- 👀 Vista previa -->
+          <div class="col-12">
+            <h3 class="mb-3"><i class="bi bi-view-stacked"></i> Vista previa de productos agregados</h3>
+            <div id="contenedorCards" class="overflow-auto p-3 rounded bg-dark text-white">
+              <div id="previewCards" class="row g-3"></div>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
-    <section class="admin-section">
-      <div class="admin-inventory-container">
-        <div class="admin-info">
-          <div class="admin-photo">
-            <img src="/frontend/components/assets-global/img/logo.png" alt="Foto del administrador" />
-          </div>
-          <div class="admin-details">
-            <p><strong>Nombre:</strong> La Cafetería</p>
-            <p><strong>Razón social:</strong> Comercializadora La Cafetería S.A.S</p>
-            <p><strong>Administrador:</strong> Paula Rodríguez</p>
-          </div>
-        </div>
- 
-        <div class="inventory-summary">
-          <p><strong>Total de productos registrados:</strong> <span id="total-registros">12</span></p>
-          <p><strong>Valor total del inventario:</strong> <span id="valor-total">$30,283.14</span></p>
-          <p><strong>Precio promedio por producto:</strong> <span id="precio-promedio">$2,521.51</span></p>
-          <div class="boton-derecha">
-            <button id="actualizar-inventario" class="btn btn-success"><i class="bi bi-arrow-clockwise"></i></button>
-          </div>
-        </div>
-      </div>
-    </section>
- 
-    <div class="row gy-4">
-      <div class="col-12 col-lg-6">
-        <h3><i class="bi bi-database-fill-add"></i> Agregar producto</h3>
-        <form id="admin-insert" class="d-flex flex-column gap-3">
-          <div class="mb-1">
-          <input type="text" class="form-control" placeholder="No.Id" name="id" id="campo-id" readonly />
-          <input type="text" class="form-control" placeholder="Nombre del producto" name="name" required />
-          <input type="number" step="0.01" class="form-control" placeholder="Precio COP" name="price" required min="0" />
-          <label for="description">Descripción del producto</label>
-          <textarea id="description" name="description" class="form-control campo-descripcion" rows="4" maxlength="250"
-            placeholder="Escribe una descripción detallada..." required></textarea>
-          <input type="number" class="form-control" placeholder="Nuevo Stock" name="nuevoStock" required min="1" />
-          <!-- Aquí envuelve select y botón en un flex container -->
-          <div class="d-flex align-items-center gap-2 mt-2">
-            <select class="form-select flex-grow-1" name="status" required>
-              <option value="En CEDI">En CEDI</option>
-              <option value="En Tránsito">En Tránsito</option>
-              <option value="Sin Enviar a CEDI">Sin Enviar a CEDI</option>
-            </select>
-            <label for="imagenProducto" class="btn btn-personalizado mb-0">
-              <i class="bi bi-cloud-arrow-up"></i> Subir imagen
-            </label>
-            <span id="nombreImagen"></span>
-            <input type="file" id="imagenProducto" name="imagenProducto" accept="image/*" style="display: none;" required />
-          </div>
-        </div>
-          <div class="grupo-botones">
-            <button type="submit" class="boton-accion vista-previa">Vista Previa</button>
-            <button id="confirmar-guardar" class="boton-accion guardar" type="button">Confirmar y Guardar</button>
-          </div>
-        </form>
-      </div>
- 
-      <div class="col-12 col-lg-6">
-        <h3><i class="bi bi-view-stacked"></i> Vista previa de productos agregados</h3>
-        <div id="contenedorCards" class="overflow-auto p-2 rounded bg-dark text-white">
-          <div id="previewCards" class="row g-3"></div>
-        </div>
-      </div>
-    </div>
- 
-    <div class="row mt-5">
-      <div class="col-12">
-        <h2><i class="bi bi-card-list"></i> Mi inventario</h2>
+
+    <!-- 📋 Sección de inventario fuera del row principal -->
+      <div class="container-fluid my-4">
+      <section id="mi-inventario" class="bg-white p-4 rounded shadow-sm">
+        <h3 class="mb-4"><i class="bi bi-card-list me-2"></i>Mi inventario</h3>
         <div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr>
+          <table class="table table-striped table-bordered w-100 align-middle">
+            <thead class="table-dark">
+                <tr>
                 <th>Id</th>
                 <th>Nombre del Producto</th>
                 <th>Precio (COP)</th>
@@ -140,78 +219,91 @@
                 <th>Nuevo Stock</th>
                 <th>Imagen</th>
                 <th>Estado mercancía</th>
-                <th></th>
+                <th>Acciones</th>
               </tr>
             </thead>
-            <tbody id="tabla-inventario"></tbody>
+            <tbody id="cuerpo-tabla-inventario"></tbody>
           </table>
         </div>
-      </div>
+      </section>
     </div>
-  </main>
- 
-  <footer class="bg-dark text-light pt-4">
-    <div class="container-fluid">
-      <div class="row footerA text-center text-md-start">
-        <div class="col-12 col-sm-12 col-lg-4 logoFooter mb-2 d-flex justify-content-center">
-          <img src="../../../components/assets-global/img/ChatGPT Image 14 ago 2025, 15_07_00.png" alt="Logo de La Cafetalera"
-            class="img-fluid" style="max-width: 250px; height: auto;" />
-        </div>
- 
-        <div class="col-6 col-md-3 col-lg-2 mb-3">
-          <ul class="mt-3 list-unstyled lista_footer">
-            <li class="mb-2"><i class="bi bi-house-door-fill me-2"></i><a href="/index.html"
-                class="footer-link text-light text-decoration-none">Inicio</a></li>
-            <li class="mb-2"><i class="bi bi-grid-fill me-2"></i><a href="/frontend/pages/catalogo/components/catalogo.html"
-                class="footer-link text-light text-decoration-none">Catálogo</a></li>
-            <li class="mb-2"><i class="bi bi-envelope-fill me-2"></i><a href="/frontend/pages/contacto/components/formulario.html"
-                class="footer-link text-light text-decoration-none">Contáctenos</a></li>
-            <li class="mb-2"><i class="bi bi-person-fill me-2"></i><a href="/frontend/pages/sobreNosotros/components/index.html"
-                class="footer-link text-light text-decoration-none">Nosotros</a></li>
+  <!-- Footer -->
+  <footer class="footer-custom text-light pt-5 pb-4">
+    <div class="container-fluid px-3">
+      
+      <!-- Logo -->
+      <div class="logo-container text-center">
+        <img src="/frontend/components/assets-global/img/logo_cafetalera_recortado.png"
+            alt="Logo de La Cafetalera"
+            class="logoFooter img-fluid">
+        <p class="slogan">Café de calidad directamente de nuestra finca a tu taza.</p>
+      </div>
+
+      <!-- Menús alineados -->
+      <div class="row justify-content-center text-start text-md-start gy-4">
+        
+        <!-- Menú -->
+        <div class="col-12 col-sm-6 col-md-3 col-lg-2 footer-section">
+          <h5 class="footer-title">Menú</h5>
+          <ul class="list-unstyled">
+            <li><a href="/frontend/pages/sobreNosotros/components/index.html" class="footer-link">Inicio</a></li>
+            <li><a href="/frontend/pages/catalogo/components/catalogo.html" class="footer-link">Catálogo</a></li>
+            <li><a href="/frontend/pages/contacto/components/formulario.html" class="footer-link">Contáctenos</a></li>
+            <li><a href="/frontend/pages/LoginRegistro/components/Login/login.html" class="footer-link">Login/Registro</a></li>
+            <li><a href="/frontend/components/components-global/nav/footer.html" class="footer-link">CRUD</a></li>
           </ul>
         </div>
- 
-        <div class="col-6 col-md-3 col-lg-2 mb-3">
-          <h4 class="fw-bold">Contacto</h4>
-          <address class="mb-0">
-            <p><i class="bi bi-geo-alt-fill me-2"></i>Bogotá, Colombia</p>
-            <p><i class="bi bi-telephone-fill me-2"></i><a href="tel:+573001234567"
-                class="text-light text-decoration-none">+57 300 123 4567</a></p>
-            <p><i class="bi bi-envelope-fill me-2"></i><a href="mailto:contacto@lacafetalera.com"
-                class="text-light text-decoration-none">contacto@lacafetalera.com</a></p>
-          </address>
+
+        <!-- Contacto -->
+        <div class="col-12 col-sm-6 col-md-3 col-lg-2 footer-section">
+          <h5 class="footer-title">Contacto</h5>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-geo-alt-fill me-2"></i>Bogotá, Colombia</li>
+            <li><i class="bi bi-telephone-fill me-2"></i><a href="tel:+573001234567" class="footer-link">+57 300 123 4567</a></li>
+            <li class="mt-2"><i class="bi bi-envelope-fill me-2"></i><a href="mailto:lacafetaleragen@gmail.com" class="footer-link">lacafetaleragen@gmail.com</a></li>
+          </ul>
         </div>
- 
-        <div class="col-6 col-md-3 col-lg-2 mb-3">
-          <h4 class="fw-bold">Síguenos</h4>
-          <a href="#" aria-label="Facebook" class="text-light me-3"><i class="bi bi-facebook fs-4"></i></a>
-          <a href="#" aria-label="Instagram" class="text-light me-3"><i class="bi bi-instagram fs-4"></i></a>
-          <a href="#" aria-label="TikTok" class="text-light me-3"><i class="bi bi-tiktok fs-4"></i></a>
-          <a href="#" aria-label="YouTube" class="text-light"><i class="bi bi-youtube fs-4"></i></a>
+
+        <!-- Síguenos -->
+        <div class="col-12 col-sm-6 col-md-3 col-lg-2 footer-section">
+          <h5 class="footer-title">Síguenos</h5>
+          <div class="d-flex gap-2 flex-wrap">
+            <a href="https://www.facebook.com/?locale=es_LA" class="social-link" aria-label="Facebook"><i class="bi bi-facebook fs-5"></i></a>
+            <a href="https://www.instagram.com/" class="social-link" aria-label="Instagram"><i class="bi bi-instagram fs-5"></i></a>
+            <a href="https://www.tiktok.com/es/" class="social-link" aria-label="TikTok"><i class="bi bi-tiktok fs-5"></i></a>
+            <a href="https://www.youtube.com/" class="social-link" aria-label="YouTube"><i class="bi bi-youtube fs-5"></i></a>
+          </div>
         </div>
- 
-        <div class="col-6 col-md-3 col-lg-2 mb-3">
-          <h4 class="fw-bold">Métodos de pago</h4>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Tarjeta Visa" width="50"
-            class="me-2" />
-          <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Tarjeta Mastercard"
-            width="50" class="me-2" />
-          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="Pago con PayPal" width="60" />
+
+        <!-- Métodos de pago -->
+        <div class="col-12 col-sm-6 col-md-3 col-lg-2 footer-section">
+          <h5 class="footer-title">Métodos de pago</h5>
+          <div class="d-flex gap-2 flex-wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa" class="pago-img">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard" class="pago-img">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="pago-img">
+          </div>
         </div>
+
+      </div>
+
+      <!-- Derechos -->
+      <div class="footer-bottom text-center py-3 mt-4">
+        <p class="mb-0 small">© 2025 La Cafetalera. Todos los derechos reservados.</p>
       </div>
     </div>
- 
-    <div class="bg-grey text-center py-2 mt-3">
-      <p class="mb-0">© 2025 La Cafetalera. Todos los derechos reservados.</p>
-    </div>
   </footer>
- 
+
+
   <!-- Scripts al final para mejor rendimiento -->
+  <!-- Opción sin integridad (más compatible) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+  <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="/frontend/pages/dashboardAdmin/components/dashboard.js"></script>
-  <!-- Bootstrap JS Bundle 5.3.7 -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
- 
+  <!-- Bootstrap JS Bundle 5.3.8 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
  
 </html>

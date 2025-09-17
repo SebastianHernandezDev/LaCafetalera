@@ -31,23 +31,48 @@ let productosEnPreview = [];
  
 // Inicializar productos desde JSON local
 async function initializeProducts() {
-  const existingProducts = JSON.parse(localStorage.getItem("products"));
-  if (!existingProducts || existingProducts.length === 0) {
-    try {
-      const response = await fetch("../assets/data/products.json");
-      if (!response.ok) throw new Error('No se pudo cargar productos.json');
-      const productosIniciales = await response.json();
-      localStorage.setItem("products", JSON.stringify(productosIniciales));
-    } catch (error) {
-      console.error("Error cargando productos iniciales:", error);
-      localStorage.setItem("products", JSON.stringify([]));
-    }
+  try {
+    const response = await fetch("../assets/data/products.json", { cache: "no-store" });
+    if (!response.ok) throw new Error("No se pudo cargar products.json");
+
+    let productosIniciales = await response.json();
+
+    // Normalización mínima
+    productosIniciales = productosIniciales.map(p => ({
+      ...p,
+      stock: p.stock ?? "100",
+      nuevoStock: p.nuevoStock ?? "0",
+      status: p.status ?? "Disponible"
+    }));
+
+    localStorage.setItem("products", JSON.stringify(productosIniciales));
+  } catch (error) {
+    console.error("Error cargando productos iniciales:", error);
+    localStorage.setItem("products", JSON.stringify([]));
   }
 }
+
+
+// Normalizar productos para usarlos en la tabla
+function normalizarProductos(productosRaw) {
+  return productosRaw.map(p => ({
+    id: p.id ?? p._id ?? "-",
+    name: p.name ?? "Sin nombre",
+    price: p.price ?? "0",
+    image: p.image ?? "./assets/img/default.png",
+    description: p.description ?? p.descripcion ?? "Sin descripción",
+    // ✅ Igual que en initializeProducts
+    stock: (p.stock !== undefined && p.stock !== null && p.stock !== "") ? p.stock : "100",
+    nuevoStock: p.nuevoStock ?? "0",
+    status: p.status ?? "Disponible"
+  }));
+}
+
  
 // Obtener productos
 function getProducts() {
-  return JSON.parse(localStorage.getItem("products")) || [];
+  const productos = localStorage.getItem("products");
+  return productos ? JSON.parse(productos) : [];
 }
  
 // Renderizar una card individual
@@ -63,7 +88,13 @@ function renderPreviewCard(producto) {
     <div class="product-info">
       <h3 class="product-name">${producto.name}</h3>
       <p class="product-description">${producto.description}</p>
-      <div class="product-price">$${parseFloat(producto.price).toFixed(2)}</div>
+      <div class="product-price">
+      ${Number(producto.price).toLocaleString("es-CO", {
+      style: "currency",
+      currency: "COP",
+      minimumFractionDigits: 1 
+      })}
+      </div>
       <button class="btn-cart eliminar-btn mt-2" data-id="${producto.id}">Eliminar<i class="bi bi-trash3-fill"></i></button>
     </div>
   `;
@@ -98,20 +129,12 @@ function renderPreviewCard(producto) {
 const formAdminInsert = document.getElementById("admin-insert");
 formAdminInsert.addEventListener("submit", function (e) {
   e.preventDefault();
-<<<<<<< HEAD
-
-=======
  
->>>>>>> d1a338c4e5d3f434e5f35c3d6967e4c864b50313
   const agregarProducto = (base64) => {
     const formData = new FormData(this);
     const campoId = document.getElementById("campo-id");
     const idGenerado = Number(campoId.value.replace("ID ", "")) || 1;
-<<<<<<< HEAD
-
-=======
  
->>>>>>> d1a338c4e5d3f434e5f35c3d6967e4c864b50313
     const nuevoProducto = {
       id: idGenerado,
       name: formData.get("name") || "Producto sin nombre",
@@ -123,32 +146,15 @@ formAdminInsert.addEventListener("submit", function (e) {
       imageName: archivoImagen?.name || "",
       image: base64 || "https://via.placeholder.com/300x180?text=Sin+imagen"
     };
-<<<<<<< HEAD
-
-    productosEnPreview.push(nuevoProducto);
-    renderPreviewCard(nuevoProducto);
-
-=======
  
     productosEnPreview.push(nuevoProducto);
     renderPreviewCard(nuevoProducto);
  
->>>>>>> d1a338c4e5d3f434e5f35c3d6967e4c864b50313
     // Limpiar formulario
     this.reset();
     document.getElementById("nombreImagen").textContent = "";
     imagenBase64 = "";
     archivoImagen = null;
-<<<<<<< HEAD
-
-    // Actualizar el campo ID al siguiente valor
-    campoId.value = `ID ${idGenerado + 1}`;
-
-    // Mostrar botón confirmar guardar para guardar todos los productos en preview
-    document.getElementById("confirmar-guardar").classList.add("visible");
-  };
-
-=======
  
     // Actualizar el campo ID al siguiente valor
     campoId.value = `ID ${idGenerado + 1}`;
@@ -157,7 +163,6 @@ formAdminInsert.addEventListener("submit", function (e) {
     document.getElementById("confirmar-guardar").classList.add("visible");
   };
  
->>>>>>> d1a338c4e5d3f434e5f35c3d6967e4c864b50313
   if (archivoImagen) {
     const reader = new FileReader();
     reader.onload = function (e) {
@@ -224,43 +229,43 @@ function confirmarGuardarHandler() {
  
 // 📋 Cargar inventario en tabla
 function cargarInventario() {
-  const productosRaw = getProducts();
+  const productosRaw = getProducts();  
   const productos = normalizarProductos(productosRaw);
-  const tabla = document.getElementById("tabla-inventario");
+  const tabla = document.getElementById("cuerpo-tabla-inventario");
   tabla.innerHTML = "";
  
   productos.forEach(producto => {
     const fila = document.createElement("tr");
     fila.innerHTML = `
-      <td>${producto.id}</td>
-      <td>${producto.name}</td>
-      <td>${producto.price}</td>
-      <td>${producto.description}</td>
-      <td>${producto.stock}</td>
-      <td>${producto.nuevoStock}</td>
-      <td><img src="${producto.image}" alt="${producto.name}" style="width: 50px;" onerror="this.src='https://via.placeholder.com/50?text=Sin+imagen'"></td>
-      <td>${producto.status}</td>
-      <td><button class="btn-eliminar btn btn-danger btn-sm" data-id="${producto.id}"><i class="bi bi-trash3-fill"></i></button></td>
+      <td data-label="Id">${producto.id}</td>
+      <td data-label="Nombre del Producto">${producto.name}</td>
+      <td data-label="Precio (COP)">
+      ${producto.price.toLocaleString("es-CO", {
+      style: "currency",
+      currency: "COP",
+      minimumFractionDigits: 0
+      })}
+      </td>
+      <td data-label="Descripción del Producto" class="descripcion-truncada">
+        <span class="texto-corto">${producto.description}</span>
+        <span class="texto-completo d-none">${producto.description}</span>
+        <button class="ver-mas-btn">Ver más</button>
+      </td>
+      <td data-label="Stock Actual">${producto.stock}</td>
+      <td data-label="Nuevo Stock">${producto.nuevoStock}</td>
+      <td data-label="Imagen"><img src="${producto.image}" alt="${producto.name}" style="width: 50px;"></td>
+      <td data-label="Estado mercancía">${producto.status}</td>
+      <td data-label="Acciones"><button class="btn-eliminar btn btn-danger btn-sm" data-id="${producto.id}">Eliminar</button></td>
     `;
  
     tabla.appendChild(fila);
   });
   conectarBotonesEliminar();
+  conectarBotonesVerMas();
+
 }
- 
-// 🧼 Normalizar producto
-function normalizarProductos(productos) {
-  return productos.map(p => ({
-    id: p.id,
-    name: p.name || "Producto sin nombre",
-    price: p.price || "0",
-    description: p.description || "Sin descripción",
-    stock: p.stock || "-",
-    nuevoStock: p.nuevoStock || "-",
-    status: p.status || "Sin estado",
-    image: p.image || "https://via.placeholder.com/50?text=Sin+imagen"
-  }));
-}
+
+
  
 // 📷 Imagen base64
 document.getElementById("imagenProducto").addEventListener("change", function (event) {
@@ -288,13 +293,17 @@ document.getElementById("actualizar-inventario").addEventListener("click", () =>
     if (!isNaN(precio)) sumaPrecios += precio;
   });
  
-  const promedioPrecio = (sumaPrecios / totalProductos).toFixed(2);
+  const promedioPrecio = sumaPrecios / totalProductos;
  
   animarCampo("total-registros", totalProductos);
   animarCampo("valor-total", `$${sumaPrecios.toLocaleString("es-CO")}`);
-  animarCampo("precio-promedio", `$${promedioPrecio}`);
-});
- 
+  animarCampo("precio-promedio", promedioPrecio.toLocaleString("es-CO", {
+    style: "currency",
+    currency: "COP",
+    minimumFractionDigits: 0
+  }));
+}); 
+
 // ✨ Animación de campos
 const animarCampo = (id, valor) => {
   const campo = document.getElementById(id);
@@ -302,6 +311,7 @@ const animarCampo = (id, valor) => {
   campo.classList.add("actualizado");
   setTimeout(() => campo.classList.remove("actualizado"), 800);
 };
+
  
 // 🆔 Generar nuevo ID
 function generarIdInventario() {
@@ -393,3 +403,13 @@ window.addEventListener("DOMContentLoaded", async () => {
     btnConfirmarGuardar.addEventListener("click", confirmarGuardarHandler);
   }
 });
+function conectarBotonesVerMas() {
+  document.querySelectorAll('.ver-mas-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const td = btn.closest('.descripcion-truncada');
+      td.querySelector('.texto-corto').classList.add('d-none');
+      td.querySelector('.texto-completo').classList.remove('d-none');
+      btn.style.display = 'none';
+    });
+  });
+}

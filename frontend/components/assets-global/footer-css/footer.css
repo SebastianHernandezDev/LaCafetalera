@@ -1,45 +1,305 @@
-.containerFooter {
-    background-color: brown; 
-} 
+/* ==========================
+   VARIABLES DE ESTILO
+========================== */
+:root {
+  --color-principal: #582919;      /* Café profundo */
+  --color-secundario: #4b6950;     /* Verde suave */
+  --color-fondo: #fdfdfd;
+  --color-texto: #333;
+  --color-acento: #cbb89d;         /* Dorado suave */
+  --color-hover: #54a63e;          /* Verde vibrante */
+  --color-footer-bg: #1c1c1c;
+  --color-footer-dark: #2e2e2e;
+
+  --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --sombra-hover: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================
+   FOOTER
+========================== */
+footer {
+  background: linear-gradient(180deg, var(--color-footer-dark), var(--color-footer-bg));
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  padding: 40px 15px 20px;
+  color: #f5f5f5;
+}
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--color-acento);
+  border-bottom: 2px solid var(--color-hover);
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+}
+
+.footer-link {
+  color: #f5f5f5;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.footer-link:hover {
+  color: var(--color-hover);
+  text-decoration: underline;
+}
+
+.social-link {
+  background-color: var(--color-principal);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.social-link:hover {
+  background-color: var(--color-hover);
+  transform: scale(1.1);
+}
+
+.pago-img {
+  width: 60px;
+  height: 40px;
+  object-fit: contain;
+  background-color: #fff;
+  padding: 6px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+.pago-img:hover {
+  transform: scale(1.05);
+}
+/* Logo y slogan */
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  text-align: center;
+}
 
 .logoFooter {
-    margin-top: -60px;
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
 }
 
-footer {
-    background-color: #2e2e2e; 
-    font-family: 'Lato', sans-serif; 
-    font-size: 15px;
-    padding: 30px 2px;
-    color: #f5f5f5; 
+.logoFooter:hover {
+  transform: scale(1.05);
 }
 
-.lista_footer {
-    color: #f5f5f5;
+.slogan {
+  font-size: 16px;
+  color: #e0e0e0;
+  margin-top: 12px;
+  font-style: italic;
+  max-width: 400px;
 }
 
-footer a {
-    color: #f5f5f5;
-    text-decoration: none;
-    transition: color 0.3s ease;
+/* Títulos */
+footer h5, 
+footer h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: var(--color-acento);
+  border-bottom: 2px solid var(--color-hover);
+  display: inline-block;
+  padding-bottom: 4px;
 }
 
-footer a:hover {
-    color: #54a63e; 
+/* Enlaces */
+.footer-link {
+  color: #f5f5f5;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 14px;
 }
-
+.footer-link:hover {
+  color: var(--color-hover);
+  text-decoration: underline;
+}
+.social-link,
+.pago-img {
+  margin-right: 4px; 
+}
+/* Texto */
 footer p {
-    color: #f5f5f5;
+  margin-bottom: 8px;
+  color: #e0e0e0;
+  font-size: 14px;
+}.socia
+
+/* Redes sociales */
+.social-link {
+  color: #f5f5f5;
+  width: px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-principal);
+  transition: all 0.3s ease;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+.social-link:last-child {
+  margin-right: 0;
+}
+.social-link:hover {
+  background-color: var(--color-hover);
+  color: #fff;
+  transform: scale(1.1);
 }
 
-footer .bg-secondary {
-    background-color: #2e2e2e !important;
-    color: #f5f5f5; 
+/* Métodos de pago */
+.pago-img {
+  width: 60px;
+  height: 40px;
+  object-fit: contain;
+  background-color: #fff;
+  padding: 6px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  margin-right: 4px;
+  margin-bottom: 10px;
+}
+.pago-img:last-child {
+  margin-right: 0;
+}
+.pago-img:hover {
+  transform: scale(1.05);
 }
 
-.footerA{
-    align-items: center;
-    padding: 20px 0;
+/* Pie final */
+.footer-bottom {
+  background-color: var(--color-secundario);
+  color: #aaa;
+  font-size: 14px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: 20px;
+  padding: 12px 0;
+  text-align: center;
 }
 
+/* ==========================
+   RESPONSIVE
+========================== */
 
+/* Pantallas grandes */
+@media (min-width: 1200px) {
+  .logoFooter {
+    max-width: 380px;
+  }
+}
+
+/* Desktop y tablets grandes */
+@media (min-width: 768px) and (max-width: 1199px) {
+  footer {
+    padding: 40px 40px 30px;
+  }
+
+  .logo-container {
+    padding-top: 30px;
+    padding-bottom: 15px;
+  }
+
+  .logoFooter {
+    max-width: 250px;
+  }
+
+  .slogan {
+    max-width: 280px;
+    font-size: 15px;
+  }
+
+  /* Centrar texto en columnas */
+  .text-center.text-md-start {
+    text-align: left !important;
+  }
+}
+
+/* Tablets medianos y pequeños */
+@media (min-width: 481px) and (max-width: 767px) {
+  footer {
+    padding: 35px 25px 25px;
+    font-size: 14px;
+  }
+
+  .logo-container {
+    padding-top: 25px;
+    padding-bottom: 15px;
+  }
+
+  .logoFooter {
+    max-width: 200px;
+  }
+
+  .slogan {
+    max-width: 240px;
+    font-size: 14px;
+  }
+
+  /* Centrar texto en columnas */
+  .text-center.text-md-start {
+    text-align: center !important;
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  footer {
+    padding: 30px 15px 20px;
+    font-size: 13px;
+  }
+
+  .logo-container {
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+
+  .logoFooter {
+    max-width: 150px;
+  }
+
+  .slogan {
+    max-width: 180px;
+    font-size: 13px;
+  }
+
+  /* Centrar todo */
+  .text-center.text-md-start {
+    text-align: center !important;
+  }
+
+  /* Ajustar tamaños de íconos sociales y pagos */
+  .social-link {
+    width: 34px;
+    height: 34px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+
+  .pago-img {
+    width: 45px;
+    height: 30px;
+    padding: 4px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+}
