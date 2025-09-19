@@ -5,7 +5,13 @@ function cerrarSesion() {
         icon: 'question',
         showCancelButton: true,
         confirmButtonText: 'Sí, cerrar sesión',
-        cancelButtonText: 'Cancelar'
+        cancelButtonText: 'Cancelar',
+        customClass: {
+            popup: 'swal-confirm-popup',
+            title: 'swal-confirm-title',
+            confirmButton: 'swal-confirm-btn',
+            cancelButton: 'swal-cancel-btn'
+        }
     }).then(result => {
         if (result.isConfirmed) {
             localStorage.removeItem("usuarioActivo");
@@ -13,7 +19,7 @@ function cerrarSesion() {
         }
     });
 }
- 
+
 // Asignar listener al botón
 const botonCerrar = document.getElementById("botonSesion");
 if (botonCerrar) {
@@ -22,13 +28,13 @@ if (botonCerrar) {
         cerrarSesion();
     });
 }
- 
+
 // ---- Resto de tu código: productos, inventario, vista previa, etc ----
 // Mantener todo igual que tu versión original
 let imagenBase64 = "";
 let archivoImagen = null;
 let productosEnPreview = [];
- 
+
 // Inicializar productos desde JSON local
 async function initializeProducts() {
   try {
@@ -52,7 +58,6 @@ async function initializeProducts() {
   }
 }
 
-
 // Normalizar productos para usarlos en la tabla
 function normalizarProductos(productosRaw) {
   return productosRaw.map(p => ({
@@ -61,28 +66,26 @@ function normalizarProductos(productosRaw) {
     price: p.price ?? "0",
     image: p.image ?? "./assets/img/default.png",
     description: p.description ?? p.descripcion ?? "Sin descripción",
-    // ✅ Igual que en initializeProducts
     stock: (p.stock !== undefined && p.stock !== null && p.stock !== "") ? p.stock : "100",
     nuevoStock: p.nuevoStock ?? "0",
     status: p.status ?? "Disponible"
   }));
 }
 
- 
 // Obtener productos
 function getProducts() {
   const productos = localStorage.getItem("products");
   return productos ? JSON.parse(productos) : [];
 }
- 
+
 // Renderizar una card individual
 function renderPreviewCard(producto) {
   const container = document.getElementById("previewCards");
- 
+
   const card = document.createElement("div");
   card.className = "product-card col-12 col-md-6 col-lg-4 preview";
   card.setAttribute("data-id", producto.id);
- 
+
   card.innerHTML = `
     <img src="${producto.image}" alt="${producto.name}" class="product-image" onerror="this.src='https://via.placeholder.com/300x180?text=Sin+imagen'">
     <div class="product-info">
@@ -98,43 +101,40 @@ function renderPreviewCard(producto) {
       <button class="btn-cart eliminar-btn mt-2" data-id="${producto.id}">Eliminar<i class="bi bi-trash3-fill"></i></button>
     </div>
   `;
- 
+
   // Agregar listener para expandir descripción
   const descripcion = card.querySelector(".product-description");
   descripcion.addEventListener("click", () => {
     descripcion.classList.toggle("expandido");
   });
- 
+
   // Evento para eliminar producto de la vista previa
   card.querySelector(".eliminar-btn").addEventListener("click", () => {
     card.classList.add("desaparecer");
     setTimeout(() => card.remove(), 500);
- 
-    // Eliminar producto del array productosEnPreview
+
     productosEnPreview = productosEnPreview.filter(p => p.id !== producto.id);
- 
-    // Si no quedan productos en preview, ocultar botón confirmar guardar
+
     if (productosEnPreview.length === 0) {
       document.getElementById("confirmar-guardar").classList.remove("visible");
     }
- 
-    // Actualizar el campo ID visualmente
+
     actualizarCampoIdPreview();
   });
- 
+
   container.appendChild(card);
 }
- 
-// ➕ Generar vista previa sin guardar (agregar múltiples productos)
+
+// ➕ Generar vista previa sin guardar
 const formAdminInsert = document.getElementById("admin-insert");
 formAdminInsert.addEventListener("submit", function (e) {
   e.preventDefault();
- 
+
   const agregarProducto = (base64) => {
     const formData = new FormData(this);
     const campoId = document.getElementById("campo-id");
     const idGenerado = Number(campoId.value.replace("ID ", "")) || 1;
- 
+
     const nuevoProducto = {
       id: idGenerado,
       name: formData.get("name") || "Producto sin nombre",
@@ -146,23 +146,19 @@ formAdminInsert.addEventListener("submit", function (e) {
       imageName: archivoImagen?.name || "",
       image: base64 || "https://via.placeholder.com/300x180?text=Sin+imagen"
     };
- 
+
     productosEnPreview.push(nuevoProducto);
     renderPreviewCard(nuevoProducto);
- 
-    // Limpiar formulario
+
     this.reset();
     document.getElementById("nombreImagen").textContent = "";
     imagenBase64 = "";
     archivoImagen = null;
- 
-    // Actualizar el campo ID al siguiente valor
+
     campoId.value = `ID ${idGenerado + 1}`;
- 
-    // Mostrar botón confirmar guardar para guardar todos los productos en preview
     document.getElementById("confirmar-guardar").classList.add("visible");
   };
- 
+
   if (archivoImagen) {
     const reader = new FileReader();
     reader.onload = function (e) {
@@ -173,67 +169,79 @@ formAdminInsert.addEventListener("submit", function (e) {
     agregarProducto("");
   }
 });
- 
+
 // ✅ Confirmar y guardar todos los productos en preview
 function confirmarGuardarHandler() {
   if (productosEnPreview.length === 0) {
     Swal.fire({
       icon: 'warning',
       title: 'Atención',
-      text: '⚠️ No hay productos en vista previa para guardar.'
+      text: '⚠️ No hay productos en vista previa para guardar.',
+      customClass: {
+        popup: 'swal-warning-popup',
+        title: 'swal-warning-title',
+        confirmButton: 'swal-warning-btn'
+      }
     });
     return;
   }
- 
+
   let productosGuardados = getProducts();
- 
-  // Evitar IDs duplicados
+
   const idsGuardados = new Set(productosGuardados.map(p => p.id));
   const productosNuevos = productosEnPreview.filter(p => !idsGuardados.has(p.id));
- 
+
   if (productosNuevos.length === 0) {
     Swal.fire({
       icon: 'warning',
       title: 'Atención',
-      text: '⚠️ Todos los productos en vista previa ya existen.'
+      text: '⚠️ Todos los productos en vista previa ya existen.',
+      customClass: {
+        popup: 'swal-warning-popup',
+        title: 'swal-warning-title',
+        confirmButton: 'swal-warning-btn'
+      }
     });
     return;
   }
- 
+
   productosGuardados = productosGuardados.concat(productosNuevos);
   localStorage.setItem("products", JSON.stringify(productosGuardados));
- 
+
   cargarInventario();
- 
-  // Limpiar preview
+
   productosEnPreview = [];
   const container = document.getElementById("previewCards");
   container.innerHTML = "";
- 
+
   const btnConfirmarGuardar = document.getElementById("confirmar-guardar");
   btnConfirmarGuardar.classList.remove("visible");
   formAdminInsert.reset();
   document.getElementById("nombreImagen").textContent = "";
   imagenBase64 = "";
- 
+
   generarIdInventario();
- 
+
   Swal.fire({
     icon: 'success',
     title: 'Guardado',
     text: '✅ Productos guardados correctamente.',
     timer: 2000,
-    showConfirmButton: false
+    showConfirmButton: false,
+    customClass: {
+      popup: 'swal-success-popup',
+      title: 'swal-success-title'
+    }
   });
 }
- 
+
 // 📋 Cargar inventario en tabla
 function cargarInventario() {
   const productosRaw = getProducts();  
   const productos = normalizarProductos(productosRaw);
   const tabla = document.getElementById("cuerpo-tabla-inventario");
   tabla.innerHTML = "";
- 
+
   productos.forEach(producto => {
     const fila = document.createElement("tr");
     fila.innerHTML = `
@@ -257,16 +265,12 @@ function cargarInventario() {
       <td data-label="Estado mercancía">${producto.status}</td>
       <td data-label="Acciones"><button class="btn-eliminar btn btn-danger btn-sm" data-id="${producto.id}">Eliminar</button></td>
     `;
- 
     tabla.appendChild(fila);
   });
   conectarBotonesEliminar();
   conectarBotonesVerMas();
-
 }
 
-
- 
 // 📷 Imagen base64
 document.getElementById("imagenProducto").addEventListener("change", function (event) {
   archivoImagen = event.target.files[0];
@@ -278,23 +282,23 @@ document.getElementById("imagenProducto").addEventListener("change", function (e
     imagenBase64 = "";
   }
 });
- 
+
 // 📊 Actualizar resumen inventario
 document.getElementById("actualizar-inventario").addEventListener("click", () => {
   const data = localStorage.getItem("products");
   if (!data) return;
- 
+
   const inventario = JSON.parse(data);
   const totalProductos = inventario.length;
   let sumaPrecios = 0;
- 
+
   inventario.forEach(item => {
     const precio = parseFloat(item.price);
     if (!isNaN(precio)) sumaPrecios += precio;
   });
- 
+
   const promedioPrecio = sumaPrecios / totalProductos;
- 
+
   animarCampo("total-registros", totalProductos);
   animarCampo("valor-total", `$${sumaPrecios.toLocaleString("es-CO")}`);
   animarCampo("precio-promedio", promedioPrecio.toLocaleString("es-CO", {
@@ -302,7 +306,7 @@ document.getElementById("actualizar-inventario").addEventListener("click", () =>
     currency: "COP",
     minimumFractionDigits: 0
   }));
-}); 
+});
 
 // ✨ Animación de campos
 const animarCampo = (id, valor) => {
@@ -312,18 +316,16 @@ const animarCampo = (id, valor) => {
   setTimeout(() => campo.classList.remove("actualizado"), 800);
 };
 
- 
 // 🆔 Generar nuevo ID
 function generarIdInventario() {
   const productos = getProducts();
   const ids = productos.map(p => Number(p.id)).filter(id => !isNaN(id));
   const maxId = ids.length > 0 ? Math.max(...ids) : 0;
-  const nuevoId = maxId + 1;
- 
+
   const campoId = document.getElementById("campo-id");
-  if (campoId) campoId.value = `ID ${nuevoId}`;
+  if (campoId) campoId.value = `ID ${maxId + 1}`;
 }
- 
+
 // Eliminar producto del inventario
 function eliminarProducto(id) {
   Swal.fire({
@@ -331,27 +333,37 @@ function eliminarProducto(id) {
     icon: 'warning',
     showCancelButton: true,
     confirmButtonText: 'Sí, eliminar',
-    cancelButtonText: 'Cancelar'
+    cancelButtonText: 'Cancelar',
+    customClass: {
+        popup: 'swal-warning-popup',
+        title: 'swal-warning-title',
+        confirmButton: 'swal-warning-btn',
+        cancelButton: 'swal-cancel-btn'
+    }
   }).then((result) => {
     if (result.isConfirmed) {
       let productos = getProducts();
       productos = productos.filter(p => Number(p.id) !== id);
       localStorage.setItem("products", JSON.stringify(productos));
- 
+
       cargarInventario();
       generarIdInventario();
- 
+
       Swal.fire({
         icon: 'success',
         title: 'Eliminado',
         text: `🗑️ Producto con ID ${id} eliminado correctamente.`,
         timer: 2000,
-        showConfirmButton: false
+        showConfirmButton: false,
+        customClass: {
+          popup: 'swal-success-popup',
+          title: 'swal-success-title'
+        }
       });
     }
   });
 }
- 
+
 // Conectar botones eliminar en tabla
 function conectarBotonesEliminar() {
   const botonesEliminar = document.querySelectorAll(".btn-eliminar");
@@ -362,47 +374,46 @@ function conectarBotonesEliminar() {
     });
   });
 }
- 
+
 // Actualizar campo ID en preview
 function actualizarCampoIdPreview() {
   const campoId = document.getElementById("campo-id");
   const idsPreview = productosEnPreview.map(p => Number(p.id)).filter(id => !isNaN(id));
   const maxIdPreview = idsPreview.length > 0 ? Math.max(...idsPreview) : getMaxIdInventario();
-  const nuevoId = maxIdPreview + 1;
-  campoId.value = `ID ${nuevoId}`;
+  campoId.value = `ID ${maxIdPreview + 1}`;
 }
- 
+
 function getMaxIdInventario() {
   const productos = getProducts();
   const ids = productos.map(p => Number(p.id)).filter(id => !isNaN(id));
   return ids.length > 0 ? Math.max(...ids) : 0;
 }
- 
+
 // Contador de caracteres para descripción
 const descripcionInput = document.getElementById("description");
 const contador = document.createElement("small");
 contador.id = "contador-caracteres";
 descripcionInput.parentNode.appendChild(contador);
- 
+
 descripcionInput.addEventListener("input", () => {
   const max = descripcionInput.getAttribute("maxlength");
   const actual = descripcionInput.value.length;
   contador.textContent = `Caracteres: ${actual}/${max}`;
 });
- 
+
 // Inicialización al cargar la página
 window.addEventListener("DOMContentLoaded", async () => {
   await initializeProducts();
   cargarInventario();
   generarIdInventario();
   document.getElementById("confirmar-guardar").classList.remove("visible");
- 
-  // Asignar listener al botón confirmar-guardar
+
   const btnConfirmarGuardar = document.getElementById("confirmar-guardar");
   if (btnConfirmarGuardar) {
     btnConfirmarGuardar.addEventListener("click", confirmarGuardarHandler);
   }
 });
+
 function conectarBotonesVerMas() {
   document.querySelectorAll('.ver-mas-btn').forEach(btn => {
     btn.addEventListener('click', () => {

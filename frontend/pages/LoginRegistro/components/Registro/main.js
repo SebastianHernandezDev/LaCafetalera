@@ -190,14 +190,32 @@ form.addEventListener("submit", (e) => {
       timer: 2000,
       timerProgressBar: true,
       backdrop: true,
+      customClass: {
+        popup: 'my-swal-popup',
+        title: 'my-swal-title-success',  
+        confirmButton: 'my-swal-button'
+      }
     }).then(() => {
       window.location.href = "../Login/login.html";
     });
+
 
     form.reset();
     [nombres, apellidos, correo, celular, password, confirmPassword].forEach((i) =>
       i.classList.remove("is-valid")
     );
+  } else {
+    Swal.fire({
+      icon: '⚠️',
+      title: '¡Error en el formulario!',
+      text: 'Por favor corrige los campos en rojo.',
+      confirmButtonText: 'Entendido',
+      customClass: {
+        popup: 'my-swal-popup',
+        title: 'my-swal-title',
+        confirmButton: 'my-swal-button'
+      }
+    });
   }
 });
 

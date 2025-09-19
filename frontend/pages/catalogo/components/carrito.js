@@ -1,20 +1,21 @@
-document.getElementById("continuarCompra").addEventListener("click", function () {
+document.getElementById("continuarCompra").addEventListener("click", function () { 
     window.open("../components/factura/components/factura.html", '_blank');
 });
+
 function obtenerCarrito() {
     return JSON.parse(localStorage.getItem('cart')) || [];
 }
-console.log("Carrito obtenido")
+console.log("Carrito obtenido");
 
 function guardarCarrito(carrito) {
     localStorage.setItem('cart', JSON.stringify(carrito));
 }
-console.log("Carrito guardado")
+console.log("Carrito guardado");
 
 function obtenerProductos() {
     return JSON.parse(localStorage.getItem('products')) || [];
 }
-console.log("productos obtenidos de catalogo")
+console.log("productos obtenidos de catalogo");
 
 // Función para eliminar producto del carrito
 function eliminarDelCarrito(productId) {
@@ -42,14 +43,22 @@ function cambiarCantidad(productId, nuevaCantidad) {
     }
 }
 
-// Función para vaciar carrito con SweetAlert
+// Función para vaciar carrito con SweetAlert personalizado
 function vaciarCarrito() {
     const carrito = obtenerCarrito();
     if (carrito.length === 0) {
         Swal.fire({
             title: "Carrito Vacío",
-            text: "los productos fueron eliminados",
-            icon: "info"
+            text: "No hay productos para eliminar.",
+            icon: "info",
+            customClass: {
+                popup: 'swal2-popup',
+                title: 'swal2-title',
+                htmlContainer: 'swal2-html-container',
+                confirmButton: 'swal2-confirm'
+            },
+            timer: 2000,
+            showConfirmButton: false
         });
     } else {
         Swal.fire({
@@ -57,22 +66,34 @@ function vaciarCarrito() {
             text: "Se eliminarán todos los productos del carrito",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
             confirmButtonText: 'Sí, vaciar carrito',
-            cancelButtonText: 'Cancelar'
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                popup: 'swal2-popup',
+                title: 'swal2-title',
+                htmlContainer: 'swal2-html-container',
+                confirmButton: 'swal2-confirm',
+                cancelButton: 'swal2-cancel'
+            }
         }).then((result) => {
             if (result.isConfirmed) {
                 localStorage.removeItem('cart');
                 mostrarProductosCarrito();
                 actualizarResumen();
 
-                // Mostrar confirmación
-                Swal.fire(
-                    '¡Eliminado!',
-                    'El carrito ha sido vaciado.',
-                    'success'
-                );
+                Swal.fire({
+                    title: '¡Eliminado!',
+                    text: 'El carrito ha sido vaciado.',
+                    icon: 'success',
+                    timer: 2000,
+                    showConfirmButton: false,
+                    customClass: {
+                        popup: 'swal2-popup',
+                        title: 'swal2-title',
+                        htmlContainer: 'swal2-html-container',
+                        confirmButton: 'swal2-confirm'
+                    }
+                });
             }
         });
     }
@@ -91,36 +112,30 @@ function actualizarResumen() {
         }
     });
 
-    // Formatear el precio
     const totalFormateado = total.toLocaleString('es-CO');
     document.getElementById('totalProductos').innerHTML = `<span class="coste">$</span>${totalFormateado}`;
     document.getElementById('totalGeneral').innerHTML = `<span class="coste">$</span>${totalFormateado}`;
 }
 
-//mostrar productos en el carro   
+// Mostrar productos en el carrito
 function mostrarProductosCarrito() {
     const productos = obtenerProductos();
     const carrito = obtenerCarrito();
 
-    // En caso de que el carrito esté vacío             
     if (carrito.length === 0) {
         document.getElementById('carritoVacio').style.display = 'block';
         document.getElementById('contenidoCarrito').style.display = 'none';
         console.log("mensaje de carrito vacio mostrado");
         actualizarResumen();
     } else {
-        // Si hay productos, mostrar contenido y ocultar mensaje vacío                 
         document.getElementById('carritoVacio').style.display = 'none';
         document.getElementById('contenidoCarrito').style.display = 'block';
         console.log("productos mostrados");
 
-        // Buscar el contenedor donde insertar los productos
         const contenedorProductos = document.getElementById('contenedorProductos');
-
-        // Si hay productos, crear el HTML dinámicamente
         let htmlProductos = '';
 
-        carrito.forEach((itemCarrito, index) => {
+        carrito.forEach((itemCarrito) => {
             const producto = productos.find(p => p.id === itemCarrito.id);
             if (producto) {
                 const subtotal = producto.price * itemCarrito.cantidad;
@@ -176,19 +191,13 @@ function mostrarProductosCarrito() {
             }
         });
 
-        // Encontrar el elemento después del cual insertar los productos
         const elementoReferencia = document.getElementById('headerProductos');
-
-        // Eliminar productos existentes si los hay
         const productosExistentes = contenedorProductos.querySelectorAll('[data-product-id]');
         productosExistentes.forEach(elemento => elemento.remove());
-
-        // Insertar los nuevos productos después del header de productos
         if (elementoReferencia) {
             elementoReferencia.insertAdjacentHTML('afterend', htmlProductos);
         }
 
-        // Agregar event listeners a los botones
         agregarEventListeners();
         actualizarResumen();
     }
@@ -196,7 +205,6 @@ function mostrarProductosCarrito() {
 
 // Función para agregar event listeners a los botones dinámicos
 function agregarEventListeners() {
-    // Event listeners para botones de eliminar
     document.querySelectorAll('.eliminar-producto').forEach(boton => {
         boton.addEventListener('click', function () {
             const productId = parseInt(this.dataset.productId);
@@ -204,7 +212,6 @@ function agregarEventListeners() {
         });
     });
 
-    // Event listeners para botones de cantidad
     document.querySelectorAll('.btn-cantidad').forEach(boton => {
         boton.addEventListener('click', function () {
             const productId = parseInt(this.dataset.productId);
@@ -224,6 +231,5 @@ function agregarEventListeners() {
 document.addEventListener('DOMContentLoaded', function () {
     mostrarProductosCarrito();
 
-    // Evento para vaciar carrito con SweetAlert
     document.getElementById('vaciarCarrito').addEventListener('click', vaciarCarrito);
 });
