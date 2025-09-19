@@ -5,20 +5,10 @@ function AdminPanel() {
   const usuarioJSON = localStorage.getItem("usuarioActivo");
 
   // Si NO hay usuario, mostrar botón para iniciar sesión
-  if (!usuarioJSON) {
-    boto.setAttribute("href", "/frontend/pages/LoginRegistro/components/Login/login.html");
-    boto.innerHTML = `<i class="bi bi-person-fill letrasLogin me-2"></i><strong>Iniciar Sesión</strong>`;
-    boto.onclick = null; // Limpia cualquier evento anterior
-    return;
-  }
-
-  const usuario = JSON.parse(usuarioJSON);
-
-  // Si es admin, mostrar botón para ir al panel admin
-  if (usuario.rol && usuario.rol.toLowerCase() === "admin") {
+  if (!erCase() === "admin") {
     boto.setAttribute("href", "/frontend/pages/dashboardAdmin/components/dashboard.html");
     boto.innerHTML = `<i class="bi bi-speedometer2 me-2"></i><strong>Admin Panel</strong>`;
-    boto.onclick = null; // Limpia cualquier evento anterior
+    boto.onclick = null; // Limpia cuzalquier evento anterior
     return;
   }
 
