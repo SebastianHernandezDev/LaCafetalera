@@ -169,3 +169,87 @@ h2 {
     padding: 1.5rem;
   }
 }
+/* --------------------
+   Alertas personalizadas (toasts)
+-------------------- */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #A0522D, #6B4226);
+  color: #fff;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: slideIn 0.4s ease forwards;
+  z-index: 9999;
+}
+
+/* Animación entrada */
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación salida */
+@keyframes slideOut {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Estados de alerta */
+.toast.success {
+  background: linear-gradient(135deg, #28a745, #218838);
+}
+
+.toast.error {
+  background: linear-gradient(135deg, #dc3545, #a71d2a);
+}
+
+.toast.info {
+  background: linear-gradient(135deg, #17a2b8, #117a8b);
+}
+
+.toast.warning {
+  background: linear-gradient(135deg, #ffc107, #e0a800);
+  color: #222;
+}
+/* --------------------
+   Mensajes de validación
+-------------------- */
+.invalid-feedback {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #B00020;
+  margin-top: 0.35rem;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+  background: #fdecea; /* Fondo suave rojo */
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border-left: 4px solid #dc3545;
+}
+
+/* Ícono de alerta */
+.invalid-feedback::before {
+  content: "⚠️Alert⚠️: ";
+  font-size: 1rem;
+}
+
+/* Cuando el input es inválido, mostrar la alerta */
+.is-invalid ~ .invalid-feedback {
+  opacity: 1;
+  transform: translateY(0);
+}
+
