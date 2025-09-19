@@ -169,3 +169,141 @@ h2 {
     padding: 1.5rem;
   }
 }
+/* --------------------
+   Alertas personalizadas (toasts)
+-------------------- */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #A0522D, #6B4226);
+  color: #fff;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: slideIn 0.4s ease forwards;
+  z-index: 9999;
+}
+
+/* Animación entrada */
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación salida */
+@keyframes slideOut {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Estados de alerta */
+.toast.success {
+  background: linear-gradient(135deg, #28a745, #218838);
+}
+
+.toast.error {
+  background: linear-gradient(135deg, #dc3545, #a71d2a);
+}
+
+.toast.info {
+  background: linear-gradient(135deg, #17a2b8, #117a8b);
+}
+
+.toast.warning {
+  background: linear-gradient(135deg, #ffc107, #e0a800);
+  color: #222;
+}
+/* --------------------
+   Mensajes de validación
+-------------------- */
+.invalid-feedback {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #B00020;
+  margin-top: 0.35rem;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+  background: #fdecea; /* Fondo suave rojo */
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border-left: 4px solid #dc3545;
+}
+
+/* Ícono de alerta */
+.invalid-feedback::before {
+  content: "⚠️Alert⚠️ ";
+  font-size: 1rem;
+}
+
+/* Cuando el input es inválido, mostrar la alerta */
+.is-invalid ~ .invalid-feedback {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ======================
+   SweetAlert2 - Estilos personalizados
+====================== */
+.swal2-popup {
+  background: #fffaf3 !important; /* mismo fondo crema */
+  border-radius: 20px !important;
+  padding: 2rem !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25) !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.swal2-title {
+  color: #6B4226 !important; /* marrón café */
+  font-weight: 700 !important;
+  font-size: 1.6rem !important;
+}
+
+.swal2-html-container {
+  color: #4E342E !important; /* café más oscuro */
+  font-size: 1rem !important;
+}
+
+.swal2-confirm {
+  background: linear-gradient(135deg, #A0522D, #6B4226) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 0.6rem 1.2rem !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  transition: all 0.3s ease !important;
+}
+
+.swal2-confirm:hover {
+  background: linear-gradient(135deg, #6B4226, #4E342E) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25) !important;
+}
+
+.swal2-cancel {
+  background: #F5E4D3 !important;
+  color: #A0522D !important;
+  border-radius: 10px !important;
+  padding: 0.6rem 1.2rem !important;
+  font-weight: 600 !important;
+  border: 2px solid #D6A77A !important;
+  transition: all 0.3s ease !important;
+}
+
+.swal2-cancel:hover {
+  background: #EED9C4 !important;
+  color: #6B4226 !important;
+  transform: translateY(-2px);
+}
+

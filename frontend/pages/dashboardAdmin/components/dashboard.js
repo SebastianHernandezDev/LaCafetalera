@@ -272,7 +272,13 @@ function cerrarSesion() {
         icon: 'question',
         showCancelButton: true,
         confirmButtonText: 'Sí, cerrar sesión',
-        cancelButtonText: 'Cancelar'
+        cancelButtonText: 'Cancelar',
+        customClass: {
+            popup: 'swal-confirm-popup',
+            title: 'swal-confirm-title',
+            confirmButton: 'swal-confirm-btn',
+            cancelButton: 'swal-cancel-btn'
+        }
     }).then(result => {
         if (result.isConfirmed) {
             localStorage.removeItem("usuarioActivo");

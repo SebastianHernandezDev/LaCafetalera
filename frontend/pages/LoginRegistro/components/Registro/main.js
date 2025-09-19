@@ -186,6 +186,7 @@ form.addEventListener("submit", (e) => {
           window.location.href = "../Login/login.html";
         });
 
+<<<<<<< HEAD
         form.reset();
         [nombre, apellido, correo, telefono, contraseña, confirmContraseña].forEach((i) =>
           i.classList.remove("is-valid")
@@ -199,6 +200,42 @@ form.addEventListener("submit", (e) => {
           text: 'Hubo un problema al registrar el usuario.',
         });
       });
+=======
+    Swal.fire({
+      icon: 'success',
+      title: '¡Registro exitoso!',
+      text: 'Usuario registrado con éxito.',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      backdrop: true,
+      customClass: {
+        popup: 'my-swal-popup',
+        title: 'my-swal-title-success',  
+        confirmButton: 'my-swal-button'
+      }
+    }).then(() => {
+      window.location.href = "../Login/login.html";
+    });
+
+
+    form.reset();
+    [nombres, apellidos, correo, celular, password, confirmPassword].forEach((i) =>
+      i.classList.remove("is-valid")
+    );
+  } else {
+    Swal.fire({
+      icon: '⚠️',
+      title: '¡Error en el formulario!',
+      text: 'Por favor corrige los campos en rojo.',
+      confirmButtonText: 'Entendido',
+      customClass: {
+        popup: 'my-swal-popup',
+        title: 'my-swal-title',
+        confirmButton: 'my-swal-button'
+      }
+    });
+>>>>>>> 5820152a2d17d5b1a2e71fdeb79cee9a1f4c2740
   }
 });
 

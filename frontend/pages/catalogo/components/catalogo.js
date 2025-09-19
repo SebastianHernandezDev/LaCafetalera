@@ -30,7 +30,14 @@ function AdminPanel() {
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: 'Sí, cerrar sesión',
-            cancelButtonText: 'Cancelar'
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                popup: 'swal2-popup',
+                title: 'swal2-title',
+                htmlContainer: 'swal2-html-container',
+                confirmButton: 'swal2-confirm',
+                cancelButton: 'swal2-cancel'
+            }
         }).then(result => {
             if (result.isConfirmed) {
                 localStorage.removeItem("usuarioActivo");
@@ -74,6 +81,11 @@ function showcart() {
                 allowOutsideClick: false,
                 allowEscapeKey: false,
                 backdrop: true,
+                customClass: {
+                    popup: 'swal2-popup',
+                    title: 'swal2-title',
+                    htmlContainer: 'swal2-html-container'
+                },
                 didClose: () => {
                     window.location.href = "/frontend/pages/LoginRegistro/components/Login/login.html";
                 }
@@ -91,7 +103,6 @@ function eliminarProducto(productId) {
     productos = productos.filter(p => Number(p.id) !== Number(productId));
     saveProducts(productos);
     renderProducts(productos);
-    cargarInventario();
 }
 
 async function fetchProducts() {
@@ -188,16 +199,34 @@ function renderProducts(productos = null) {
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonText: "Sí, eliminar",
-                    cancelButtonText: "Cancelar"
+                    cancelButtonText: "Cancelar",
+                    customClass: {
+                        popup: 'swal2-popup',
+                        title: 'swal2-title',
+                        htmlContainer: 'swal2-html-container',
+                        confirmButton: 'swal2-confirm',
+                        cancelButton: 'swal2-cancel'
+                    }
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // ⏳ Espera a eliminar y volver a renderizar
                         let productos = getProducts();
                         productos = productos.filter(p => Number(p.id) !== id);
                         saveProducts(productos);
-                        renderProducts(productos); // 🔁 Re-renderiza con lista actualizada
+                        renderProducts(productos);
 
-                        Swal.fire("Eliminado", "El producto fue eliminado correctamente.", "success");
+                        Swal.fire({
+                            title: "Eliminado",
+                            text: "El producto fue eliminado correctamente.",
+                            icon: "success",
+                            customClass: {
+                                popup: 'swal2-popup',
+                                title: 'swal2-title',
+                                htmlContainer: 'swal2-html-container',
+                                confirmButton: 'swal2-confirm'
+                            },
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
                     }
                 });
             });
@@ -219,7 +248,12 @@ function addToCart(productId, event) {
             timerProgressBar: true,
             backdrop: true,
             allowOutsideClick: false,
-            allowEscapeKey: false
+            allowEscapeKey: false,
+            customClass: {
+                popup: 'swal2-popup',
+                title: 'swal2-title',
+                htmlContainer: 'swal2-html-container'
+            }
         }).then(() => {
             window.location.href = "/frontend/pages/LoginRegistro/components/Login/login.html";
         });
