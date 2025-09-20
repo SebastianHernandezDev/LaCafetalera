@@ -13,15 +13,25 @@ document.addEventListener("DOMContentLoaded", function () {
         const password = document.getElementById("password").value.trim();
 
         try {
-            const response = await fetch("../../assets/data/admin.json");
-            const admin = await response.json();
+            const response = await fetch("http://localhost:8080/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: correo, contrasena: password })
+            });
 
-            if (correo === admin.correo && password === admin.password) {
-                localStorage.setItem("usuarioActivo", JSON.stringify({
-                    correo: admin.correo,
-                    rol: "admin"
-                }));
+            if (!response.ok) throw new Error("Correo o contraseña incorrectos");
 
+            const data = await response.json();
+
+            // Guardar JWT y datos del usuario en localStorage
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("usuarioActivo", JSON.stringify({
+                correo: data.email,
+                rol: data.rol || "usuario"
+            }));
+
+            // Mostrar alerta y redirigir según rol
+            if (data.rol === "admin") {
                 await Swal.fire({
                     icon: "success",
                     title: "Bienvenido Admin",
@@ -29,54 +39,34 @@ document.addEventListener("DOMContentLoaded", function () {
                     timer: 2000,
                     showConfirmButton: false
                 });
-
-                return window.location.href = "../../../dashboardAdmin/components/dashboard.html";
-            }
-
-            // Buscar entre usuarios normales
-            const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-            const user = usuarios.find(u => u.correo === correo && u.password === password);
-
-            if (!user) {
-                return Swal.fire({
-                    icon: "error",
-                    title: "Correo o contraseña incorrectos",
-                    text: "Por favor verifica tus credenciales.",
+                window.location.href = "../../../dashboardAdmin/components/dashboard.html";
+            } else {
+                await Swal.fire({
+                    icon: "success",
+                    title: `¡Bienvenido, ${data.nombre || ''}!`,
+                    text: "Redirigiendo al inicio...",
+                    timer: 2000,
+                    showConfirmButton: false
                 });
+                window.location.href = "../../../../../index.html";
             }
-
-            localStorage.setItem("usuarioActivo", JSON.stringify({
-                correo: user.correo,
-                rol: "usuario"
-            }));
-
-            await Swal.fire({
-                icon: "success",
-                title: `¡Bienvenido, ${user.nombres}!`,
-                text: "Redirigiendo al inicio...",
-                timer: 2000,
-                showConfirmButton: false
-            });
-
-            window.location.href = "../../../../../index.html";
 
         } catch (error) {
-            console.error("Error al verificar el login:", error);
+            console.error("Error al iniciar sesión:", error);
             Swal.fire({
                 icon: "error",
-                title: "Error inesperado",
-                text: "Hubo un problema al iniciar sesión. Inténtalo más tarde."
+                title: "Error",
+                text: error.message
             });
         }
     });
 
     // Mostrar/ocultar contraseña
-    const toggleBtn = document.getElementById("togglePassword");
-    if (toggleBtn) {
-        toggleBtn.addEventListener("click", function () {
+    const togglePassword = document.getElementById("togglePassword");
+    if (togglePassword) {
+        togglePassword.addEventListener("click", function () {
             const input = document.getElementById("password");
             const icon = this.querySelector("i");
-
             if (input.type === "password") {
                 input.type = "text";
                 icon.classList.replace("bi-eye", "bi-eye-slash");
