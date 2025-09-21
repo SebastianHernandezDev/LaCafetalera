@@ -24,6 +24,89 @@ footer {
   font-size: 15px;
   padding: 40px 15px 20px;
   color: #f5f5f5;
+  width: 100vw; 
+  margin-left: calc(-50vw + 50%);
+
+}
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--color-acento);
+  border-bottom: 2px solid var(--color-hover);
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+}
+
+.footer-link {
+  color: #f5f5f5;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.footer-link:hover {
+  color: var(--color-hover);
+  text-decoration: underline;
+}
+
+.social-link {
+  background-color: var(--color-principal);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.social-link:hover {
+  background-color: var(--color-hover);
+  transform: scale(1.1);
+}
+
+.pago-img {
+  width: 60px;
+  height: 40px;
+  object-fit: contain;
+  background-color: #fff;
+  padding: 6px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+.pago-img:hover {
+  transform: scale(1.05);
+}
+/* Logo y slogan */
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  margin-top: 30px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.logoFooter {
+    margin-top: -60px;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+footer {
+  background: linear-gradient(180deg, var(--color-footer-dark), var(--color-footer-bg));
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  padding: 40px 15px 20px;
+  color: #f5f5f5;
 }
 .footer-section {
   display: flex;
