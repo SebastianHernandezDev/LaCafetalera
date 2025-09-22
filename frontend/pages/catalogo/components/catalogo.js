@@ -64,41 +64,62 @@ function renderProducts(products = null) {
                 <p class="product-description">${product.description}</p>
                 <div class="product-price">$${parseFloat(product.price).toFixed(2)}</div>
                 ${isAdmin
-                    ? `<button class="btn-delete-product btn btn-danger btn-sm" data-id="${product.id}">Eliminar</button>`
-                    : `<button class="btn-cart btn btn-success btn-sm" data-id="${product.id}">Agregar al carrito</button>`}
+            ? `<button class="btn-delete-product btn btn-danger btn-sm" data-id="${product.id}">Eliminar</button>`
+            : `<button class="btn-cart btn btn-success btn-sm" data-id="${product.id}">Agregar al carrito</button>`}
             </div>
         </div>
     `).join('');
 
     // ---------- Eventos admin ----------
+    // ---------- Eventos admin ----------
     if (isAdmin) {
         document.querySelectorAll(".btn-delete-product").forEach(btn => {
             btn.addEventListener("click", async () => {
-                const id = btn.getAttribute("data-id");
-                const result = await Swal.fire({
-                    title: "¿Estás seguro?",
-                    text: "Esta acción eliminará el producto del catálogo.",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Sí, eliminar",
-                    cancelButtonText: "Cancelar"
-                });
-
-                if (result.isConfirmed) {
-                    await deleteProductBackend(id);
-                    await fetchProductsBackend();
-                    renderProducts();
-                    Swal.fire("Eliminado", "Producto eliminado correctamente", "success");
-                }
+                // lógica de eliminación...
             });
         });
     }
+
+    // ---------- Eventos usuario normal ----------
+    if (!isAdmin) {
+        document.querySelectorAll(".btn-cart").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const productId = btn.getAttribute("data-id");
+                const products = JSON.parse(localStorage.getItem("products")) || [];
+                const product = products.find(p => p.id == productId);
+
+                if (!product) return;
+
+                const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+                const existe = carrito.find(item => item.id == product.id);
+                if (existe) {
+                    existe.cantidad += 1;
+                } else {
+                    carrito.push({ ...product, cantidad: 1 });
+                }
+
+                localStorage.setItem("carrito", JSON.stringify(carrito));
+
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Agregado!',
+                    text: `${product.name} fue agregado al carrito.`,
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            });
+        });
+    }
+
 }
 
 // ---------------- Inicialización ----------------
 document.addEventListener("DOMContentLoaded", async () => {
     await fetchProductsBackend();
     renderProducts();
+    actualizarBotonSesion(); // ya la llamas aquí
+    showcart();              // aquí se muestra correctamente el carrito
 });
 
 function showcart() {
