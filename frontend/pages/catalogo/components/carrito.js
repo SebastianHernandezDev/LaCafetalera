@@ -1,6 +1,67 @@
-document.getElementById("continuarCompra").addEventListener("click", function () { 
+document.getElementById("continuarCompra").addEventListener("click", async function () { 
+    await enviarPedidoAlBackend(); // 👉 primero sincroniza carrito con backend
     window.open("../components/factura/components/factura.html", '_blank');
 });
+
+// ============================
+// FUNCIONES BACKEND
+// ============================
+
+const API_URL = "http://localhost:8080"; // ajusta si cambia
+const token = localStorage.getItem("token");
+
+// Crear pedido vacío en backend
+async function crearPedido() {
+    const response = await fetch(`${API_URL}/pedidos`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({}) // pedido vacío
+    });
+    if (!response.ok) throw new Error("Error al crear pedido");
+    return await response.json();
+}
+
+// Agregar productos (detalles) al pedido
+async function agregarDetalle(pedidoId, productoId, cantidad) {
+    const response = await fetch(`${API_URL}/pedidos/${pedidoId}/detalles`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({ productoId, cantidad })
+    });
+    if (!response.ok) throw new Error("Error al agregar producto al pedido");
+    return await response.json();
+}
+
+// Enviar todo el carrito al backend
+async function enviarPedidoAlBackend() {
+    try {
+        // 1. Crear pedido
+        const pedido = await crearPedido();
+        console.log("Pedido creado:", pedido);
+
+        // 2. Guardar ID en localStorage
+        localStorage.setItem("pedidoId", pedido.id);
+
+        // 3. Obtener carrito local
+        const carrito = obtenerCarrito();
+
+        // 4. Recorrer y enviar cada producto
+        for (const item of carrito) {
+            await agregarDetalle(pedido.id, item.id, item.cantidad);
+        }
+
+        console.log("Carrito sincronizado con backend ✅");
+    } catch (error) {
+        console.error("Error enviando pedido:", error.message);
+    }
+}
+
 
 function obtenerCarrito() {
     return JSON.parse(localStorage.getItem('cart')) || [];
