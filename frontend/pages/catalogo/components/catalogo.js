@@ -32,6 +32,7 @@ function AdminPanel() {
             }).then(result => {
                 if (result.isConfirmed) {
                     localStorage.removeItem("usuarioActivo");
+                    localStorage.removeItem("cart");
                     window.location.href = "/frontend/pages/LoginRegistro/components/Login/login.html";
                 }
             });
