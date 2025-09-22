@@ -157,22 +157,6 @@ function initStorytellingAnimations() {
 
 };
 
-// === TOGGLE TEXTO HISTORIAS ===
-function toggleTexto(textoId, button) {
-  const textoContainer = document.getElementById(textoId);
-  const textoCompleto = document.getElementById(ToggleC);
-
-  // Toggle del estilo 'display' directamente
-  if (textoCompleto.style.display === "none" || textoCompleto.style.display === "") {
-    textoCompleto.style.display = "block"; // Muestra el texto completo
-    button.textContent = 'Ver menos';
-    button.style.background = 'linear-gradient(135deg, #A0522D 0%, #8B4513 100%)';
-  } else {
-    textoCompleto.style.display = "none";  // Oculta el texto completo
-    button.textContent = 'Ver más';
-    button.style.background = 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)';
-  }
-}
 
 // === INICIALIZACIÓN ===
 document.addEventListener("DOMContentLoaded", function() {
@@ -181,5 +165,4 @@ document.addEventListener("DOMContentLoaded", function() {
   initVideo();
   initScrollIndicator();
   initStorytellingAnimations();
-  toggleTexto();
 });

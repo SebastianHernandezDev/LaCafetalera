@@ -116,6 +116,28 @@ function renderPreviewCard(producto) {
 }
 
 // ---------------- Cargar inventario ----------------
+function actualizarResumenInventario(productos) {
+  const totalProductos = productos.length;
+
+  const valorTotal = productos.reduce((acum, prod) => {
+    const precio = Number(prod.precioUnitario) || 0;
+    const stock = Number(prod.stock) || 0;
+    return acum + (precio * stock);
+  }, 0);
+
+  const precioPromedio = totalProductos > 0 ? valorTotal / totalProductos : 0;
+
+  document.getElementById("total-registros").textContent = totalProductos;
+  document.getElementById("valor-total").textContent = valorTotal.toLocaleString("es-CO", {
+    style: "currency",
+    currency: "COP"
+  });
+  document.getElementById("precio-promedio").textContent = precioPromedio.toLocaleString("es-CO", {
+    style: "currency",
+    currency: "COP"
+  });
+}
+
 async function cargarInventarioBackend() {
   console.log("Inicio de cargarInventarioBackend");
 
@@ -156,6 +178,8 @@ async function cargarInventarioBackend() {
 
   conectarBotonesEliminarBackend();
   conectarBotonesVerMas();
+  actualizarResumenInventario(productos);
+
 }
 
 
@@ -328,4 +352,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   await cargarCategorias();
   await cargarInventarioBackend();
   initCrearCategoria();
+  document.getElementById("actualizar-inventario").addEventListener("click", cargarInventarioBackend);
+
 });
