@@ -48,13 +48,15 @@
             <li class="nav-item"><a class="nav-link montserrat" href="../../../../index.html">Inicio</a></li>
             <li class="nav-item"><a class="nav-link montserrat"
                 href="../../catalogo/components/catalogo.html">Catálogo</a></li>
-            <li class="nav-item"><a class="nav-link montserrat" href="../../sobreNosotros/components/index.html">Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link montserrat"
+                href="../../sobreNosotros/components/index.html">Nosotros</a></li>
             <li class="nav-item"><a class="nav-link montserrat"
                 href="../../contacto/components/formulario.html">Contacto</a></li>
           </ul>
           <!-- Botón de iniciar sesión / registrarse -->
           <div class="d-flex gap-2 btn-iniciarSesion">
-            <a href="../../LoginRegistro/components/Login/login.html" id="botonSesion" class="btn btn-carrito montserrat boton-login-navbar">
+            <a href="../../LoginRegistro/components/Login/login.html" id="botonSesion"
+              class="btn btn-carrito montserrat boton-login-navbar">
               <i class="bi bi-person-fill letrasLogin me-2"></i> <strong>Iniciar sesión</strong>
             </a>
           </div>
@@ -64,16 +66,15 @@
   </header>
 
   <!-- Botón flotante del carrito -->
-<button type="button" class="btn btn-success position-fixed" hidden id="carritoFlotante"
-  aria-label="Abrir carrito"
-  style="bottom: 20px; right: 20px; z-index: 1050; border-radius: 50%; width: 80px; height: 80px;">
-
+  <button type="button" class="btn btn-success position-fixed" hidden id="carritoFlotante" aria-label="Abrir carrito"
+    style="bottom: 20px; left: 20px; z-index: 1050; border-radius: 50%; width: 80px; height: 80px;">
     <i class="fas fa-shopping-cart fs-4" aria-hidden="true"></i>
     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-5"
       id="contadorCarrito">
       0
     </span>
   </button>
+
 
   <!-- Offcanvas del carrito -->
   <div class="offcanvas offcanvas-start" tabindex="-1" id="carritoOffcanvas">
@@ -103,7 +104,7 @@
           <button class="btn btn-danger btn-sm" id="vaciarCarrito">
             <i class="fas fa-trash me-2"></i>Vaciar Carrito
           </button>
-          <a  href="carrito.html" class="btn btn-success" id="procederCheckout" target="_blank">
+          <a href="carrito.html" class="btn btn-success" id="procederCheckout" target="_blank">
             Ir al carrito
           </a>
         </div>
@@ -150,8 +151,8 @@
 
           <!-- Logo -->
           <div class="col-12 col-sm-12 col-lg-4 logoFooter mb-2 d-flex justify-content-center">
-            <img src="/frontend/components/assets-global/img/cafetalerafooter.png"
-              alt="Logo de La Cafetalera" class="img-fluid" style="max-width: 250px; height: auto;">
+            <img src="/frontend/components/assets-global/img/cafetalerafooter.png" alt="Logo de La Cafetalera"
+              class="img-fluid" style="max-width: 250px; height: auto;">
           </div>
 
           <!-- Menú de enlaces -->
@@ -161,7 +162,8 @@
                   class="footer-link text-light text-decoration-none">Inicio</a></li>
               <li class="mb-2"><i class="bi bi-grid-fill me-2"></i><a href="../../catalogo/components/catalogo.html"
                   class="footer-link text-light text-decoration-none">Catálogo</a></li>
-              <li class="mb-2"><i class="bi bi-envelope-fill me-2"></i><a href="../../contacto/components/formulario.html"
+              <li class="mb-2"><i class="bi bi-envelope-fill me-2"></i><a
+                  href="../../contacto/components/formulario.html"
                   class="footer-link text-light text-decoration-none">Contáctenos</a></li>
               <li class="mb-2"><i class="bi bi-person-fill me-2"></i><a href="../../sobreNosotros/components/index.html"
                   class="footer-link text-light text-decoration-none">Nosotros</a></li>
