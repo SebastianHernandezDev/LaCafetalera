@@ -162,7 +162,7 @@ form.addEventListener("submit", (e) => {
       contrasena: contraseña.value,
     };
 
-    fetch("http://localhost:8080/auth/register", {
+    fetch("https://8mq33rknsp.us-east-1.awsapprunner.com/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

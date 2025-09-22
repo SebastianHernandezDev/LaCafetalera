@@ -95,7 +95,7 @@ function showcart() {
 async function eliminarProducto(productId) {
     try {
         const token = localStorage.getItem("token"); // Solo si usas auth
-        const res = await fetch(`http://localhost:8080/productos/${productId}`, {
+        const res = await fetch(`https://8mq33rknsp.us-east-1.awsapprunner.com/productos/${productId}`, {
             method: "DELETE",
             headers: token ? { "Authorization": `Bearer ${token}` } : {}
         });
@@ -116,7 +116,7 @@ async function eliminarProducto(productId) {
 
 async function fetchProducts() {
     try {
-        const res = await fetch("http://localhost:8080/productos");
+        const res = await fetch("https://8mq33rknsp.us-east-1.awsapprunner.com/productos");
         if (!res.ok) throw new Error("No se pudieron cargar los productos del backend");
 
         const data = await res.json();

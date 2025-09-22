@@ -7,7 +7,7 @@ document.getElementById("continuarCompra").addEventListener("click", async funct
 // FUNCIONES BACKEND
 // ============================
 
-const API_URL = "http://localhost:8080"; // ajusta si cambia
+const API_URL = "https://8mq33rknsp.us-east-1.awsapprunner.com/"; // ajusta si cambia
 const token = localStorage.getItem("token");
 
 // Crear pedido vacío en backend

@@ -1,6 +1,6 @@
 // ---------------- URLs Backend ----------------
-const CATEGORIAS_URL = "http://localhost:8080/categorias";
-const PRODUCTOS_URL = "http://localhost:8080/productos";
+const CATEGORIAS_URL = "https://8mq33rknsp.us-east-1.awsapprunner.com/categorias";
+const PRODUCTOS_URL = "https://8mq33rknsp.us-east-1.awsapprunner.com/productos";
 
 // ---------------- Variables globales ----------------
 let productosEnPreview = [];
