@@ -333,11 +333,10 @@ form textarea {
   height: 50px;
   font-family: 'Lato', sans-serif;
   text-align: inherit;
-  white-space: nowrap;         /* evita que el texto se divida en varias líneas */
-  overflow: hidden;            /* oculta el contenido que se desborda */
+  white-space: nowrap;         
   text-overflow: ellipsis;
-  -webkit-line-clamp: 2;       /* número de líneas visibles */
-  -webkit-box-orient: horizontal; /* orientación del box */
+  -webkit-line-clamp: 2;       
+  -webkit-box-orient: horizontal; 
   overflow: hidden;
   text-overflow: ellipsis;
    
@@ -345,7 +344,7 @@ form textarea {
 
 .table tbody td img {
   max-width: 80px;
- max-height: auto;
+  max-height: auto;
   border-radius: 0.5rem;
   object-fit: cover;
 }
