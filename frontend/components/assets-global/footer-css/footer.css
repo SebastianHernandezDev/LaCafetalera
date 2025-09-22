@@ -27,8 +27,6 @@ footer {
   width: 100vw; 
   margin-left: calc(-50vw + 50%);
 
-<<<<<<< HEAD
-=======
 }
 .footer-section {
   display: flex;
@@ -109,7 +107,6 @@ footer {
   font-size: 15px;
   padding: 40px 15px 20px;
   color: #f5f5f5;
->>>>>>> 1128928bdc821d710585bd098e8f72a092bdc9f7
 }
 .footer-section {
   display: flex;
