@@ -1,69 +1,193 @@
-// ====== CATALOGO ======
-function AdminPanel() {
-    const boto = document.getElementById("botonSesion");
-    if (!boto) return;
+// ---------------- URLs Backend ----------------
+const PRODUCTOS_URL = "http://localhost:8080/productos";
 
-    const usuarioJSON = localStorage.getItem("usuarioActivo");
+// ---------------- Variables globales ----------------
+let productosBack = [];
 
-    if (!usuarioJSON) {
-        boto.setAttribute("href", "../../LoginRegistro/components/Login/login.html");
-        boto.innerHTML = `<i class="bi bi-person-fill letrasLogindebes iniciarme-2"></i><strong>Iniciar Sesión</strong>`;
-        boto.onclick = null;
-        return;
+// ---------------- Traer productos desde backend ----------------
+async function fetchProductsBackend() {
+    try {
+        const res = await fetch(PRODUCTOS_URL);
+        if (!res.ok) throw new Error("No se pudieron cargar los productos del backend");
+        const data = await res.json();
+
+        productosBack = data.map((p, index) => ({
+            id: p.id_producto || index + 1,
+            name: p.nombre || "Producto sin nombre",
+            description: p.descripcion || "Sin descripción",
+            image: p.imagen || "../assets/img/placeholder.png",
+            price: Number(p.precioUnitario) || 0
+        }));
+
+        // Guarda los productos en localStorage para el carrito flotante
+        localStorage.setItem("products", JSON.stringify(productosBack));
+    } catch (err) {
+        console.error("Error cargando productos:", err);
+        productosBack = [];
     }
-
-    const usuario = JSON.parse(usuarioJSON);
-
-    if (usuario.rol && usuario.rol.toLowerCase() === "admin") {
-        boto.setAttribute("href", "../../dashboardAdmin/components/dashboard.html");
-        boto.innerHTML = `<i class="bi bi-speedometer2 me-2"></i><strong>Admin Panel</strong>`;
-        boto.onclick = null;
-        return;
-    }
-
-    boto.removeAttribute("href");
-    boto.innerHTML = `<i class="bi bi-box-arrow-right me-2"></i><strong>Cerrar Sesión</strong>`;
-    boto.onclick = function (e) {
-        e.preventDefault();
-        Swal.fire({
-            title: '¿Deseas cerrar sesión?',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: 'Sí, cerrar sesión',
-            cancelButtonText: 'Cancelar'
-        }).then(result => {
-            if (result.isConfirmed) {
-                localStorage.removeItem("usuarioActivo");
-                window.location.href = "http://127.0.0.1:5501/frontend/pages/LoginRegistro/components/Login/login.html";
-            }
-        });
-    };
 }
 
-function showcart() {
-    const adminbotton = document.getElementById("carritoFlotante");
-    if (!adminbotton) return;
+
+// ---------------- Carrito en localStorage ----------------
+function getCart() {
+    return JSON.parse(localStorage.getItem("cart")) || [];
+}
+
+function saveCart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function agregarAlCarrito(productId) {
+    const cart = getCart();
+    const product = productosBack.find(p => p.id === productId);
+    if (!product) return;
+
+    const existente = cart.find(p => p.id === productId);
+    if (existente) {
+        existente.cantidad += 1;
+    } else {
+        cart.push({ ...product, cantidad: 1 });
+    }
+    saveCart(cart);
+    showcart(); // <-- Actualiza el carrito flotante y el contador
+}
+
+// ---------------- Render catálogo ----------------
+function renderProducts(products = null) {
+    const catalogGrid = document.getElementById("catalogGrid");
+    if (!catalogGrid) return;
 
     const usuarioJSON = localStorage.getItem("usuarioActivo");
+    const usuario = usuarioJSON ? JSON.parse(usuarioJSON) : null;
+    const isAdmin = usuario && usuario.rol === "admin";
 
+    const lista = products || productosBack;
+
+    if (lista.length === 0) {
+        catalogGrid.innerHTML = `<div class="no-products">No hay productos disponibles.</div>`;
+        return;
+    }
+
+    catalogGrid.innerHTML = lista.map(product => `
+        <div class="product-card" data-id="${product.id}">
+            <img src="${product.image}" alt="${product.name}" class="product-image" 
+                onerror="this.src='../assets/img/placeholder.png'">
+            <div class="product-info">
+                <h3 class="product-name">${product.name}</h3>
+                <p class="product-description">${product.description}</p>
+                <div class="product-price">$${parseFloat(product.price).toFixed(2)}</div>
+                ${isAdmin
+            ? `<button class="btn-delete-product" data-id="${product.id}"><i class="fas fa-trash"></i> Eliminar del Catálogo</button>`
+            : `<button class="btn-cart" data-id="${product.id}"><i class="fas fa-shopping-cart"></i> AGREGAR AL CARRITO</button>`}
+            </div>
+        </div>
+    `).join('');
+
+    // Evento para eliminar producto (solo admin)
+    if (isAdmin) {
+        document.querySelectorAll(".btn-delete-product").forEach(btn => {
+            btn.addEventListener("click", async function () {
+                const id = Number(btn.getAttribute("data-id"));
+                Swal.fire({
+                    title: "¿Estás seguro?",
+                    text: "Esta acción eliminará el producto del catálogo.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Sí, eliminar",
+                    cancelButtonText: "Cancelar"
+                }).then(async (result) => {
+                    if (result.isConfirmed) {
+                        try {
+                            // Petición DELETE al backend
+                            const res = await fetch(`${PRODUCTOS_URL}/${id}`, {
+                                method: "DELETE"
+                            });
+                            if (!res.ok) throw new Error("No se pudo eliminar el producto del backend");
+
+                            // Actualiza la lista local y vuelve a renderizar
+                            productosBack = productosBack.filter(p => p.id !== id);
+                            localStorage.setItem("products", JSON.stringify(productosBack));
+                            renderProducts();
+
+                            Swal.fire("Eliminado", "El producto fue eliminado correctamente.", "success");
+                        } catch (error) {
+                            Swal.fire("Error", "No se pudo eliminar el producto.", "error");
+                        }
+                    }
+                });
+            });
+        });
+    }
+
+    // Evento para agregar al carrito o pedir login
+    if (!isAdmin) {
+        document.querySelectorAll(".btn-cart").forEach(btn => {
+            btn.addEventListener("click", e => {
+                const usuarioJSON = localStorage.getItem("usuarioActivo");
+                if (!usuarioJSON) {
+                    e.preventDefault();
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Debes iniciar sesión',
+                        text: 'Por favor inicia sesión para poder comprar.',
+                        confirmButtonText: 'Ir a iniciar sesión'
+                    }).then(() => {
+                        window.location.href = "../../LoginRegistro/components/Login/login.html";
+                    });
+                    return;
+                }
+                const id = Number(btn.getAttribute("data-id"));
+                agregarAlCarrito(id);
+
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> ¡Agregado!';
+                btn.style.background = 'linear-gradient(135deg, #4CAF50, #66BB6A)';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = '#8C5637';
+                }, 1500);
+            });
+        });
+    }
+}
+
+// ---------------- Filtro ----------------
+function aplicarFiltroNombre() {
+    const input = document.getElementById("buscadorNombre").value.toLowerCase();
+    const filtrados = productosBack.filter(p => p.name.toLowerCase().includes(input));
+    renderProducts(filtrados);
+}
+
+// ---------------- Inicialización ----------------
+document.addEventListener("DOMContentLoaded", async () => {
+    await fetchProductsBackend(); // Trae productos desde backeWnd
+    renderProducts(); // Renderiza catálogo
+    showcart();
+
+    const buscador = document.getElementById("buscadorNombre");
+    if (buscador) buscador.addEventListener("input", aplicarFiltroNombre);
+});
+
+function showcart() {
+    const carritoBtn = document.getElementById("carritoFlotante");
+    if (!carritoBtn) return;
+
+    const usuarioJSON = localStorage.getItem("usuarioActivo");
     if (!usuarioJSON) {
-        adminbotton.setAttribute("hidden", "true");
+        carritoBtn.setAttribute("hidden", "true");
         return;
     }
 
     const usuario = JSON.parse(usuarioJSON);
-
     if (usuario.rol && usuario.rol.toLowerCase() === "admin") {
-        adminbotton.setAttribute("hidden", "true");
+        carritoBtn.setAttribute("hidden", "true");
     } else {
-        adminbotton.removeAttribute("hidden");
+        carritoBtn.removeAttribute("hidden");
     }
 
-    adminbotton.addEventListener("click", function (event) {
+    carritoBtn.onclick = function (event) {
         event.preventDefault();
-
-        const currentUser = localStorage.getItem("usuarioActivo");
-        if (!currentUser) {
+        if (!localStorage.getItem("usuarioActivo")) {
             Swal.fire({
                 icon: 'warning',
                 title: '¡Atención!',
@@ -83,176 +207,37 @@ function showcart() {
             const offcanvas = new bootstrap.Offcanvas(carritoOffcanvas);
             offcanvas.show();
         }
-    });
+    };
 }
 
-function eliminarProducto(productId) {
-    let productos = getProducts();
-    productos = productos.filter(p => Number(p.id) !== Number(productId));
-    saveProducts(productos);
-    renderProducts(productos);
-    cargarInventario();
-}
-
-async function fetchProducts() {
-    try {
-        const response = await fetch("../assets/data/products.json");
-        if (!response.ok) throw new Error("No se pudo cargar el archivo products.json");
-        return await response.json();
-    } catch (error) {
-        console.error("Error al obtener los productos:", error);
-        return [];
-    }
-}
-
-async function initializeProducts() {
-    const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
-    if (existingProducts.length === 0) {
-        const defaultProducts = await fetchProducts();
-        if (defaultProducts.length > 0) {
-            const productsWithIds = defaultProducts.map((product, index) => ({
-                ...product,
-                id: product.id || index + 1
-            }));
-            localStorage.setItem("products", JSON.stringify(productsWithIds));
-        }
-    }
-}
-
-function getProducts() {
-    return JSON.parse(localStorage.getItem("products")) || [];
-}
-
-function saveProducts(products) {
-    localStorage.setItem("products", JSON.stringify(products));
-}
-
-function aplicarFiltroNombre() {
-    const input = document.getElementById("buscadorNombre").value;
-
-    const normalizar = str =>
-        str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-
-    const nombreBuscado = normalizar(input);
-    const productos = getProducts();
-
-    const productosFiltrados = productos.filter(producto => {
-        const nombreNormalizado = normalizar(producto.name);
-        return nombreNormalizado.includes(nombreBuscado);
-    });
-
-    renderProducts(productosFiltrados);
-}
-
-function renderProducts(productos = null) {
-    const products = productos || getProducts();
-    const catalogGrid = document.getElementById("catalogGrid");
-    const usuario = JSON.parse(localStorage.getItem("usuarioActivo"));
-    const isAdmin = usuario && usuario.rol === "admin";
-
-    if (!catalogGrid) return;
-
-    if (products.length === 0) {
-        catalogGrid.innerHTML = `<div class="no-products">No hay productos disponibles.</div>`;
-        return;
-    }
-
-    catalogGrid.innerHTML = products.map(product => `
-        <div class="product-card" data-id="${product.id}">
-            <img src="${product.image}" alt="${product.name}" class="product-image"
-                onerror="this.src='../assets/img/placeholder.png'">
-            <div class="product-info">
-                <h3 class="product-name">${product.name}</h3>
-                <p class="product-description">${product.description}</p>
-                <div class="product-price">$${parseFloat(product.price).toFixed(2)}</div>
-                ${isAdmin
-            ? `<button class="btn-delete-product" data-id="${product.id}">
-                         <i class="fas fa-trash"></i> Eliminar del Catálogo
-                       </button>`
-            : `<button class="btn-cart" onclick="addToCart(${product.id}, event)">
-                         <i class="fas fa-shopping-cart"></i> AGREGAR AL CARRITO
-                       </button>`
-        }
-            </div>
-        </div>
-    `).join('');
-
-    if (isAdmin) {
-        document.querySelectorAll('.btn-delete-product').forEach(button => {
-            button.addEventListener('click', function () {
-                const id = Number(this.getAttribute('data-id'));
-
-                Swal.fire({
-                    title: "¿Estás seguro?",
-                    text: "Esta acción eliminará el producto del catálogo.",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Sí, eliminar",
-                    cancelButtonText: "Cancelar"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // ⏳ Espera a eliminar y volver a renderizar
-                        let productos = getProducts();
-                        productos = productos.filter(p => Number(p.id) !== id);
-                        saveProducts(productos);
-                        renderProducts(productos); // 🔁 Re-renderiza con lista actualizada
-
-                        Swal.fire("Eliminado", "El producto fue eliminado correctamente.", "success");
-                    }
-                });
-            });
-        });
-    }
-}
-
-function addToCart(productId, event) {
+function actualizarBotonSesion() {
+    const boto = document.getElementById("botonSesion");
     const usuarioJSON = localStorage.getItem("usuarioActivo");
-
-    if (!usuarioJSON) {
-        event.preventDefault();
-        Swal.fire({
-            icon: 'warning',
-            title: '¡Atención!',
-            text: 'Debes iniciar sesión para agregar productos al carrito.',
-            timer: 2500,
-            showConfirmButton: false,
-            timerProgressBar: true,
-            backdrop: true,
-            allowOutsideClick: false,
-            allowEscapeKey: false
-        }).then(() => {
-            window.location.href = "/frontend/pages/LoginRegistro/components/Login/login.html";
-        });
-        return;
-    }
-
-    const products = getProducts();
-    const product = products.find(p => p.id === productId);
-
-    if (product) {
-        agregarAlCarrito(productId);
-
-        const button = event.target.closest("button");
-        const originalText = button.innerHTML;
-        button.innerHTML = '<i class="fas fa-check"></i> ¡Agregado!';
-        button.style.background = 'linear-gradient(135deg, #4CAF50, #66BB6A)';
-
-        setTimeout(() => {
-            button.innerHTML = originalText;
-            button.style.background = '#8C5637';
-        }, 1500);
+    if (!boto) return;
+    if (usuarioJSON) {
+        boto.innerHTML = `<i class="bi bi-box-arrow-right me-2"></i><strong>Cerrar Sesión</strong>`;
+        boto.removeAttribute("href");
+        boto.onclick = function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: '¿Deseas cerrar sesión?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, cerrar sesión',
+                cancelButtonText: 'Cancelar'
+            }).then(result => {
+                if (result.isConfirmed) {
+                    localStorage.removeItem("usuarioActivo");
+                    localStorage.removeItem("token");
+                    window.location.href = "../../LoginRegistro/components/Login/login.html";
+                }
+            });
+        };
+    } else {
+        boto.innerHTML = `<i class="bi bi-person-fill letrasLogin me-2"></i> <strong>Iniciar sesión</strong>`;
+        boto.setAttribute("href", "../../LoginRegistro/components/Login/login.html");
+        boto.onclick = null;
     }
 }
 
-// 🚀 Inicialización
-document.addEventListener("DOMContentLoaded", async () => {
-    showcart();
-    await initializeProducts();
-    renderProducts();
-    AdminPanel();
-
-    const buscador = document.getElementById("buscadorNombre");
-    if (buscador) {
-        buscador.addEventListener("input", aplicarFiltroNombre);
-    }
-});
+document.addEventListener("DOMContentLoaded", actualizarBotonSesion);

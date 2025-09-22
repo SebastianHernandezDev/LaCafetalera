@@ -346,3 +346,75 @@ body {
 .historia-parrafo.expandido {
   max-height: 2000px; /* altura suficiente para mostrar todo el contenido */
 }
+
+/* ======================
+   SweetAlert2 - Estilos personalizados
+====================== */
+.swal2-popup {
+  background: #fffaf3 !important; /* fondo crema */
+  border-radius: 20px !important;
+  padding: 2rem !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25) !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.swal2-title {
+  color: #6B4226 !important; /* marrón café */
+  font-weight: 700 !important;
+  font-size: 1.6rem !important;
+}
+
+.swal2-html-container {
+  color: #4E342E !important; /* café oscuro */
+  font-size: 1rem !important;
+}
+
+/* Botones generales */
+.swal2-confirm {
+  background: linear-gradient(135deg, #A0522D, #6B4226) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 0.6rem 1.2rem !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  transition: all 0.3s ease !important;
+}
+
+.swal2-confirm:hover {
+  background: linear-gradient(135deg, #6B4226, #4E342E) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25) !important;
+}
+
+.swal2-cancel {
+  background: #F5E4D3 !important;
+  color: #A0522D !important;
+  border-radius: 10px !important;
+  padding: 0.6rem 1.2rem !important;
+  font-weight: 600 !important;
+  border: 2px solid #D6A77A !important;
+  transition: all 0.3s ease !important;
+}
+
+.swal2-cancel:hover {
+  background: #EED9C4 !important;
+  color: #6B4226 !important;
+  transform: translateY(-2px);
+}
+
+/* Éxito */
+.swal2-success .swal2-icon-success {
+  color: #fffaf3 !important;
+  background-color: #6B4226 !important;
+  border-radius: 50% !important;
+  font-size: 2.5rem !important;
+}
+
+/* Advertencia */
+.swal2-warning .swal2-icon-warning {
+  color: #6B4226 !important;
+  background-color: #F5E4D3 !important;
+  border-radius: 50% !important;
+  font-size: 2.5rem !important;
+  border: 2px solid #D6A77A !important;
+}
