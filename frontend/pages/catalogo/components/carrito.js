@@ -26,18 +26,33 @@ async function crearPedido() {
 
 // Agregar productos (detalles) al pedido
 async function agregarDetalle(pedidoId, productoId, cantidad) {
-    const response = await fetch(`${API_URL}/pedidos/${pedidoId}/detalles`, {
+    console.log(`Enviando: idPedido=${pedidoId}, idProducto=${productoId}, cantidad=${cantidad}`);
+    
+    const response = await fetch(`${API_URL}/detalle-pedidos`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify({ productoId, cantidad })
+        body: JSON.stringify({ 
+            idPedido: pedidoId,      
+            idProducto: productoId,   
+            cantidad: cantidad 
+        })
     });
-    if (!response.ok) throw new Error("Error al agregar producto al pedido");
-    return await response.json();
+    
+    console.log(`Status: ${response.status}`);
+    
+    if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`Error ${response.status}:`, errorText);
+        throw new Error(`Error ${response.status}: ${errorText}`);
+    }
+    
+    const result = await response.json();
+    console.log("Detalle agregado:", result);
+    return result;
 }
-
 // Enviar todo el carrito al backend
 async function enviarPedidoAlBackend() {
     try {
