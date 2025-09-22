@@ -202,7 +202,7 @@ formAdminInsert.addEventListener("submit", function (e) {
     name: formData.get("name") || "Producto sin nombre",
     idCategoria: categoriaId,
     precioUnitario: formData.get("price") || 0,  // <-- aquí el cambio
-    stock: formData.get("stock") || 0,
+    stock: formData.get("stock") || 0, // ✅ ¡AGREGADO!
     description: formData.get("description") || "Sin descripción",
     image: imagenBase64 || "https://via.placeholder.com/300x180?text=Sin+imagen",
     imageName: archivoImagen?.name || "",
